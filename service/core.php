@@ -38,10 +38,10 @@
 
                     $lastid = $conn->lastInsertId();
 
-                    $sql = "UPDATE `users` SET `type` = 2 , `surname` = '".$_POST['surname']."' WHERE `id` = '".$lastid."'";
+                    $sql = "UPDATE `hairstyle` SET `type` = 2  WHERE `id_hairstyle` = '".$lastid."'";
                     $rs = getpdo($conn,$sql);
 
-                    $sql = "INSERT INTO `partner`(`name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['location']."','".$_POST['biz_type']."','".$lastid."')";
+                    $sql ="INSERT INTO `promotion`(`start_date`, `end_date`, `promotion_price`, `fk_hairstyle_id`) VALUES ('".$_POST['start_date']."','".$_POST['end_date']."','".$_POST['promotion_price']."','".$lastid."')";
                     $rs = getpdo($conn,$sql);
                     if($rs){
                         $res = array("code" => 200, "result" => $rs);
@@ -93,12 +93,32 @@
             $sql .= ",`image` = '".$img."'";
         }
         $sql .= " WHERE `id_hairstyle` = '".$_POST['id_hairstyle']."'";
-
         $rs = getpdo($conn,$sql);
+        
+        if(isset($_POST['promotion'])){
+            $sql = "UPDATE `promotion` SET `start_date`='".$_POST['start_date']."',`end_date`='".$_POST['end_date']."',`promotion_price`='".$_POST['promotion_price']."' WHERE `id_promotion` = '".$_POST['id_promotion']."'";
+            $rs = getpdo($conn,$sql);
+        }
+
         if($rs){
             $res = array("code" => 200, "result" => $rs);
             echo json_encode($res);
             return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'getpromotion'){
+
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+            // echo $sql;
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "SELECT * FROM `hairstyle` JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."' and `type` = 2";
+            $rs = getpdo($conn,$sql);
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
         }
     }
 

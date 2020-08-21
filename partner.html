@@ -15,13 +15,13 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-xl-3 d-none d-xl-block">
                 <div class="sidenav"></div>
             </div>
-            <div class="col-9">
+            <div class="col-xl-9 col-lg-12">
                 <h3>REGISTER</h3>
                 <p>TO BE OUR PARTNER</p>
-                <p style="color: #C1B09D;">----------------------</p>
+                <p style="border:1px #C1B09D dashed; width: 160px;"></p>
 
                 <div class="row" style="text-align: left;">
                     <div class="col">
@@ -41,25 +41,25 @@
                 <input type="text" name="phone" id="phone" class="form-control" required placeholder="Phone Number">
 
                 <br>
-                <p style="text-align: center; color: #C1B09D;">--------------------------------------------------------------------------------------------------------------------------------</p>
+                <p style="border:1px #C1B09D dashed;"></p>
 
                 <div class="row" style="text-align: left;">
                     <div class="col">
 
-                        <label for="business" class="text-dark">NAME OF YOUR BUSINESS:</label>
-                        <input type="text" name="business" id="business" class="form-control" required placeholder="Name of your Business">
+                        <label for="biz_name" class="text-dark">NAME OF YOUR BUSINESS:</label>
+                        <input type="text" name="name" id="biz_name" class="form-control" required placeholder="Name of your Business">
                     </div>
                     <div class="col">
-                        <label for="business" class="text-dark"></label>TYPE OF YOUR BUSINESS
+                        <label for="biz_type" class="text-dark"></label>TYPE OF YOUR BUSINESS
                         <div class="row">
                             <div class="col">
                                 <div class="radio">
-                                    <label><input type="radio" name="optradio"> Vintage Men's Hair</label>
+                                    <label><input type="radio" name="optradio" id="biz_type" value="1"> Vintage Men's Hair</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="radio">
-                                    <label><input type="radio" name="optradio"> Donate Hair</label>
+                                    <label><input type="radio" name="optradio" id="biz_type" value="2"> Donate Hair</label>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                 </div>
 
                 <label for="Bemail" class="text-dark">BUSINESS EMAIL:</label>
-                <input type="text" name="Bemail" id="Bemail" class="form-control" required placeholder="Business Email">
+                <input type="text" name="Bemail" id="biz_email" class="form-control" required placeholder="Business Email">
 
                 <div class="row" style="text-align: left;">
                     <div class="col">
@@ -87,19 +87,20 @@
                 <input type="text" name="location" id="location" class="form-control" required placeholder="Location">
 
                 <div class="radio">
-                    <label><input type="radio" name="optradio">  ยอมรับข้อกำหนดและเงื่อนไขการใช้งาน</label>
+                    <label><input type="checkbox" name="optradio" id="pt">  ยอมรับข้อกำหนดและเงื่อนไขการใช้งาน</label>
                 </div>
                 <br>
                 <div class="form-group2">
-                    <button type="button" class="btn btn-dark">CONTINUE</button>
+                    <button type="button" class="btn btn-dark" onclick="signUp(this)">CONTINUE</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+
     <script>
         const signUp = (e) => {
             e.disabled = true;

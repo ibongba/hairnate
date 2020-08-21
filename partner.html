@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>REGISTER PARTNER</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="sidenav"></div>
+            </div>
+            <div class="col-9">
+                <h3>REGISTER</h3>
+                <p>TO BE OUR PARTNER</p>
+                <p style="color: #C1B09D;">----------------------</p>
+
+                <div class="row" style="text-align: left;">
+                    <div class="col">
+
+                        <label for="name" class="text-dark">NAME:</label>
+                        <input type="text" name="name" id="name" class="form-control" required placeholder="Name">
+                    </div>
+                    <div class="col">
+                        <label for="surname" class="text-dark">SURNAME:</label>
+                        <input type="text" name="surname" id="surname" class="form-control" required placeholder="Surname">
+                    </div>
+                </div>
+                <label for="email" class="text-dark">EMAIL:</label>
+                <input type="text" name="email" id="email" class="form-control" required placeholder="Email">
+
+                <label for="phone" class="text-dark">PHONE NUMBER:</label>
+                <input type="text" name="phone" id="phone" class="form-control" required placeholder="Phone Number">
+
+                <br>
+                <p style="text-align: center; color: #C1B09D;">--------------------------------------------------------------------------------------------------------------------------------</p>
+
+                <div class="row" style="text-align: left;">
+                    <div class="col">
+
+                        <label for="business" class="text-dark">NAME OF YOUR BUSINESS:</label>
+                        <input type="text" name="business" id="business" class="form-control" required placeholder="Name of your Business">
+                    </div>
+                    <div class="col">
+                        <label for="business" class="text-dark"></label>TYPE OF YOUR BUSINESS
+                        <div class="row">
+                            <div class="col">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Vintage Men's Hair</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Donate Hair</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <label for="Bemail" class="text-dark">BUSINESS EMAIL:</label>
+                <input type="text" name="Bemail" id="Bemail" class="form-control" required placeholder="Business Email">
+
+                <div class="row" style="text-align: left;">
+                    <div class="col">
+                        <label for="password" class="text-dark">PASSWORD</label>
+                        <input type="text" name="password" id="password" class="form-control" required placeholder="Password">
+                    </div>
+                    <div class="col">
+                        <label for="password" class="text-dark">CONFRIM PASSWORD:</label>
+                        <input type="text" name="conpass" id="conpass" class="form-control" required placeholder="Confrim Password">
+                    </div>
+                </div>
+                <label for="address" class="text-dark">ADDRESS:</label>
+                <input type="text" name="address" id="address" class="form-control" required placeholder="Address">
+
+                <label for="location" class="text-dark">LOCATION:</label>
+                <input type="text" name="location" id="location" class="form-control" required placeholder="Location">
+
+                <div class="radio">
+                    <label><input type="radio" name="optradio">  ยอมรับข้อกำหนดและเงื่อนไขการใช้งาน</label>
+                </div>
+                <br>
+                <div class="form-group2">
+                    <button type="button" class="btn btn-dark">CONTINUE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        const signUp = (e) => {
+            e.disabled = true;
+
+            if (!$('#pt').prop("checked")) {
+                alert('Please check.')
+                return;
+            }
+
+            if ($('#password').val() !== $('#conpass').val()) {
+                alert('Password not match.')
+                return;
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "service/member.php",
+                data: {
+                    action: 'register',
+                    username: $('#name').val(),
+                    password: $('#password').val(),
+                    phone: $('#phone').val(),
+                    email: $('#email').val(),
+                    address: $('#address').val(),
+                    partner: true,
+                    surname: $('#surname').val(),
+                    name: $('#biz_name').val(),
+                    biz_email: $('#biz_email').val(),
+                    location: $('#location').val(),
+                    biz_type: $('#biz_type:checked').val()
+                }
+            }).done(function(msg) {
+                msg = JSON.parse(msg)
+                if (msg.code === 200) {
+                    window.location.href = "login.html";
+                }
+            });
+            e.disabled = false;
+        }
+    </script>
+</body>
+
+</html>

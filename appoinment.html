@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Appoinment</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a href="home.html">
+                    <img class="logo-img center-block" src="images/logo-app-white.png" />
+                </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a href="#">PROFILE <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">APPOINMENTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">SERVICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">SETTING</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="top-list">
+            <button class="btn btn-outline-dark" type="submit">
+                list
+            </button>
+            <button class="btn btn-outline-dark" type="submit">day</button>
+            <button class="btn btn-outline-dark" type="submit">month</button>
+            <button class="btn" type="submit" style="background-color: #A33E3E;margin-left: 70%; color: #fff;">ADD APPOINMENT</button>
+        </div>
+
+        <div class="top-list">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" id="inputCity" placeholder="SEARCH THE APPOINMENT">
+                </div>
+                <div class="form-group col-md-2">
+                    <select id="inputState" class="form-control">
+                    <option selected>FILTER BY</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-5">
+
+                </div>
+                <div class="form-group col-md-2">
+                    <select id="inputState" class="form-control">
+                    <option selected>BARBER</option>
+                    <option>...</option>
+                  </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           <h3>TODAY </h3>
+                           29 AUG 2020
+                  </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Service Time</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Service Type</th>
+                                <th scope="col">Barber</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Alert</th>
+                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Otto</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Thornton</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>the Bird</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h3>YESTERDAY </h3>
+                            28 AUG 2020
+                  </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Service Time</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Service Type</th>
+                                <th scope="col">Barber</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Alert</th>
+                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Otto</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Thornton</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>the Bird</td>
+                                    <td><button type="button" class="btn btn-success">Paid</button></td>
+                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+</body>
+
+</html>

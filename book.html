@@ -340,7 +340,7 @@
                         <label>Promotion Price</label>
                     </fieldset>
                     <div class="btn-update" style="text-align: center;" id="button_edit_promotion">
-                        <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">UPDATE</button>
+                        <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">Create</button>
                     </div>
                 </form>
 
@@ -657,7 +657,7 @@
                 form_data.append("files[]", document.getElementById('files_add_service').files[index]);
             }
             form_data.append('action', 'create');
-            form_data.append('user_id', user.user_id);
+            form_data.append('user_id', user.id);
             form_data.append('name', $('#name_add_service').val());
             form_data.append('description', $('#detail_add_service').val());
             form_data.append('price', $('#price_add_service').val());
@@ -687,7 +687,7 @@
                 form_data.append("files[]", document.getElementById('files_add_promotion').files[index]);
             }
             form_data.append('action', 'create');
-            form_data.append('user_id', user.user_id);
+            form_data.append('user_id', user.id);
             form_data.append('name', $('#name_add_promotion').val());
             form_data.append('description', $('#detail_add_promotion').val());
             form_data.append('price', $('#price_add_promotion').val());

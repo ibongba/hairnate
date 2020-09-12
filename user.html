@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a href="indexUser.html">
+                    <img class="logo-img float-left" src="images/logo-app-white.png" />
+                </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a href="indexUser.html">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partner/book.html">PROFILE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">APPOINMENT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">SERVICE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">HISTORY</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav float-right">
+                    <li class="nav-item">
+                        <a href="#"><i class="fas fa-search"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="signUp.html"><i class="fas fa-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-3 col-sm-12">
+
+                <div class="filter-wrapper">
+                    <p><a data-toggle="pill" href="#home" style="color: #000;">MY ORDER</a></p>
+                    <p class="my-5"><a data-toggle="pill" href="#menu1" style="color: #000;">PROFILE</a></p>
+                    <p class="my-5"><a data-toggle="pill" href="#menu2" style="color: #000;">MY ADDRESS</a></p>
+                    <p class="my-5"><a data-toggle="pill" href="#menu3" style="color: #000;">MY PAYMENT METHODS</a></p>
+                    <p class="my-5"><a data-toggle="pill" href="#menu4" style="color: #000;">HELP CENTER</a></p>
+                    <p class="my-5"><a data-toggle="pill" href="#menu5" style="color: #000;">MORE</a></p>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <h2>PRESENT ORDERS</h2>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <div class="row">
+                                                <div class="col float-left">
+                                                    <h4 class="m-0"><b>COACH CRAFTSMAN</b></h4>
+                                                    <p class="m-0"><b>Package A : Under Cut + ไถข้าง</b></p>
+                                                    <p class="text-black-50">22 August 2020, 11.00 AM</p>
+                                                </div>
+                                                <div class="col float-right"> 
+                                                    <h4 class="text-black-50 float-right">Waiting for Approval</h4><br><br>
+                                                    <h4><b class="float-right">฿ 1,500</b></h4>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="m-0">Package A : Under Cut + ไถข้าง</p>
+                                                <p class="m-0">Barber : ช่าง Coach</p>
+                                                <p class="m-0">Address : 123 Bonstreet Pakkred Nonthaburi 11120</p>
+                                                <p class="m-0">Finished : 12.00 AM</p>
+                                            </div>
+                                            <div class="col">
+                                                <img src="images/hair1.png" alt="" class="w-50 img-thumbnail float-left">
+                                                <img src="images/hair2.png" alt="" class="w-50 img-thumbnail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>PAST ORDERS</h2>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <div class="row">
+                                                    <div class="col float-left">
+                                                        <h4 class="m-0"><b>COACH CRAFTSMAN</b></h4>
+                                                        <p class="m-0"><b>Package A : Under Cut + ไถข้าง</b></p>
+                                                        <p class="text-black-50">22 February 2020, 10.30 AM</p>
+                                                    </div>
+                                                    <div class="col float-right"> 
+                                                        <h4 class="text-success float-right">Successful</h4><br><br>
+                                                        <h4><b class="float-right">฿ 1,500</b></h4>
+                                                    </div>
+                                                </div>
+                                      </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="m-0">Package A : Under Cut + ไถข้าง</p>
+                                                    <p class="m-0">Barber : ช่าง Coach</p>
+                                                    <p class="m-0">Address : 123 Bonstreet Pakkred Nonthaburi 11120</p>
+                                                    <p class="m-0">Finished : 12.00 AM</p>
+                                                </div>
+                                                <div class="col">
+                                                    <img src="images/hair1.png" alt="" class="w-50 img-thumbnail float-left">
+                                                    <img src="images/hair2.png" alt="" class="w-50 img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <div class="row">
+                                                    <div class="col float-left">
+                                                        <h4 class="m-0"><b>COACH CRAFTSMAN</b></h4>
+                                                        <p class="m-0"><b>Package A : Under Cut + ไถข้าง</b></p>
+                                                        <p class="text-black-50">22 February 2020, 10.30 AM</p>
+                                                    </div>
+                                                    <div class="col float-right"> 
+                                                        <h4 class="text-success float-right">Successful</h4><br><br>
+                                                        <h4><b class="float-right">฿ 1,500</b></h4>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="m-0">Package A : Under Cut + ไถข้าง</p>
+                                                    <p class="m-0">Barber : ช่าง Coach</p>
+                                                    <p class="m-0">Address : 123 Bonstreet Pakkred Nonthaburi 11120</p>
+                                                    <p class="m-0">Finished : 12.00 AM</p>
+                                                </div>
+                                                <div class="col">
+                                                    <img src="images/hair1.png" alt="" class="w-50 img-thumbnail float-left">
+                                                    <img src="images/hair2.png" alt="" class="w-50 img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="row">
+                                                    <div class="col float-left">
+                                                        <h4 class="m-0"><b>COACH CRAFTSMAN</b></h4>
+                                                        <p class="m-0"><b>Package A : Under Cut + ไถข้าง</b></p>
+                                                        <p class="text-black-50">22 February 2020, 10.30 AM</p>
+                                                    </div>
+                                                    <div class="col float-right"> 
+                                                        <h4 class="text-success float-right">Successful</h4><br><br>
+                                                        <h4><b class="float-right">฿ 1,500</b></h4>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="m-0">Package A : Under Cut + ไถข้าง</p>
+                                                    <p class="m-0">Barber : ช่าง Coach</p>
+                                                    <p class="m-0">Address : 123 Bonstreet Pakkred Nonthaburi 11120</p>
+                                                    <p class="m-0">Finished : 12.00 AM</p>
+                                                </div>
+                                                <div class="col">
+                                                    <img src="images/hair1.png" alt="" class="w-50 img-thumbnail float-left">
+                                                    <img src="images/hair2.png" alt="" class="w-50 img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <table class="table table-borderless" style="background-color: #fff;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <h3>CONTACT INFORMATION</h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>First name</p>
+                                    </td>
+                                    <td class="text-right">
+                                        <p>Taylor</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Last name</p>
+                                    </td>
+                                    <td class="text-right">
+                                        <p>Swift</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Email Address</p>
+                                    </td>
+                                    <td class="text-right">
+                                        <p>Taylor.Swift@gmail.com</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Mobile Number</p>
+                                    </td>
+                                    <td class="text-right">
+                                        <p>+66123456789</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-borderless mt-5" style="background-color: #fff;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <h3>SETTINGS</h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>Language</p>
+                                    </td>
+                                    <td class="text-right" style="color: #A33E3E;">
+                                        <p>English</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Change Password</p>
+                                    </td>
+                                    <td class="text-right" style="color: #A33E3E;">
+                                        <p>******</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Receive offers by email</p>
+                                    </td>
+                                    <td class="text-right">
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-dark" style="width: 150px;">SAVE</button>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <h3><b>MY ADDERSS</b></h3>
+
+                        <i class="fas fa-map-marker-alt" style="font-size: xx-large; color:#A33E3E ;"></i>
+                        <p><b>HOME</b></p>
+                        <i class="fas fa-pen float-right" style="font-size: large; color:#A33E3E ;"></i>
+                        <p>365 Bond St. Chang Wat Nonthaburi 11120</p>
+                        <p class="mb-5">Note to Barber : เอ็มโซไซตี้คอนโด เมืองทองธานี</p>
+                        <button type="button" class="btn btn-dark">ADD NEW ADDRESS</button>
+                    </div>
+                    <div id="menu3" class="tab-pane fade">
+                        <h3><b>PAYMENT METHODS</b></h3>
+                        <table class="table" style="background-color: #FAF9F7;">
+                            <tbody>
+                                <tr>
+                                    <td><b>COACH CRAFTSMAN<br>
+                                    <p class="m-0">Package A : Under Cut + ไถข้าง</p></b>
+                                        <p class="text-black-50">12 February 2020, 10.30 AM</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-success">Paid Successful</p>
+                                        <h5><b>฿ 1,500</b></h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>COACH CRAFTSMAN<br>
+                                        <p class="m-0">Package A : Under Cut + ไถข้าง</p></b>
+                                        <p class="text-black-50">12 February 2020, 10.30 AM</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-success">Paid Successful</p>
+                                        <h5><b>฿ 1,500</b></h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>COACH CRAFTSMAN<br>
+                                        <p class="m-0">Package A : Under Cut + ไถข้าง</p></b>
+                                        <p class="text-black-50">12 February 2020, 10.30 AM</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-success">Paid Successful</p>
+                                        <h5><b>฿ 1,500</b></h5>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="menu4" class="tab-pane fade">
+                        <h3><b>HELP CENTER</b></h3>
+                    </div>
+                    <div id="menu5" class="tab-pane fade">
+                        <h3><b>MORE</b></h3>
+                        <i class="fas fa-folder float-left" style="font-size: large; color:#A33E3E ;"></i>
+                        <p>&nbsp;SAVED</p>
+                        <img src="images/m1.png" alt="" class=" col-md-3 col-sm-12 img-thumbnail">
+                        <img src="images/m2.png" alt="" class=" col-md-3 col-sm-12 img-thumbnail">
+                        <img src="images/m3.png" alt="" class=" col-md-3 col-sm-12 img-thumbnail">
+                        <img src="images/m4.png" alt="" class=" col-md-3 col-sm-12 img-thumbnail">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -797,6 +797,10 @@ button:focus {
     margin: 10px 5px 0 0;
 }
 
+.input-group-prepend {
+    width: 100%;
+}
+
 
 /* ///end ad image// */
 
@@ -885,6 +889,9 @@ button:focus {
     }
     .foot_icon i {
         margin: 10px;
+    }
+    .input-group-prepend {
+        width: 70%;
     }
 }
 

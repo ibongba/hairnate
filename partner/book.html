@@ -424,7 +424,7 @@
         var list_promotion = [];
         $.ajax({
             method: "POST",
-            url: "service/core.php",
+            url: "../service/core.php",
             data: {
                 action: 'getservice',
                 user_id: user.id
@@ -459,7 +459,7 @@
 
         $.ajax({
             method: "POST",
-            url: "service/core.php",
+            url: "../service/core.php",
             data: {
                 action: 'getpromotion',
                 user_id: user.id
@@ -634,7 +634,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "service/core.php",
+                url: "../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
@@ -698,7 +698,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "service/core.php",
+                url: "../../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
@@ -732,7 +732,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "service/core.php",
+                url: "../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
@@ -745,6 +745,18 @@
                     window.location.href = "book.html";
                 }
             });
+        }
+
+        const cardBarber = () => {
+            return `
+                    <div class="col-lg col-sm-3">
+                        <div class="icon">
+                            <div class="position-relative">
+                                <img class="circle" src="../images/Image 25.png" />
+                                <p style="text-align: center;" class="pt-2">Ms.B</p>
+                            </div>
+                        </div>
+                    </div>`;
         }
     </script>
 </body>

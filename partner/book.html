@@ -132,17 +132,19 @@
                     </div>
                     <div class="col-12 p-2"></div> -->
                     <div class="col-lg col-sm-3">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <img class="circle" src="../images/Image 25.png" />
-                                <p style="text-align: center;" class="pt-2">Ms.B</p>
+                        <a href="barber.html">
+                            <div class="icon">
+                                <div class="position-relative">
+                                    <img class="circle" src="../images/Image 25.png" />
+                                    <p style="text-align: center;" class="pt-2">Ms.B</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-lg col-sm-3">
                         <div class="icon">
                             <div class="position-relative">
-                                <a href="">
+                                <a href="" data-toggle="modal" data-target="#team" data-whatever="@getbootstrap">
                                     <i class="fas fa-plus icon-edit-full"></i>
                                 </a>
                             </div>
@@ -154,7 +156,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <a href="" style="float: right;color: #000; text-decoration: underline;">edit</a><br>
+                <!-- <a href="" style="float: right;color: #000; text-decoration: underline;">edit</a><br> -->
                 <hr style="border-bottom:1px solid #000;" />
             </div>
         </div>
@@ -175,6 +177,47 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="team" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content">
+                <div class="modal-header" style="text-align: center;">
+                    <h2>ADD TEAM</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="box2" style="height: 150px;">
+                        <div class="wrapper">
+                            <div class="drop">
+                                <div class="cont">
+                                    <i class="fas fa-file-image py-3"></i>
+                                </div>
+                                <output id="list"></output><input id="files_add_service" name="files" type="file" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="name_add_service" autocomplete="off" required>
+                        <hr>
+                        <label>Service Name</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="detail_add_service" autocomplete="off" required>
+                        <hr>
+                        <label>Service Detail</label>
+                    </fieldset>
+                    <div class="btn-update" style="text-align: center;">
+                        <button type="button" class="btn btn-danger" onclick="createService()" style="background-color: #A33E3E;">Create</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

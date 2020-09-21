@@ -3,10 +3,10 @@
     header('Content-type: text/html; charset=utf-8');
     require_once 'PDO.php';
 
-    $db_host = 'localhost';
+    $db_host = 'localhost:8889';
     $db_name = 'hairnate';
     $db_user = 'root';
-    $db_pass = '';
+    $db_pass = '1';
 
     $conn = new PDO("mysql:host=$db_host; dbname=$db_name", $db_user, $db_pass);
     $conn->exec("SET CHARACTER SET utf8");
@@ -72,7 +72,6 @@
             }
         }
     }else if(isset($_POST['action']) && $_POST['action'] == 'edit'){
-
         $img = '';
         if(isset($_FILES['files'])){
             $total = count($_FILES['files']['name']);
@@ -113,6 +112,49 @@
 
         if($rs){
             $sql = "SELECT * FROM `hairstyle` JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."' and `type` = 2";
+            $rs = getpdo($conn,$sql);
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'create_barber'){
+        $img = '';
+        if(isset($_FILES['files'])){
+            $total = count($_FILES['files']['name']);
+            for( $i=0 ; $i < $total ; $i++ ) {
+                $tmpFilePath = $_FILES['files']['tmp_name'][$i];
+                if ($tmpFilePath != ""){
+                    $newFilePath = "../upload/". time() . $_FILES['files']['name'][$i];
+                    if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+                        $img = "upload/" .time() . $_FILES['files']['name'][$i];;
+                    }
+                }
+            }
+        }
+
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`) VALUES ('".$rs[0]['id']."','".$_POST['name']."','".$_POST['description']."','".$img."')";
+            $rs = getpdo($conn,$sql);
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
+        }
+
+    }else if(isset($_POST['action']) && $_POST['action'] == 'getbarber'){
+
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "SELECT * FROM `barber` WHERE `id_partner` = '".$rs[0]['id']."'";
             $rs = getpdo($conn,$sql);
             if($rs){
                 $res = array("code" => 200, "result" => $rs);

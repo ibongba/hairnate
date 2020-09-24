@@ -15,6 +15,7 @@
         $sql = "SELECT `id`, `username`, `surname`, `phone`, `email`, `address`, `type` FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '".md5($_POST['password'])."'";
 
         $rs = getpdo($conn,$sql);
+
         if(isset($rs) && count($rs) > 0){
         	$res = array("code" => 200, "result" => $rs[0]);
         	echo json_encode($res);

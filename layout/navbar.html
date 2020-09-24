@@ -11,7 +11,7 @@
                 <li class="nav-item active">
                     <a href="/hairnate/index.html">HOME <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item is-user">
+                <li class="nav-item is-users">
                     <a href="/hairnate/user.html">PROFILE</a>
                 </li>
                 <li class="nav-item is-partner">
@@ -41,7 +41,7 @@
                     <a href="#"><i class="fas fa-search"></i></a>
                 </li>
                 <li class="nav-item not-login">
-                    <a href="/hairnate/signUp.html"><i class="fas fa-user"></i></a>
+                    <a href="/hairnate/login.html"><i class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item is-login is-partner">
                     <a href="#"><i class="far fa-bell"></i></a>
@@ -66,10 +66,11 @@
 
             user = JSON.parse(user);
 
-            if(user.type == 2) $('.is-partner').addClass('d-none');
-            else $('.is-user').addClass('d-none');
+            if(user.type == 1) $('.is-partner').addClass('d-none');
+            else $('.is-users').addClass('d-none');
         }else{
             $('.not-login').removeClass('d-none');
+            $('.is-partner').addClass('d-none')
         }
      })
 

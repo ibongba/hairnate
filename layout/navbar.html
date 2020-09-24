@@ -55,31 +55,31 @@
 </nav>
 
 <script>
-     $(function(){
+    $(function() {
         $('.is-login').addClass('d-none');
         $('.not-login').addClass('d-none');
 
         let user = localStorage.getItem('user');
-        
-        if(user){
+
+        if (user) {
             $('.is-login').removeClass('d-none');
 
             user = JSON.parse(user);
 
-            if(user.type == 1) $('.is-partner').addClass('d-none');
+            if (user.type == 1) $('.is-partner').addClass('d-none');
             else $('.is-users').addClass('d-none');
-        }else{
+        } else {
             $('.not-login').removeClass('d-none');
             $('.is-partner').addClass('d-none')
         }
-     })
+    })
 
-     const logout = () => {
+    const logout = () => {
         localStorage.clear();
         $('.is-login').addClass('d-none');
         $('.not-login').removeClass('d-none');
 
 
         window.location.href = "/hairnate/index.html";
-     }
+    }
 </script>

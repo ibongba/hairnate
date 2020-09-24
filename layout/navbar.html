@@ -28,10 +28,41 @@
                 <li class="nav-item">
                     <a href="#"><i class="fas fa-search"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item not-login">
                     <a href="signUp.html"><i class="fas fa-user"></i></a>
+                </li>
+                <li class="nav-item is-login is-partner">
+                    <a href="#"><i class="far fa-bell"></i></a>
+                </li>
+                <li class="nav-item is-login">
+                    <a onclick="logout()"><i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<script>
+     $(function(){
+        $('.is-login').addClass('d-none');
+        $('.not-login').addClass('d-none');
+
+        let user = localStorage.getItem('user');
+        
+        if(user){
+            $('.is-login').removeClass('d-none');
+
+            user = JSON.parse(user);
+
+            if(user.type == 2) $('.is-partner').addClass('d-none');
+        }else{
+            $('.not-login').removeClass('d-none');
+        }
+     })
+
+     const logout = () => {
+        localStorage.clear();
+        $('.is-login').addClass('d-none');
+        $('.not-login').removeClass('d-none');
+     }
+</script>

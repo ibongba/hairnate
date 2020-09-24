@@ -13,43 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a href="../partner/index.html">
-                    <img class="logo-img center-block" src="../images/logo-app-white.png" />
-                </a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a href="../partner/index.html">HOME <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../partner/book.html">PROFILE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../partner/appoinment.html">APPOINMENT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../partner/service.html">SERVICE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">HISTORY</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="#"><i class="far fa-bell"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href=""><i class="fas fa-sign-out-alt"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="nav"></div>
 
     <div class="container">
         <div class="row justify-content-center pt-5">
@@ -421,6 +385,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
+        $(function() {
+            $('#nav').load("http://localhost/hairnate/layout/navbar.html");
+        });
+    </script>
+    <script>
         var user = JSON.parse(localStorage.getItem('user'));
         var list_service = [];
         var list_promotion = [];
@@ -707,7 +676,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "../service/core.php",
+                url: "service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
@@ -741,7 +710,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "../service/core.php",
+                url: "../../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,

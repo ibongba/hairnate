@@ -19,21 +19,21 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a href="index.html">
+                <a href="../partner/index.html">
                     <img class="logo-img center-block" src="../images/logo-app-white.png" />
                 </a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a href="index.html">HOME <span class="sr-only">(current)</span></a>
+                        <a href="../partner/index.html">HOME <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="book.html">PROFILE</a>
+                        <a href="../partner/book.html">PROFILE</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">APPOINMENT</a>
+                        <a href="../partner/appoinment.html">APPOINMENT</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">SERVICE</a>
+                        <a href="../partner/service.html">SERVICE</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">HISTORY</a>
@@ -508,9 +508,9 @@
             if (msg.code === 200) {
 
                 list_barber = msg.result;
-                for (i = 0; i < list_barber.length; i++){
+                for (i = 0; i < list_barber.length; i++) {
                     $('#barber').append(cardBarber(list_barber[i]));
-                    if(i === 5) $('#barber').append('<div class="col-12 d-lg-block d-none"></div>');
+                    if (i === 5) $('#barber').append('<div class="col-12 d-lg-block d-none"></div>');
                 }
 
 
@@ -527,7 +527,7 @@
                         </div>
                     </div>`);
 
-            for (i = 0; i < 5 - (list_barber.length % 6); i++){
+            for (i = 0; i < 5 - (list_barber.length % 6); i++) {
                 $('#barber').append('<div class="col-lg col-sm-3"></div>');
             }
         });

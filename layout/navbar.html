@@ -4,24 +4,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a href="index.html">
+            <a href="/hairnate/index.html">
                 <img class="logo-img center-block" src="images/logo-app-white.png" />
             </a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a href="index.html">HOME <span class="sr-only">(current)</span></a>
+                    <a href="/hairnate/index.html">HOME <span class="sr-only">(current)</span></a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="user.html">PROFILE</a>
-                </li> -->
-                <li class="nav-item">
-                    <a href="bookingHome.html">PROMOTION</a>
+                <li class="nav-item is-user">
+                    <a href="/hairnate/user.html">PROFILE</a>
                 </li>
-                <li class="nav-item">
-                    <a href="article.html">ARTICLE</a>
+                <li class="nav-item is-partner">
+                    <a href="/hairnate/partner/book.html">PROFILE</a>
                 </li>
-                <li class="nav-item">
-                    <a href="user.html">CONTACT US</a>
+                <li class="nav-item is-partner">
+                    <a href="/hairnate/partner/appoinment.html">APPOINMENT</a>
+                </li>
+                <li class="nav-item is-partner">
+                    <a href="../partner/service.html">SERVICE</a>
+                </li>
+                <li class="nav-item is-partner">
+                    <a href="#">HISTORY</a>
+                </li>
+                <li class="nav-item is-users">
+                    <a href="/hairnate/bookingHome.html">PROMOTION</a>
+                </li>
+                <li class="nav-item is-users">
+                    <a href="/hairnate/article.html">ARTICLE</a>
+                </li>
+                <li class="nav-item is-users">
+                    <a href="/hairnate/user.html">CONTACT US</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -29,7 +41,7 @@
                     <a href="#"><i class="fas fa-search"></i></a>
                 </li>
                 <li class="nav-item not-login">
-                    <a href="signUp.html"><i class="fas fa-user"></i></a>
+                    <a href="/hairnate/signUp.html"><i class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item is-login is-partner">
                     <a href="#"><i class="far fa-bell"></i></a>
@@ -55,6 +67,7 @@
             user = JSON.parse(user);
 
             if(user.type == 2) $('.is-partner').addClass('d-none');
+            else $('.is-user').addClass('d-none');
         }else{
             $('.not-login').removeClass('d-none');
         }
@@ -64,5 +77,8 @@
         localStorage.clear();
         $('.is-login').addClass('d-none');
         $('.not-login').removeClass('d-none');
+
+
+        window.location.href = "/hairnate/index.html";
      }
 </script>

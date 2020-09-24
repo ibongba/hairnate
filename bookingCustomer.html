@@ -22,43 +22,7 @@
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a href="indexUser.html">
-                    <img class="logo-img center-block" src="images/logo-app-white.png" />
-                </a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a href="indexUser.html">HOME <span class="sr-only">(current)</span></a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a href="user.html">PROFILE</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a href="bookingHome.html">PROMOTION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="article.html">ARTICLE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="user.html">CONTACT US</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="#"><i class="fas fa-search"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="signUp.html"><i class="fas fa-user"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="nav"></div>
     <div class="container">
         <!-- Steps form -->
         <!-- <div class="card " style="background-color: #fff;"> -->
@@ -541,6 +505,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $('#nav').load("layout/navbar.html");
+        });
+    </script>
     <script src='js/main.js'></script>
     <!-- Stepper JavaScript -->
     <script type="text/javascript" src="js/addons-pro/steppers.js"></script>

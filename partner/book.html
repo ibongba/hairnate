@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <title>BOOKKING</title>
+    <title>PROFILE</title>
 </head>
 
 <body>
@@ -54,15 +54,19 @@
             <div class="col-12">
                 <h2>TEAM</h2>
                 <div class="row pt-3" id="barber">
-                    <!-- <div class="col-lg col-sm-3">
-                        <a href="barber.html">
-                            <div class="icon">
-                                <div class="position-relative">
-                                    <img class="circle" src="../images/Image 25.png" />
-                                    <p style="text-align: center;" class="pt-2">Ms.B</p>
+                    <div class="col-lg col-sm-3">
+
+                        <div class="icon">
+                            <div class="position-relative">
+                                <a href="barber.html"> <img class="circle" src="../images/Image 25.png" /></a>
+                                <p style="text-align: center;" class="pt-2">Ms.B</p>
+                                <div class="text-center">
+                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
+                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+
                     </div>
                     <div class="col-lg col-sm-3">
                         <div class="icon">
@@ -75,28 +79,102 @@
                     </div>
                     <div class="col-lg col-sm-3"></div>
                     <div class="col-lg col-sm-3"></div>
-                    <div class="col-lg col-sm-3"></div> -->
+                    <div class="col-lg col-sm-3"></div>
                 </div>
             </div>
-            <div class="col-12">
-                <!-- <a href="" style="float: right;color: #000; text-decoration: underline;">edit</a><br> -->
-                <hr style="border-bottom:1px solid #000;" />
-            </div>
         </div>
+        <hr style="border-bottom:1px solid #000;" />
 
         <div class="row">
             <h2>POMOTION</h2>
             <div class="col-12">
                 <div class="row" id="promotion">
+                    <div class="col-lg col-sm-6">
+                        <div class="row py-3">
+                            <div class="col-12 col-md p-2">
+                                <div class="proimage" style="width: 100%;">
+                                    <img src="../images/Mask Group 25.png" style="width: 100%;border-radius: 15px;">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md pt-2">
+                                <h5>PACKAGE CHILLING</h5>
+                                <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
+                                <p>800 </p>
+                                <h5 style="color: #A33E3E;">650 Baht</h5>
+                                <div class="text-center">
+                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" data-whatever="@getbootstrap"></i>
+                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg col-sm-6">
+                        <div class="row py-3">
+                            <div class="col-12 col-md">
+                                <div class="col-lg col-sm-6">
+                                    <div class="row py-3">
+                                        <div class="col-12 col-md">
+                                            <div class="position-relative">
+                                                <a href="" data-toggle="modal" data-target="#addPromotion" data-whatever="@getbootstrap">
+                                                    <i class="fas fa-plus icon-edit-full2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <hr style="border-bottom:1px solid #000;" />
+                <!-- <div class="col-12">
+                    <div class="row" id="promotion">
+                    </div>
+                </div> -->
             </div>
         </div>
-
+        <hr style="border-bottom:1px solid #000;" />
         <div class="row">
             <h2>SERVICE TYPE</h2>
             <div class="col-12">
                 <div class="row" id="service">
+                    <div class="col-lg col-sm-6">
+                        <div class="row py-3">
+                            <div class="col-12 col-md p-2">
+                                <div class="proimage" style="width: 100%;">
+                                    <img src="../images/Mask Group 25.png" style="width: 100%;border-radius: 15px;">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md pt-2">
+                                <h5>PACKAGE CHILLING</h5>
+                                <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
+                                <p>800 </p>
+                                <h5 style="color: #A33E3E;">650 Baht</h5>
+                                <div class="text-center">
+                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg col-sm-6">
+                        <div class="row py-3">
+                            <div class="col-12 col-md">
+                                <div class="col-lg col-sm-6">
+                                    <div class="row py-3">
+                                        <div class="col-12 col-md">
+                                            <div class="position-relative">
+                                                <a href="" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap">
+                                                    <i class="fas fa-plus icon-edit-full2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -107,7 +185,7 @@
         <div class="modal-dialog" role="document">
             <form class="modal-content">
                 <div class="modal-header" style="text-align: center;">
-                    <h2>ADD TEAM</h2>
+                    <h2>ADD BARBER</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -117,9 +195,54 @@
                     <div class="box2" style="height: 150px;">
                         <div class="wrapper">
                             <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
+                                <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="name_edit_barber" autocomplete="off" required>
+                        <hr>
+                        <label>Barber Name</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="tel_edit_barber" autocomplete="off" required>
+                        <hr>
+                        <label>Tel No</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="email_edit_barber" autocomplete="off" required>
+                        <hr>
+                        <label>Email</label>
+                    </fieldset>
+                    <div class="btn-update" style="text-align: center;">
+                        <button type="button" class="btn btn-danger" onclick="createBarber()" style="background-color: #A33E3E;">ADD</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="editTeam" tabindex="-1" role="dialog" aria-labelledby="ModalLabelBarber" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content">
+                <div class="modal-header" style="text-align: center;">
+                    <h2>EDIT BARBER</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="box2" style="height: 150px;">
+                        <div class="wrapper">
+                            <div class="drop">
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
                                 <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
                             </div>
                         </div>
@@ -132,12 +255,17 @@
                         <label>Barber Name</label>
                     </fieldset>
                     <fieldset class="material mb-3">
-                        <input type="text" placeholder="" id="detail_add_barber" autocomplete="off" required>
+                        <input type="text" placeholder="" id="tel_add_barber" autocomplete="off" required>
                         <hr>
-                        <label>Barber Detail</label>
+                        <label>Tel No</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="email_add_barber" autocomplete="off" required>
+                        <hr>
+                        <label>Email</label>
                     </fieldset>
                     <div class="btn-update" style="text-align: center;">
-                        <button type="button" class="btn btn-danger" onclick="createBarber()" style="background-color: #A33E3E;">Create</button>
+                        <button type="button" class="btn btn-danger" onclick="createBarber()" style="background-color: #A33E3E;">ADD</button>
                     </div>
                 </div>
             </form>
@@ -158,9 +286,9 @@
                     <div class="box2" style="height: 150px;">
                         <div class="wrapper">
                             <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
                                 <output id="list"></output><input id="files_add_service" name="files" type="file" />
                             </div>
                         </div>
@@ -182,6 +310,11 @@
                         <hr>
                         <label>Service Price</label>
                     </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="number" placeholder="" id="price_add_promotion" autocomplete="off" required>
+                        <hr>
+                        <label>Service Promotion</label>
+                    </fieldset>
                     <div class="btn-update" style="text-align: center;">
                         <button type="button" class="btn btn-danger" onclick="createService()" style="background-color: #A33E3E;">Create</button>
                     </div>
@@ -189,8 +322,59 @@
             </form>
         </div>
     </div>
+    <div class="modal fade" id="editService" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: center;">
+                    <h2>EDIT SERVICE TYPE</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-body">
+
+                    <div class="box2" style="height: 150px;">
+                        <div class="wrapper">
+                            <div class="drop">
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
+                                <output id="list2"></output><input id="files_edit_service" name="files[]" type="file" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="text-left">
+                    <fieldset class="material mb-3">
+                        <input type="text" id="name_edit_service" placeholder="" autocomplete="off" required>
+                        <hr>
+                        <label>Service Name</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" id="detail_edit_service" placeholder="" autocomplete="off" required>
+                        <hr>
+                        <label>Service Detail</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" id="price_edit_service" placeholder="" autocomplete="off" required>
+                        <hr>
+                        <label>Service Price</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="number" placeholder="" id="promotion_edit_promotion" autocomplete="off" required>
+                        <hr>
+                        <label>Service Promotion</label>
+                    </fieldset>
+                    <div class="btn-update" style="text-align: center;" id="button_edit_service">
+                        <button type="button" class="btn btn-danger" style="background-color: #A33E3E;">UPDATE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addPromotion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="text-align: center;">
@@ -204,9 +388,9 @@
                     <div class="box2" style="height: 150px;">
                         <div class="wrapper">
                             <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
                                 <output id="list3"></output><input id="files_add_promotion" name="files[]" type="file" />
                             </div>
                         </div>
@@ -233,7 +417,7 @@
                         <hr>
                         <label>Promotion Detail</label>
                     </fieldset>
-                    <fieldset class="material mb-3">
+                    <!-- <fieldset class="material mb-3">
                         <input type="number" id="price_add_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Price</label>
@@ -242,17 +426,16 @@
                         <input type="number" id="promotion_price_add_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Promotion Price</label>
-                    </fieldset>
+                    </fieldset> -->
                     <div class="btn-update" style="text-align: center;">
-                        <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">CREATE</button>
+                        <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">ADD</button>
                     </div>
                 </form>
 
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editPromotion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="text-align: center;">
@@ -266,9 +449,9 @@
                     <div class="box2" style="height: 150px;">
                         <div class="wrapper">
                             <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <!-- </div> -->
                                 <output id="list4"></output><input id="files_edit_promotion" name="files[]" type="file" />
                             </div>
                         </div>
@@ -295,7 +478,7 @@
                         <hr>
                         <label>Promotion Detail</label>
                     </fieldset>
-                    <fieldset class="material mb-3">
+                    <!-- <fieldset class="material mb-3">
                         <input type="number" id="price_edit_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Price</label>
@@ -304,7 +487,7 @@
                         <input type="number" id="promotion_price_edit_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Promotion Price</label>
-                    </fieldset>
+                    </fieldset> -->
                     <div class="btn-update" style="text-align: center;" id="button_edit_promotion">
                         <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">UPDATE</button>
                     </div>
@@ -314,52 +497,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="text-align: center;">
-                    <h2>EDIT SERVICE TYPE</h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
-                <div class="modal-body">
-
-                    <div class="box2" style="height: 150px;">
-                        <div class="wrapper">
-                            <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
-                                <output id="list2"></output><input id="files_edit_service" name="files[]" type="file" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="text-left">
-                    <fieldset class="material mb-3">
-                        <input type="text" id="name_edit_service" placeholder="" autocomplete="off" required>
-                        <hr>
-                        <label>Service Name</label>
-                    </fieldset>
-                    <fieldset class="material mb-3">
-                        <input type="text" id="detail_edit_service" placeholder="" autocomplete="off" required>
-                        <hr>
-                        <label>Detail of Service</label>
-                    </fieldset>
-                    <fieldset class="material mb-3">
-                        <input type="text" id="price_edit_service" placeholder="" autocomplete="off" required>
-                        <hr>
-                        <label>Price</label>
-                    </fieldset>
-                    <div class="btn-update" style="text-align: center;" id="button_edit_service">
-                        <button type="button" class="btn btn-danger" style="background-color: #A33E3E;">UPDATE</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 
     <footer>

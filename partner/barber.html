@@ -26,17 +26,14 @@
                     </div>
                 </div>
             </div>
-            <div class=" col-sm-12 col-lg-6  d-flex ">
+            <div class=" col-sm-12 col-lg-7  d-flex ">
                 <div class="w-100 py-3">
                     <h2>COACH
                         <!-- <p class="btn btn-warning" style="background-color: #C1B09D; border-radius: 25px; border-color:#C1B09D ;">Review</p> -->
-                        <i class="fas fa-pen pl-2 icon-edit"></i></h2>
+                    </h2>
                     <h4>ร้าน : Coach Craftsman</h4>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <button type="button" class="btn btn-dark btn-small float-left mr-2">Edit Profile</button>
+                    <button type="button" class="btn btn-dark btn-small float-left mr-2" style="background-color: #A33E3E; border: #A33E3E;">Remove Barber</button>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-">
@@ -51,7 +48,9 @@
         </div>
 
         <div class="text-center my-2">
-            <h1 style="padding-bottom: 20px;">PORTFOLIO <a href="" data-toggle="modal" data-target="#add_portfolio" data-whatever="@getbootstrap"><i class="fas fa-plus-circle" style="color: #A33E3E; float: right;"></i></a></h1>
+            <h1 style="padding-bottom: 20px;">PORTFOLIO
+                <a href="" data-toggle="modal" data-target="#add_portfolio" data-whatever="@getbootstrap"><i class="fas fa-plus-circle" style="color: #A33E3E; float: right;"></i></a><i class="fas fa-pen icon-edit float-right mx-2"></i>
+            </h1>
 
             <div class="row">
                 <div class="column">
@@ -68,15 +67,13 @@
     </div>
     <footer>
         <div class="container ">
-            <div class="foot_logo pt-5 ">
-                <img class="foot-img center-block " src="../images/logo-app-white.png " />
+            <div class="foot_logo">
+                <img class="logo-img center-block" src="../images/logo-app-white.png " />
             </div>
 
             <div class="footer_text ">
                 เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
             </div>
-
-
             <div class="foot_icon ">
                 <a href="# "><i class="fab fa-facebook "></i></a>
                 <a href="# "><i class="fab fa-twitter "></i></a>
@@ -99,17 +96,18 @@
                     <div class="box2" style="height: 150px;">
                         <div class="wrapper">
                             <div class="drop">
-                                <div class="cont">
-                                    <i class="fas fa-file-image py-3"></i>
-                                </div>
+                                <!-- <div class="cont"> -->
+                                <i class="fas fa-camera pt-5" style="font-size: xxx-large; color: #C1B09D ;"></i>
+                                <p style="color: #C1B09D;">คลิกเพื่ออัพโหลดภาพ</p>
+                                <!-- </div> -->
                                 <output id="list"></output><input id="files_add_service" name="files" type="file" />
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-danger w-25 " style="background-color: #A33E3E;">ADD</button></div>
+                <div class="text-center pt-3"><button type="button" class="btn btn-danger w-25 " style="background-color: #A33E3E;">ADD</button></div>
+
             </form>
         </div>
     </div>

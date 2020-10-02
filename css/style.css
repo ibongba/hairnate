@@ -123,7 +123,7 @@ form {
 
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: 'Prompt', sans-serif;
 }
 
 .header {
@@ -291,7 +291,8 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 100%;
-    background-color: #EEEBE6;
+    background-color: #FAF9F7;
+    /* #EEEBE6; */
     margin: 0pc 20px 20px 0px;
 }
 
@@ -366,7 +367,7 @@ footer {
 .foot_icon {
     font-size: 30px;
     text-align: center;
-    padding: 20px;
+    padding: 2rem;
 }
 
 .foot_icon i {
@@ -379,7 +380,7 @@ footer {
 
 .form {
     width: 500px;
-    height: 520px;
+    /* height: 520px; */
     border-style: solid;
     border-width: 2px;
     border-color: #EEEBE6;
@@ -389,7 +390,7 @@ footer {
 }
 
 .form-control {
-    background-color: #EEEBE6;
+    /* background-color: #EEEBE6; */
     border-radius: 20px;
 }
 
@@ -603,10 +604,10 @@ footer {
 
 .mb-0 .btn {
     color: black;
-}
+    /* }
 
-.table {
-    background-color: #EEEBE6;
+.table { */
+    /* background-color: #FAF9F7; */
 }
 
 .nav {
@@ -683,10 +684,10 @@ footer {
 
 body,
 html {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Prompt', sans-serif;
     font-size: 100%;
     font-weight: 400;
-    background: white;
+    background: #FAF9F7;
     color: #323a44;
     width: 100%;
     height: 100%;
@@ -795,10 +796,10 @@ button:focus {
     height: 75px;
     border: 1px solid #323a44;
     margin: 10px 5px 0 0;
-}
+    /* }
 
-.input-group-prepend {
-    width: 100%;
+.input-group-prepend { */
+    /* width: 100%; */
 }
 
 
@@ -874,7 +875,12 @@ button:focus {
     .our-method {
         height: 450px;
     }
+    footer {
+        margin-top: 3rem;
+    }
     .foot_logo {
+        padding-top: 2rem;
+        float: left;
         text-align: left;
     }
     .foot-img {
@@ -883,15 +889,20 @@ button:focus {
     }
     .footer_text {
         width: 30%;
+        padding-top: 2rem;
     }
     .foot_icon {
         margin-left: 70%;
     }
     .foot_icon i {
         margin: 10px;
+        /* }
+    .input-group-prepend { */
+        /* width: 70%; */
     }
-    .input-group-prepend {
-        width: 70%;
+    .nav li {
+        font-size: large;
+        margin: 1rem 0px 1rem 0px;
     }
 }
 
@@ -920,10 +931,10 @@ button:focus {
         height: 500px;
         background-position: center;
         background-size: cover;
-    }
-    .text-box-ar {
-        height: 250px;
-        padding-top: 20px;
+        /* }
+    .text-box-ar { */
+        /* height: 250px; */
+        /* padding-top: 20px; */
     }
     .method {
         width: 20%;

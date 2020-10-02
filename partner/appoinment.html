@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link href='../css/main.css' rel='stylesheet' />
     <title>Appoinment</title>
 </head>
 
@@ -16,162 +17,172 @@
     <div id="nav"></div>
 
     <div class="container">
-        <div class="top-list">
-            <button class="btn btn-outline-dark" type="submit">
-                list
-            </button>
-            <button class="btn btn-outline-dark" type="submit">day</button>
-            <button class="btn btn-outline-dark" type="submit">month</button>
-            <button class="btn" type="submit" style="background-color: #A33E3E;margin-left: 70%; color: #fff;">ADD APPOINMENT</button>
-        </div>
-
-        <div class="top-list">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <input type="text" class="form-control" id="inputCity" placeholder="SEARCH THE APPOINMENT">
-                </div>
-                <div class="form-group col-md-2">
-                    <select id="inputState" class="form-control">
-                    <option selected>FILTER BY</option>
-                    <option>...</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-5">
-
-                </div>
-                <div class="form-group col-md-2">
-                    <select id="inputState" class="form-control">
-                    <option selected>BARBER</option>
-                    <option>...</option>
-                  </select>
+        <h2 class="text-center my-5">APPOINMENTS
+            <div class="dropdown float-right">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#EEEBE6;color: #C1B09D;border-color:#EEEBE6; ">
+         FILTER
+        </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">ช่าง COACH</a>
+                    <a class="dropdown-item" href="#">ช่างคิว</a>
+                    <a class="dropdown-item" href="#">ช่างโฟม</a>
                 </div>
             </div>
-        </div>
-
-        <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                           <h3>TODAY </h3>
-                           29 AUG 2020
-                  </button>
-                    </h2>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <table class="table">
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Service Time</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Service Type</th>
-                                <th scope="col">Barber</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Alert</th>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Otto</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Thornton</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        </h2>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>TODAY : 27 March</h3>
+                <button type="button" class="btn btn-light form-control my-5 text-left">APPOINTMENT : 3 คน</button>
+                <button type="button" class="btn btn-light form-control text-left">SUCCESS : 0 คน</button>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <h3>YESTERDAY </h3>
-                            28 AUG 2020
-                  </button>
-                    </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <table class="table">
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Service Time</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Service Type</th>
-                                <th scope="col">Barber</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Alert</th>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Otto</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Thornton</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-success">Paid</button></td>
-                                    <td><button type="button" class="btn btn-danger">Alert Now</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="col-md-9">
+                <div id='calendar'></div>
             </div>
-
         </div>
-
-
-
-
+        <hr class="col-12 " style="background-color:  #EEEBE6;" />
+        <style>
+            input:checked+.slider {
+                background-color: #A33E3E;
+            }
+        </style>
+        <div class="row my-2">
+            <div class="col-md-3 text-right">
+                <label class="switch">
+                    <input type="checkbox" checked >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary" style="background-color: black;">ช่วงเช้า</button>
+                <button type="button" class="btn btn-secondary" style="background-color: black;">09.00</button>
+                <button type="button" class="btn btn-secondary" style="background-color: black;">10.00</button>
+                <button type="button" class="btn btn-secondary" style="background-color: black;">11.00</button>
+                <button type="button" class="btn btn-outline-secondary">เลื่อนเวลา</button>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-3 text-right">
+                <label class="switch">
+                    <input type="checkbox" checked >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary" style="background-color:#DBDBDB; border-color: #DBDBDB;">ช่วงบ่าย</button>
+                <button type="button" class="btn btn-secondary" style="background-color:#DBDBDB; border-color: #DBDBDB;">13.00</button>
+                <button type="button" class="btn btn-secondary" style="background-color:#DBDBDB; border-color: #DBDBDB;">14.00</button>
+                <button type="button" class="btn btn-secondary" style="background-color:#DBDBDB; border-color: #DBDBDB;">15.00</button>
+                <button type="button" class="btn btn-outline-secondary">เลื่อนเวลา</button>
+            </div>
+        </div>
     </div>
+    <footer>
+        <div class="container ">
+            <div class="foot_logo pt-5 ">
+                <img class="logo-img center-block " src="../images/logo-app-white.png " />
+            </div>
+
+            <div class="footer_text ">
+                เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
+            </div>
+
+
+            <div class="foot_icon ">
+                <a href="# "><i class="fab fa-facebook "></i></a>
+                <a href="# "><i class="fab fa-twitter "></i></a>
+                <a href="# "><i class="fab fa-instagram "></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+    <script src='../js/main.js'></script>
     <script>
         $(function() {
             $('#nav').load("http://localhost/hairnate/layout/navbar.html");
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                initialDate: '2020-06-12',
+                navLinks: true, // can click day/week names to navigate views
+                selectable: true,
+                selectMirror: true,
+                select: function(arg) {
+                    var title = prompt('Event Title:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: arg.start,
+                            end: arg.end,
+                            allDay: arg.allDay
+                        })
+                    }
+                    calendar.unselect()
+                },
+                eventClick: function(arg) {
+                    if (confirm('Are you sure you want to delete this event?')) {
+                        arg.event.remove()
+                    }
+                },
+                editable: true,
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: [{
+                    title: 'All Day Event',
+                    start: '2020-06-01'
+                }, {
+                    title: 'Long Event',
+                    start: '2020-06-07',
+                    end: '2020-06-10'
+                }, {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-09T16:00:00'
+                }, {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-16T16:00:00'
+                }, {
+                    title: 'Conference',
+                    start: '2020-06-11',
+                    end: '2020-06-13'
+                }, {
+                    title: 'Meeting',
+                    start: '2020-06-12T10:30:00',
+                    end: '2020-06-12T12:30:00'
+                }, {
+                    title: 'Lunch',
+                    start: '2020-06-12T12:00:00'
+                }, {
+                    title: 'Meeting',
+                    start: '2020-06-12T14:30:00'
+                }, {
+                    title: 'Happy Hour',
+                    start: '2020-06-12T17:30:00'
+                }, {
+                    title: 'Dinner',
+                    start: '2020-06-12T20:00:00'
+                }, {
+                    title: 'Birthday Party',
+                    start: '2020-06-13T07:00:00'
+                }, {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2020-06-28'
+                }]
+            });
+
+            calendar.render();
         });
     </script>
 </body>

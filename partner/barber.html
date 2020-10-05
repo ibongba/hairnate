@@ -19,7 +19,7 @@
             <div class="col-lg-3 col-sm-12">
                 <div class="icon">
                     <div class="position-relative">
-                        <img class="circle" src="../images/Image 25.png" />
+                        <img class="circle" src="../images/Image 25.png" id="image" />
                         <a href="" class="absolute-b-r">
                             <i class="fas fa-camera icon-edit"></i>
                         </a>
@@ -28,18 +28,16 @@
             </div>
             <div class=" col-sm-12 col-lg-7  d-flex ">
                 <div class="w-100 py-3">
-                    <h2>COACH
-                        <!-- <p class="btn btn-warning" style="background-color: #C1B09D; border-radius: 25px; border-color:#C1B09D ;">Review</p> -->
-                    </h2>
-                    <h4>ร้าน : Coach Craftsman</h4>
+                    <h2 id="name"></h2>
+                    <h4>ร้าน : <span id="biz_name"></span></h4>
                     <button type="button" class="btn btn-dark btn-small float-left mr-2">Edit Profile</button>
-                    <button type="button" class="btn btn-dark btn-small float-left mr-2" style="background-color: #A33E3E; border: #A33E3E;">Remove Barber</button>
+                    <button type="button" onclick="removeBarber()" class="btn btn-dark btn-small float-left mr-2" style="background-color: #A33E3E; border: #A33E3E;">Remove Barber</button>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-">
                 <form class="text-left">
                     <fieldset class="material mb-3">
-                        <input type="text" id="detail" placeholder="" autocomplete="off" required>
+                        <input type="text" id="description" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Add Detail...</label>
                     </fieldset>
@@ -116,9 +114,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        function getUrlVars()
+        {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
         $(function() {
             $('#nav').load("http://localhost/hairnate/layout/navbar.html");
+
+            
+
+            $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'getbarber_with_id',
+                    barber_id: getUrlVars()['id']
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg.result)
+
+                Object.keys(msg.result[0]).map((item)=>{
+                    $('#'+item).append(msg.result[0][item]);
+                    $('#'+item).val(msg.result[0][item]);
+                    return;
+                })
+                $('#image').attr("src", "../"+msg.result[0].image);
+
+                // $('#biz_name').append(msg.biz_name);
+                // $('#name').append()
+            });
+
         });
+
+        const removeBarber = () => {
+             $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'remove_barber',
+                    barber_id: getUrlVars()['id']
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg.result)
+
+                if (msg.code === 200) {
+                    window.location.href = 'book.html'
+                }
+            });
+        }
     </script>
     <script>
         $(function() {

@@ -54,32 +54,6 @@
             <div class="col-12">
                 <h2>TEAM</h2>
                 <div class="row pt-3" id="barber">
-                    <div class="col-lg col-sm-3">
-
-                        <div class="icon">
-                            <div class="position-relative">
-                                <a href="barber.html"> <img class="circle" src="../images/Image 25.png" /></a>
-                                <p style="text-align: center;" class="pt-2">Ms.B</p>
-                                <div class="text-center">
-                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
-                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg col-sm-3">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <a href="" data-toggle="modal" data-target="#team" data-whatever="@getbootstrap">
-                                    <i class="fas fa-plus icon-edit-full"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-3"></div>
-                    <div class="col-lg col-sm-3"></div>
-                    <div class="col-lg col-sm-3"></div>
                 </div>
             </div>
         </div>
@@ -924,18 +898,44 @@
             });
         }
 
+
+        const removeBarber = (id) => {
+             $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'remove_barber',
+                    barber_id: id
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg.result)
+
+                if (msg.code === 200) {
+                    window.location.href = 'book.html'
+                }
+            });
+        }
+
         const cardBarber = (item) => {
             var img = item.image ? item.image : 'https://via.placeholder.com/150';
             return `
+
                     <div class="col-lg col-sm-3">
-                        <a href="barber.html?id=${item.id_barber}">
-                            <div class="icon">
-                                <div class="position-relative">
-                                    <img class="circle" src="../${img}" />
-                                    <p style="text-align: center;" class="pt-2">${item.name}</p>
+
+                        <div class="icon">
+                            <div class="position-relative">
+                                <a href="barber.html?id=${item.id_barber}"> <img class="circle" src="../${img}" /></a>
+                                <p style="text-align: center;" class="pt-2">${item.name}</p>
+                                <div class="text-center">
+                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
+                                    <button type="button" onclick="removeBarber(${item.id_barber})" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+
                     </div>`;
         }
     </script>

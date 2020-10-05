@@ -39,7 +39,7 @@
         		$sql = "UPDATE `users` SET `type` = 2 , `surname` = '".$_POST['surname']."' WHERE `id` = '".$lastid."'";
         		$rs = getpdo($conn,$sql);
 
-        		$sql = "INSERT INTO `partner`(`name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['location']."','".$_POST['biz_type']."','".$lastid."')";
+        		$sql = "INSERT INTO `partner`(`biz_name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['location']."','".$_POST['biz_type']."','".$lastid."')";
         		$rs = getpdo($conn,$sql);
         		if($rs){
 					$res = array("code" => 200, "result" => $rs);

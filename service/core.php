@@ -162,6 +162,28 @@
                 return ;
             }
         }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'getbarber_with_id'){
+
+        $sql = "SELECT * FROM `barber` inner join `partner` on `barber`.`id_partner` = `partner`.`id`  WHERE `id_barber` = '".$_POST['barber_id']."'";
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'remove_barber'){
+
+        $sql = "DELETE FROM `barber`  WHERE `id_barber` = '".$_POST['barber_id']."'";
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
     }
 
     $result = array("message" => "Error someting");

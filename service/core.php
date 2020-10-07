@@ -184,6 +184,22 @@
             echo json_encode($res);
             return ;
         }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'remove_promotion'){
+
+        $sql = "DELETE FROM `promotion`  WHERE `id_promotion` = '".$_POST['id_promotion']."'";
+
+        $rs = getpdo($conn,$sql);
+
+
+        $sql = "DELETE FROM `hairstyle`  WHERE `id_hairstyle` = '".$_POST['id_hairstyle']."'";
+
+        $rs = getpdo($conn,$sql);
+        
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
     }
 
     $result = array("message" => "Error someting");

@@ -60,46 +60,9 @@
         <hr style="border-bottom:1px solid #000;" />
 
         <div class="row">
-            <h2>POMOTION</h2>
+            <h2>PROMOTION</h2>
             <div class="col-12">
                 <div class="row" id="promotion">
-                    <div class="col-lg col-sm-6">
-                        <div class="row py-3">
-                            <div class="col-12 col-md p-2">
-                                <div class="proimage" style="width: 100%;">
-                                    <img src="../images/Mask Group 25.png" style="width: 100%;border-radius: 15px;">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md pt-2">
-                                <h5>PACKAGE CHILLING</h5>
-                                <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
-                                <p>800 </p>
-                                <h5 style="color: #A33E3E;">650 Baht</h5>
-                                <div class="text-center">
-                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" data-whatever="@getbootstrap"></i>
-                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6">
-                        <div class="row py-3">
-                            <div class="col-12 col-md">
-                                <div class="col-lg col-sm-6">
-                                    <div class="row py-3">
-                                        <div class="col-12 col-md">
-                                            <div class="position-relative">
-                                                <a href="" data-toggle="modal" data-target="#addPromotion" data-whatever="@getbootstrap">
-                                                    <i class="fas fa-plus icon-edit-full2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- <div class="col-12">
                     <div class="row" id="promotion">
@@ -112,43 +75,6 @@
             <h2>SERVICE TYPE</h2>
             <div class="col-12">
                 <div class="row" id="service">
-                    <div class="col-lg col-sm-6">
-                        <div class="row py-3">
-                            <div class="col-12 col-md p-2">
-                                <div class="proimage" style="width: 100%;">
-                                    <img src="../images/Mask Group 25.png" style="width: 100%;border-radius: 15px;">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md pt-2">
-                                <h5>PACKAGE CHILLING</h5>
-                                <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
-                                <p>800 </p>
-                                <h5 style="color: #A33E3E;">650 Baht</h5>
-                                <div class="text-center">
-                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
-                                    <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6">
-                        <div class="row py-3">
-                            <div class="col-12 col-md">
-                                <div class="col-lg col-sm-6">
-                                    <div class="row py-3">
-                                        <div class="col-12 col-md">
-                                            <div class="position-relative">
-                                                <a href="" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap">
-                                                    <i class="fas fa-plus icon-edit-full2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -567,7 +493,7 @@
                         <div class="row py-3">
                             <div class="col-12 col-md">
                                 <div class="position-relative">
-                                    <a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+                                    <a href="" data-toggle="modal" data-target="#addPromotion" data-whatever="@getbootstrap">
                                         <i class="fas fa-plus icon-edit-full2"></i>
                                     </a>
                                 </div>
@@ -619,22 +545,25 @@
         promotion = (item) => {
             var img = item.image ? item.image : 'https://via.placeholder.com/150';
             return `
-                <div class="col-6">
-                    <div class="row py-3">
-                        <div class="col-12 col-md">
-                            <div class="proimage" style="width: 100%;">
-                                <img src="../${img}" style="width: 100%;border-radius: 15px;">
+                    <div class="col-6">
+                        <div class="row py-3">
+                            <div class="col-12 col-md p-2">
+                                <div class="proimage" style="width: 100%;">
+                                    <img src="../${img}" style="width: 100%;border-radius: 15px;">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md pt-2">
+                                <h5>${item.name}</h5>
+                                <p style="font-size: xx-small;">${item.description}</p>
+                                <p><span style="text-decoration: line-through;">${item.price}</span> <span style="color: #A33E3E; font-size:20px">${item.promotion_price} Baht</span></p>
+                                
+                                <div class="text-center">
+                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" onclick="getdatapromo(${item.id_hairstyle});"  data-whatever="@getbootstrap"></i>
+                                    <button type="button" onclick="removePromotion(${item.id_hairstyle},${item.id_promotion})" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md pt-2">
-                            <h5>${item.name}</h5>
-                            <p style="font-size: x-small;">${item.description}</p>
-                            <p>${item.price}</p>
-                            <h3 style="color: #A33E3E;">${item.promotion_price} Baht</h3>
-                            <a href="" onclick="getdatapromo(${item.id_hairstyle});" data-toggle="modal" data-target="#exampleModal3" data-whatever="@getbootstrap" style="float: right;color: #000;">edit</a>
-                        </div>
                     </div>
-                </div>
             `;
         }
 
@@ -643,19 +572,46 @@
             return `
                 <div class="col-6">
                     <div class="row py-3">
-                        <div class="col-12 col-md">
+                        <div class="col-12 col-md p-2">
                             <div class="proimage" style="width: 100%;">
                                 <img src="../${img}" style="width: 100%;border-radius: 15px;">
                             </div>
                         </div>
                         <div class="col-12 col-md pt-2">
                             <h5>${item.name}</h5>
-                            <p>${item.price} Baht</p>
-                            <a href="" onclick="getdata(${item.id_hairstyle});" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" style="float: right;color: #000;">edit</a>
+                            <p style="font-size: xx-small;">${item.description}</p>
+                            <p>${item.price} </p>
+                            <div class="text-center">
+                                <i class="fas fa-pen icon-edit"  onclick="getdata(${item.id_hairstyle});" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                <button type="button"  onclick="removePromotion(${item.id_hairstyle})" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             `
+        }
+
+
+        const removePromotion =(id_hairstyle,id_promotion = '') => {
+            
+             $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'remove_promotion',
+                    id_hairstyle,
+                    id_promotion
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg.result)
+
+                if (msg.code === 200) {
+                    window.location.href = 'book.html'
+                }
+            });
         }
 
         getdata = (id) => {

@@ -224,7 +224,7 @@ body {
 .imgg {
     width: 100%;
     overflow: hidden;
-    margin: 20px 20px 20px 0px;
+    /* margin: 20px 20px 20px 0px; */
 }
 
 .imgg img {
@@ -332,7 +332,7 @@ body {
     width: 100%;
     font-size: 60px;
     color: #000;
-    padding-top: 20px;
+    padding: 1.5rem;
     text-align: center;
 }
 
@@ -405,11 +405,13 @@ footer {
     border-radius: 20px;
     font-size: large;
     text-align: center;
+    height: auto;
 }
 
 .form-group2 {
     text-align: center;
-    margin: 15px 0px 30px 0px;
+    margin: auto;
+    width: 70%;
 }
 
 .form-group2 p {
@@ -511,8 +513,8 @@ footer {
 }
 
 .circle {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     margin: auto;
     border-radius: 100%;
     overflow: hidden;
@@ -958,7 +960,7 @@ button:focus {
 }
 
 .steps-form .steps-row:before {
-    top: 14px;
+    top: 23px;
     bottom: 0;
     position: absolute;
     content: " ";
@@ -983,8 +985,10 @@ button:focus {
 }
 
 .steps-form .steps-row .steps-step .btn-circle {
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    min-width: 70px;
+    height: 48px;
+    background-color: #fff;
     text-align: center;
     padding: 6px 0;
     font-size: 12px;

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hoverCardBarber.css">
     <title>HOME</title>
 </head>
 
@@ -55,8 +56,8 @@
                 </div> -->
                 <div class="row justify-content-center mt-4 mb-5">
                     <div class="col-md-8 d-lg-flex d-sm-block justify-content-between">
-                        <a href="menHair.html"><button type="button" class="btn btn-dark my-2">MEN'S FASHION<br/>HAIR CUT</button></a>
-                        <a href="donatehair.html"><button type="button" class="btn btn-dark my-2" style="background-color: #A33E3E;">DONTE<br/>HAIR CUT</button></a>
+                        <a href="menHair.html" class="btn btn-dark my-2">MEN'S FASHION<br/>HAIR CUT</a>
+                        <a href="donatehair.html" class="btn btn-dark my-2" style="background-color: #A33E3E;">DONTE<br/>HAIR CUT</a>
                     </div>
                 </div>
             </div>
@@ -75,25 +76,25 @@
             <br>
             <div class="pic">
                 <div class="row mb-5">
-                    <div class="col-12 col-md-4">
-                        <div class="imgg">
-                            <img src="images/Mask Group 26.png" alt="" height="240px">
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="imgg py-1">
+                            <img src="images/Mask Group 34.png" alt="" height="270px">
                         </div>
-                        <div class="imgg">
-                            <img src="images/Mask Group 27.png" alt="" height="240px">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="imgg">
-                            <img src="images/m3.png" alt="" height="520px">
+                        <div class="imgg py-1">
+                            <img src="images/Mask Group 38.png" alt="">
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
-                        <div class="imgg">
-                            <img src="images/ar 3.png" alt="" height="240px">
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="imgg py-1">
+                            <img src="images/Mask Group 35.png" alt="" height="530px">
                         </div>
-                        <div class="imgg">
-                            <img src="images/a1.png" alt="" height="240px">
+                    </div>
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="imgg py-1">
+                            <img src="images/Mask Group 36.png" alt="" height="330px">
+                        </div>
+                        <div class="imgg py-1">
+                            <img src="images/Mask Group 37.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -102,59 +103,69 @@
     </div>
 
     <div class="content">
-        <div class="container">
-            <div class="top_content py-5 text-center">
-                <h1 class="text-center">BARBER <span style="color: #C1B09D; ">RECOMMEND</span></h1>
-                <p>OF THIS MONTH</p>
-
+        <div class="container-fluid row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="top_content py-5 text-center">
+                    <h1 class="text-center">BARBER <span style="color: #C1B09D; ">RECOMMEND</span></h1>
+                    <p>OF THIS MONTH</p>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <img src="images/Image 25.png" alt="Avatar" class="image">
+                            <div class="overlay">
+                                <div class="text">
+                                    <p style="font-size: smaller; margin: 0px;">ช่างแฟชันชาย</p>
+                                    <h4 class="m-0"><b>John Doe</b></h4>
+                                    <p style="font-size: smaller;">JD HAIR STYLE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <img src="images/Image 24.png" alt="Avatar" class="image">
+                            <div class="overlay">
+                                <div class="text">
+                                    <p style="font-size: smaller; margin: 0px;">ช่างแฟชันชาย</p>
+                                    <h4 class="m-0"><b>John Doe</b></h4>
+                                    <p style="font-size: smaller;">JD HAIR STYLE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <img src="images/Image 23.png" alt="Avatar" class="image">
+                            <div class="overlay">
+                                <div class="text">
+                                    <p style="font-size: smaller; margin: 0px;">ช่างแฟชันชาย</p>
+                                    <h4 class="m-0"><b>John Doe</b></h4>
+                                    <p style="font-size: smaller;">JD HAIR STYLE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    <div class="card" style="background-color: #fff;">
-                        <img src="images/Image 25.png">
-                        <div class="container">
-                            <h4><b>John Doe</b></h4>
-                            <p>Architect & Engineer</p>
-                        </div>
+            <div class="col-2 p-0">
+                <div class="toast my-5 " data-autohide="false" style="position: relative; background-color: #674646;">
+                    <button type="button" class="ml-2 mb-1 close text-white p-4" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
+                    <div class="p-4 text-center" style="background-color: #674646;">
+                        <span></span><img src="images/Group 252.png" alt="" style="width: 50px; height: 50px;">&nbsp; X &nbsp;
+                        <img src="images/logo-app-white.png" alt="" style="width: 50px; height: 50px;"></span>
                     </div>
-                </div>
-                <div class="col-12 col-md-3">
-                    <div class="card" style="background-color: #fff;">
-                        <img src="images/Image 24.png">
-                        <div class="container">
-                            <h4><b>John Doe</b></h4>
-                            <p>Architect & Engineer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3">
-                    <div class="card" style="background-color: #fff;">
-                        <img src="images/Image 23.png">
-                        <div class="container">
-                            <h4><b>John Doe</b></h4>
-                            <p>Architect & Engineer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 float-rlght">
-                    <!-- <div class="Rsee">
-                        <button type="button" class="btn btn-light">see more</button>
-                    </div> -->
-                    <div class="toast" data-autohide="false" style="position: relative; background-color: #674646;">
-                        <button type="button" class="ml-2 mb-1 close text-white p-4" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
-                        <div class="p-4 text-center" style="background-color: #674646;">
-                            <span></span><img src="images/Group 252.png" alt="" style="width: 50px; height: 50px;">&nbsp; X &nbsp;
-                            <img src="images/logo-app-white.png" alt="" style="width: 50px; height: 50px;"></span>
-                        </div>
-                        <div class="toast-body p-4">
-                            <p class="text-center text-white">อยากแกะลาย<br>แต่ไม่รู้ว่าลายไหน<br>เหมาะกับตัวเอง</p><br>
-                            <p class="text-center text-white">ไม่รู้ว่าร้านไหน<br>แกะลายสวย</p><br>
-                            <h6 class=" text-white">ทุกปัญหาจะหมดไป<br>
-                                <span><h6 style="color: aquamarine;">PHEEN BARBER </h6></span>ช่วยคุณได้ ;)</h6><br>
-                            <h6 class=" text-white">จองบริการแกะลายกับเราผ่าน Hairnate ครั้งแรก</h6>
-                            <h6 style="color: #E6E686;">ลดทันที 15%</h6>
-                            <p class="text-muted" style="font-size: xx-small;">ตั้งแต่วันนี้ - 31 สิงหาคม 2563</p>
-                        </div>
+                    <div class="toast-body p-4">
+                        <p class="text-center text-white">อยากแกะลาย<br>แต่ไม่รู้ว่าลายไหน<br>เหมาะกับตัวเอง</p><br><br>
+                        <p class="text-center text-white">ไม่รู้ว่าร้านไหน<br>แกะลายสวย</p><br><br>
+                        <h5 class=" text-white text-center">ทุกปัญหาจะหมดไป<br>
+                            <font style="color: aquamarine;">PHEEN BARBER</font><br> ช่วยคุณได้ ;)</h5><br><br>
+                        <h5 class=" text-white">จองบริการแกะลายกับเราผ่าน Hairnate ครั้งแรก</h5>
+                        <h5 style="color: #E6E686;">ลดทันที 15%</h5>
+                        <p style="font-size: xx-small;">
+                            <font style="color: #E6E686;">ตั้งแต่วันนี้ - 31 สิงหาคม 2563</font>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -163,56 +174,63 @@
 
 
     <div class="content2 ">
-        <div class="container ">
-            <div class="top_content pt-5 col-md-9">
-                <h1> ARTICLE <a href="# " style="float: right;"><button type="button " class="btn btn-light" style="color: #EEEBE6;">see more</button></a></h1>
-            </div>
-            <div class="row mb-5">
-                <div class="col-12 col-md-5">
+        <div class="container-fluid row ">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="top_content pt-5 my-5">
+                    <h1> ARTICLE <a href="# " class="btn btn-light my-1" style="color: #EEEBE6;float: right;">see more</a></h1>
+                </div>
 
-                    <div class="box-home2 ">
-                        <img src="images/ar 1.png ">
-                    </div>
-                    <div class="text-box-ar py-3">
-                        <h3>10 อาหารที่ดีต่อเส้นผม</h3>
-                        <p>การรับประทานอาหารให้ถูกสุขลักษณะ และเลือกอาหารที่เหมาะสม ซึ่งช่วยบำรุง หรือเสริมสร้างความแข็งแรงให้กับเส้นผมและรากผม จึงเป็นเรื่องที่สำคัญไม่น้อย
-                            <a href=" "> read more</a></p>
+                <div class="row mb-5">
+                    <div class="col-sm-12 col-md-7">
+                        <div class="box-home2 ">
+                            <img src="images/ar 1.png ">
+                        </div>
+                        <span class="text-box-ar py-3">
+                            <h3>10 อาหารที่ดีต่อเส้นผม</h3>
+                            <p>การรับประทานอาหารให้ถูกสุขลักษณะ และเลือกอาหารที่เหมาะสม ซึ่งช่วยบำรุง หรือเสริมสร้างความแข็งแรงให้กับเส้นผมและรากผม จึงเป็นเรื่องที่สำคัญไม่น้อย
+                                <a href=" "> read more</a></p>
+                        </span>
+                        <p style="border:1px #C1B09D dashed;"></p>
+                        <div class="box-home2 ">
+                            <img src="images/ar 2.png ">
+                        </div>
+                        <span class="text-box-ar py-3">
+                            <h3>เคล็ดลับเปลี่ยนผมเสียให้สวย</h3>
+                            <p>ผมแห้งเสียจนกลายเป็นผมแตกปลาย ถือว่าเป็นปัญหากวนใจ ของผู้หญิงหลายๆคน ทั้งยังเป็นปัญหาที่แก้ได้ยาก โดยเฉพาะ ผู้ที่ต้องทำผมและอยู่ใกล้ชิดสารเคมี
+                                <a href=" "> read more</a></p>
+                        </span>
                     </div>
                     <p style="border:1px #C1B09D dashed;"></p>
-                    <div class="box-home2 ">
-                        <img src="images/ar 2.png ">
-                    </div>
-                    <div class="text-box-ar py-3">
-                        <h3>เคล็ดลับเปลี่ยนผมเสียให้สวย</h3>
-                        <p>ผมแห้งเสียจนกลายเป็นผมแตกปลาย ถือว่าเป็นปัญหากวนใจ ของผู้หญิงหลายๆคน ทั้งยังเป็นปัญหาที่แก้ได้ยาก โดยเฉพาะ ผู้ที่ต้องทำผมและอยู่ใกล้ชิดสารเคมี
-                            <a href=" "> read more</a></p>
-                    </div>
-                </div>
-                <p style="border:1px #C1B09D dashed;"></p>
-                <div class="col-12 col-md-3" style="margin: auto;">
-                    <div class="box-home ">
-                        <img src="images/ar 3.png ">
-                    </div>
-                    <div class="text-box-ar py-3">
-                        <h3>เคล็ดลับสุขภาพผมดีที่หนุ่มๆ ควรรู้</h3>
-                        <p>ผู้ชายส่วนใหญ่อาจไม่ค่อยมีเวลาว่างใส่ใจดูแลสุขภาพของเส้นผมกันมากมายนัก แต่สำหรับหนุ่มๆ ยุคใหม่แล้วล่ะก็ ต่างพูดเป็นเสียงเดียวกันว่า... "สุขภาพผมดี มีชัยไปกว่าครึ่ง "<a href=" "> read more</a></p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 float-rlght">
-                    <!-- <div class="Rsee">
-                    <button type="button" class="btn btn-light">see more</button>
-                </div> -->
-                    <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
-                        <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
-                        <img src="images/Group 244.png" alt="" class="w-100">
-                    </div>
-                    <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
-                        <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
-                        <img src="images/Group 245.png" alt="" class="w-100">
+                    <div class="col-12 col-md-4" style="margin: auto;">
+                        <div class="box-home ">
+                            <img src="images/ar 3.png ">
+                        </div>
+                        <div class="text-box-ar py-3">
+                            <h3>เคล็ดลับสุขภาพผมดีที่หนุ่มๆ ควรรู้</h3>
+                            <p>ผู้ชายส่วนใหญ่อาจไม่ค่อยมีเวลาว่างใส่ใจดูแลสุขภาพของเส้นผมกันมากมายนัก แต่สำหรับหนุ่มๆ ยุคใหม่แล้วล่ะก็ ต่างพูดเป็นเสียงเดียวกันว่า... "สุขภาพผมดี มีชัยไปกว่าครึ่ง "<a href=" "> read more</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <div class="col-2 my-5">
+                <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
+                    <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
+                    <img src="images/Group 244.png" alt="" class="w-100">
+                </div>
+                <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
+                    <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
+                    <img src="images/Group 245.png" alt="" class="w-100">
+                </div>
+                <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
+                    <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
+                    <img src="images/Group 249.png" alt="" class="w-100">
+                </div>
+                <div class="toast" data-autohide="false" style="position: relative; background-color:#EEEBE6;">
+                    <button type="button" class="ml-2 close" data-dismiss="toast" style="font-size: small;"><i class="fas fa-times"></i></button>
+                    <img src="images/Group 251.png" alt="" class="w-100">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -224,92 +242,92 @@
                 </div>
                 <div class="our-method ">
                     <a href="# ">
-                        <div class="method ">
+                        <div class="method p-4">
                             <div class="circle ">
-                                <div class="type p-3 ">
+                                <div class="type p-2 ">
                                     <i class="far fa-hand-point-up"></i>
                                 </div>
                             </div>
-
-                            <p class="type_text text-dark ">เลือกประเภทบริการ</p>
+                            <p class="type_text text-dark mt-2">เลือกประเภทบริการ</p>
                         </div>
                     </a>
                     <a href="# ">
-                        <div class="method ">
+                        <div class="method p-4">
                             <div class="circle ">
-                                <div class="type p-3 ">
-                                    <a href="# "><i class="fas fa-search"></i></a>
+                                <div class="type p-2 ">
+                                    <i class="fas fa-search"></i>
                                 </div>
                             </div>
-                            <p class="type_text text-dark ">ค้นหาและเลือกร้านที่ต้องการใช้บริการ</p>
+                            <p class="type_text text-dark mt-2">ค้นหาและเลือกร้านที่ต้องการใช้บริการ</p>
                         </div>
                     </a>
                     <a href="# ">
-                        <div class="method ">
+                        <div class="method p-4">
                             <div class="circle ">
-                                <div class="type p-3 ">
-                                    <a href="# "><i class="fas fa-bars"></i></a>
+                                <div class="type p-2 ">
+                                    <i class="fas fa-bars"></i>
                                 </div>
                             </div>
-                            <p class="type_text text-dark ">กรอกรายละเอียดในการใช้บริการ</p>
+                            <p class="type_text text-dark mt-2">กรอกรายละเอียดในการใช้บริการ</p>
                         </div>
                     </a>
                     <a href="# ">
-                        <div class="method ">
+                        <div class="method p-4 text-cnter">
                             <div class="circle ">
-                                <div class="type p-3 ">
-                                    <a href="# "><i class="fas fa-dollar-sign"></i></a>
+                                <div class="type p-2 ">
+                                    <i class="fas fa-dollar-sign"></i>
                                 </div>
                             </div>
-                            <p class="type_text text-dark ">ตรวจสอบรายละเอียดและชำระเงิน</p>
+                            <p class="type_text text-dark mt-2">ตรวจสอบรายละเอียดและชำระเงิน</p>
                         </div>
                     </a>
                     <a href="# ">
-                        <div class="method ">
+                        <div class="method p-4">
                             <div class="circle ">
-                                <div class="type p-3 ">
-                                    <a href="# "><i class="fas fa-check"></i></a>
+                                <div class="type p-2 ">
+                                    <i class="fas fa-check"></i>
                                 </div>
                             </div>
-                            <p class="type_text text-dark ">จองสำเร็จ</p>
+                            <p class="type_text text-dark mt-2">จองสำเร็จ</p>
                         </div>
                     </a>
-                </div>
-        </section>
-        </div>
-
-        <footer>
-            <div class="container ">
-                <div class="foot_logo">
-                    <img class="logo-img center-block " src="images/logo-app-white.png " />
-                </div>
-
-                <div class="footer_text ">
-                    เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
-                </div>
-
-
-                <div class="foot_icon ">
-                    <a href="# "><i class="fab fa-facebook "></i></a>
-                    <a href="# "><i class="fab fa-twitter "></i></a>
-                    <a href="# "><i class="fab fa-instagram "></i></a>
                 </div>
             </div>
-        </footer>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container ">
+            <div class="foot_logo">
+                <img class="logo-img center-block " src="images/logo-app-white.png " />
+            </div>
+
+            <div class="footer_text ">
+                เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
+            </div>
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
-        <script>
-            $(document).ready(function() {
-                $('.toast').toast('show');
-            });
+            <div class="foot_icon ">
+                <a href="# "><i class="fab fa-facebook "></i></a>
+                <a href="# "><i class="fab fa-twitter "></i></a>
+                <a href="# "><i class="fab fa-instagram "></i></a>
+            </div>
+        </div>
+    </footer>
 
-            $(function() {
-                $('#nav').load("layout/navbar.html");
-            });
-        </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast('show');
+        });
+
+        $(function() {
+            $('#nav').load("layout/navbar.html");
+        });
+    </script>
 </body>
 
 </html>

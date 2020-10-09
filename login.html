@@ -16,7 +16,7 @@
     <div class="container">
         <div class="img-login" style="text-align: center;">
             <img src="images/logo-app.png" style="width:15%;">
-            <button type="button" class="btn btn-light w-25 p-2" style="background-color: #EEEBE6; border-radius: 15px;"><p style="font-size: xx-large;"><b>LOGIN</b></p></button>
+            <button type="button" class="btn w-25 p-2" style="background-color: #EEEBE6; border-radius: 15px;"><p style="font-size: xx-large;"><b>LOGIN</b></p></button>
         </div>
         <div class="form">
             <form id="login-form" class="form" action="" method="post">
@@ -27,17 +27,20 @@
                 <div class="form-group">
                     <label for="password" class="text-dark">PASSWORD:</label><br>
                     <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-                    <p class="text-right" style="font-size: xx-small;color: #C1B09D;">forget password?</p>
+
+
+                    <p class="text-right" style="color: #C1B09D;">forget password?</p>
+
                 </div>
-                <div class="form-group2">
+                <div class="form-group2 my-4">
 
                     <button type="button" class="btn btn-dark" onclick="login(this)" style="background-color: #A33E3E;">LOGIN</button>
                 </div>
-                <div class="form-group2">
+                <div class="form-group2 my-4">
                     <h6>or Login with</h6>
-                    <button type="button" class="btn btn-primary">continue with Facebook</button>
+                    <button type="button" class="btn btn-primary form-control p-2"><i class="fab fa-facebook"></i> continue with Facebook</button>
                 </div>
-                <div class="form-group2">
+                <div class="form-group2 my-4">
                     <p>don't have account?<a href="/hairnate/signUp.html" class="text-dark">Sign up</a>
                     </p>
                 </div>

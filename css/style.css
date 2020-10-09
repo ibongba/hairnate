@@ -1065,5 +1065,9 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+.bg-red {
+    background-color: #A33E3E !important;
+}
+
 
 /* switch */

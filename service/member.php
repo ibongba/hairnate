@@ -42,6 +42,11 @@
         		$sql = "INSERT INTO `partner`(`biz_name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['location']."','".$_POST['biz_type']."','".$lastid."')";
         		$rs = getpdo($conn,$sql);
         		if($rs){
+                    $lastid = $conn->lastInsertId();
+
+                    $sql = "INSERT INTO `hairstyle`(`id_partner`, `name`, `description`, `price`, `image`, `type`) (SELECT ".$lastid.", `name`, `description`, `price`, `image`, `type` FROM `hairstyle` WHERE `id_partner` = 0)";
+                    $rs2 = getpdo($conn,$sql);
+
 					$res = array("code" => 200, "result" => $rs);
 		        	echo json_encode($res);
 		            return ;

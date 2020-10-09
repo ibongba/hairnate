@@ -200,6 +200,49 @@
             echo json_encode($res);
             return ;
         }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'get_all_partner'){
+
+        $sql = "SELECT `partner`.* ,`users`.`address` FROM `partner` join  `users` on `partner`.`fk_user_id` = `users`.`id` WHERE `biz_type` = '".$_POST['biz_type']."'";
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'get_partner_with_id'){
+
+        $sql = "SELECT `partner`.* FROM `partner` WHERE `id` = '".$_POST['id']."'";
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+
+            $sql = "SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'";
+            $hairstyle = getpdo($conn,$sql);
+
+
+            $sql = "SELECT * FROM `barber` WHERE `id_partner` = '".$rs[0]['id']."'";
+            $barber = getpdo($conn,$sql);
+
+
+            $res = array("code" => 200, "result" => json_encode(array('hairstyle' => $hairstyle, 'partner'=>$rs , 'barber' => $barber,'sql'=>"SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'")));
+            echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'add_calendar'){
+        $sql = "INSERT INTO `service_detail`(`service_date`, `service_time`, `service_location`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('".$_POST['service_date']."','".$_POST['service_time']."','".$_POST['service_location']."','".$_POST['service_phone']."','".$_POST['email']."','".$_POST['id_barber']."','".$_POST['id_users']."','".$_POST['id_hairstyle']."')";
+        echo $sql;
+
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
+
     }
 
     $result = array("message" => "Error someting");

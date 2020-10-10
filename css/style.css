@@ -507,6 +507,24 @@ footer {
     display: block;
 }
 
+.btn.btn-dark2 {
+    letter-spacing: 0px;
+    width: 120px;
+    font-size: 1rem;
+    padding: .375rem .75rem;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: unset;
+    color: #fff;
+    background-color: #000;
+}
+
+.btn.btn-danger2 {
+    background-color: #A33E3E;
+    color: #fff;
+    border-radius: 8px;
+}
+
 .form-group3 {
     text-align: center;
     margin: 10px;

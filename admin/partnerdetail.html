@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+    <!-- //datapicker -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <!-- ///datapicker -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <title>PROFILE DETAIL</title>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <div class="container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Profile Detail</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Payment</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content mt-4">
+            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                <h4 class="mt-3 font-weight-bold">PROFILE DETAIL</h4>
+                <p class="float-left mx-3"><i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> 120/121 condo A Pakket Nonthaburi 11120</p>
+                <p class=" mx-3"><i class="fas fa-phone-alt" style="color: #A33E3E;"></i>01-234-56789</p>
+                <div class="row my-5">
+                    <div class="col-12">
+                        <h4 class="font-weight-bold">TEAM</h4>
+                        <div class="row pt-3" id="barber">
+                            <div class="col-lg col-sm-3">
+
+                                <div class="icon">
+                                    <div class="position-relative">
+                                        <a href="barber.html"> <img class="circle" src="../images/pd1.png" /></a>
+                                        <p style="text-align: center;" class="pt-2">Ms.Coach</p>
+                                        <div class="text-center">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg col-sm-3"></div>
+                            <div class="col-lg col-sm-3"></div>
+                            <div class="col-lg col-sm-3"></div>
+                            <div class="col-lg col-sm-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="font-weight-bold">POMOTION</h3>
+                    <div class="col-12">
+                        <div class="row" id="promotion">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/pd2.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+
+                                        <div class="textPro">
+                                            <h5>PACKAGE CHILLING</h5>
+                                            <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
+                                            <p class="float-left mr-3" style="text-decoration: line-through; font-size: small;">800 </p>
+                                            <h5 style="color: #A33E3E;">650 Baht</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/pd3.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+
+                                        <div class="textPro">
+                                            <h5>PACKAGE CHILLING</h5>
+                                            <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
+                                            <p class="float-left mr-3" style="text-decoration: line-through; font-size: small;">800 </p>
+                                            <h5 style="color: #A33E3E;">650 Baht</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="promotion">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/pd4.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+
+                                        <div class="textPro">
+                                            <h5>PACKAGE CHILLING</h5>
+                                            <p style="font-size: xx-small;">Under Cut + ทำความสะอาดหู</p>
+                                            <p class="float-left mr-3" style="text-decoration: line-through; font-size: small;">800 </p>
+                                            <h5 style="color: #A33E3E;">650 Baht</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editPromotion" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md">
+                                        <div class="col-lg col-sm-6">
+                                            <div class="row py-3">
+                                                <div class="col-12 col-md p-0">
+                                                    <div class="position-relative">
+                                                        <a href="" data-toggle="modal" data-target="#addPromotion" data-whatever="@getbootstrap">
+                                                            <i class="fas fa-plus icon-edit-full2"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="row" id="promotion">
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- <hr style="border-bottom:1px solid #000;" /> -->
+                <div class="row my-3">
+                    <h3 class="font-weight-bold">SERVICE TYPE</h3>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st1.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>รองทรงสูง</h5>
+                                            <p>650 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st2.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>รองทรงกลาง</h5>
+                                            <p>1,000 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st3.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>รองทรงต่ำ</h5>
+                                            <p>750 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st4.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>แกะลายผม</h5>
+                                            <p>1,000 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st5.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>ทรงผม UNDERCUT</h5>
+                                            <p>650 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st6.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>สกินเฮด</h5>
+                                            <p>1,000 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st7.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>ทรงผมสลิคแบค</h5>
+                                            <p>750 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st8.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>ทรงครูว์คัต</h5>
+                                            <p>1,000 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st9.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>ทรงปาดข้าง</h5>
+                                            <p>650 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md p-2">
+                                        <div class="proimage" style="width: 100%;">
+                                            <img src="../images/st10.png" style="width: 100%;border-radius: 15px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md pt-2">
+                                        <div class="textPro py-4">
+                                            <h5>ทรงผมหยักแสกกลาง</h5>
+                                            <p>1,500 Bath</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editService" data-whatever="@getbootstrap"></i>
+                                            <button type="button" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="service">
+                            <div class="col-lg col-sm-6">
+                                <div class="row py-3">
+                                    <div class="col-12 col-md">
+                                        <div class="col-lg col-sm-6">
+                                            <div class="row py-3">
+                                                <div class="col-12 col-md p-0">
+                                                    <div class="position-relative">
+                                                        <a href="" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap">
+                                                            <i class="fas fa-plus icon-edit-full2"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg col-sm-6"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                <h3 class="font-weight-bold">HISTORY</h3>
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+                <div class="all_customer my-5">
+                    <div class="row my-3">
+                        <div class="col">
+                            <p class="py-2">
+                                <font class="font-weight-bold" style="color: #A33E3E;">All Customers</font>
+                            </p>
+                        </div>
+                        <div class="col text-right">
+                            <div class="form-group text-right float-left p-0 w-100">
+                                <label for="exampleFormControlSelect1"></label>
+                                <select class="btn btn-outline-dark" id="exampleFormControlSelect1">
+                                <option>LASTEST</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                                <button type="button" class="btn btn-outline-danger text-right" style="min-width: auto;"><i class="fas fa-bars"></i> LIST</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <thead>
+
+                            </thead>
+                            <tr>
+                                <td>Adam Levine</td>
+                                <td class="text-right">Amount : 13 times</td>
+                                <td class="text-right">Date : 21 March, 10.00 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Adam Levine</td>
+                                <td class="text-right">Amount : 13 times</td>
+                                <td class="text-right">Date : 21 March, 10.00 AM</td>
+                            </tr>
+                            <tr>
+                                <td>Adam Levine</td>
+                                <td class="text-right">Amount : 13 times</td>
+                                <td class="text-right">Date : 21 March, 10.00 AM</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">
+                                    <p class="font-weight-bold">Amount : 4</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="topcustomer my-5">
+                    <p class="py-2">
+                        <font class="font-weight-bold" style="color: #A33E3E;">Top 10 Customers</font>
+                    </p>
+                    <table class="table">
+                        <tbody>
+                            <thead>
+                            </thead>
+                            <tr class="fontTop">
+                                <td class="py-2">
+                                    <p class="numberCircle m-0">1</p>
+                                </td>
+                                <td class="py-3">
+                                    <font style="color: #A33E3E;">Taylor Swift</font>
+                                </td>
+
+                                <td class="text-right py-3">Amount : 24 times <button type="button" class="btn btn-dark2 view py-0">view</button></td>
+                            </tr>
+                            <tr class="fontTop">
+                                <td class="py-2">
+                                    <p class="numberCircle m-0" style="background-color: #D1D1D1;">2</p>
+                                </td>
+                                <td class="py-3">
+                                    <font style="color: #A33E3E;">Justin Bieber</font>
+                                </td>
+
+                                <td class="text-right py-3">Amount : 20 times <button type="button" class="btn btn-dark2 view py-0">view</button></td>
+                            </tr>
+                            <tr class="fontTop">
+                                <td class="py-2">
+                                    <p class="numberCircle m-0" style="background-color:#D8AC90;">3</p>
+                                </td>
+                                <td class="py-3">
+                                    <font style="color: #A33E3E;">Miley Cyrus</font>
+                                </td>
+
+                                <td class="text-right py-3">Amount : 15 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">4</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">5</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">6</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">7</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">8</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">9</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">10</td>
+                                <td>Adam Levine</td>
+
+                                <td class="text-right">Amount : 13 times <button type="button" class="btn btn-dark2 py-0 view">view</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                <style>
+                    .circleadmin {
+                        width: 100px;
+                        height: 100px;
+                        margin: auto;
+                        border-radius: 100%;
+                        overflow: hidden;
+                    }
+                    
+                    .btn.btn-outline-secondary {
+                        min-width: auto;
+                    }
+                    
+                    .form-control {
+                        border-radius: 0px;
+                    }
+                    
+                    .btn.btn-success {
+                        background-color: #ACC46C;
+                        border-color: #ACC46C;
+                        border-radius: 20px;
+                    }
+                    
+                    .btn.btn-danger {
+                        background-color: #8B4543;
+                        border-color: #8B4543;
+                        border-radius: 25px;
+                    }
+                    
+                    .btn.btn-secondary {
+                        background-color: #B4B4B4;
+                        border-color: #B4B4B4;
+                        border-radius: 25px;
+                    }
+                    
+                    .bord:nth-child(2) {
+                        border-left: 1px solid #eee;
+                        border-top-left-radius: 8px;
+                    }
+                </style>
+                <div class="my-4">
+                    <img class="circleadmin float-left mx-4" src="../images/profile.png" />
+                    <h3 class="font-weight-bold" style="padding-top: 2.2rem; padding-bottom: 2.2rem;"> COACH CRAFTSMAN</h3>
+                </div>
+                <h3 class="font-weight-bold">PAYMENT</h3>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    PAYMENT DETAIL
+                   </button> -->
+                <div class="row">
+                    <div class="input-group mb-3 float-left col-6">
+                        <input type="text" class="w-50" placeholder="ค้นหาคำสั่งซื้อ" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="float-right mb-3 col-6">
+                        <div class="form-group row pt-0">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">วันที่ทำการ</label>
+                            <div class="col-sm-8">
+                                <input id="datepicker" width="276" placeholder="22/09/2020" /></div>
+                            <script>
+                                $('#datepicker').datepicker({
+                                    uiLibrary: 'bootstrap4'
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-4" role="tab">ทั้งหมด</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">ยังไม่ดำเนินการโอนเงิน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">เตรียมการโอนเงิน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">โอนเงินเรียบร้อยแล้ว</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabs-4" role="tabpanel">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="my-4 font-weight-bold">คำสั่งการชำระเงินทั้งหมด</h5>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>สถานะ</th>
+                                            <th>ลำดับ</th>
+                                            <th>คำสั่งซื้อ</th>
+                                            <th>ชื่อผู้ใช้บริการ</th>
+                                            <th>จำนวนเงินที่โอน</th>
+                                            <th>วัน/เวลาในการโอนเงิน</th>
+                                            <th>สถานะการบริการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-toggle="modal" data-target="#exampleModal">
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>1</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-danger">ยังไม่ดำเนิน<br>การโอนเงิน</button></td>
+                                            <td>2</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-danger">อยู่ในระหว่าง<br>การบริการ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>3</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-secondary">เตรียมการ<br>โอนเงิน</button></td>
+                                            <td>4</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-secondary">ยังไม่ได้รับ<br>บริการ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-danger">ยังไม่ดำเนิน<br>การโอนเงิน</button></td>
+                                            <td>5</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-danger">อยู่ในระหว่าง<br>การบริการ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>6</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>7</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>8</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="my-4 font-weight-bold text-center">รวมทั้งหมด</h5>
+                                <h1 class="text-center" style="font-size: 5rem;">
+                                    <font style="color: #974440;">8</font>
+                                </h1>
+                                <h5 class="font-weight-bold text-center">รายการ</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-5" role="tabpanel">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="my-4 font-weight-bold">คำสั่งการชำระเงินทั้งหมด</h5>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>สถานะ</th>
+                                            <th>ลำดับ</th>
+                                            <th>คำสั่งซื้อ</th>
+                                            <th>ชื่อผู้ใช้บริการ</th>
+                                            <th>จำนวนเงินที่โอน</th>
+                                            <th>วัน/เวลาในการโอนเงิน</th>
+                                            <th>สถานะการบริการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-danger">ยังไม่ดำเนิน<br>การโอนเงิน</button></td>
+                                            <td>1</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-danger">อยู่ในระหว่าง<br>การบริการ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-danger">ยังไม่ดำเนิน<br>การโอนเงิน</button></td>
+                                            <td>2</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-danger">อยู่ในระหว่าง<br>การบริการ</font>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="my-4 font-weight-bold text-center">รวมทั้งหมด</h5>
+                                <h1 class="text-center" style="font-size: 5rem;">
+                                    <font style="color: #974440;">2</font>
+                                </h1>
+                                <h5 class="font-weight-bold text-center">รายการ</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-6" role="tabpanel">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="my-4 font-weight-bold">คำสั่งการชำระเงินทั้งหมด</h5>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>สถานะ</th>
+                                            <th>ลำดับ</th>
+                                            <th>คำสั่งซื้อ</th>
+                                            <th>ชื่อผู้ใช้บริการ</th>
+                                            <th>จำนวนเงินที่โอน</th>
+                                            <th>วัน/เวลาในการโอนเงิน</th>
+                                            <th>สถานะการบริการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-secondary">เตรียมการ<br>โอนเงิน</button></td>
+                                            <td>1</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-secondary">ยังไม่ได้รับ<br>บริการ</font>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="my-4 font-weight-bold text-center">รวมทั้งหมด</h5>
+                                <h1 class="text-center" style="font-size: 5rem;">
+                                    <font style="color: #974440;">1</font>
+                                </h1>
+                                <h5 class="font-weight-bold text-center">รายการ</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-7" role="tabpanel">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="my-4 font-weight-bold">คำสั่งการชำระเงินทั้งหมด</h5>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>สถานะ</th>
+                                            <th>ลำดับ</th>
+                                            <th>คำสั่งซื้อ</th>
+                                            <th>ชื่อผู้ใช้บริการ</th>
+                                            <th>จำนวนเงินที่โอน</th>
+                                            <th>วัน/เวลาในการโอนเงิน</th>
+                                            <th>สถานะการบริการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>1</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>2</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>3</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>4</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-success">โอนเงินแล้ว</button></td>
+                                            <td>5</td>
+                                            <td>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman <br>ราคา : 650 บาท</td>
+                                            <td>Justin Bieber</td>
+                                            <td>650 บาท</td>
+                                            <td>12 กันยายน 2563 <br>16.40 น.</td>
+                                            <td class="text-center">
+                                                <font class="text-success">บริการสำเร็จ</font>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="my-4 font-weight-bold text-center">รวมทั้งหมด</h5>
+                                <h1 class="text-center" style="font-size: 5rem;">
+                                    <font style="color: #974440;">5</font>
+                                </h1>
+                                <h5 class="font-weight-bold text-center">รายการ</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal payment Detail -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-5">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="text-center mt-3">PAYMENT DETAIL</h4>
+                    <p>Justin Bieber <br>ตัดผม UNDERCUT <br>ร้าน : Coach Craftsman</p>
+                    <div class="row p-0">
+                        <h6 class="float-left col">ราคาบริการ</h6>
+                        <h6 class="text-right col">650 บาท</h6>
+                    </div>
+                    <div class="row p-0">
+                        <h6 class="float-left col">ค่าดำเนินการผ่านระบบ 10% <br><small id="emailHelp" class="form-text text-danger">( Hairnate Delivery )</small></h6>
+                        <h6 class="text-right col">585 บาท</h6>
+                    </div>
+                    <div class="row p-0">
+                        <h6 class="float-left col">รวมค่าบริการที่ต้องให้ร้าน</h6>
+                        <h6 class="text-right col">585 บาท</h6>
+                    </div>
+                    <div class="text-center mt-5">
+                        <button type="button" class="btn btn-dark2" data-dismiss="modal" style="height: 42.8px;">ยกเลิก</button>
+                        <button type="button" class="btn btn-danger2" style="font-size: xx-small;">โอนค่าบริการ<br>ไปยังร้าน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="foot_logo">
+                <img class="logo-img center-block" src="../images/logo-app-white.png" />
+            </div>
+
+            <div class="footer_text">
+                เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
+            </div>
+
+
+            <div class="foot_icon">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $('#nav').load("http://localhost/hairnate/layout/navbar.html");
+        });
+    </script>
+
+
+</body>
+
+</html>

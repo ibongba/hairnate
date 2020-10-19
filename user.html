@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <title>USER</title>
 </head>
 
@@ -48,6 +45,8 @@
                 <!-- Tab panes -->
                 <div class="tab-content mt-3">
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div id="user"></div>
+                        <div id="cancle">dfsfdsfdsgdg</div>
                         <h3>PRESENT ORDERS</h3>
                         <div class="accordion" id="accordionExample">
                             <div class="card">
@@ -77,9 +76,8 @@
                                                 <p class="m-0">Address : 123 Bonstreet Pakkred Nonthaburi 11120</p>
                                                 <p class="m-0">Finished : 12.00 AM</p>
                                             </div>
-                                            <div class="col">
-                                                <img src="images/hair1.png" alt="" class="w-50 img-thumbnail float-left">
-                                                <img src="images/hair2.png" alt="" class="w-50 img-thumbnail">
+                                            <div class="col h-100" style="flex-direction: column;">
+                                                <a href="usercancle.html" class="btn btn-danger d-flex float-right h-100" style="justify-content: flex-end; align-items: flex-end; background-color: #A33E3E;" onclick="cancle(this)">ยกเลิกบริการ</a>
                                             </div>
                                         </div>
                                     </div>

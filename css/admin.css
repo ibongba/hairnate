@@ -1,0 +1,26 @@
+.textPro {
+    height: 105px;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    background: #E9E97D;
+    /* border: 2px solid #666; */
+    color: #000;
+    text-align: center;
+    font: 18px 'Prompt', sans-serif;
+}
+
+.fontTop {
+    color: #A33E3E;
+    font-weight: bold;
+}
+
+.btn.btn-dark2.view {
+    min-width: auto;
+    width: auto;
+    border-radius: 15px;
+}

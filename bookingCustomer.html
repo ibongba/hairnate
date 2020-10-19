@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link href='css/main.css' rel='stylesheet' />
     <!-- Stepper CSS -->
-    <link href="css/addons-pro/steppers.css" rel="stylesheet">
+    <!-- <link href="css/addons-pro/steppers.css" rel="stylesheet"> -->
     <!-- Stepper CSS - minified-->
-    <link href="css/addons-pro/steppers.min.css" rel="stylesheet">
+    <!-- <link href="css/addons-pro/steppers.min.css" rel="stylesheet"> -->
 
 
     <title>BOOKING</title>
@@ -98,7 +98,7 @@
                         <div class="row" id='service'>
                         </div>
                     </div>
-                   <!--  <div class="col-12">
+                    <!--  <div class="col-12">
                         <hr style="border-bottom:1px solid #EEEBE6;" />
                     </div> -->
                     <!-- <h5 class=" my-4">Step 3 UPLOAD YOUR HAIRSTYLE</h5>
@@ -149,7 +149,7 @@
                     </div> -->
                     <div class="row">
                         <div class="col-6">
-                            <button class="btn btn-dark col-md-6 m-0 p-2 w-100"  type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" style="width: auto;">ช่วงเช้า</button>
+                            <button class="btn btn-dark col-md-6 m-0 p-2 w-100" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" style="width: auto;">ช่วงเช้า</button>
                         </div>
                         <div class="col-6">
                             <button class="btn btn-dark col-md-6 p-2 m-0 w-100" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="width: auto;">ช่วงบ่าย</button>
@@ -443,9 +443,8 @@
     <!-- Stepper JavaScript - minified -->
     <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
     <!-- stepper -->
-        <script>
-
-        const listMonth = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+    <script>
+        const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
 
         const formatDate = (date) => {
             console.log(date);
@@ -468,13 +467,13 @@
                 selectable: true,
                 selectMirror: true,
                 select: function(arg) {
-                    if(arg.start < new Date()) {
+                    if (arg.start < new Date()) {
                         calendar.unselect()
                         return;
                     }
 
-                    if (confirm('คุณต้องการจองวในวันที่ '+formatDate(arg.start)+' ?')) {
-                        if(date != null){
+                    if (confirm('คุณต้องการจองในวันที่ ' + formatDate(arg.start) + ' ?')) {
+                        if (date != null) {
                             calendar.getEventById(date).remove()
                         }
 
@@ -558,7 +557,7 @@
 
         $(document).ready(function() {
 
-            $('#ref').attr('href','bookingHome.html?id='+getUrlVars()['id'])
+            $('#ref').attr('href', 'bookingHome.html?id=' + getUrlVars()['id'])
 
             var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
@@ -625,12 +624,12 @@
                 // processData: false,
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
-                data.barber.map((item)=>{
+                data.barber.map((item) => {
                     $('#barber').append(barberCard(item))
                 })
 
 
-                data.hairstyle.map((item)=>{
+                data.hairstyle.map((item) => {
                     $('#service').append(serviceCard(item))
                 })
 
@@ -638,12 +637,11 @@
             });
         });
 
-        function getUrlVars()
-        {
-            var vars = [], hash;
+        function getUrlVars() {
+            var vars = [],
+                hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for(var i = 0; i < hashes.length; i++)
-            {
+            for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
                 vars.push(hash[0]);
                 vars[hash[0]] = hash[1];
@@ -652,8 +650,8 @@
         }
 
 
-        const serviceCard = (item)=> {
-            return `
+        const serviceCard = (item) => {
+                return `
                     <div class="col-lg-6 col-sm-12  p-3">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="hairstyle" id="service${item.id_hairstyle}" selected="true" value="${item.id_hairstyle}">

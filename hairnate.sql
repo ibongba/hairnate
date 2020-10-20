@@ -3,18 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 09, 2020 at 11:33 PM
+-- Generation Time: Oct 19, 2020 at 06:11 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `hairnate`
@@ -34,6 +28,13 @@ CREATE TABLE `barber` (
   `image` text NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `barber`
+--
+
+INSERT INTO `barber` (`id_barber`, `name`, `id_partner`, `phone`, `image`, `description`) VALUES
+(1, 'นาย ก', 1, NULL, 'upload/1603127669ar 4.png', 'test');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,13 @@ INSERT INTO `hairstyle` (`id_hairstyle`, `id_partner`, `name`, `description`, `p
 (3, 0, 'ทรงผมรองทรงต่ำ', 'ทรงผมพื้นฐานสำหรับคุณ', 250, 'upload/1598974185รองทรงต่ำ.png', 1),
 (4, 0, 'ทรงผมปัดข้าง', 'ทรงผมพื้นฐานสำหรับคุณ', 350, 'upload/1598974223ปาดข้าง.png', 1),
 (5, 0, 'ทรงผมสกีนเฮด', 'ทรงผมพื้นฐานสำหรับคุณ', 400, 'upload/1598974360สกีนเฮด.png', 1),
-(6, 0, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1);
+(6, 0, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1),
+(7, 1, 'ทรงผมรองทรงสูง', 'ทรงผมพื้นฐานสำหรับคุณ', 300, 'upload/1598974155รองทรงสูง.png', 1),
+(8, 1, 'ทรงผมรองทรงกลาง', 'ทรงผมพื้นฐานสำหรับคุณ', 350, 'upload/1598974130รองทรงกลาง.png', 1),
+(9, 1, 'ทรงผมรองทรงต่ำ', 'ทรงผมพื้นฐานสำหรับคุณ', 250, 'upload/1598974185รองทรงต่ำ.png', 1),
+(10, 1, 'ทรงผมปัดข้าง', 'ทรงผมพื้นฐานสำหรับคุณ', 350, 'upload/1598974223ปาดข้าง.png', 1),
+(11, 1, 'ทรงผมสกีนเฮด', 'ทรงผมพื้นฐานสำหรับคุณ', 400, 'upload/1598974360สกีนเฮด.png', 1),
+(12, 1, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1);
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,13 @@ CREATE TABLE `partner` (
   `biz_type` tinyint(1) NOT NULL,
   `fk_user_id` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner`
+--
+
+INSERT INTO `partner` (`id`, `biz_name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES
+(1, 'test', '1234@gmail.com', '1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +144,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `surname`, `password`, `phone`, `email`, `address`, `type`) VALUES
+(1, 'test', 'test', 'c4ca4238a0b923820dcc509a6f75849b', '1', '1234@gmail.com', '55', 2),
+(3, 'asdasd', NULL, 'c4ca4238a0b923820dcc509a6f75849b', '2', 'i.bong.ba@gmail.com', '177', 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -181,7 +203,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barber`
 --
 ALTER TABLE `barber`
-  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `hairstyle`
@@ -193,7 +215,7 @@ ALTER TABLE `hairstyle`
 -- AUTO_INCREMENT for table `partner`
 --
 ALTER TABLE `partner`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `promotion`
@@ -211,7 +233,7 @@ ALTER TABLE `service_detail`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -222,7 +244,3 @@ ALTER TABLE `users`
 --
 ALTER TABLE `partner`
   ADD CONSTRAINT `fk_a_ID` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

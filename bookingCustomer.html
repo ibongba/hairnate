@@ -35,20 +35,17 @@
                     <a href="#step-9" type="button" class="btn btn-indigo btn-circle"><i class="far fa-credit-card" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-10" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fas fa-calendar-week" style="font-size: xx-large;"></i></a>
+                    <a href="#step-10" type="button" class="btn btn-default btn-circle disabled"><i class="fas fa-calendar-week" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-11" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fas fa-map-marker-alt" style="font-size: xx-large;"></i></a>
+                    <a href="#step-11" type="button" class="btn btn-default btn-circle disabled" ><i class="fas fa-map-marker-alt" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-12" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="far fa-clock" style="font-size: xx-large;"></i></a>
-                </div>
-                <!-- <div class="steps-step">
-                    <a href="#step-13" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fas fa-bars" style="font-size: xx-large;"></i></a>
+                    <a href="#step-13" type="button" class="btn btn-default btn-circle disabled"><i class="fas fa-bars" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-14" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="far fa-check-circle" style="font-size: xx-large;"></i></a>
-                </div> -->
+                    <a href="#step-14" type="button" class="btn btn-default btn-circle disabled"><i class="far fa-check-circle" style="font-size: xx-large;"></i></a>
+                </div>
             </div>
         </div>
 
@@ -101,15 +98,15 @@
                     <!--  <div class="col-12">
                         <hr style="border-bottom:1px solid #EEEBE6;" />
                     </div> -->
-                    <!-- <h5 class=" my-4">Step 3 UPLOAD YOUR HAIRSTYLE</h5>
+                     <h5 class=" my-4">Step 3 UPLOAD YOUR HAIRSTYLE</h5>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="box2" style="height: 350px;">
                                 <div class="wrapper">
                                     <div class="drop">
-                                        <i class="fas fa-camera" style="font-size: xxx-large; padding-top: 7rem; color: #C1B09D;"></i>
-                                        <p style="color: #C1B09D;">อัพโหลดรูปภาพ</p>
-                                        <output id="list"></output><input id="files" name="files[]" type="file" />
+                                        <i class="fas fa-camera is-remove" style="font-size: xxx-large; padding-top: 7rem; color: #C1B09D;"></i>
+                                        <p class="is-remove" style="color: #C1B09D;">อัพโหลดรูปภาพ</p>
+                                        <output id="list3"></output><input id="files" max="1" name="files[]" type="file" />
                                     </div>
                                 </div>
                             </div>
@@ -118,14 +115,14 @@
                             <div class="box2" style="height: 350px;">
                                 <div class="wrapper">
                                     <div class="drop">
-                                        <i class="fas fa-camera" style="font-size: xxx-large; padding-top: 7rem; color: #C1B09D;"></i>
-                                        <p style="color: #C1B09D;">อัพโหลดรูปภาพ</p>
-                                        <output id="list"></output><input id="files" name="files[]" type="file" />
+                                        <i class="fas fa-camera is-remove" style="font-size: xxx-large; padding-top: 7rem; color: #C1B09D;"></i>
+                                        <p class="is-remove" style="color: #C1B09D;">อัพโหลดรูปภาพ</p>
+                                        <output id="list2"></output><input id="files2" max="1" name="files[]" type="file" />
                                     </div>
                                 </div>
                             </div>
                         </div> 
-                    </div>-->
+                    </div>
                 </div>
                 <a id="ref" style="margin: auto;"><button type="button" class="btn btn-dark btn-rounded my-3  float-left">BACK</button></a>
                 <button type="button" class="btn btn-dark btn-rounded nextBtn my-3  text-center">NEXT</button>
@@ -178,7 +175,7 @@
                 <div class="col-md-12 pt-5">
 
                     <button type="button" class="btn btn-dark btn-rounded prevBtn my-3 col-md-4 float-left">BACK</button>
-                    <button type="button" class="btn btn-dark btn-rounded nextBtn my-3 col-md-4 float-right">NEXT</button>
+                    <button type="button" class="btn btn-dark btn-rounded nextBtn my-3 col-md-4 float-right" id="btn-10" disabled="disabled">NEXT</button>
                 </div>
             </div>
 
@@ -269,7 +266,7 @@
             </div>
 
 
-            <div class="row setup-content" id="step-12">
+          <!--   <div class="row setup-content" id="step-12">
                 <div class="col-md-12">
                     <h5 class=" my-4 text-center">WAITING FOR APPROVAL !!</h5>
                     <div class="text-center p-3" style="background-color:#EEEBE6; border-radius: 25px;">
@@ -281,9 +278,9 @@
                         <p class="col-md-12">เพียงเท่านี้ก็เรียบร้อยครับ ;)</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <!-- <div class="row setup-content" id="step-13">
+            <div class="row setup-content" id="step-13">
                 <div class="col-12">
                     <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#exampleModal">
                     คำเตือน
@@ -329,8 +326,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="card" style="border-radius: 25px;">
-                            <div class="card-body">
-                                <h5 class="card-title"><b>ORDER ID : 1024</b></h5>
+                            <div class="card-body add-detail">
+                                <h5 class="card-title"><b>Service</b></h5>
                                 <p class="card-text">COACH CRAFTSMAN
                                     <p>Package A : Under Cut + ไถข้าง</p>
                                     <p>ที่อยู่ : 365 Bond, Chang Wat Nonthaburi 11120</p>
@@ -351,29 +348,29 @@
                     <div class="col">
                         <div class="card" style="border-radius: 25px;">
                             <div class="card-body">
-                                <h5 class="card-title"><b>ORDER ID : 1024</b></h5>
+                                <h5 class="card-title"></h5>
                                 <p class="card-text"><b>รายละเอียดการ์ด</b></p>
 
-                                <label for="exampleInputEmail1">เลขการ์ด</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="background-color: #fff;">
-                                <label for="exampleInputEmail1">ชื่อของผู้ถือการ์ด</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="background-color: #fff;">
+                                <label for="card_no">เลขการ์ด</label>
+                                <input type="text" class="form-control" id="card_no" name="card_no" style="background-color: #fff;">
+                                <label for="card_name">ชื่อของผู้ถือการ์ด</label>
+                                <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
                                 <div class="row">
-                                    <div class="col"> <label for="exampleInputEmail1" class="my-4">วันหมดอายุ</label></div>
-                                    <div class="col"><label for="exampleInputEmail1" class="my-4">เลข CVC</label><br></div>
+                                    <div class="col"> <label for="month" class="my-4">วันหมดอายุ</label></div>
+                                    <div class="col"><label for="cvc" class="my-4">เลข CVC</label><br></div>
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col">
-                                        <input type="email" class="form-control col-3 text-center float-left" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="07" style="background-color: #fff;">
-                                        <input type="email" class="form-control col-4 text-center" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="2020" style="background-color: #fff;">
+                                        <input type="number" class="form-control col-3 text-center float-left pr-1" id="month" name="month" placeholder="MM" style="background-color: #fff;">
+                                        <input type="number" class="form-control col-4 text-center" id="year" name="year" placeholder="YYYY" style="background-color: #fff;">
                                     </div>
                                     <div class="col">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="background-color: #fff;">
+                                        <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                    <label class="form-check-label" for="gridCheck1">
+                                    <input class="form-check-input" type="checkbox" id="notification" name="notification">
+                                    <label class="form-check-label" for="notification">
                                       รับข่าวสารและการอัพเดตผ่านเบอร์โทรศัพท์
                                     </label>
                                 </div>
@@ -389,24 +386,10 @@
             <div class="row setup-content" id="step-14" style="margin: auto;">
                 <h2 class="col-12 my-4 text-center"><i class="fas fa-check-circle" style="color: #7DE875;"></i> จองสำเร็จ</h2>
                 <div class="card col-sm-12 m-0" style="border-radius: 25px;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"><b>ORDER ID : 1024</b></h5>
-                        <p class="card-text"><b>PHEEN BABER SHOP</b>
-                            <p>Package A : Under Cut + ไถข้าง</p>
-                            <p>ที่อยู่ : 365 Bond, Chang Wat Nonthaburi 11120</p>
-                        </p>
-                        <br>
-                        <h5 class="card-title"><b>วันที่ใช้บริการ</b></h5>
-                        <h4 class="card-text"><b>วันจันทร์ 1 มีนาคม &nbsp; 07.00 AM</b></h4>
-                        <br>
-                        <p class="card-text">ราคาเต็ม : 650 Bath
-                            <p>ส่วนลดจาก promotion : -10 Bath</p>
-                        </p>
-                        <br>
-                        <h4 class="card-title"><b>รวมทั้งสิ้น : </b><b style="color: #48B7A4;">640 Bath</b></h4>
+                    <div class="card-body add-detail">
                     </div>
                 </div>
-            </div> -->
+            </div>
         </form>
     </div>
 
@@ -428,7 +411,7 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
+    <!-- <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -439,9 +422,9 @@
     </script>
     <script src='js/main.js'></script>
     <!-- Stepper JavaScript -->
-    <script type="text/javascript" src="js/addons-pro/steppers.js"></script>
+    <!-- <script type="text/javascript" src="js/addons-pro/steppers.js"></script> -->
     <!-- Stepper JavaScript - minified -->
-    <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
+    <!-- <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script> -->
     <!-- stepper -->
     <script>
         const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
@@ -452,6 +435,43 @@
         };
 
         let date = null;
+
+        $('#files').change((e) => handleFileSelect(e, 'list3'));
+        $('#files2').change((e) => handleFileSelect(e, 'list2'));
+
+        function handleFileSelect(evt, id) {
+            var files = evt.target.files; // FileList object
+
+            // Loop through the FileList and render image files as thumbnails.
+            for (var i = 0, f; f = files[i]; i++) {
+
+                // Only process image files.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+
+                var reader = new FileReader();
+
+                // Closure to capture the file information.
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        // Render thumbnail.
+                        var span = document.createElement('span');
+                        span.innerHTML = ['<img class="thumb" style="width:auto;min-height:200px" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'
+                        ].join('');
+                        $('#' + id).empty();
+                        document.getElementById(id).insertBefore(span, null);
+                    };
+                })(f);
+
+                $('#'+id).parent().children('.is-remove').remove()
+
+                // Read in the image file as a data URL.
+                reader.readAsDataURL(f);
+            }
+        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -555,6 +575,10 @@
 
         let time = '';
 
+        var listHairStyle = []
+        var listBarber = []
+        var partner = []
+
         $(document).ready(function() {
 
             $('#ref').attr('href', 'bookingHome.html?id=' + getUrlVars()['id'])
@@ -595,6 +619,9 @@
                     curInputs = curStep.find("input[type='text'],input[type='url']"),
                     isValid = true;
 
+                if(curStepBtn != 'step-10' || time) nextStepWizard.removeClass('disabled')
+                
+
                 $(".form-group").removeClass("has-error");
                 for (var i = 0; i < curInputs.length; i++) {
                     if (!curInputs[i].validity.valid) {
@@ -616,7 +643,7 @@
                 method: "POST",
                 url: "service/core.php",
                 data: {
-                    action: 'get_partner_with_id',
+                    action: 'get_order_by_customer',
                     id: getUrlVars()['id']
                 },
                 dataType: 'json',
@@ -624,16 +651,18 @@
                 // processData: false,
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
+                listBarber = [...data.barber]
                 data.barber.map((item) => {
                     $('#barber').append(barberCard(item))
                 })
 
-
+                listHairStyle = [...data.hairstyle]
                 data.hairstyle.map((item) => {
                     $('#service').append(serviceCard(item))
                 })
 
-                console.log(data)
+                partner = data.partner
+
             });
         });
 
@@ -682,6 +711,8 @@
             $('.time').removeClass('bg-red');
             $(e).addClass('bg-red');
 
+
+            $('#btn-10').removeAttr("disabled")
             time = $(e).text();
         }
 
@@ -714,15 +745,21 @@
             return [year, month, day].join('-');
         }
 
+        let lastid = '';
+
         const addCalenda = () => {
 
 
             var form_data = new FormData();
-            // var totalfiles = document.getElementById('files_add_service').files.length;
-            // for (var index = 0; index < totalfiles; index++) {
-            //     form_data.append("files[]", document.getElementById('files_add_service').files[index]);
-            // }
-            console.log
+            var totalfiles = document.getElementById('files').files.length;
+            for (var index = 0; index < totalfiles; index++) {
+                form_data.append("files[]", document.getElementById('files').files[index]);
+            }
+
+            totalfiles = document.getElementById('files2').files.length;
+            for (var index = 0; index < totalfiles; index++) {
+                form_data.append("files[]", document.getElementById('files2').files[index]);
+            }
             form_data.append('action', 'add_calendar');
             form_data.append('id_users', JSON.parse(localStorage.getItem('user')).id);
             form_data.append('id_barber', $('input[name=barber]:checked').val());
@@ -737,6 +774,46 @@
             form_data.append('service_phone', $('#phone').val());
             form_data.append('email', $('#email').val());
 
+            $.ajax({
+                method: "POST",
+                url: "service/core.php",
+                data: form_data,
+                dataType: 'json',
+                contentType: false,
+                processData: false, 
+                async: false,
+                success: callBack
+            })
+            
+        }
+
+        const callBack = (msg) => {
+                console.log(listHairStyle,listBarber)
+            console.log(msg)
+            // msg = JSON.parse(msg)
+            if (msg.code !== 200) {
+                alert('ตรวจพบปัญหากรุณาติดต่อ call center')
+                // window.location.href = "book.html";
+                // 
+            }else{
+                lastid = msg.result.lastid
+                let hairstyle = listHairStyle.find((item)=>item.id_hairstyle === $('input[name=hairstyle]:checked').val())
+                let barber = listBarber.find((item)=>item.id_barber === $('input[name=barber]:checked').val())
+
+                $('.add-detail').empty();
+                $('.add-detail').append(cardDetailOrder(barber,hairstyle))
+            }
+        }
+
+        const createPayment = () => {
+
+            var form_data = new FormData();
+            form_data.append('card_name', $('#card_name').val());
+            form_data.append('card_no', $('#card_no').val());
+            form_data.append('month', $('#month').val());
+            form_data.append('year', $('#year').val());
+            form_data.append('cvc', $('#cvc').val());
+            form_data.append('notification', $('input[name=notification]:checked').length > 0);
 
             $.ajax({
                 method: "POST",
@@ -744,17 +821,39 @@
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
-                processData: false,
-            }).done(function(msg) {
+                processData: false, 
+                async: false
+            }).done((msg)=>{
                 console.log(msg)
-                    // msg = JSON.parse(msg)
+                // msg = JSON.parse(msg)
                 if (msg.code !== 200) {
                     alert('ตรวจพบปัญหากรุณาติดต่อ call center')
                     // window.location.href = "book.html";
                     // 
-                    
                 }
-            });
+            })
+
+        }
+
+        const cardDetailOrder = (barber,hairstyle) => {
+            let text = hairstyle.promotion_price ? `<p class="card-text">ราคาเต็ม : ${hairstyle.price} Bath
+                        <p>ส่วนลดจาก promotion : -${hairstyle.promotion_price - hairstyle.price} Bath</p>
+                        </p>
+                        <br>`: ''
+                        // 
+            return `
+                        <h5 class="card-title text-center"><b>ORDER ID : ${lastid}</b></h5>
+                        <p class="card-text"><b>${partner.biz_name}</b>
+                            <p>${hairstyle.description}</p>
+                            <p>ที่อยู่ : ${$('#address').val() + ' ' + $('#moo').val() + ' ' + $('#road').val() + ' ' + $('#kad').val() + ' ' + $('#amper').val() + ' ' + $('#jakwad').val() + ' ' + $('#pnum').val()}</p>
+                        </p>
+                        <br>
+                        <h5 class="card-title"><b>วันที่ใช้บริการ</b></h5>
+                        <h4 class="card-text"><b>${formatDate(date)} &nbsp; ${time}</b></h4>
+                        <br>
+                        
+                        <h4 class="card-title"><b>รวมทั้งสิ้น : </b><b style="color: #48B7A4;">${hairstyle.promotion_price||hairstyle.price} Bath</b></h4>
+            `;
         }
     </script>
 </body>

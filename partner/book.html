@@ -96,7 +96,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
                             </div>
@@ -146,7 +146,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
                             </div>
@@ -197,7 +197,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="list"></output><input id="files_add_service" name="files" type="file" />
                             </div>
@@ -248,7 +248,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="list2"></output><input id="files_edit_service" name="files[]" type="file" />
                             </div>
@@ -299,7 +299,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="list3"></output><input id="files_add_promotion" name="files[]" type="file" />
                             </div>
@@ -360,7 +360,7 @@
                         <div class="wrapper">
                             <div class="drop">
                                 <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
                                 <output id="list4"></output><input id="files_edit_promotion" name="files[]" type="file" />
                             </div>
@@ -686,13 +686,15 @@
                     return function(e) {
                         // Render thumbnail.
                         var span = document.createElement('span');
-                        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                        span.innerHTML = ['<img class="thumb" style="width:auto;" src="', e.target.result,
                             '" title="', escape(theFile.name), '"/>'
                         ].join('');
                         $('#' + id).empty();
                         document.getElementById(id).insertBefore(span, null);
                     };
                 })(f);
+
+                $('#'+id).parent().children('.is-remove').remove()
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(f);

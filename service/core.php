@@ -277,7 +277,7 @@
             }
         }
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_customer'){
-        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_users` = '".$_POST['id']."' and `status` != 1";
+        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_users` = '".$_POST['id']."' and `status` != 1 order by `service_date` desc,`service_time` desc";
         $rs = getpdo($conn,$sql);
 
         if($rs){
@@ -285,6 +285,28 @@
             $rs2 = getpdo($conn,$sql);
 
             $res = array("code" => 200, "result" => array("sd" => $rs, "images" => $rs2));
+            echo json_encode($res);
+            return ;
+        }
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_order_detail'){
+        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_service_detail` = '".$_POST['id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "SELECT * FROM `service_images` WHERE `fk_sd_id` in (SELECT `id_service_detail` FROM `service_detail` WHERE `id_users` = '".$_POST['id']."' and `status` != 1)"; 
+            $rs2 = getpdo($conn,$sql);
+
+            $res = array("code" => 200, "result" => array("sd" => $rs[0], "images" => $rs2));
+            echo json_encode($res);
+            return ;
+        }
+    }else if (isset($_POST['action']) && $_POST['action'] == 'change_status_order'){
+
+        $sql = "UPDATE `service_detail` SET `status` = '".$_POST['status']."'  WHERE `id_service_detail` = '".$_POST['id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
             echo json_encode($res);
             return ;
         }

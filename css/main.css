@@ -739,6 +739,7 @@ A HORIZONTAL event
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 0;
+    color: #000;
     /* important for allowing to shrink all the way */
 }
 
@@ -1066,11 +1067,15 @@ A HORIZONTAL event
 .fc-direction-ltr .fc-daygrid-event.fc-event-start,
 .fc-direction-rtl .fc-daygrid-event.fc-event-end {
     margin-left: 2px;
+    background-color: #e2dbd3;
+    border-color: #e2dbd3;
 }
 
 .fc-direction-ltr .fc-daygrid-event.fc-event-end,
 .fc-direction-rtl .fc-daygrid-event.fc-event-start {
     margin-right: 2px;
+    background-color: #e2dbd3;
+    border-color: #e2dbd3;
 }
 
 .fc-direction-ltr .fc-daygrid-week-number {

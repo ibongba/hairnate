@@ -35,8 +35,59 @@
                 <button type="button" class="btn btn-light form-control my-5 text-left">APPOINTMENT : 3 คน</button>
                 <button type="button" class="btn btn-light form-control text-left">SUCCESS : 0 คน</button>
             </div>
+
             <div class="col-md-9">
                 <div id='calendar'></div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="app-text">NO.</th>
+                            <th class="app-text">SERVICE TIME</th>
+                            <th class="app-text">CUSTOMER NAME</th>
+                            <th class="app-text">SERVICE TYPE</th>
+                            <th class="app-text">BARBER</th>
+                            <th class="app-text">ADDRESS</th>
+                            <th class="app-text">TEL.</th>
+                            <th class="app-text">STATUS</th>
+                            <th class="app-text">ALERT</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detail">
+                        <!-- <tr class="app-text">
+                            <th scope="row">1</th>
+                            <td>10.45 AM</td>
+                            <td>Justin Bieber</td>
+                            <td>Under Cut</td>
+                            <td>COACH</td>
+                            <td>120/121 condo A Pakket Nonthaburi 11120</td>
+                            <td>0812345678</td>
+                            <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
+                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                        </tr>
+                        <tr class="app-text">
+                            <th scope="row">2</th>
+                            <td>10.45 AM</td>
+                            <td>Justin Bieber</td>
+                            <td>Under Cut</td>
+                            <td>COACH</td>
+                            <td>120/121 condo A Pakket Nonthaburi 11120</td>
+                            <td>0812345678</td>
+                            <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
+                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                        </tr>
+                        <tr class="app-text">
+                            <th scope="row">3</th>
+                            <td>10.45 AM</td>
+                            <td>Justin Bieber</td>
+                            <td>Under Cut</td>
+                            <td>COACH</td>
+                            <td>120/121 condo A Pakket Nonthaburi 11120</td>
+                            <td>0812345678</td>
+                            <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
+                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                        </tr> -->
+                    </tbody>
+                </table>
             </div>
         </div>
         <hr class="col-12 " style="background-color:  #EEEBE6;" />
@@ -112,9 +163,9 @@
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    right: 'dayGridMonth'
                 },
-                initialDate: '2020-06-12',
+                initialDate: '2020-10-12',
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
                 selectMirror: true,
@@ -137,53 +188,110 @@
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
-                events: [{
-                    title: 'All Day Event',
-                    start: '2020-06-01'
-                }, {
-                    title: 'Long Event',
-                    start: '2020-06-07',
-                    end: '2020-06-10'
-                }, {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-06-09T16:00:00'
-                }, {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-06-16T16:00:00'
-                }, {
-                    title: 'Conference',
-                    start: '2020-06-11',
-                    end: '2020-06-13'
-                }, {
-                    title: 'Meeting',
-                    start: '2020-06-12T10:30:00',
-                    end: '2020-06-12T12:30:00'
-                }, {
-                    title: 'Lunch',
-                    start: '2020-06-12T12:00:00'
-                }, {
-                    title: 'Meeting',
-                    start: '2020-06-12T14:30:00'
-                }, {
-                    title: 'Happy Hour',
-                    start: '2020-06-12T17:30:00'
-                }, {
-                    title: 'Dinner',
-                    start: '2020-06-12T20:00:00'
-                }, {
-                    title: 'Birthday Party',
-                    start: '2020-06-13T07:00:00'
-                }, {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2020-06-28'
-                }]
+                // events: [{
+                //     title: 'All Day Event',
+                //     content: 'hvjvuyvvgiugiugiugiu',
+                //     start: '2020-06-01'
+                // }, {
+                //     title: 'Long Event',
+                //     start: '2020-06-07',
+                //     end: '2020-06-10'
+                // }, {
+                //     groupId: 999,
+                //     title: 'Repeating Event',
+                //     start: '2020-06-09T16:00:00'
+                // }, {
+                //     groupId: 999,
+                //     title: 'Repeating Event',
+                //     start: '2020-06-16T16:00:00'
+                // }, {
+                //     title: 'Conference',
+                //     start: '2020-06-11',
+                //     end: '2020-06-13'
+                // }, {
+                //     title: 'Meeting',
+                //     start: '2020-06-12T10:30:00',
+                //     end: '2020-06-12T12:30:00'
+                // }, {
+                //     title: 'Lunch',
+                //     start: '2020-06-12T12:00:00'
+                // }, {
+                //     title: 'Meeting',
+                //     start: '2020-06-12T14:30:00'
+                // }, {
+                //     title: 'Happy Hour',
+                //     start: '2020-06-12T17:30:00'
+                // }, {
+                //     title: 'Dinner',
+                //     start: '2020-06-12T20:00:00'
+                // }, {
+                //     title: 'Birthday Party',
+                //     start: '2020-06-13T07:00:00'
+                // }, {
+                //     title: 'Click for Google',
+                //     url: 'http://google.com/',
+                //     start: '2020-06-28'
+                // }]
             });
 
             calendar.render();
         });
+
+        function getUrlVars() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        $().ready(() => {
+            $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'get_detail_order_by_customer',
+                    service_date: 'service_date'
+                        // id: getUrlVars()['id']
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                msg = JSON.parse(msg)
+                if (msg.code === 200) {
+                    msg.result.map((item) => {
+                        $("#detail").append(detail(item));
+                        return;
+                    })
+                }
+            });
+        });
+        detail = (item) => {
+            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            const date = new Date(item.service_date)
+            const result = date.toLocaleDateString('th-TH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            })
+            return `
+            <tr class="app-text">
+                            <th scope="row">1</th>
+                            <td>${item.service_time}</td>
+                            <td>${item.name}</td>
+                            <td>${item.name}</td>
+                            <td>COACH</td>
+                            <td>120/121 condo A Pakket Nonthaburi 11120</td>
+                            <td>0812345678</td>
+                            <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
+                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                        </tr>
+            `
+        }
     </script>
 </body>
 

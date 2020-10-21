@@ -310,6 +310,19 @@
             echo json_encode($res);
             return ;
         }
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_detail_order_by_customer'){
+        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['']."' and `partner`.`id` = '".$_POST['']."' order by `service_date` desc,`service_time` DESC";
+        // echo $sql;
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "SELECT * FROM `service_images` WHERE `fk_sd_id` in (SELECT `id_service_detail` FROM `service_detail` WHERE `id_users` = '".$_POST['id']."' and `status` != 1)"; 
+            $rs2 = getpdo($conn,$sql);
+
+            $res = array("code" => 200, "result" => array("sd" => $rs, "images" => $rs2));
+            echo json_encode($res);
+            return ;
+        }
     }
 
     $result = array("message" => "Error someting");

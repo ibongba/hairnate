@@ -208,9 +208,10 @@
                 // contentType: false,
                 // processData: false,
             }).done(function(msg) {
-                msg = JSON.parse(msg);
+                // msg = JSON.parse(msg);
                 console.log(msg)
                 if (msg.code === 200) {
+                    $('#detail').empty();
                     msg.result.map((item) => {
                         $('#detail').append(detail(item));
                         return;
@@ -227,16 +228,23 @@
                 month: 'long',
                 day: 'numeric',
             });
+            if (item.status == '0') {
+                item.status = "cancel"
+            } else if (item.status == '2') {
+                item.status = "Paid"
+            } else {
+                item.status = "Finish"
+            }
             return `
 			             <tr class="app-text">
-                            <th scope="row">1</th>
+                            <th scope="row">${item.id_service_detail}</th>
                             <td>${item.service_time}</td>
                             <td>${item.customer_name}</td>
                             <td>${item.service_type}</td>
                             <td>${item.barber_name}</td>
                             <td>${item.address}</td>
                             <td>${item.phone}</td>
-                            <td class="text-success">Finished</td>
+                            <td class="text-success">${item.status}</td>
                             <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
                         </tr>
 			             `;
@@ -257,9 +265,10 @@
                 // processData: false,
             }).done(function(msg) {
                 console.log(msg)
-                msg = JSON.parse(msg);
+                    // msg = JSON.parse(msg);
                 console.log(msg)
                 if (msg.code === 200) {
+                    $('#detail').empty();
                     msg.result.map((item) => {
                         $('#detail').append(detail(item));
                         return;
@@ -279,6 +288,7 @@
                 dataType: 'json',
             }).done(function(msg) {
                 if (msg.code === 200) {
+                    $('#filter').empty();
                     msg.result.map((item) => {
                         $('#inputState').append(inputState(item));
                         return;

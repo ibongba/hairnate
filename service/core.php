@@ -324,8 +324,7 @@
         echo json_encode($res);
         return ;
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_filter'){
-        $sql = "SELECT `id_barber`, `name`, `id_partner`, `phone`, `image`, `description` FROM `barber` WHERE `id_barber`= '".$_POST['id_barber']."'";
-        echo $sql;
+        $sql = "SELECT * FROM `barber` join `partner` on `barber`.`id_partner` = `partner`.`id` WHERE `fk_user_id`= '".$_POST['id']."'";
         $rs = getpdo($conn,$sql);
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);

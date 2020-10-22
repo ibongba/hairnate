@@ -173,6 +173,9 @@
         });
     </script>
     <script>
+
+
+        var user = JSON.parse(localStorage.getItem('user'));
         function getUrlVars() {
             var vars = [],
                 hash;
@@ -184,28 +187,28 @@
             }
             return vars;
         }
-        $().ready(() => {
-            $.ajax({
-                method: 'POST',
-                url: '../service/core.php',
-                data: {
-                    action: 'get_detail_order_by_customer',
-                    service_date: 'service_date',
-                    // id: getUrlVars()['id']
-                },
-                dataType: 'json',
-                // contentType: false,
-                // processData: false,
-            }).done(function(msg) {
-                msg = JSON.parse(msg);
-                if (msg.code === 200) {
-                    msg.result.map((item) => {
-                        $('#detail').append(detail(item));
-                        return;
-                    });
-                }
-            });
-        });
+        // $().ready(() => {
+        //     $.ajax({
+        //         method: 'POST',
+        //         url: '../service/core.php',
+        //         data: {
+        //             action: 'get_detail_order_by_customer',
+        //             service_date: 'service_date',
+        //             // id: getUrlVars()['id']
+        //         },
+        //         dataType: 'json',
+        //         // contentType: false,
+        //         // processData: false,
+        //     }).done(function(msg) {
+        //         msg = JSON.parse(msg);
+        //         if (msg.code === 200) {
+        //             msg.result.map((item) => {
+        //                 $('#detail').append(detail(item));
+        //                 return;
+        //             });
+        //         }
+        //     });
+        // });
 
         detail = (item) => {
             var img = item.image ? item.image : 'https://via.placeholder.com/150';
@@ -229,19 +232,19 @@
                         </tr>
 			             `;
         };
+
         $().ready(() => {
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
                     action: 'get_filter',
-                    id_barber: $('#id option:selected').val(),
+                    id: user.id,
                 },
                 dataType: 'json',
                 // contentType: false,
                 // processData: false,
             }).done(function(msg) {
-                msg = JSON.parse(msg);
                 if (msg.code === 200) {
                     msg.result.map((item) => {
                         $('#inputState').append(inputState(item));
@@ -250,14 +253,8 @@
                 }
             });
         });
+
         inputState = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
-            const date = new Date(item.service_date);
-            const result = date.toLocaleDateString('th-TH', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            });
             return `
             <option>${item.name}</option>
 			             `;

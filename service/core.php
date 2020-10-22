@@ -331,9 +331,17 @@
         
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);
-
+        return ;
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_filter'){
+        $sql = "SELECT `id_barber`, `name`, `id_partner`, `phone`, `image`, `description` FROM `barber` WHERE `id_barber`= '".$_POST['id_barber']."'";
+        echo $sql;
+        $rs = getpdo($conn,$sql);
+        $res = array("code" => 200, "result" =>  $rs);
+        echo json_encode($res);
         return ;
     }
+
+
 
     $result = array("message" => "Error someting");
     $res = array("code" => 401, "result" => $result,"sql" => $sql);

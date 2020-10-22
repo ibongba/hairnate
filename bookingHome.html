@@ -19,10 +19,10 @@
         <div class="row my-5">
             <div class="col">
                 <div>
-                    <h5 class="float-left">PHEEN BARBER SHOP</h5>&nbsp;
-                    <a id="ref" href="bookingCustomer.html"><button type="button" class="btn btn-danger" style="background-color: #A33E3E; border-radius: 25px;"><p>จองคิว</p></button></a>
+                    <h5 class="float-left" id="name">PHEEN BARBER SHOP</h5>&nbsp;
+                    <a id="ref" href="bookingCustomer.html" class="btn btn-danger" style="background-color: #A33E3E; border-radius: 25px;">จองคิว</a>
                 </div>
-                <p><i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> Food Villa Ratchaphruek กรุงเทพมหานคร 10170</p>
+                <p id="detail"></p>
             </div>
             <p class="mx-3">200 <br> review </p>
             <p style="border:1px #C1B09D solid;"></p>&nbsp;
@@ -30,15 +30,20 @@
             <p class="col-12 my-3" style="border:1px #C1B09D solid;"></p>&nbsp;
         </div>
         <div class="row mb-5">
-            <div class="col-md-4 col-am-12 pt-5 text-center">
-                <h2>PROMOTION OF</h2>
-                <h2 style="color:#A33E3E ;">THIS MONTH !!</h2>
+            <div class="col-md-4 col-sm-12 align-items-center d-flex">
+                <h2 class="btn btn-dark" style="border-radius: 25px;">
+                    PROMOTION<br/>
+                    OF <span style="color:#A33E3E ;">THIS MONTH</span>
+                </h2>
             </div>
-            <div class="col-md-4 col-sm-12 mb-2 text-center">
-                <img src="images/Group 260.png" alt="">
-            </div>
-            <div class="col-md-4 col-sm-12 mb-2 text-center">
-                <img src="images/Group 260.png" alt="">
+           
+            <div class="col-md-8 col-sm-12">
+                <div class="row">
+                    <div class="col-12 text-center mr-auto">
+                        <div class="row pt-3" id="promotion">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row mb-5 text-center">
@@ -243,12 +248,18 @@
                     $('#barber').append(barberCard(item))
                 })
 
+                data.hairstyle.filter((item)=>item.type === "2").map((item)=>{
+                    $('#promotion').append(serviceCard(item))
+                })
 
-                data.hairstyle.map((item)=>{
+
+                data.hairstyle.filter((item)=>item.type === "1").map((item)=>{
                     $('#service').append(serviceCard(item))
                 })
 
                 console.log(data)
+                $('#name').text(data.partner.biz_name)
+                $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.location)
             });
         });
 
@@ -273,7 +284,7 @@
                     <div class="icon">
                         <div class="position-relative">
                             <img class="img-fluid img-thumbnail" src="${item.image}" />
-                            <p style="text-align: center;" class="pt-2"><b>${item.name}</b><br>${item.price} Bath</p>
+                            <p style="text-align: center;" class="pt-2"><b>${item.name}</b><br>${item.promotion_price ? `<span style="text-decoration: line-through;">${item.price}</span> <span style="color: #A33E3E; font-size:20px">${item.promotion_price} Baht</span>` : item.price + ' Bath'} </p>
                         </div>
                     </div>
                 </div>

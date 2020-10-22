@@ -551,6 +551,7 @@ footer {
     border-radius: 8px;
     margin: 0 auto;
     display: block;
+    background-color: #000;
 }
 
 .btn.btn-dark2 {

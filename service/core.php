@@ -323,9 +323,19 @@
             echo json_encode($res);
             return ;
         }
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_barber'){
+        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_detail`.`id_barber` = '".$_POST['id_barber']."' and `status` != 1";
+        if(isset($_POST['service_date'])) $sql .= " and `service_date` = '".$_POST['service_date']."'";
+        $sql .= " order by `service_date` desc,`service_time` desc";
+        $rs = getpdo($conn,$sql);
+        
+        $res = array("code" => 200, "result" =>  $rs);
+        echo json_encode($res);
+
+        return ;
     }
 
     $result = array("message" => "Error someting");
-    $res = array("code" => 401, "result" => $result);
+    $res = array("code" => 401, "result" => $result,"sql" => $sql);
     echo json_encode($res);
 ?>

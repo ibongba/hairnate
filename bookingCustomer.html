@@ -60,30 +60,6 @@
                     <div class="row">
                         <div class="col-12 text-center mr-auto">
                             <div class="row pt-3" id="barber">
-                                <div class="col-lg col-sm-3">
-                                    <div class="icon">
-                                        <div class="position-relative">
-                                            <img class="circle" src="images/asset-1.png" />
-                                            <p style="text-align: center;" class="pt-2">ช่างก้อง</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg col-sm-3">
-                                    <div class="icon">
-                                        <div class="position-relative">
-                                            <img class="circle" src="images/asset-2.png" />
-                                            <p style="text-align: center;" class="pt-2">ช่างคิว</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg col-sm-3">
-                                    <div class="icon">
-                                        <div class="position-relative">
-                                            <img class="circle" src="images/asset-3.png" />
-                                            <p style="text-align: center;" class="pt-2">ช่างโฟม</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -145,16 +121,16 @@
                         </select>
                     </div> -->
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 is-moring d-none">
                             <button class="btn btn-dark col-md-6 m-0 p-2 w-100" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" style="width: auto;">ช่วงเช้า</button>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 is-evening">
                             <button class="btn btn-dark col-md-6 p-2 m-0 w-100" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="width: auto;">ช่วงบ่าย</button>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col">
+                        <div class="col is-moring d-none">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <br>
                                 <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">09.00</button><br>
@@ -162,7 +138,7 @@
                                 <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">11.00</button>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col is-evening">
                             <div class="collapse multi-collapse" id="multiCollapseExample2">
                                 <br>
                                 <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">13.00</button><br>
@@ -421,6 +397,7 @@
         });
     </script>
     <script src='js/main.js'></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script> -->
     <!-- Stepper JavaScript -->
     <!-- <script type="text/javascript" src="js/addons-pro/steppers.js"></script> -->
     <!-- Stepper JavaScript - minified -->
@@ -471,108 +448,6 @@
                 reader.readAsDataURL(f);
             }
         }
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                // headerToolbar: {
-                //     left: 'prev,next today',
-                //     center: 'title',
-                //     right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                // },
-                initialDate: new Date(),
-                navLinks: true, // can click day/week names to navigate views
-                selectable: true,
-                selectMirror: true,
-                select: function(arg) {
-                    if (arg.start < new Date()) {
-                        calendar.unselect()
-                        return;
-                    }
-
-                    if (confirm('คุณต้องการจองในวันที่ ' + formatDate(arg.start) + ' ?')) {
-                        if (date != null) {
-                            calendar.getEventById(date).remove()
-                        }
-
-                        calendar.addEvent({
-                            id: arg.start,
-                            title: 'จอง',
-                            start: arg.start,
-                            end: arg.end,
-                            allDay: arg.allDay
-                        })
-
-                        date = arg.start
-                    }
-                    // var title = prompt('Event Title:');
-                    // if (title) {
-                    //     calendar.addEvent({
-                    //         title: title,
-                    //         start: arg.start,
-                    //         end: arg.end,
-                    //         allDay: arg.allDay
-                    //     })
-                    // }
-                    calendar.unselect()
-                },
-                eventClick: function(arg) {
-                    // if (confirm('Are you sure you want to delete this event?')) {
-                    //     arg.event.remove()
-                    // }
-                },
-                editable: true,
-                dayMaxEvents: true, // allow "more" link when too many events
-                // events: [{
-                //     title: 'All Day Event',
-                //     start: '2020-06-01'
-                // }, {
-                //     title: 'Long Event',
-                //     start: '2020-06-07',
-                //     end: '2020-06-10'
-                // }, {
-                //     groupId: 999,
-                //     title: 'Repeating Event',
-                //     start: '2020-06-09T16:00:00'
-                // }, {
-                //     groupId: 999,
-                //     title: 'Repeating Event',
-                //     start: '2020-06-16T16:00:00'
-                // }, {
-                //     title: 'Conference',
-                //     start: '2020-06-11',
-                //     end: '2020-06-13'
-                // }, {
-                //     title: 'Meeting',
-                //     start: '2020-06-12T10:30:00',
-                //     end: '2020-06-12T12:30:00'
-                // }, {
-                //     title: 'Lunch',
-                //     start: '2020-06-12T12:00:00'
-                // }, {
-                //     title: 'Meeting',
-                //     start: '2020-06-12T14:30:00'
-                // }, {
-                //     title: 'Happy Hour',
-                //     start: '2020-06-12T17:30:00'
-                // }, {
-                //     title: 'Dinner',
-                //     start: '2020-06-12T20:00:00'
-                // }, {
-                //     title: 'Birthday Party',
-                //     start: '2020-06-13T07:00:00'
-                // }, {
-                //     title: 'Click for Google',
-                //     url: 'http://google.com/',
-                //     start: '2020-06-28'
-                // }]
-            });
-
-            calendar.render();
-        });
-
         let time = '';
 
         var listHairStyle = []
@@ -652,19 +527,192 @@
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
                 listBarber = [...data.barber]
-                data.barber.map((item) => {
-                    $('#barber').append(barberCard(item))
+                data.barber.map((item,i) => {
+                    $('#barber').append(barberCard(item,i))
                 })
 
                 listHairStyle = [...data.hairstyle]
-                data.hairstyle.map((item) => {
-                    $('#service').append(serviceCard(item))
+                data.hairstyle.map((item,i) => {
+                    $('#service').append(serviceCard(item,i))
                 })
 
                 partner = data.partner
+                selectBarber();
 
             });
+
+            
         });
+
+        
+
+        var list = [];
+
+        const selectBarber = async () => {
+            await $.ajax({
+                method: "POST",
+                url: "service/core.php",
+                data: {
+                    action: 'get_order_by_barber',
+                    id_barber: $('input[name=barber]:checked').val() || listBarber[0].id_barber,
+                },
+                dataType: 'json',
+            }).done(async function(msg) {
+                list = msg.result.map((item)=>{
+                    let tmp = {};
+                    tmp.title = "มีการจองไว้ : " + item.service_time;
+                    tmp.start = item.service_date;
+                    return tmp;
+                })
+            });
+            
+            CreateCalenda()
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            CreateCalenda()
+        });
+
+
+        const CreateCalenda = () => {
+            
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                // headerToolbar: {
+                //     left: 'prev,next today',
+                //     center: 'title',
+                //     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                // },
+                initialDate: new Date(),
+                navLinks: false, // can click day/week names to navigate views
+                selectable: true,
+                selectMirror: true,
+                select: function(arg) {
+                    if (arg.start < new Date()) {
+                        calendar.unselect()
+                        return;
+                    }
+
+                    if (confirm('คุณต้องการจองในวันที่ ' + formatDate(arg.start) + ' ?')) {
+                        if (date != null) {
+                            calendar.getEventById(date).remove()
+                        }
+
+                        time = '';
+
+                        $.ajax({
+                            method: "POST",
+                            url: "service/core.php",
+                            data: {
+                                action: 'get_order_by_barber',
+                                id_barber: $('input[name=barber]:checked').val(),
+                                service_date : formatDate2(arg.start)
+                            },
+                            dataType: 'json',
+                            // contentType: false,
+                            // processData: false,
+                        }).done(function(msg) {
+                            console.log(msg);
+                            $('.is-evening').removeClass('d-none')
+                            $('.is-moring').removeClass('d-none')
+
+                            list = msg.result.map((item)=>{
+                                if(parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
+                                if(parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
+
+                                let tmp = {};
+                                tmp.title = "มีการจองไว้ : " + item.service_time;
+                                tmp.start = item.service_date;
+                                return tmp;
+                            })
+                            // let data = JSON.parse(msg.result)
+                            // listBarber = [...data.barber]
+                            // data.barber.map((item) => {
+                            //     $('#barber').append(barberCard(item))
+                            // })
+
+                            // listHairStyle = [...data.hairstyle]
+                            // data.hairstyle.map((item) => {
+                            //     $('#service').append(serviceCard(item))
+                            // })
+
+                            // partner = data.partner
+
+                        });
+
+                        calendar.addEvent({
+                            id: arg.start,
+                            title: 'จอง',
+                            start: arg.start,
+                            end: arg.end,
+                            allDay: arg.allDay
+                        })
+
+                        date = arg.start
+                    }
+                    // var title = prompt('Event Title:');
+                    // if (title) {
+                    //     calendar.addEvent({
+                    //         title: title,
+                    //         start: arg.start,
+                    //         end: arg.end,
+                    //         allDay: arg.allDay
+                    //     })
+                    // }
+                    calendar.unselect()
+                },
+                editable: true,
+                dayMaxEvents: true, // allow "more" link when too many events
+                events : list 
+                // events: [{
+                //     title: 'All Day Event',
+                //     start: '2020-06-01'
+                // }, {
+                //     title: 'Long Event',
+                //     start: '2020-06-07',
+                //     end: '2020-06-10'
+                // }, {
+                //     groupId: 999,
+                //     title: 'Repeating Event',
+                //     start: '2020-06-09T16:00:00'
+                // }, {
+                //     groupId: 999,
+                //     title: 'Repeating Event',
+                //     start: '2020-06-16T16:00:00'
+                // }, {
+                //     title: 'Conference',
+                //     start: '2020-06-11',
+                //     end: '2020-06-13'
+                // }, {
+                //     title: 'Meeting',
+                //     start: '2020-06-12T10:30:00',
+                //     end: '2020-06-12T12:30:00'
+                // }, {
+                //     title: 'Lunch',
+                //     start: '2020-06-12T12:00:00'
+                // }, {
+                //     title: 'Meeting',
+                //     start: '2020-06-12T14:30:00'
+                // }, {
+                //     title: 'Happy Hour',
+                //     start: '2020-06-12T17:30:00'
+                // }, {
+                //     title: 'Dinner',
+                //     start: '2020-06-12T20:00:00'
+                // }, {
+                //     title: 'Birthday Party',
+                //     start: '2020-06-13T07:00:00'
+                // }, {
+                //     title: 'Click for Google',
+                //     url: 'http://google.com/',
+                //     start: '2020-06-28'
+                // }]
+            });
+
+            calendar.render();
+        }
+
 
         function getUrlVars() {
             var vars = [],
@@ -679,11 +727,11 @@
         }
 
 
-        const serviceCard = (item) => {
+        const serviceCard = (item,i) => {
                 return `
                     <div class="col-lg-6 col-sm-12  p-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="hairstyle" id="service${item.id_hairstyle}" selected="true" value="${item.id_hairstyle}">
+                            <input class="form-check-input" type="radio" name="hairstyle" id="service${item.id_hairstyle}"  ${i === 0 ? 'checked=""' : ''} value="${item.id_hairstyle}">
                             <label class="form-check-label px-5" for="service${item.id_hairstyle}">
                                 <div class="col">
                                     <div class="row py-3">
@@ -716,10 +764,10 @@
             time = $(e).text();
         }
 
-        const barberCard = (item) => {
+        const barberCard = (item,i) => {
             return `
                     <div class="col-4">
-                        <input class="form-check-input" type="radio" name="barber" id="barber${item.id_barber}" selected="true" value="${item.id_barber}">
+                        <input class="form-check-input" type="radio" onchange="selectBarber()" name="barber" id="barber${item.id_barber}" ${i === 0 ? 'checked=""' : ''} value="${item.id_barber}">
                         <label class="form-check-label px-5" for="barber${item.id_barber}">
                                 <div class="icon">
                                     <div class="position-relative">

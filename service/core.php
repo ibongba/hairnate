@@ -351,8 +351,9 @@
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $sql = " DELETE FROM `partner_closed` WHERE `date` = '".$_POST['date']."' and `time` = '".$_POST['time']."' and `fk_partner_id` = '".$rs[0]['id']."')";
+            $sql = " DELETE FROM `partner_closed` WHERE `date` = '".$_POST['date']."' and `time` = '".$_POST['time']."' and `fk_partner_id` = '".$rs[0]['id']."'";
             $rs = getpdo($conn,$sql);
+
 
             if($rs){
                 $res = array("code" => 200, "result" => $rs);
@@ -360,7 +361,6 @@
                 return ;
             }
         }
-
        
     }else if  (isset($_POST['action']) && $_POST['action'] == 'add_closed'){
 
@@ -368,10 +368,16 @@
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $sql = "INSERT INTO `partner_closed`(`date`, `time`, `fk_partner_id`) VALUES ('".$_POST['date']."','".$_POST['time']."','".$rs[0]['id']."')";
+            $partner =$rs[0]['id'];
+
+            $sql = "INSERT INTO `partner_closed`(`date`, `time`, `fk_partner_id`) VALUES ('".$_POST['date']."','".$_POST['time']."','".$partner."')";
             $rs = getpdo($conn,$sql);
 
             if($rs){
+
+                $sql = "UPDATE `service_detail` SET `status` = 0 WHERE `service_date` = '".$_POST['date']."' and `service_time` = '".$_POST['time']."' and status = 2 and `id_barber` in (SELECT id_barber FROM barber WHERE barber.id_partner = '".$partner."')";
+                $rs = getpdo($conn,$sql);
+                
                 $res = array("code" => 200, "result" => $rs);
                 echo json_encode($res);
                 return ;

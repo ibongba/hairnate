@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col p-0">
                 <select id="inputState" class="form-control" onchange="onchangefilter()">
-                  <option value=" ">FILTER</option>
+                  <option value="">FILTER</option>
                   <!-- <option></option> -->
                 </select>
             </div>
@@ -105,7 +105,7 @@
                 </tr>
             </thead>
             <tbody id="detail">
-                <tr class="app-text">
+                <!-- <tr class="app-text">
                     <th scope="row">1</th>
                     <td>10.45 AM</td>
                     <td>Justin Bieber</td>
@@ -137,7 +137,7 @@
                     <td>0812345678</td>
                     <td class="text-success">Paid</td>
                     <td><button type="button" class="btn btn-danger" style="min-width: auto">Alert</button></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
@@ -175,27 +175,26 @@
     <script>
         var user = JSON.parse(localStorage.getItem('user'));
 
-        // function getUrlVars() {
-        //     var vars = [],
-        //         hash;
-        //     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        //     for (var i = 0; i < hashes.length; i++) {
-        //         hash = hashes[i].split('=');
-        //         vars.push(hash[0]);
-        //         vars[hash[0]] = hash[1];
-        //     }
-        //     return vars;
-        // }
+        function formatDate2(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
 
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
 
-
+            return [year, month, day].join('-');
+        }
         var date = '';
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',
-            format: 'yyyy-mm-dd'
+            dateFormat: 'yyyy-mm-dd'
         }).on("change", function() {
             console.log(this.value);
-            date = this.value;
+            date = formatDate2(this.value);
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
@@ -210,6 +209,7 @@
                 // processData: false,
             }).done(function(msg) {
                 msg = JSON.parse(msg);
+                console.log(msg)
                 if (msg.code === 200) {
                     msg.result.map((item) => {
                         $('#detail').append(detail(item));
@@ -228,17 +228,17 @@
                 day: 'numeric',
             });
             return `
-                <tr class="app-text">
-                    <th scope="row">1</th>
-                    <td>${item.service_time}</td>
-                    <td>${item.customer_name}</td>
-                    <td>${item.service_type}</td>
-                    <td>${item.barber_name}</td>
-                    <td>${item.address}</td>
-                    <td>${item.phone}</td>
-                    <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
-                    <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
-                </tr>
+			             <tr class="app-text">
+                            <th scope="row">1</th>
+                            <td>${item.service_time}</td>
+                            <td>${item.customer_name}</td>
+                            <td>${item.service_type}</td>
+                            <td>${item.barber_name}</td>
+                            <td>${item.address}</td>
+                            <td>${item.phone}</td>
+                            <td class="text-success">Finished</td>
+                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                        </tr>
 			             `;
         };
 
@@ -247,8 +247,33 @@
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
-                    action: 'get_filter',
+                    action: 'get_detail_order_by_customer',
+                    service_date: date,
                     id_barber: $('#inputState option:selected').val(),
+                    id: user.id,
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg)
+                msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    msg.result.map((item) => {
+                        $('#detail').append(detail(item));
+                        return;
+                    });
+                }
+            });
+        }
+
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_filter',
                     id: user.id,
                 },
                 dataType: 'json',
@@ -260,7 +285,7 @@
                     });
                 }
             });
-        }
+        });
 
         inputState = (item) => {
             return `

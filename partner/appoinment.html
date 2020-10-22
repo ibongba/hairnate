@@ -31,13 +31,13 @@
             <div class="col-md-4">
                 <div class="form-group row pt-0 bg-succsee">
                     <div class="col-sm-8">
-                        <input id="datepicker" width="276" placeholder="Choose date" onchange="date()" /></div>
+                        <input id="datepicker" width="276" placeholder="Choose date" /></div>
 
                 </div>
             </div>
             <div class="form-group col p-0">
-                <select id="inputState" class="form-control">
-                  <option selected>FILTER</option>
+                <select id="inputState" class="form-control" onchange="onchangefilter()">
+                  <option value=" ">FILTER</option>
                   <!-- <option></option> -->
                 </select>
             </div>
@@ -104,7 +104,7 @@
                     <th class="app-text">ALERT</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="detail">
                 <tr class="app-text">
                     <th scope="row">1</th>
                     <td>10.45 AM</td>
@@ -173,42 +173,51 @@
         });
     </script>
     <script>
-
-
         var user = JSON.parse(localStorage.getItem('user'));
-        function getUrlVars() {
-            var vars = [],
-                hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars;
-        }
-        // $().ready(() => {
-        //     $.ajax({
-        //         method: 'POST',
-        //         url: '../service/core.php',
-        //         data: {
-        //             action: 'get_detail_order_by_customer',
-        //             service_date: 'service_date',
-        //             // id: getUrlVars()['id']
-        //         },
-        //         dataType: 'json',
-        //         // contentType: false,
-        //         // processData: false,
-        //     }).done(function(msg) {
-        //         msg = JSON.parse(msg);
-        //         if (msg.code === 200) {
-        //             msg.result.map((item) => {
-        //                 $('#detail').append(detail(item));
-        //                 return;
-        //             });
-        //         }
-        //     });
-        // });
+
+        // function getUrlVars() {
+        //     var vars = [],
+        //         hash;
+        //     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        //     for (var i = 0; i < hashes.length; i++) {
+        //         hash = hashes[i].split('=');
+        //         vars.push(hash[0]);
+        //         vars[hash[0]] = hash[1];
+        //     }
+        //     return vars;
+        // }
+
+
+
+        var date = '';
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd'
+        }).on("change", function() {
+            console.log(this.value);
+            date = this.value;
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_detail_order_by_customer',
+                    service_date: date,
+                    id_barber: $('#inputState option:selected').val(),
+                    id: user.id,
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                msg = JSON.parse(msg);
+                if (msg.code === 200) {
+                    msg.result.map((item) => {
+                        $('#detail').append(detail(item));
+                        return;
+                    });
+                }
+            });
+        });
 
         detail = (item) => {
             var img = item.image ? item.image : 'https://via.placeholder.com/150';
@@ -219,31 +228,30 @@
                 day: 'numeric',
             });
             return `
-			             <tr class="app-text">
-                            <th scope="row">1</th>
-                            <td>${item}</td>
-                            <td>${item}</td>
-                            <td>${item}</td>
-                            <td>${item}</td>
-                            <td>${item}</td>
-                            <td>${item}</td>
-                            <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
-                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
-                        </tr>
+                <tr class="app-text">
+                    <th scope="row">1</th>
+                    <td>${item.service_time}</td>
+                    <td>${item.customer_name}</td>
+                    <td>${item.service_type}</td>
+                    <td>${item.barber_name}</td>
+                    <td>${item.address}</td>
+                    <td>${item.phone}</td>
+                    <td><button type="button" class="btn btn-success" style="min-width: auto;">Finished</button></td>
+                    <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                </tr>
 			             `;
         };
 
-        $().ready(() => {
+        const onchangefilter = () => {
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
                     action: 'get_filter',
+                    id_barber: $('#inputState option:selected').val(),
                     id: user.id,
                 },
                 dataType: 'json',
-                // contentType: false,
-                // processData: false,
             }).done(function(msg) {
                 if (msg.code === 200) {
                     msg.result.map((item) => {
@@ -252,11 +260,11 @@
                     });
                 }
             });
-        });
+        }
 
         inputState = (item) => {
             return `
-            <option>${item.name}</option>
+            <option value="${item.id_barber}">${item.name}</option>
 			             `;
         };
     </script>

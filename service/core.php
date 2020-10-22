@@ -316,8 +316,15 @@
             return ;
         }
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_detail_order_by_customer'){
-        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['']."' and `partner`.`id` = '".$_POST['']."' order by `service_date` desc,`service_time` DESC";
-        // echo $sql;
+
+        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`,  `users`.`address` as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type`
+        FROM `service_detail` 
+        JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` 
+        JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` 
+        JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` 
+        JOIN `users` ON `service_detail`.`id_users` = `users`.`id` 
+        LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` 
+        WHERE `service_date` = '".$_POST['service_date']."' and `id_users` = '".$_POST['id']."' and `status` != '1' order by `service_date` desc,`service_time` DESC";
         $rs = getpdo($conn,$sql);
 
         if($rs){
@@ -333,7 +340,13 @@
         if(isset($_POST['service_date'])) $sql .= " and `service_date` = '".$_POST['service_date']."'";
         $sql .= " order by `service_date` desc,`service_time` desc";
         $rs = getpdo($conn,$sql);
-        
+
+        $res = array("code" => 200, "result" =>  $rs);
+        echo json_encode($res);
+        return ;
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_filter'){
+        $sql = "SELECT * FROM `barber` join `partner` on `barber`.`id_partner` = `partner`.`id` WHERE `fk_user_id`= '".$_POST['id']."'";
+        $rs = getpdo($conn,$sql);
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);
 

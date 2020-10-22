@@ -549,13 +549,13 @@
 
         var list = [];
 
-        const selectBarber = async() => {
-            await $.ajax({
+        const selectBarber = () => {
+            $.ajax({
                 method: "POST",
                 url: "service/core.php",
                 data: {
                     action: 'get_order_by_barber',
-                    id_barber: $('input[name=barber]:checked').val() || listBarber[0].id_barber,
+                    id_barber: $('input[name=barber]:checked').val(),
                 },
                 dataType: 'json',
             }).done(async function(msg) {
@@ -565,11 +565,12 @@
                     tmp.start = item.service_date;
                     return tmp;
                 })
-                calendar.addEventSource(list)
-                calendar.refetchEvents()
-            });
+                
+                $('.is-evening').addClass('d-none')
+                $('.is-moring').addClass('d-none')
 
-            // CreateCalenda()
+                CreateCalenda()
+            });
         }
 
 
@@ -629,18 +630,6 @@
                                     tmp.start = item.service_date;
                                     return tmp;
                                 })
-                                // let data = JSON.parse(msg.result)
-                                // listBarber = [...data.barber]
-                                // data.barber.map((item) => {
-                                //     $('#barber').append(barberCard(item))
-                                // })
-
-                            // listHairStyle = [...data.hairstyle]
-                            // data.hairstyle.map((item) => {
-                            //     $('#service').append(serviceCard(item))
-                            // })
-
-                            // partner = data.partner
 
                         });
 

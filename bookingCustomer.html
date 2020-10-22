@@ -328,7 +328,8 @@
                                 <p class="card-text"><b>รายละเอียดการ์ด</b></p>
 
                                 <label for="card_no">เลขการ์ด</label>
-                                <input type="text" class="form-control" id="card_no" name="card_no" style="background-color: #fff;">
+                                <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. " placeholder="#### #### #### ####"  style="background-color: #fff;">
+
                                 <label for="card_name">ชื่อของผู้ถือการ์ด</label>
                                 <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
                                 <div class="row">
@@ -452,7 +453,7 @@
 
         var listHairStyle = []
         var listBarber = []
-        var partner = []
+        var partner = {}
 
         $(document).ready(function() {
 
@@ -548,13 +549,13 @@
 
         var list = [];
 
-        const selectBarber = async() => {
-            await $.ajax({
+        const selectBarber = () => {
+            $.ajax({
                 method: "POST",
                 url: "service/core.php",
                 data: {
                     action: 'get_order_by_barber',
-                    id_barber: $('input[name=barber]:checked').val() || listBarber[0].id_barber,
+                    id_barber: $('input[name=barber]:checked').val(),
                 },
                 dataType: 'json',
             }).done(async function(msg) {
@@ -564,9 +565,11 @@
                     tmp.start = item.service_date;
                     return tmp;
                 })
-            });
+                $('.is-evening').addClass('d-none')
+                $('.is-moring').addClass('d-none')
 
-            CreateCalenda()
+                CreateCalenda()
+            });
         }
 
 
@@ -626,18 +629,6 @@
                                     tmp.start = item.service_date;
                                     return tmp;
                                 })
-                                // let data = JSON.parse(msg.result)
-                                // listBarber = [...data.barber]
-                                // data.barber.map((item) => {
-                                //     $('#barber').append(barberCard(item))
-                                // })
-
-                            // listHairStyle = [...data.hairstyle]
-                            // data.hairstyle.map((item) => {
-                            //     $('#service').append(serviceCard(item))
-                            // })
-
-                            // partner = data.partner
 
                         });
 
@@ -862,7 +853,7 @@
             form_data.append('month', $('#month').val());
             form_data.append('year', $('#year').val());
             form_data.append('cvc', $('#cvc').val());
-            form_data.append('notification', $('input[name=notification]:checked').length > 0);
+            form_data.append('notification', $('input[name=notification]:checked').length > 0 ? 1 : 0);
             form_data.append('lastid',lastid);
 
             $.ajax({

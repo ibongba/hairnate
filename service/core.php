@@ -221,14 +221,28 @@
             return ;
         }
     }else if(isset($_POST['action']) && $_POST['action'] == 'add_calendar'){
+        $sql_lastid = "SELECT * FROM `service_detail` order by `id_service_detail` desc limit 1";
 
-        $sql = "INSERT INTO `service_detail`(`service_date`, `service_time`, `service_location`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('".$_POST['service_date']."','".$_POST['service_time']."','".$_POST['service_location']."','".$_POST['service_phone']."','".$_POST['email']."','".$_POST['id_barber']."','".$_POST['id_users']."','".$_POST['id_hairstyle']."')";
+        $rs = getpdo($conn,$sql_lastid);
+
+        if(count($rs) > 0) $lastid = substr($rs[0]['id_service_detail'], -6, 6);
+        else $lastid = 0;
+
+        $lastid = intval($lastid) + 1;
+
+        $nextid = "DN";
+        if($_POST['type'] == 1) $nextid = "FS";
+        $nextid .= substr(getdate()["year"],-2,2);
+        $nextid .= getdate()["mon"];
+        $nextid .= getdate()["mday"];
+        $nextid .= substr("000000".$lastid,-6,6);
+
+
+        $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('".$nextid."','".$_POST['service_date']."','".$_POST['service_time']."','".$_POST['service_location']."','".$_POST['service_phone']."','".$_POST['email']."','".$_POST['id_barber']."','".$_POST['id_users']."','".$_POST['id_hairstyle']."')";
 
         $rs = getpdo($conn,$sql);
 
         if($rs){
-
-            $lastid = $conn->lastInsertId();
 
             $img = '';
             if(isset($_FILES['files'])){
@@ -239,7 +253,7 @@
                         $newFilePath = "../upload/". time() . $_FILES['files']['name'][$i];
                         if(move_uploaded_file($tmpFilePath, $newFilePath)) {
                             $img = "upload/" .time() . $_FILES['files']['name'][$i];
-                            $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`) VALUES ('".$img."',".$lastid.")";
+                            $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`) VALUES ('".$img."',".$nextid.")";
                             getpdo($conn,$sql);
                         }
                     }
@@ -248,13 +262,13 @@
 
             
             $res = array("code" => 200, "result" => array(
-                "lastid" => $lastid
+                "lastid" => $nextid
             ));
             echo json_encode($res);
             return ;
         }
     }else if (isset($_POST['action']) && $_POST['action'] == 'add_payment'){
-        $sql = "INSERT INTO `payment`( `fk_sd_id`, `card_name`, `card_no`, `month`, `year`, `cvc`, `notification`) VALUES (".$_POST['lastid'].",'".$_POST['card_name']."','".$_POST['card_no']."','".$_POST['month']."','".$_POST['year']."','".$_POST['cvc']."','".$_POST['notification']."')";
+        $sql = "INSERT INTO `payment`( `fk_sd_id`, `card_name`, `card_no`, `month`, `year`, `cvc`, `notification`) VALUES ('".$_POST['lastid']."','".$_POST['card_name']."','".$_POST['card_no']."','".$_POST['month']."','".$_POST['year']."','".$_POST['cvc']."','".$_POST['notification']."')";
         $rs = getpdo($conn,$sql);
 
         if($rs){
@@ -310,7 +324,7 @@
         JOIN `users` ON `service_detail`.`id_users` = `users`.`id` 
         LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` 
         WHERE `service_date` = '".$_POST['service_date']."' and `id_users` = '".$_POST['id']."' and `status` != '1' order by `service_date` desc,`service_time` DESC";
-        echo $sql;
+
         $rs = getpdo($conn,$sql);
         if (!empty($_POST['id_barber'])) {
             $sql .= " WHERE  `id_barber` = '".$_POST['id_barber']."' DESC";
@@ -328,7 +342,6 @@
         if(isset($_POST['service_date'])) $sql .= " and `service_date` = '".$_POST['service_date']."'";
         $sql .= " order by `service_date` desc,`service_time` desc";
         $rs = getpdo($conn,$sql);
-        echo $sql;
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);
         return ;

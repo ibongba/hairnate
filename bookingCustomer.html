@@ -38,7 +38,7 @@
                     <a href="#step-10" type="button" class="btn btn-default btn-circle disabled"><i class="fas fa-calendar-week" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
-                    <a href="#step-11" type="button" class="btn btn-default btn-circle disabled" ><i class="fas fa-map-marker-alt" style="font-size: xx-large;"></i></a>
+                    <a href="#step-11" type="button" class="btn btn-default btn-circle disabled"><i class="fas fa-map-marker-alt" style="font-size: xx-large;"></i></a>
                 </div>
                 <div class="steps-step">
                     <a href="#step-13" type="button" class="btn btn-default btn-circle disabled"><i class="fas fa-bars" style="font-size: xx-large;"></i></a>
@@ -74,7 +74,7 @@
                     <!--  <div class="col-12">
                         <hr style="border-bottom:1px solid #EEEBE6;" />
                     </div> -->
-                     <h5 class=" my-4">Step 3 UPLOAD YOUR HAIRSTYLE</h5>
+                    <h5 class=" my-4">Step 3 UPLOAD YOUR HAIRSTYLE</h5>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="box2" style="height: 350px;">
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <a id="ref" style="margin: auto;"><button type="button" class="btn btn-dark btn-rounded my-3  float-left">BACK</button></a>
@@ -242,7 +242,7 @@
             </div>
 
 
-          <!--   <div class="row setup-content" id="step-12">
+            <!--   <div class="row setup-content" id="step-12">
                 <div class="col-md-12">
                     <h5 class=" my-4 text-center">WAITING FOR APPROVAL !!</h5>
                     <div class="text-center p-3" style="background-color:#EEEBE6; border-radius: 25px;">
@@ -355,7 +355,7 @@
                     </div>
                 </div>
                 <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 col-md-4 float-left">BACK</button>
-                <button type="button" class="btn btn-dark btn-rounded nextBtn my-4 col-md-4 text-center">NEXT</button>
+                <button type="button" class="btn btn-dark btn-rounded nextBtn my-4 col-md-4 text-center" onclick="createPayment()">NEXT</button>
 
             </div>
 
@@ -442,7 +442,7 @@
                     };
                 })(f);
 
-                $('#'+id).parent().children('.is-remove').remove()
+                $('#' + id).parent().children('.is-remove').remove()
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(f);
@@ -494,8 +494,8 @@
                     curInputs = curStep.find("input[type='text'],input[type='url']"),
                     isValid = true;
 
-                if(curStepBtn != 'step-10' || time) nextStepWizard.removeClass('disabled')
-                
+                if (curStepBtn != 'step-10' || time) nextStepWizard.removeClass('disabled')
+
 
                 $(".form-group").removeClass("has-error");
                 for (var i = 0; i < curInputs.length; i++) {
@@ -527,13 +527,13 @@
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
                 listBarber = [...data.barber]
-                data.barber.map((item,i) => {
-                    $('#barber').append(barberCard(item,i))
+                data.barber.map((item, i) => {
+                    $('#barber').append(barberCard(item, i))
                 })
 
                 listHairStyle = [...data.hairstyle]
-                data.hairstyle.map((item,i) => {
-                    $('#service').append(serviceCard(item,i))
+                data.hairstyle.map((item, i) => {
+                    $('#service').append(serviceCard(item, i))
                 })
 
                 partner = data.partner
@@ -541,14 +541,14 @@
 
             });
 
-            
+
         });
 
-        
+
 
         var list = [];
 
-        const selectBarber = async () => {
+        const selectBarber = async() => {
             await $.ajax({
                 method: "POST",
                 url: "service/core.php",
@@ -558,14 +558,14 @@
                 },
                 dataType: 'json',
             }).done(async function(msg) {
-                list = msg.result.map((item)=>{
+                list = msg.result.map((item) => {
                     let tmp = {};
                     tmp.title = "มีการจองไว้ : " + item.service_time;
                     tmp.start = item.service_date;
                     return tmp;
                 })
             });
-            
+
             CreateCalenda()
         }
 
@@ -576,7 +576,7 @@
 
 
         const CreateCalenda = () => {
-            
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 // headerToolbar: {
@@ -607,7 +607,7 @@
                             data: {
                                 action: 'get_order_by_barber',
                                 id_barber: $('input[name=barber]:checked').val(),
-                                service_date : formatDate2(arg.start)
+                                service_date: formatDate2(arg.start)
                             },
                             dataType: 'json',
                             // contentType: false,
@@ -617,20 +617,20 @@
                             $('.is-evening').removeClass('d-none')
                             $('.is-moring').removeClass('d-none')
 
-                            list = msg.result.map((item)=>{
-                                if(parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
-                                if(parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
+                            list = msg.result.map((item) => {
+                                    if (parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
+                                    if (parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
 
-                                let tmp = {};
-                                tmp.title = "มีการจองไว้ : " + item.service_time;
-                                tmp.start = item.service_date;
-                                return tmp;
-                            })
-                            // let data = JSON.parse(msg.result)
-                            // listBarber = [...data.barber]
-                            // data.barber.map((item) => {
-                            //     $('#barber').append(barberCard(item))
-                            // })
+                                    let tmp = {};
+                                    tmp.title = "มีการจองไว้ : " + item.service_time;
+                                    tmp.start = item.service_date;
+                                    return tmp;
+                                })
+                                // let data = JSON.parse(msg.result)
+                                // listBarber = [...data.barber]
+                                // data.barber.map((item) => {
+                                //     $('#barber').append(barberCard(item))
+                                // })
 
                             // listHairStyle = [...data.hairstyle]
                             // data.hairstyle.map((item) => {
@@ -664,50 +664,50 @@
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
-                events : list 
-                // events: [{
-                //     title: 'All Day Event',
-                //     start: '2020-06-01'
-                // }, {
-                //     title: 'Long Event',
-                //     start: '2020-06-07',
-                //     end: '2020-06-10'
-                // }, {
-                //     groupId: 999,
-                //     title: 'Repeating Event',
-                //     start: '2020-06-09T16:00:00'
-                // }, {
-                //     groupId: 999,
-                //     title: 'Repeating Event',
-                //     start: '2020-06-16T16:00:00'
-                // }, {
-                //     title: 'Conference',
-                //     start: '2020-06-11',
-                //     end: '2020-06-13'
-                // }, {
-                //     title: 'Meeting',
-                //     start: '2020-06-12T10:30:00',
-                //     end: '2020-06-12T12:30:00'
-                // }, {
-                //     title: 'Lunch',
-                //     start: '2020-06-12T12:00:00'
-                // }, {
-                //     title: 'Meeting',
-                //     start: '2020-06-12T14:30:00'
-                // }, {
-                //     title: 'Happy Hour',
-                //     start: '2020-06-12T17:30:00'
-                // }, {
-                //     title: 'Dinner',
-                //     start: '2020-06-12T20:00:00'
-                // }, {
-                //     title: 'Birthday Party',
-                //     start: '2020-06-13T07:00:00'
-                // }, {
-                //     title: 'Click for Google',
-                //     url: 'http://google.com/',
-                //     start: '2020-06-28'
-                // }]
+                events: list
+                    // events: [{
+                    //     title: 'All Day Event',
+                    //     start: '2020-06-01'
+                    // }, {
+                    //     title: 'Long Event',
+                    //     start: '2020-06-07',
+                    //     end: '2020-06-10'
+                    // }, {
+                    //     groupId: 999,
+                    //     title: 'Repeating Event',
+                    //     start: '2020-06-09T16:00:00'
+                    // }, {
+                    //     groupId: 999,
+                    //     title: 'Repeating Event',
+                    //     start: '2020-06-16T16:00:00'
+                    // }, {
+                    //     title: 'Conference',
+                    //     start: '2020-06-11',
+                    //     end: '2020-06-13'
+                    // }, {
+                    //     title: 'Meeting',
+                    //     start: '2020-06-12T10:30:00',
+                    //     end: '2020-06-12T12:30:00'
+                    // }, {
+                    //     title: 'Lunch',
+                    //     start: '2020-06-12T12:00:00'
+                    // }, {
+                    //     title: 'Meeting',
+                    //     start: '2020-06-12T14:30:00'
+                    // }, {
+                    //     title: 'Happy Hour',
+                    //     start: '2020-06-12T17:30:00'
+                    // }, {
+                    //     title: 'Dinner',
+                    //     start: '2020-06-12T20:00:00'
+                    // }, {
+                    //     title: 'Birthday Party',
+                    //     start: '2020-06-13T07:00:00'
+                    // }, {
+                    //     title: 'Click for Google',
+                    //     url: 'http://google.com/',
+                    //     start: '2020-06-28'
+                    // }]
             });
 
             calendar.render();
@@ -727,7 +727,7 @@
         }
 
 
-        const serviceCard = (item,i) => {
+        const serviceCard = (item, i) => {
                 return `
                     <div class="col-lg-6 col-sm-12  p-3">
                         <div class="form-check form-check-inline">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 19, 2020 at 06:11 PM
+-- Generation Time: Oct 22, 2020 at 10:24 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -34,7 +34,8 @@ CREATE TABLE `barber` (
 --
 
 INSERT INTO `barber` (`id_barber`, `name`, `id_partner`, `phone`, `image`, `description`) VALUES
-(1, 'นาย ก', 1, NULL, 'upload/1603127669ar 4.png', 'test');
+(1, 'นาย ก', 1, NULL, 'upload/1603127669ar 4.png', 'test'),
+(2, 'นาย ข', 1, NULL, 'upload/1603390937Image [default idle.png', '1');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ INSERT INTO `hairstyle` (`id_hairstyle`, `id_partner`, `name`, `description`, `p
 (9, 1, 'ทรงผมรองทรงต่ำ', 'ทรงผมพื้นฐานสำหรับคุณ', 250, 'upload/1598974185รองทรงต่ำ.png', 1),
 (10, 1, 'ทรงผมปัดข้าง', 'ทรงผมพื้นฐานสำหรับคุณ', 350, 'upload/1598974223ปาดข้าง.png', 1),
 (11, 1, 'ทรงผมสกีนเฮด', 'ทรงผมพื้นฐานสำหรับคุณ', 400, 'upload/1598974360สกีนเฮด.png', 1),
-(12, 1, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1);
+(12, 1, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1),
+(14, 1, '1', '1', 1, 'upload/1603387224messageImage_1602880736761.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -95,6 +97,49 @@ INSERT INTO `partner` (`id`, `biz_name`, `biz_email`, `location`, `biz_type`, `f
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `partner_closed`
+--
+
+CREATE TABLE `partner_closed` (
+  `date` date NOT NULL,
+  `time` text NOT NULL,
+  `fk_partner_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner_closed`
+--
+
+INSERT INTO `partner_closed` (`date`, `time`, `fk_partner_id`) VALUES
+('2020-10-24', '13:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `paymeny_id` int(11) NOT NULL,
+  `fk_sd_id` varchar(14) NOT NULL,
+  `card_name` text NOT NULL,
+  `card_no` text NOT NULL,
+  `month` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
+  `cvc` int(11) NOT NULL,
+  `notification` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`paymeny_id`, `fk_sd_id`, `card_name`, `card_no`, `month`, `year`, `cvc`, `notification`) VALUES
+(1, 'FS201023000002', '1', '2', 1, 3, 122, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `promotion`
 --
 
@@ -105,6 +150,13 @@ CREATE TABLE `promotion` (
   `promotion_price` double NOT NULL,
   `fk_hairstyle_id` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `promotion`
+--
+
+INSERT INTO `promotion` (`id_promotion`, `start_date`, `end_date`, `promotion_price`, `fk_hairstyle_id`) VALUES
+(1, '2020-10-21', '2020-10-27', 1, 14);
 
 -- --------------------------------------------------------
 
@@ -122,9 +174,49 @@ CREATE TABLE `service_detail` (
   `id_barber` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
   `id_hairstyle` int(11) NOT NULL,
-  `id_service_detail` int(11) NOT NULL,
+  `id_service_detail` varchar(14) NOT NULL,
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service_detail`
+--
+
+INSERT INTO `service_detail` (`service_date`, `service_time`, `service_location`, `service_phone`, `status`, `price`, `id_barber`, `id_users`, `id_hairstyle`, `id_service_detail`, `email`) VALUES
+('2020-10-29', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'DN201023000013', ''),
+('2020-10-29', '10.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000001', ''),
+('2020-10-28', '09.00', '      ', '', 2, NULL, 1, 1, 14, 'FS201023000002', ''),
+('2020-10-28', '10.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000003', ''),
+('2020-10-24', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000004', ''),
+('2020-10-24', '14.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000005', ''),
+('2020-10-24', '15.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000006', ''),
+('2020-10-24', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000007', ''),
+('2020-10-27', '14.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000008', ''),
+('2020-10-24', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000009', ''),
+('2020-10-24', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000010', ''),
+('2020-10-24', '13.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000011', ''),
+('2020-10-24', '14.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000012', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_images`
+--
+
+CREATE TABLE `service_images` (
+  `path` text NOT NULL,
+  `fk_sd_id` varchar(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service_images`
+--
+
+INSERT INTO `service_images` (`path`, `fk_sd_id`) VALUES
+('upload/1603397131messageImage_1602880736761.jpg', '0'),
+('upload/1603397131screencapture-localhost-matchminton-index-html-2020-10-19-22_49_49.png', '0'),
+('upload/1603397277messageImage_1602880736761.jpg', '0'),
+('upload/1603397277screencapture-localhost-matchminton-index-html-2020-10-19-22_49_49.png', '0');
 
 -- --------------------------------------------------------
 
@@ -175,6 +267,12 @@ ALTER TABLE `partner`
   ADD KEY `fk_user_id` (`fk_user_id`);
 
 --
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`paymeny_id`);
+
+--
 -- Indexes for table `promotion`
 --
 ALTER TABLE `promotion`
@@ -190,6 +288,12 @@ ALTER TABLE `service_detail`
   ADD KEY `id_barber` (`id_barber`);
 
 --
+-- Indexes for table `service_images`
+--
+ALTER TABLE `service_images`
+  ADD KEY `fk_sd_id` (`fk_sd_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -203,13 +307,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barber`
 --
 ALTER TABLE `barber`
-  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `hairstyle`
 --
 ALTER TABLE `hairstyle`
-  MODIFY `id_hairstyle` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_hairstyle` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `partner`
@@ -218,16 +322,16 @@ ALTER TABLE `partner`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `paymeny_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `id_promotion` int(15) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `service_detail`
---
-ALTER TABLE `service_detail`
-  MODIFY `id_service_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_promotion` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

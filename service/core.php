@@ -346,6 +346,32 @@
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);
         return ;
+    }else if  (isset($_POST['action']) && $_POST['action'] == 'remove_closed'){
+
+        $sql = "UPDATE `service_detail` SET `status` = '".$_POST['status']."'  WHERE `id_service_detail` = '".$_POST['id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
+    }else if  (isset($_POST['action']) && $_POST['action'] == 'add_closed'){
+
+
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "INSERT INTO `partner_closed`(`date`, `time`, `fk_partner_id`) VALUES ('".$_POST['date']."','".$_POST['time']."','".$rs[0]['id']."')";
+            $rs = getpdo($conn,$sql);
+
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
+        }
     }
 
 

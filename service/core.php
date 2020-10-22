@@ -330,7 +330,7 @@
         
             $res = array("code" => 200, "result" =>  $rs);
             echo json_encode($res);
-            // return ;
+            return ;
        
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_barber'){
         $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_detail`.`id_barber` = '".$_POST['id_barber']."' and `status` != 1";
@@ -347,17 +347,22 @@
         echo json_encode($res);
         return ;
     }else if  (isset($_POST['action']) && $_POST['action'] == 'remove_closed'){
-
-        $sql = "UPDATE `service_detail` SET `status` = '".$_POST['status']."'  WHERE `id_service_detail` = '".$_POST['id']."'";
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $res = array("code" => 200, "result" => $rs);
-            echo json_encode($res);
-            return ;
-        }
-    }else if  (isset($_POST['action']) && $_POST['action'] == 'add_closed'){
+            $sql = " DELETE FROM `partner_closed` WHERE `date` = '".$_POST['date']."' and `time` = '".$_POST['time']."' and `fk_partner_id` = '".$rs[0]['id']."')";
+            $rs = getpdo($conn,$sql);
 
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
+        }
+
+       
+    }else if  (isset($_POST['action']) && $_POST['action'] == 'add_closed'){
 
         $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
         $rs = getpdo($conn,$sql);

@@ -856,12 +856,14 @@
         const createPayment = () => {
 
             var form_data = new FormData();
+            form_data.append('action', 'add_payment');
             form_data.append('card_name', $('#card_name').val());
             form_data.append('card_no', $('#card_no').val());
             form_data.append('month', $('#month').val());
             form_data.append('year', $('#year').val());
             form_data.append('cvc', $('#cvc').val());
             form_data.append('notification', $('input[name=notification]:checked').length > 0);
+            form_data.append('lastid',lastid);
 
             $.ajax({
                 method: "POST",

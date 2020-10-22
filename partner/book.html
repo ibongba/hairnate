@@ -221,7 +221,7 @@
                         <label>Service Price</label>
                     </fieldset>
                     <fieldset class="material mb-3">
-                        <input type="number" placeholder="" id="price_add_promotion" autocomplete="off" required>
+                        <input type="number" placeholder="" id="price_add_service" autocomplete="off" required>
                         <hr>
                         <label>Service Promotion</label>
                     </fieldset>
@@ -756,7 +756,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "service/core.php",
+                url: "../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,
@@ -790,7 +790,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "../../service/core.php",
+                url: "../service/core.php",
                 data: form_data,
                 dataType: 'json',
                 contentType: false,

@@ -211,12 +211,15 @@
             $sql = "SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'";
             $hairstyle = getpdo($conn,$sql);
 
+            $sql = "SELECT * FROM `partner_closed` WHERE `fk_partner_id` =  '".$rs[0]['id']."'";
+            $closed = getpdo($conn,$sql);
+
 
             $sql = "SELECT * FROM `barber` WHERE `id_partner` = '".$rs[0]['id']."'";
             $barber = getpdo($conn,$sql);
 
 
-            $res = array("code" => 200, "result" => json_encode(array('hairstyle' => $hairstyle, 'partner'=>$rs[0] , 'barber' => $barber,'sql'=>"SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'")));
+            $res = array("code" => 200, "result" => json_encode(array('closed' => $closed,'hairstyle' => $hairstyle, 'partner'=>$rs[0] , 'barber' => $barber,'sql'=>"SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'")));
             echo json_encode($res);
             return ;
         }

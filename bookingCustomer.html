@@ -133,17 +133,17 @@
                         <div class="col is-moring d-none">
                             <div class="collapse multi-collapse" id="multiCollapseExample1">
                                 <br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">09.00</button><br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">10.00</button><br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">11.00</button>
+                                <button onclick="select(this)" id="9" type="button" class="btn btn-dark col m-0 w-100 time">09.00</button><br>
+                                <button onclick="select(this)" id="10" type="button" class="btn btn-dark col m-0 w-100 time">10.00</button><br>
+                                <button onclick="select(this)" id="11" type="button" class="btn btn-dark col m-0 w-100 time">11.00</button>
                             </div>
                         </div>
                         <div class="col is-evening">
                             <div class="collapse multi-collapse" id="multiCollapseExample2">
                                 <br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">13.00</button><br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">14.00</button><br>
-                                <button onclick="select(this)" type="button" class="btn btn-dark col m-0 w-100 time">15.00</button>
+                                <button onclick="select(this)" id="13" type="button" class="btn btn-dark col m-0 w-100 time">13.00</button><br>
+                                <button onclick="select(this)" id="14" type="button" class="btn btn-dark col m-0 w-100 time">14.00</button><br>
+                                <button onclick="select(this)" id="15" type="button" class="btn btn-dark col m-0 w-100 time">15.00</button>
                             </div>
                         </div>
                     </div>
@@ -454,6 +454,7 @@
         var listHairStyle = []
         var listBarber = []
         var partner = {}
+        var _closed = [];
 
         $(document).ready(function() {
 
@@ -536,6 +537,9 @@
                 data.hairstyle.map((item, i) => {
                     $('#service').append(serviceCard(item, i))
                 })
+
+                _closed = [...data.closed]
+                console.log(data.closed,_closed )
 
                 partner = data.partner
                 selectBarber();
@@ -621,15 +625,21 @@
                             $('.is-moring').removeClass('d-none')
 
                             list = msg.result.map((item) => {
-                                    if (parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
-                                    if (parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
+                                if (parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
+                                if (parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
 
-                                    let tmp = {};
-                                    tmp.title = "มีการจองไว้ : " + item.service_time;
-                                    tmp.start = item.service_date;
-                                    return tmp;
-                                })
+                                let tmp = {};
+                                tmp.title = "มีการจองไว้ : " + item.service_time;
+                                tmp.start = item.service_date;
+                                return tmp;
+                            })
+                            console.log(_closed,arg.start)
 
+                            let listClosed = _closed.filter((i)=>i.date === formatDate2(arg.start));
+                            listClosed.map((i)=>{
+                                console.log(parseInt(i.time))
+                                $('#'+ parseInt(i.time)).addClass('d-none');
+                            })
                         });
 
                         calendar.addEvent({

@@ -328,7 +328,8 @@
                                 <p class="card-text"><b>รายละเอียดการ์ด</b></p>
 
                                 <label for="card_no">เลขการ์ด</label>
-                                <input type="text" class="form-control" id="card_no" name="card_no" style="background-color: #fff;">
+                                <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. " placeholder="#### #### #### ####"  style="background-color: #fff;">
+
                                 <label for="card_name">ชื่อของผู้ถือการ์ด</label>
                                 <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
                                 <div class="row">
@@ -537,7 +538,6 @@
                 })
 
                 partner = data.partner
-                console.log(partner)
                 selectBarber();
 
             });
@@ -565,23 +565,21 @@
                     tmp.start = item.service_date;
                     return tmp;
                 })
-                calendar.addEventSource(list)
-                calendar.refetchEvents()
             });
 
-            // CreateCalenda()
+            CreateCalenda()
         }
 
 
         document.addEventListener('DOMContentLoaded', function() {
             CreateCalenda()
         });
-        var calendar = null;
+
 
         const CreateCalenda = () => {
 
             var calendarEl = document.getElementById('calendar');
-            calendar = new FullCalendar.Calendar(calendarEl, {
+            var calendar = new FullCalendar.Calendar(calendarEl, {
                 // headerToolbar: {
                 //     left: 'prev,next today',
                 //     center: 'title',
@@ -667,7 +665,7 @@
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
-                // events: list
+                events: list
                     // events: [{
                     //     title: 'All Day Event',
                     //     start: '2020-06-01'
@@ -817,7 +815,6 @@
             form_data.append('id_hairstyle', $('input[name=hairstyle]:checked').val());
             form_data.append('service_date', formatDate2(date));
             form_data.append('service_time', time);
-            form_data.append('type', partner.biz_type);
 
                 
             let location = $('#address').val() + ' ' + $('#moo').val() + ' ' + $('#road').val() + ' ' + $('#kad').val() + ' ' + $('#amper').val() + ' ' + $('#jakwad').val() + ' ' + $('#pnum').val();

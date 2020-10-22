@@ -327,7 +327,7 @@
                         <hr>
                         <label>Promotion Detail</label>
                     </fieldset>
-                    <!-- <fieldset class="material mb-3">
+                    <fieldset class="material mb-3">
                         <input type="number" id="price_add_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Price</label>
@@ -336,7 +336,7 @@
                         <input type="number" id="promotion_price_add_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Promotion Price</label>
-                    </fieldset> -->
+                    </fieldset>
                     <div class="btn-update" style="text-align: center;">
                         <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">ADD</button>
                     </div>
@@ -388,7 +388,7 @@
                         <hr>
                         <label>Promotion Detail</label>
                     </fieldset>
-                    <!-- <fieldset class="material mb-3">
+                    <fieldset class="material mb-3">
                         <input type="number" id="price_edit_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Price</label>
@@ -397,7 +397,7 @@
                         <input type="number" id="promotion_price_edit_promotion" placeholder="" autocomplete="off" required>
                         <hr>
                         <label>Promotion Price</label>
-                    </fieldset> -->
+                    </fieldset>
                     <div class="btn-update" style="text-align: center;" id="button_edit_promotion">
                         <button type="button" class="btn btn-danger" onclick="createPromorion()" style="background-color: #A33E3E;">UPDATE</button>
                     </div>
@@ -602,9 +602,9 @@
         }
 
 
-        const removePromotion =(id_hairstyle,id_promotion = '') => {
-            
-             $.ajax({
+        const removePromotion = (id_hairstyle, id_promotion = '') => {
+
+            $.ajax({
                 method: "POST",
                 url: "../service/core.php",
                 data: {
@@ -694,7 +694,7 @@
                     };
                 })(f);
 
-                $('#'+id).parent().children('.is-remove').remove()
+                $('#' + id).parent().children('.is-remove').remove()
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(f);
@@ -868,7 +868,7 @@
 
 
         const removeBarber = (id) => {
-             $.ajax({
+            $.ajax({
                 method: "POST",
                 url: "../service/core.php",
                 data: {

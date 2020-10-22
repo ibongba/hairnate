@@ -452,7 +452,7 @@
 
         var listHairStyle = []
         var listBarber = []
-        var partner = []
+        var partner = {}
 
         $(document).ready(function() {
 
@@ -537,6 +537,7 @@
                 })
 
                 partner = data.partner
+                console.log(partner)
                 selectBarber();
 
             });
@@ -564,21 +565,23 @@
                     tmp.start = item.service_date;
                     return tmp;
                 })
+                calendar.addEventSource(list)
+                calendar.refetchEvents()
             });
 
-            CreateCalenda()
+            // CreateCalenda()
         }
 
 
         document.addEventListener('DOMContentLoaded', function() {
             CreateCalenda()
         });
-
+        var calendar = null;
 
         const CreateCalenda = () => {
 
             var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            calendar = new FullCalendar.Calendar(calendarEl, {
                 // headerToolbar: {
                 //     left: 'prev,next today',
                 //     center: 'title',
@@ -664,7 +667,7 @@
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
-                events: list
+                // events: list
                     // events: [{
                     //     title: 'All Day Event',
                     //     start: '2020-06-01'
@@ -814,6 +817,7 @@
             form_data.append('id_hairstyle', $('input[name=hairstyle]:checked').val());
             form_data.append('service_date', formatDate2(date));
             form_data.append('service_time', time);
+            form_data.append('type', partner.biz_type);
 
                 
             let location = $('#address').val() + ' ' + $('#moo').val() + ' ' + $('#road').val() + ' ' + $('#kad').val() + ' ' + $('#amper').val() + ' ' + $('#jakwad').val() + ' ' + $('#pnum').val();
@@ -862,7 +866,7 @@
             form_data.append('month', $('#month').val());
             form_data.append('year', $('#year').val());
             form_data.append('cvc', $('#cvc').val());
-            form_data.append('notification', $('input[name=notification]:checked').length > 0);
+            form_data.append('notification', $('input[name=notification]:checked').length > 0 ? 1 : 0);
             form_data.append('lastid',lastid);
 
             $.ajax({

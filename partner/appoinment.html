@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col p-0">
                 <select id="inputState" class="form-control" onchange="onchangefilter()">
-                  <option value="">FILTER</option>
+                  <option value=" ">FILTER</option>
                   <!-- <option></option> -->
                 </select>
             </div>
@@ -168,6 +168,11 @@
         });
     </script>
     <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+    <script>
         var user = JSON.parse(localStorage.getItem('user'));
 
         // function getUrlVars() {
@@ -242,17 +247,15 @@
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
-                    action: 'get_detail_order_by_customer',
-                    service_date: date,
+                    action: 'get_filter',
                     id_barber: $('#inputState option:selected').val(),
                     id: user.id,
                 },
                 dataType: 'json',
             }).done(function(msg) {
-                msg = JSON.parse(msg);
                 if (msg.code === 200) {
                     msg.result.map((item) => {
-                        $('#detail').append(detail(item));
+                        $('#inputState').append(inputState(item));
                         return;
                     });
                 }

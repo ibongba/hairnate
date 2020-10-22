@@ -324,7 +324,7 @@
         JOIN `users` ON `service_detail`.`id_users` = `users`.`id` 
         LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` 
         WHERE `service_date` = '".$_POST['service_date']."' and `id_users` = '".$_POST['id']."' and `status` != '1' order by `service_date` desc,`service_time` DESC";
-        echo $sql;
+
         $rs = getpdo($conn,$sql);
         if (!empty($_POST['id_barber'])) {
             $sql .= " WHERE  `id_barber` = '".$_POST['id_barber']."' DESC";
@@ -342,7 +342,6 @@
         if(isset($_POST['service_date'])) $sql .= " and `service_date` = '".$_POST['service_date']."'";
         $sql .= " order by `service_date` desc,`service_time` desc";
         $rs = getpdo($conn,$sql);
-        echo $sql;
         $res = array("code" => 200, "result" =>  $rs);
         echo json_encode($res);
         return ;

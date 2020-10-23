@@ -49,18 +49,18 @@
                 <div class="mt-3 d-none" id="select">
                     <div class="row my-2">
                         <div class="col">
-                            <button type="button" class="btn btn-danger" onclick="allMorning()" id="morning">ช่วงเช้า</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnMorning(9,'09.00')" id="9" style="background-color: black">09.00</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnMorning(10,'10.00')" id="10" style="background-color: black">10.00</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnMorning(11,'11.00')" id="11" style="background-color: black">11.00</button>
+                            <button type="button" class="btn btn-danger time" onclick="allMorning()" id="morning">ช่วงเช้า</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnMorning(9,'09.00')" id="9" style="background-color: black">09.00</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnMorning(10,'10.00')" id="10" style="background-color: black">10.00</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnMorning(11,'11.00')" id="11" style="background-color: black">11.00</button>
                         </div>
                     </div>
                     <div class="row mb-5">
                         <div class="col">
-                            <button type="button" class="btn btn-danger" onclick="allEvening()" i id="evening">ช่วงบ่าย</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnEvening(13,'13.00')" id="13" style="background-color: black">13.00</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnEvening(14,'14.00')" id="14" style="background-color: black">14.00</button>
-                            <button type="button" class="btn btn-secondary" onclick="onClickBtnEvening(15,'15.00')" id="15" style="background-color: black">15.00</button>
+                            <button type="button" class="btn btn-danger time" onclick="allEvening()" i id="evening">ช่วงบ่าย</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnEvening(13,'13.00')" id="13" style="background-color: black">13.00</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnEvening(14,'14.00')" id="14" style="background-color: black">14.00</button>
+                            <button type="button" class="btn btn-secondary time" onclick="onClickBtnEvening(15,'15.00')" id="15" style="background-color: black">15.00</button>
                         </div>
                     </div>
                 </div>
@@ -187,6 +187,33 @@
                     $('#all').text(msg.result.length)
                 }
             });
+
+            $('.time').removeClass('disabled');
+
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data:{
+                    action: 'get_closed',
+                    date: date,
+                    user_id: user.id,
+                }
+            }).done((msg)=>{
+                msg = JSON.parse(msg)
+                console.log(msg);
+                if(msg.code === 200){
+                    msg.result.map((item)=>{
+                        $('#'+ parseInt(item.time)).addClass('disabled');
+                    })
+                    
+                    if($('#9').hasClass('disabled') && $('#10').hasClass('disabled') && $('#11').hasClass('disabled')){
+                        $('#morning').addClass('disabled');
+                    }
+                    if($('#13').hasClass('disabled') && $('#14').hasClass('disabled') && $('#15').hasClass('disabled')){
+                        $('#evening').addClass('disabled');
+                    }
+                }
+            })
         });
 
         detail = (item) => {

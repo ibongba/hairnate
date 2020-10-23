@@ -383,6 +383,23 @@
                 return ;
             }
         }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'get_closed'){
+
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $partner = $rs[0]['id'];
+
+            $sql = "SELECT * FROM `partner_closed` WHERE `fk_partner_id` = '". $partner."' and `date` = '".$_POST['date']."'";
+
+            $rs = getpdo($conn,$sql);
+                
+            $res = array("code" => 200, "result" => $rs,'sql' => $sql);
+            echo json_encode($res);
+            return ;
+        }
+
     }
 
 

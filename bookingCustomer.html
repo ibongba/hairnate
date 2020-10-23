@@ -327,8 +327,10 @@
                                 <h5 class="card-title"></h5>
                                 <p class="card-text"><b>รายละเอียดการ์ด</b></p>
 
-                                <label for="card_no">เลขการ์ด</label>
-                                <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. " placeholder="#### #### #### ####"  style="background-color: #fff;">
+
+                                <label class="pt-2" for="card_no">เลขการ์ด</label><img src="images/payment.png" alt="" style="width: 200px; float: right;">
+                                <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. "
+                                    placeholder="#### #### #### ####" style="background-color: #fff;">
 
                                 <label for="card_name">ชื่อของผู้ถือการ์ด</label>
                                 <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
@@ -337,9 +339,8 @@
                                     <div class="col"><label for="cvc" class="my-4">เลข CVC</label><br></div>
                                 </div>
                                 <div class="row mb-5">
-                                    <div class="col">
-                                        <input type="number" class="form-control col-3 text-center float-left pr-1" id="month" name="month" placeholder="MM" style="background-color: #fff;">
-                                        <input type="number" class="form-control col-4 text-center" id="year" name="year" placeholder="YYYY" style="background-color: #fff;">
+                                    <div class="col-6" style="padding-top: 5px;">
+                                        <input type="month" id="start" name="start" min="2018-03" value="2020-10" style="height: max-content;">
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
@@ -539,7 +540,7 @@
                 })
 
                 _closed = [...data.closed]
-                console.log(data.closed,_closed )
+                console.log(data.closed, _closed)
 
                 partner = data.partner
                 selectBarber();
@@ -633,14 +634,14 @@
                                 tmp.start = item.service_date;
                                 return tmp;
                             })
-                            console.log(_closed,arg.start)
+                            console.log(_closed, arg.start)
 
-                            let listClosed = _closed.filter((i)=>i.date === formatDate2(arg.start));
+                            let listClosed = _closed.filter((i) => i.date === formatDate2(arg.start));
 
                             $('.time').removeClass('d-none')
-                            listClosed.map((i)=>{
+                            listClosed.map((i) => {
                                 console.log(parseInt(i.time))
-                                $('#'+ parseInt(i.time)).addClass('d-none');
+                                $('#' + parseInt(i.time)).addClass('d-none');
                             })
                         });
 

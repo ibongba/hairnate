@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                <h3>วันที่ 22/10/2563</h3>
+                <h3 id="date-now"></h3>
                 <div class="mt-3 d-none" id="select">
                     <div class="row my-2">
                         <div class="col">
@@ -142,6 +142,14 @@
 
             return [year, month, day].join('-');
         }
+
+        const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+
+        const formatDate = (date) => {
+            console.log(date);
+            return date.getDate() + ' ' + listMonth[date.getMonth()].toLocaleUpperCase() + ' ' + (date.getFullYear() + 543);
+        };
+
         var date = '';
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',
@@ -150,6 +158,8 @@
             console.log(this.value);
             date = formatDate2(this.value);
             $('#select').removeClass('d-none')
+            $('#date-now').text(formatDate(new Date(this.value)));
+
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',

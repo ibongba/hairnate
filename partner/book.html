@@ -30,8 +30,8 @@
                         <div class="modal-header">
                             <h3>EDIT IMAGE</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
                         <div class="modal-body">
                             <div class="box2" style="height: 150px;">
@@ -55,17 +55,17 @@
             </div>
             <div class=" col-sm-12 col-lg-6 align-items-center d-flex ">
                 <div class="w-100 py-3">
-                    <h2 class="text-center m-0">BARBER A SHOP</h2>
+                    <h2 class="text-center m-0" id="name">BARBER A SHOP</h2>
                     <h5 style="line-height: 15px;" class="pt-2 d-flex justify-content-center"><span class="float-left text-center px-3">120<br/><span style="font-size: 14px;">revice</span></span><span style="border-left: 1px #000 solid;" class="float-left px-3 text-center">100<br/><span style="font-size: 14px;">like</span></span>
                     </h5>
-                    <input type="text" class="px-4 py-2 text-center w-100" placeholder="คำอธิบายร้าน" style="border:1px solid #eeebe6; background: transparent; border-radius: 8px;">
+                    <input type="text" class="px-4 py-2 text-center w-100" id="detail" placeholder="คำอธิบายร้าน" style="border:1px solid #eeebe6; background: transparent; border-radius: 8px;">
                 </div>
             </div>
             <div class="col-12">
                 <div class="row pt-3 align-items-center">
                     <div class="col-9">
                         <div class="loca-box">
-                            <p style="font-size: 1.25rem;"><i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i> 120/121 Condo A Pakkret Nonthaburi 11120<i class="fas fa-pen pl-2"></i></p>
+                            <p style="font-size: 1.25rem;" id="location"></p>
                         </div>
                     </div>
                     <div class="col-3">
@@ -468,6 +468,25 @@
         var list_service = [];
         var list_promotion = [];
         var list_barber = [];
+
+        $.ajax({
+
+            method: "POST",
+            url: "../service/core.php",
+            data: {
+                action: 'get_partner_with_user',
+                user_id: user.id
+            },
+            dataType: 'json',
+        }).done((msg)=>{
+            console.log('msg',msg)
+            if (msg.code === 200) {
+                $('#imgshop').append(imgshop(msg.result.partner));
+                $('#location').append('<i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i>'+msg.result.partner.location)
+                $('#name').text(msg.result.partner.biz_name)
+                // $('#detail').val(msg.result.partner.)
+            }
+        })
 
         $.ajax({
             method: "POST",
@@ -957,12 +976,13 @@
                 }
             });
         }
+
         const imgshop = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            var img = item.biz_image ? '../'+item.biz_image : 'https://via.placeholder.com/150';
             return `
             <div class="icon">
                     <div class="position-relative">
-                        <!-- <img class="circle" src="../${img.biz_image}" /> -->
+                        <img class="circle" src="${img}" />
                         <a href="" class="absolute-b-r " data-toggle="modal" data-target="#editimgshop">
                             <i class="fas fa-pen icon-edit"></i>
                         </a>

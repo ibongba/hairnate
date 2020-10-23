@@ -41,15 +41,60 @@
                     <a href="/hairnate/login.html"><i class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item is-login">
-                    <a href="#"><i class="far fa-bell"></i></a>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="noti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell "></i>
+                        </a>
+                        <style>
+                            .dropdown-menu a {
+                                color: #000;
+                            }
+                        </style>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="noti">
+                            <a class="dropdown-item border-bottom" href="#">
+                                <div class="row">
+                                    <div class="col-2"><i class="fas fa-clock text-secondary"></i></div>
+                                    <div class="col">Justin Bieber <br>ได้ทำการจองบริการ <br><small>23 seconds ago</small></div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item border-bottom" href="#">
+                                <div class="row">
+                                    <div class="col-2"><i class="fas fa-check-circle text-success"></i></div>
+                                    <div class="col">Peter Parker <br>ได้ทำการจองบริการเรียบร้อยแล้ว <br><small>10 minutes ago</small></div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item border-bottom" href="#">
+                                <div class="row">
+                                    <div class="col-2"><i class="fas fa-times-circle text-danger"></i></div>
+                                    <div class="col">Happy Style <br>ได้ทำการยกเลิกการจองบริการล่างหน้า 3 วัน <br><small>23 seconds ago</small></div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item border-bottom" href="#">
+                                <div class="row">
+                                    <div class="col-2"><i class="fas fa-check-circle text-success"></i></div>
+                                    <div class="col">Peter Parker <br>ได้ทำการจองบริการเรียบร้อยแล้ว <br><small>23 seconds ago</small></div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item border-bottom" href="#">
+                                <div class="row">
+                                    <div class="col-2"><i class="fas fa-times-circle text-danger"></i></div>
+                                    <div class="col">Nana <br>ได้ทำการยกเลิกการจองบริการล่างหน้า 1 วัน <br><small>1 hours ago</small></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item is-partner">
+                    <a data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-cut"></i></a>
                 </li>
                 <li class="nav-item is-login">
-                    <a onclick="logout()"><i class="fas fa-sign-out-alt"></i></a>
+                    <a onclick="logout()"><i class="fas fa-sign-out-alt "></i></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 
 <script>
     $(function() {

@@ -233,7 +233,15 @@ body {
     width: 50px;
 }
 
-.navbar-nav a {
+.dropdown-menu {
+    width: 28rem;
+}
+
+.dropdown-menu a {
+    color: #000;
+}
+
+.nav-item a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 18px;

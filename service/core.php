@@ -340,18 +340,26 @@
             return ;
         }
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_detail_order_by_customer'){
-        $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`,  `users`.`address` as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `partner`.`fk_user_id` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['service_date']."' and `users`.`id` = '".$_POST['id']."' and `status` != '1' ";
+
+        $sql = "SELECT `partner`.* FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`,  `users`.`address` as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` hw_Who(connection)HERE `service_date` = '".$_POST['service_date']."' and `partner`.`id` = '".$rs[0]['id']."' and `status` != '1' ";
 
        
-        if (!empty($_POST['id_barber'])) {
-            $sql .= " AND `barber`.`id_barber` = '".$_POST['id_barber']."'";
-        }
-        $sql .= " order by `service_date` desc,`service_time` desc";
-        $rs = getpdo($conn,$sql);
-        
+            if (!empty($_POST['id_barber'])) {
+                $sql .= " AND `barber`.`id_barber` = '".$_POST['id_barber']."'";
+            }
+            $sql .= " order by `service_date` desc,`service_time` desc";
+            $rs = getpdo($conn,$sql);
+            
             $res = array("code" => 200, "result" =>  $rs);
             echo json_encode($res);
             return ;
+        }
+
+        
        
     }else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_barber'){
         $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_detail`.`id_barber` = '".$_POST['id_barber']."' and `status` != 1";

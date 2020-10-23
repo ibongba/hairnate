@@ -327,21 +327,53 @@
                                 <h5 class="card-title"></h5>
                                 <p class="card-text"><b>รายละเอียดการ์ด</b></p>
 
-                                <label class="pt-2" for="card_no">เลขการ์ด</label><img src="images/payment.png" alt="" style="width: 200px; float: right;">
+                                <label class="pt-2" for="card_no">เลขการ์ด</label>
+
+                                <label class="pt-2" for="card_no">เลขการ์ด</label>
                                 <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. "
                                     placeholder="#### #### #### ####" style="background-color: #fff;">
 
-                                <label for="card_name">ชื่อของผู้ถือการ์ด</label>
+                                <label for="card_name" class="mt-3">ชื่อของผู้ถือการ์ด</label>
                                 <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
-                                <div class="row">
-                                    <div class="col"> <label for="month" class="my-4">วันหมดอายุ</label></div>
-                                    <div class="col"><label for="cvc" class="my-4">เลข CVC</label><br></div>
-                                </div>
-                                <div class="row mb-5">
+                                <div class="row mb-5 mt-3">
                                     <div class="col-6" style="padding-top: 5px;">
-                                        <input type="month" id="start" name="start" min="2018-03" value="2020-10" style="height: max-content;">
+                                        <label for="card_date">วันที่หมดอายุ</label> <br>
+                                        <select class="btn" id="expiry-date">
+                                            <option>MM</option>
+                                            <option value="1">01</option>
+                                            <option value="2">02</option>
+                                            <option value="3">03</option>
+                                            <option value="4">04</option>
+                                            <option value="5">05</option>
+                                            <option value="6">06</option>
+                                            <option value="7">07</option>
+                                            <option value="8">08</option>
+                                            <option value="9">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <span>/</span>
+                                        <select class="btn" id="expiry-date">
+                                            <option>YYYY</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                        </select>
                                     </div>
                                     <div class="col">
+                                        <label for="cvc">เลข CVC</label>
                                         <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
                                     </div>
                                 </div>
@@ -404,6 +436,7 @@
     <!-- Stepper JavaScript - minified -->
     <!-- <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script> -->
     <!-- stepper -->
+
     <script>
         const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
 

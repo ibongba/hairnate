@@ -400,6 +400,35 @@
             return ;
         }
 
+    }else if(isset($_POST['action']) && $_POST['action'] == 'create_biz_shop'){
+        $img = '';
+        if(isset($_FILES['files'])){
+            $total = count($_FILES['files']['name']);
+            for( $i=0 ; $i < $total ; $i++ ) {
+                $tmpFilePath = $_FILES['files']['tmp_name'][$i];
+                if ($tmpFilePath != ""){
+                    $newFilePath = "../upload/". time() . $_FILES['files']['name'][$i];
+                    if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+                        $img = "upload/" .time() . $_FILES['files']['name'][$i];;
+                    }
+                }
+            }
+        }
+
+        // $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        // echo $sql;
+        // $rs = getpdo($conn,$sql);
+
+        // if($rs){
+            $sql = "UPDATE `partner` SET `biz_image`= '".$img."' WHERE `fk_user_id`= '".$_POST['user_id']."'";
+            $rs = getpdo($conn,$sql);
+            if($rs){
+                $res = array("code" => 200, "result" => $rs);
+                echo json_encode($res);
+                return ;
+            }
+        // }
+
     }
 
 

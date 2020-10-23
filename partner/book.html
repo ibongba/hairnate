@@ -17,13 +17,39 @@
 
     <div class="container">
         <div class="row justify-content-center pt-5">
-            <div class="col-lg-3 col-sm-12">
-                <div class="icon">
-                    <div class="position-relative">
-                        <img class="circle" src="../images/profile.png" />
-                        <a href="" class="absolute-b-r">
-                            <i class="fas fa-pen icon-edit"></i>
-                        </a>
+            <div class="col-lg-3 col-sm-12" id="imgshop">
+
+            </div>
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="editimgshop" tabindex="-1" aria-labelledby="editimgshop" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h3>EDIT IMAGE</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box2" style="height: 150px;">
+                                <div class="wrapper">
+                                    <div class="drop">
+                                        <!-- <div class="cont"> -->
+                                        <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
+                                        <!-- </div> -->
+                                        <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-update mt-3" style="text-align: center;">
+                            <button type="button" class="btn btn-danger" onclick="createbizshop()" style="background-color: #A33E3E;">UPDATE</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -892,7 +918,6 @@
             return `
 
                     <div class="col-lg col-sm-3">
-
                         <div class="icon">
                             <div class="position-relative">
                                 <a href="barber.html?id=${item.id_barber}"> <img class="circle" src="../${img}" /></a>
@@ -905,6 +930,45 @@
                         </div>
 
                     </div>`;
+        }
+        const createbizshop = () => {
+            var form_data = new FormData();
+            var totalfiles = document.getElementById('files_add_barber').files.length;
+            for (var index = 0; index < totalfiles; index++) {
+                form_data.append("files[]", document.getElementById('files_add_barber').files[index]);
+            }
+            form_data.append('action', 'create_biz_shop');
+            form_data.append('user_id', user.id);
+            // form_data.append('name', $('#name_add_barber').val());
+            // form_data.append('description', $('#detail_add_barber').val());
+
+            $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: form_data,
+                dataType: 'json',
+                contentType: false,
+                processData: false
+            }).done(function(msg) {
+                console.log(msg)
+                if (msg.code === 200) {
+                    alert('เพิ่มสำเร็จ')
+                    window.location.href = "book.html";
+                }
+            });
+        }
+        const imgshop = (item) => {
+            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            return `
+            <div class="icon">
+                    <div class="position-relative">
+                        <!-- <img class="circle" src="../${img.biz_image}" /> -->
+                        <a href="" class="absolute-b-r " data-toggle="modal" data-target="#editimgshop">
+                            <i class="fas fa-pen icon-edit"></i>
+                        </a>
+                    </div>
+                </div>
+                    `;
         }
     </script>
 </body>

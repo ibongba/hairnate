@@ -636,6 +636,8 @@
                             console.log(_closed,arg.start)
 
                             let listClosed = _closed.filter((i)=>i.date === formatDate2(arg.start));
+
+                            $('.time').removeClass('d-none')
                             listClosed.map((i)=>{
                                 console.log(parseInt(i.time))
                                 $('#'+ parseInt(i.time)).addClass('d-none');
@@ -822,6 +824,8 @@
             form_data.append('service_location', location);
             form_data.append('service_phone', $('#phone').val());
             form_data.append('email', $('#email').val());
+            form_data.append('type', partner.biz_type);
+
 
             $.ajax({
                 method: "POST",
@@ -846,6 +850,9 @@
                 // 
             }else{
                 lastid = msg.result.lastid
+
+            console.log(lastid)
+            
                 let hairstyle = listHairStyle.find((item)=>item.id_hairstyle === $('input[name=hairstyle]:checked').val())
                 let barber = listBarber.find((item)=>item.id_barber === $('input[name=barber]:checked').val())
 
@@ -855,7 +862,6 @@
         }
 
         const createPayment = () => {
-
             var form_data = new FormData();
             form_data.append('action', 'add_payment');
             form_data.append('card_name', $('#card_name').val());

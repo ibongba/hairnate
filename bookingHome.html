@@ -14,12 +14,14 @@
 
 <body>
     <div id="nav"></div>
-    <img src="images/Group 262.png" alt="" class="w-100">
+    <div style="max-height: 100vh; overflow: hidden;">        
+        <img id="image" src="https://via.placeholder.com/1920x600.png?text=ไม่มีรูป" alt="" class="w-100">
+    </div>
     <div class="container">
         <div class="row my-5">
             <div class="col">
                 <div>
-                    <h5 class="float-left" id="name">PHEEN BARBER SHOP</h5>&nbsp;
+                    <h5 class="float-left" id="name"></h5>&nbsp;
                     <a id="ref" href="bookingCustomer.html" class="btn btn-danger" style="background-color: #A33E3E; border-radius: 25px;">จองคิว</a>
                 </div>
                 <p id="detail"></p>
@@ -260,6 +262,7 @@
                 console.log(data)
                 $('#name').text(data.partner.biz_name)
                 $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.location)
+                $('#image').attr('src',data.partner.image || 'https://via.placeholder.com/1920x600.png?text=ไม่มีรูป')
             });
         });
 

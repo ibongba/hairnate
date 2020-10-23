@@ -339,7 +339,7 @@
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-6" style="padding-top: 5px;">
-                                        <input type="month" id="start" name="start" min="2018-03" value="2020-10" style="height: max-content;">
+                                        <input type="month" id="start" name="start" min="01" value="10" style="height: max-content;">
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
@@ -596,7 +596,11 @@
                 selectable: true,
                 selectMirror: true,
                 select: function(arg) {
-                    if (arg.start < new Date()) {
+                    const today = new Date()
+                    const tomorrow = new Date(today)
+                    tomorrow.setDate(tomorrow.getDate() + 1)
+                    if (arg.start < tomorrow) {
+                        alert('ไม่สามารถเลือกวันดังเกล่า')
                         calendar.unselect()
                         return;
                     }

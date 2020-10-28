@@ -276,14 +276,23 @@ body {
 }
 
 .imgg {
-    width: 100%;
-    overflow: hidden;
-    /* margin: 20px 20px 20px 0px; */
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
 }
 
-.imgg img {
-    width: 100%;
+.imgmid {
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
 }
+
+
+/*.imgg img {
+    width: 100%;
+} */
 
 .btnHome {
     width: 100%;
@@ -310,16 +319,7 @@ body {
     background: #EEEBE6;
 }
 
-.top_content {
-    height: auto;
-}
-
-.top_content h1 {
-    padding: 15px 0px 0px 0px;
-}
-
 .top_content .btn {
-    /* margin-left: 23%; */
     border-radius: 25px;
 }
 
@@ -330,10 +330,6 @@ body {
     background-size: cover;
     margin-bottom: 20px;
     float: left;
-}
-
-.text-box-ar a {
-    color: #AC5353;
 }
 
 .card img {
@@ -514,13 +510,14 @@ footer {
     height: 100%;
 }
 
-.box-home2 {
+
+/* .box-home2 {
     width: 100%;
 }
 
 .box-home2 img {
     width: 100%;
-}
+} */
 
 .text-box {
     width: auto;
@@ -901,10 +898,18 @@ button:focus {
     /* .top_content .btn {
         margin-left: 50%;
     } */
-    .imgg {
-        width: 100%;
+    .tor {
         float: left;
     }
+    .imgmid {
+        height: 510px;
+        background-position: center;
+        background-size: cover;
+    }
+    /* .imgg {
+        width: 100%;
+        float: left;
+    } */
     .banner {
         height: 300px;
         overflow: hidden;
@@ -940,9 +945,9 @@ button:focus {
     .Rsee .btn {
         transform: rotate(-90deg);
     }
-    .text-box-ar {
+    /* .text-box-ar {
         text-align: left;
-    }
+    } */
     .method {
         width: 25%;
         float: left;

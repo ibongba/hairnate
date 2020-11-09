@@ -158,85 +158,88 @@
             <!-- Third Step -->
             <div class="row setup-content" id="step-11">
                 <h5 class="col-12 my-4 text-center">ADDRESS</h5>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">ที่อยู่เลขที่ : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="address">
+                <div id="get_address"></div>
+                <!-- <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ที่อยู่เลขที่ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">หมู่บ้าน / อาคาร : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="moo">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">หมู่บ้าน / อาคาร : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="moo">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">ตรอก / ซอย : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="soi">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ตรอก / ซอย : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="soi">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">ถนน : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="road">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ถนน : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="road">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">ตำบล / เขต : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="kad">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ตำบล / เขต : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="kad">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">อำเภอ : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="amper">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">อำเภอ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="amper">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">จังหวัด : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="jakwad">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">จังหวัด : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="jakwad">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">รหัสไปรษณีย์ : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="pnum">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">รหัสไปรษณีย์ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pnum">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <h3 class="p-5 col-md-6 col-sm-12">ข้อมูลติดต่อ</h3>
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">เบอร์โทรศัพท์ : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="phone">
+                    <h3 class="p-5 col-md-6 col-sm-12">ข้อมูลติดต่อ</h3>
+                    <div class="col-sm-12 col-md-6 pb-5">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">เบอร์โทรศัพท์ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="phone">
+                            </div>
+                        </div>
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Email : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="email">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row w-100 md-form">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">Email : </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="email">
-                        </div>
-                    </div>
-                </div>
+                </div> -->
                 <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 col-md-4 float-left">BACK</button>
                 <button onclick="addCalenda()" type="button" class="btn btn-dark btn-rounded nextBtn my-4 col-md-4 text-center">NEXT</button>
             </div>
@@ -328,11 +331,11 @@
                                     <h5 class="card-title"></h5>
                                     <p class="card-text"><b>รายละเอียดการ์ด</b></p>
                                     <label class="pt-2" for="card_no">เลขการ์ด</label>
-                                    <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. " onchange="onChangeCardNumber()" 
-                                        placeholder="#### #### #### ####" style="background-color: #fff;">
+                                    <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. "
+                                        onchange="onChangeCardNumber()" placeholder="#### #### #### ####" style="background-color: #fff;">
 
                                     <label for="card_name" class="mt-3">ประเภทการ์ด</label>
-                                    <input type="text" class="form-control " disabled="" id="card_type" name="card_type" aria-describedby="emailHelp" >
+                                    <input type="text" class="form-control " disabled="" id="card_type" name="card_type" aria-describedby="emailHelp">
 
                                     <label for="card_name" class="mt-3">ชื่อของผู้ถือการ์ด</label>
                                     <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
@@ -689,63 +692,11 @@
 
                         date = arg.start
                     }
-                    // var title = prompt('Event Title:');
-                    // if (title) {
-                    //     calendar.addEvent({
-                    //         title: title,
-                    //         start: arg.start,
-                    //         end: arg.end,
-                    //         allDay: arg.allDay
-                    //     })
-                    // }
                     calendar.unselect()
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
                 events: list
-                    // events: [{
-                    //     title: 'All Day Event',
-                    //     start: '2020-06-01'
-                    // }, {
-                    //     title: 'Long Event',
-                    //     start: '2020-06-07',
-                    //     end: '2020-06-10'
-                    // }, {
-                    //     groupId: 999,
-                    //     title: 'Repeating Event',
-                    //     start: '2020-06-09T16:00:00'
-                    // }, {
-                    //     groupId: 999,
-                    //     title: 'Repeating Event',
-                    //     start: '2020-06-16T16:00:00'
-                    // }, {
-                    //     title: 'Conference',
-                    //     start: '2020-06-11',
-                    //     end: '2020-06-13'
-                    // }, {
-                    //     title: 'Meeting',
-                    //     start: '2020-06-12T10:30:00',
-                    //     end: '2020-06-12T12:30:00'
-                    // }, {
-                    //     title: 'Lunch',
-                    //     start: '2020-06-12T12:00:00'
-                    // }, {
-                    //     title: 'Meeting',
-                    //     start: '2020-06-12T14:30:00'
-                    // }, {
-                    //     title: 'Happy Hour',
-                    //     start: '2020-06-12T17:30:00'
-                    // }, {
-                    //     title: 'Dinner',
-                    //     start: '2020-06-12T20:00:00'
-                    // }, {
-                    //     title: 'Birthday Party',
-                    //     start: '2020-06-13T07:00:00'
-                    // }, {
-                    //     title: 'Click for Google',
-                    //     url: 'http://google.com/',
-                    //     start: '2020-06-28'
-                    // }]
             });
 
             calendar.render();
@@ -995,6 +946,95 @@
 
         const onChangeCardNumber = () => {
             $('#card_type').val(GetCardType($('#card_no').val()))
+        }
+    </script>
+    <script>
+        var user = JSON.parse(localStorage.getItem('user'));
+        $().ready(() => {
+            $.ajax({
+                method: "POST",
+                url: "service/core.php",
+                data: {
+                    action: 'get_address_user',
+                    id: user.id
+                },
+            }).done(function(msg) {
+                console.log(msg)
+                msg = JSON.parse(msg)
+                if (msg.code === 200) {
+                    $("#get_address").append(get_address(msg.result[0]));
+                    return;
+                }
+            });
+        })
+        get_address = (item) => {
+            console.log(item);
+            return `
+             <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ที่อยู่เลขที่ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address" value="${item.house_no}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">หมู่บ้าน / อาคาร : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="moo" value="${item.village_no}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">ตำบล / เขต : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="kad" value="${item.sub_area}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">อำเภอ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="amper" value="${item.area}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">จังหวัด : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="jakwad" value="${item.province}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">รหัสไปรษณีย์ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="pnum" value="${item.postal_code}">
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="p-5 col-md-6 col-sm-12">ข้อมูลติดต่อ</h3>
+                    <div class="col-sm-12 col-md-6 pb-5">
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">เบอร์โทรศัพท์ : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="phone" value="${item.phone}">
+                            </div>
+                        </div>
+                        <div class="form-group row w-100 md-form">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Email : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="email" value="${item.email}">
+                            </div>
+                        </div>
+                    </div>
+                </div>`
         }
     </script>
 </body>

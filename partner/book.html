@@ -478,13 +478,13 @@
                 user_id: user.id
             },
             dataType: 'json',
-        }).done((msg)=>{
-            console.log('msg',msg)
+        }).done((msg) => {
+            console.log('msg', msg)
             if (msg.code === 200) {
                 $('#imgshop').append(imgshop(msg.result.partner));
-                $('#location').append('<i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i>'+msg.result.partner.location)
+                $('#location').append('<i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i>' + msg.result.partner.location)
                 $('#name').text(msg.result.partner.biz_name)
-                // $('#detail').val(msg.result.partner.)
+                    // $('#detail').val(msg.result.partner.)
             }
         })
 
@@ -978,7 +978,7 @@
         }
 
         const imgshop = (item) => {
-            var img = item.biz_image ? '../'+item.biz_image : 'https://via.placeholder.com/150';
+            var img = item.biz_image ? '../' + item.biz_image : 'https://via.placeholder.com/150';
             return `
             <div class="icon">
                     <div class="position-relative">

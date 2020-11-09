@@ -54,10 +54,41 @@
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                     </div>
                 </div>
+                <h5>Address</h5>
                 <div class="form-group3 row">
-                    <label for="staticEmail" class="col-sm-3 col-form-label">Address</label>
+                    <label for="staticEmail" class="col-sm-3 col-form-label">House No.</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="address" placeholder="address">
+                        <input type="text" class="form-control" id="house_no" placeholder="House No.">
+                    </div>
+                </div>
+                <div class="form-group3 row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Village No.</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="village_no" placeholder="Village No.">
+                    </div>
+                </div>
+                <div class="form-group3 row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Sub-area</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="sub_area" placeholder="Sub-district/ Sub-area">
+                    </div>
+                </div>
+                <div class="form-group3 row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Area</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="area" placeholder="District / Area">
+                    </div>
+                </div>
+                <div class="form-group3 row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Province</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="province" placeholder="Province">
+                    </div>
+                </div>
+                <div class="form-group3 row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Postal Code</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="postal_code" placeholder="Postal Code">
                     </div>
                 </div>
             </form>
@@ -89,7 +120,12 @@
                     password: $('#password').val(),
                     phone: $('#phone').val(),
                     email: $('#email').val(),
-                    address: $('#address').val()
+                    house_no: $('#house_no').val(),
+                    village_no: $('#village_no').val(),
+                    sub_area: $('#sub_area').val(),
+                    area: $('#area').val(),
+                    province: $('#province').val(),
+                    postal_code: $('#postal_code').val()
                 }
             }).done(function(msg) {
                 console.log(msg)

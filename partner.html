@@ -26,7 +26,7 @@
                 <!-- <p style="border:1px #C1B09D dashed; width: 160px;"></p> -->
 
                 <div class="row mt-4" style="text-align: left;">
-                    <div class="col">
+                    <div class="col-md-6">
 
                         <label for="name" class="text-dark">NAME</label>
                         <input type="text" name="name" id="name" class="form-control" required placeholder="Name">
@@ -36,16 +36,22 @@
                         <input type="text" name="surname" id="surname" class="form-control" required placeholder="Surname">
                     </div>
                 </div>
-                <label for="email" class="text-dark">EMAIL</label>
-                <input type="text" name="email" id="email" class="form-control" required placeholder="Email">
+                <div class="row mt-4" style="text-align: left;">
+                    <div class="col-md-6">
+                        <label for="email" class="text-dark">EMAIL</label>
+                        <input type="text" name="email" id="email" class="form-control" required placeholder="Email">
+                    </div>
+                    <div class="col">
+                        <label for="phone" class="text-dark">PHONE NUMBER</label>
+                        <input type="text" name="phone" id="phone" class="form-control" required placeholder="Phone Number">
+                    </div>
+                </div>
 
-                <label for="phone" class="text-dark">PHONE NUMBER</label>
-                <input type="text" name="phone" id="phone" class="form-control" required placeholder="Phone Number">
 
                 <br>
                 <hr style="background-color: #C1B09D;">
                 <div class="row" style="text-align: left;">
-                    <div class="col">
+                    <div class="col-md-6">
 
                         <label for="biz_name" class="text-dark">NAME OF YOUR BUSINESS *</label>
                         <input type="text" name="name" id="biz_name" class="form-control" required placeholder="Name of your Business">
@@ -67,10 +73,11 @@
 
                     </div>
                 </div>
+                <br>
 
                 <label for="Bemail" class="text-dark">BUSINESS EMAIL *</label>
                 <input type="text" name="Bemail" id="biz_email" class="form-control" required placeholder="Business Email">
-
+                <br>
                 <div class="row" style="text-align: left;">
                     <div class="col">
                         <label for="password" class="text-dark">PASSWORD *</label>
@@ -81,11 +88,73 @@
                         <input type="text" name="conpass" id="conpass" class="form-control" required placeholder="Confrim Password">
                     </div>
                 </div>
-                <label for="address" class="text-dark">ADDRESS *</label>
+                <br>
+                <!-- <label for="address" class="text-dark">ADDRESS *</label>
                 <input type="text" name="address" id="address" class="form-control" required placeholder="Enter your address">
 
                 <label for="location" class="text-dark">LOCATION *</label>
-                <input type="text" name="location" id="location" class="form-control" required placeholder="PIN code or area name">
+                <input type="text" name="location" id="location" class="form-control" required placeholder="PIN code or area name"> -->
+                <h5>Address</h5>
+                <div class="row mt-4" style="text-align: left;">
+
+                    <div class="col-md-4">
+                        <label for="house_no" class="text-dark">House No.</label>
+                        <input type="text" name="house_no" id="house_no" class="form-control" required placeholder="House No.">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="village_no" class="text-dark">Village No.</label>
+                        <input type="text" name="village_no" id="village_no" class="form-control" required placeholder="Village No.">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sub_area" class="text-dark">Sub-area</label>
+                        <input type="text" name="sub_area" id="sub_area" class="form-control" required placeholder="Sub-area">
+                    </div>
+                </div>
+                <div class="row mt-4" style="text-align: left;">
+                    <div class="col-md-4">
+                        <label for="area" class="text-dark">Area</label>
+                        <input type="text" name="area" id="area" class="form-control" required placeholder="Area">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="province" class="text-dark">Province</label>
+                        <input type="text" name="province" id="province" class="form-control" required placeholder="Province">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="postal_code" class="text-dark">Postal Code</label>
+                        <input type="text" name="postal_code" id="postal_code" class="form-control" required placeholder="Postal Code">
+                    </div>
+                </div>
+                <br>
+                <h5>Location Business</h5>
+                <div class="row mt-4" style="text-align: left;">
+
+                    <div class="col-md-4">
+                        <label for="house_no" class="text-dark">House No.</label>
+                        <input type="text" name="house_no" id="biz_house_no" class="form-control" required placeholder="House No.">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="village_no" class="text-dark">Village No.</label>
+                        <input type="text" name="village_no" id="biz_village_no" class="form-control" required placeholder="Village No.">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sub_area" class="text-dark">Sub-area</label>
+                        <input type="text" name="sub_area" id="biz_sub_area" class="form-control" required placeholder="Sub-area">
+                    </div>
+                </div>
+                <div class="row mt-4" style="text-align: left;">
+                    <div class="col-md-4">
+                        <label for="area" class="text-dark">Area</label>
+                        <input type="text" name="area" id="biz_area" class="form-control" required placeholder="Area">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="province" class="text-dark">Province</label>
+                        <input type="text" name="province" id="biz_province" class="form-control" required placeholder="Province">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="postal_code" class="text-dark">Postal Code</label>
+                        <input type="text" name="postal_code" id="biz_postal_code" class="form-control" required placeholder="Postal Code">
+                    </div>
+                </div>
 
                 <div class="radio mt-3">
                     <label><input type="checkbox" name="optradio" id="pt">  ยอมรับข้อกำหนดและเงื่อนไขการใช้งาน</label>
@@ -125,12 +194,22 @@
                     password: $('#password').val(),
                     phone: $('#phone').val(),
                     email: $('#email').val(),
-                    address: $('#address').val(),
+                    house_no: $('#house_no').val(),
+                    village_no: $('#village_no').val(),
+                    sub_area: $('#sub_area').val(),
+                    area: $('#area').val(),
+                    province: $('#province').val(),
+                    postal_code: $('#postal_code').val(),
                     partner: true,
                     surname: $('#surname').val(),
                     name: $('#biz_name').val(),
                     biz_email: $('#biz_email').val(),
-                    location: $('#location').val(),
+                    biz_house_no: $('#biz_house_no').val(),
+                    biz_village_no: $('#biz_village_no').val(),
+                    biz_sub_area: $('#biz_sub_area').val(),
+                    biz_area: $('#biz_area').val(),
+                    biz_province: $('#biz_province').val(),
+                    biz_postal_code: $('#biz_postal_code').val(),
                     biz_type: $('#biz_type:checked').val()
                 }
             }).done(function(msg) {

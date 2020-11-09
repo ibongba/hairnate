@@ -458,8 +458,16 @@
         // }
 
     }
-
-
+    else if (isset($_POST['action']) && $_POST['action'] == 'get_address_user'){
+        $sql = "SELECT * FROM `users` WHERE `id`= '".$_POST['id']."'";
+        // echo $sql;
+        $rs = getpdo($conn,$sql);
+        if(isset($rs)){
+        	$res = array("code" => 200, "result" => $rs);
+        	echo json_encode($res);
+            return ;
+        }
+    }
 
     $result = array("message" => "Error someting");
     $res = array("code" => 401, "result" => $result,"sql" => $sql);

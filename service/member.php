@@ -2,7 +2,7 @@
     require_once 'config.php';
 
     if(isset($_POST['action']) && $_POST['action'] == 'login'){
-        $sql = "SELECT `id`, `username`, `surname`, `phone`, `email`, `address`, `type` FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '".md5($_POST['password'])."'";
+        $sql = "SELECT `id`, `username`, `surname`, `password`, `phone`, `email`, `house_no`, `village_no`, `sub_area`, `area`, `province`, `postal_code`, `type` FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '".md5($_POST['password'])."'";
 
         $rs = getpdo($conn,$sql);
 
@@ -19,7 +19,7 @@
             return ;
     	}
 
-        $sql = "INSERT INTO `users`(`username`, `password`, `phone`, `email`, `address`) VALUES ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['phone']."','".$_POST['email']."','".$_POST['address']."')";
+        $sql = "INSERT INTO `users`(`username`, `password`, `phone`, `email`, `house_no`, `village_no`, `sub_area`, `area`, `province`, `postal_code`) VALUES ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['phone']."','".$_POST['email']."','".$_POST['house_no']."','".$_POST['village_no']."','".$_POST['sub_area']."','".$_POST['area']."','".$_POST['province']."','".$_POST['postal_code']."')";
         $rs = getpdo($conn,$sql);
         if($rs){
         	if(isset($_POST['partner'])){
@@ -29,7 +29,7 @@
         		$sql = "UPDATE `users` SET `type` = 2 , `surname` = '".$_POST['surname']."' WHERE `id` = '".$lastid."'";
         		$rs = getpdo($conn,$sql);
 
-        		$sql = "INSERT INTO `partner`(`biz_name`, `biz_email`, `location`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['location']."','".$_POST['biz_type']."','".$lastid."')";
+        		$sql = "INSERT INTO `partner`(`biz_name`, `biz_email`, `biz_house_no`, `biz_village_no`, `biz_sub_area`, `biz_area`, `biz_province`, `biz_postal_code`, `biz_type`, `fk_user_id`) VALUES ('".$_POST['name']."','".$_POST['biz_email']."','".$_POST['biz_house_no']."','".$_POST['biz_village_no']."','".$_POST['biz_sub_area']."','".$_POST['biz_area']."','".$_POST['biz_province']."','".$_POST['biz_postal_code']."','".$_POST['biz_type']."','".$lastid."')";
         		$rs = getpdo($conn,$sql);
         		if($rs){
                     $lastid = $conn->lastInsertId();

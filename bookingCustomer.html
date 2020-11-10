@@ -809,6 +809,11 @@
 
             form_data.append('service_location', location);
             form_data.append('service_phone', $('#phone').val());
+
+            let currenthairstyle = listHairStyle.find((item)=>{return item.id_hairstyle == $('input[name=hairstyle]:checked').val()})
+
+console.log(listHairStyle);
+            form_data.append('price', currenthairstyle.promotion_price || currenthairstyle.price );
             form_data.append('email', $('#email').val());
             form_data.append('type', partner.biz_type);
 
@@ -888,7 +893,7 @@
                         <h5 class="card-title text-center"><b>ORDER ID : ${lastid}</b></h5>
                         <p class="card-text"><b>${partner.biz_name}</b>
                             <p>${hairstyle.description}</p>
-                            <p>ที่อยู่ : ${$('#address').val() + ' ' + $('#moo').val() + ' ' + $('#road').val() + ' ' + $('#kad').val() + ' ' + $('#amper').val() + ' ' + $('#jakwad').val() + ' ' + $('#pnum').val()}</p>
+                            <p>ที่อยู่ : ${$('#address').val() + ' ' + $('#moo').val() + ' ' + $('#kad').val() + ' ' + $('#amper').val() + ' ' + $('#jakwad').val() + ' ' + $('#pnum').val()}</p>
                         </p>
                         <br>
                         <h5 class="card-title"><b>วันที่ใช้บริการ</b></h5>

@@ -193,7 +193,7 @@
         }
     }else if(isset($_POST['action']) && $_POST['action'] == 'get_all_partner'){
 
-        $sql = "SELECT `partner`.* ,`users`.`address` FROM `partner` join  `users` on `partner`.`fk_user_id` = `users`.`id` WHERE `biz_type` = '".$_POST['biz_type']."'";
+        $sql = "SELECT `partner`.* ,`users`.* FROM `partner` join  `users` on `partner`.`fk_user_id` = `users`.`id` WHERE `biz_type` = '".$_POST['biz_type']."'";
 
         $rs = getpdo($conn,$sql);
 
@@ -203,7 +203,7 @@
             return ;
         }
     }else if(isset($_POST['action']) && $_POST['action'] == 'get_partner_with_id'){
-        $sql = "SELECT `partner`.* FROM `partner` WHERE `id` = '".$_POST['id']."'";
+        $sql = "SELECT `partner`.* FROM `partner` WHERE `fk_user_id` = '".$_POST['id']."'";
         $rs = getpdo($conn,$sql);
 
         if($rs){
@@ -262,7 +262,7 @@
         $nextid .= substr("000000".$lastid,-6,6);
 
 
-        $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('".$nextid."','".$_POST['service_date']."','".$_POST['service_time']."','".$_POST['service_location']."','".$_POST['service_phone']."','".$_POST['email']."','".$_POST['id_barber']."','".$_POST['id_users']."','".$_POST['id_hairstyle']."')";
+        $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `price`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('".$nextid."','".$_POST['service_date']."','".$_POST['service_time']."','".$_POST['service_location']."','".$_POST['price']."','".$_POST['service_phone']."','".$_POST['email']."','".$_POST['id_barber']."','".$_POST['id_users']."','".$_POST['id_hairstyle']."')";
 
         $rs = getpdo($conn,$sql);
 
@@ -345,7 +345,7 @@
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`,  `users`.`address` as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['service_date']."' and `partner`.`id` = '".$rs[0]['id']."' and `status` != '1' ";
+            $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`, CONCAT(`users`.`house_no`,' ', `users`.`village_no`,' ',`users`.`sub_area`,' ',`users`.`area`,' ',`users`.`province`,' ',`users`.`postal_code`) as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['service_date']."' and `partner`.`id` = '".$rs[0]['id']."' and `status` != '1' ";
        
             if (!empty($_POST['id_barber'])) {
                 $sql .= " AND `barber`.`id_barber` = '".$_POST['id_barber']."'";

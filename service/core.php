@@ -457,6 +457,21 @@
             }
         // }
 
+    }else if(isset($_POST['action']) && $_POST['action'] == 'get_notification_with_partner'){
+        $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '".$_POST['user_id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if($rs){
+            $partner = $rs[0]['id'];
+
+            $sql = "SELECT * FROM `service_detail` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` ON `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` WHERE `hairstyle`.`id_partner` = '". $partner."' and status != 1 order by `service_detail`.`update_at` limit 5";
+
+            $rs = getpdo($conn,$sql);
+                
+            $res = array("code" => 200, "result" => $rs,'sql' => $sql);
+            echo json_encode($res);
+            return ;
+        }
     }
     else if (isset($_POST['action']) && $_POST['action'] == 'get_address_user'){
         $sql = "SELECT * FROM `users` WHERE `id`= '".$_POST['id']."'";

@@ -464,7 +464,7 @@
         if($rs){
             $partner = $rs[0]['id'];
 
-            $sql = "SELECT * FROM `service_detail` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` ON `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` WHERE `hairstyle`.`id_partner` = '". $partner."' and status != 1 order by `service_detail`.`update_at` limit 5";
+            $sql = "SELECT *,`hairstyle`.`name` as `hairstyle_name`,`barber`.`name` as `barber_name` FROM `service_detail` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` ON `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` JOIN `partner` ON `partner`.`id` = `hairstyle`.`id_partner`JOIN `barber` ON `barber`.`id_barber`= `service_detail`.`id_barber` WHERE `hairstyle`.`id_partner` = '". $partner."' and status != 1 order by `service_detail`.`update_at` limit 5";
 
             $rs = getpdo($conn,$sql);
                 

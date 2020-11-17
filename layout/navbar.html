@@ -103,10 +103,10 @@
             </div>
             <div class="modal-body ">
                 <div class="mb-5">
-                    <p>Service : ตัดผม Under Cut</p>
-                    <p>Date/Time : 01 March 2020, 11.00 AM</p>
-                    <p>Address : 365 Bond St, Chang Wat Nonthaburi 11120</p>
-                    <p>Barber : ช่าง Coach</p>
+                    <p>Service : <span id="staticService"></span></p>
+                    <p>Date/Time : <span id="staticDate"></span></p>
+                    <p>Address : <span id="staticAddress"></span></p>
+                    <p>Barber : <span id="staticBarber"></span></p>
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn btn-dark2" data-dismiss="modal">Decline</button>
@@ -182,7 +182,12 @@
     }
 
     const getData = (index) => {
-        alert(noti[index].username);
+        $('#staticBackdropLabel').empty();
+        $('#staticBackdropLabel').append(`${noti[index].username}<p style="font-size: small;">ร้าน : ${noti[index].biz_name}</p>`)
+        $('#staticAddress').text(noti[index].service_location);
+        $('#staticService').text(noti[index].hairstyle_name);
+        $('#staticDate').text(noti[index].service_date + ' ' + noti[index].service_time);
+        $('#staticBarber').text(noti[index].barber_name);
     }
 
     const logout = () => {

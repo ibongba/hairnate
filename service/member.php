@@ -2,7 +2,7 @@
     require_once 'config.php';
 
     if(isset($_POST['action']) && $_POST['action'] == 'login'){
-        $sql = "SELECT `id`, `username`, `surname`, `password`, `phone`, `email`, `house_no`, `village_no`, `sub_area`, `area`, `province`, `postal_code`, `type` FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '".md5($_POST['password'])."'";
+        $sql = "SELECT * FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '".md5($_POST['password'])."'";
 
         $rs = getpdo($conn,$sql);
 

@@ -131,68 +131,8 @@
             <hr class="col-12" style="border-bottom:1px solid #EEEBE6;" />
         </div>
 
-        <div class="card" style="background-color: #FAF9F7;">
-            <div class="card-body">
-                <div class="row pt-3">
-                    <div class="col-md-3 col-sm-3 ">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <img class="circle" src="images/asset-1.png" />
-                            </div>
-                        </div>
-                    </div>
-                    <p class="col-md-6 pt-4"><b>Jay J.</b><br> ตัดดีมากครับ บริการดีสมกับราคา</p>
-                    <p class="col-md-3  pt-4 text-right">27 มีนาคม 2563 <br>14.50 น.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="background-color: #FAF9F7;">
-            <div class="card-body">
-                <div class="row pt-3">
-                    <div class="col-md-3 col-sm-3 ">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <img class="circle" src="images/asset-1.png" />
-                            </div>
-                        </div>
-                    </div>
-                    <p class="col-md-6 pt-4"><b>Jay J.</b><br> ตัดดีมากครับ บริการดีสมกับราคา</p>
-                    <p class="col-md-3  pt-4 text-right">27 มีนาคม 2563 <br>14.50 น.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="background-color: #FAF9F7;">
-            <div class="card-body">
-                <div class="row pt-3">
-                    <div class="col-md-3 col-sm-3 ">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <img class="circle" src="images/asset-1.png" />
-                            </div>
-                        </div>
-                    </div>
-                    <p class="col-md-6 pt-4"><b>Jay J.</b><br> ตัดดีมากครับ บริการดีสมกับราคา</p>
-                    <p class="col-md-3  pt-4 text-right">27 มีนาคม 2563 <br>14.50 น.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="background-color: #FAF9F7;">
-            <div class="card-body">
-                <div class="row pt-3">
-                    <div class="col-md-3 col-sm-3 ">
-                        <div class="icon">
-                            <div class="position-relative">
-                                <img class="circle" src="images/asset-1.png" />
-                            </div>
-                        </div>
-                    </div>
-                    <p class="col-md-6 pt-4"><b>Jay J.</b><br> ตัดดีมากครับ บริการดีสมกับราคา</p>
-                    <p class="col-md-3  pt-4 text-right">27 มีนาคม 2563 <br>14.50 น.</p>
-                </div>
-            </div>
+        <div id="review">
+            
         </div>
         <a href="" class="col-12 mb-4">
             <p class="text-black-50 text-right">
@@ -259,6 +199,10 @@
                     $('#service').append(serviceCard(item))
                 })
 
+                data.review.map((item)=>{
+                    $('#review').append(review(item))
+                })
+
                 console.log(data)
                 $('#name').text(data.partner.biz_name)
                 $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.location)
@@ -267,7 +211,25 @@
         });
 
 
-        
+        const review = (item) => {
+            return `
+            <div class="card" style="background-color: #FAF9F7;">
+                <div class="card-body">
+                    <div class="row pt-3">
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="icon">
+                                <div class="position-relative">
+                                    <img class="circle" src="images/asset-1.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="col-md-6 pt-4"><b>${item.username + ' ' + (item.surname ? item.surname : '')}</b><br>${item.detail}</p>
+                        <p class="col-md-3  pt-4 text-right">${item.create_at}</p>
+                    </div>
+                </div>
+            </div>`;
+        }
+
         function getUrlVars()
         {
             var vars = [], hash;

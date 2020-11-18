@@ -72,10 +72,10 @@
                                                         <label for="star1" title="text">1 star</label>
                                                     </div>
                                                     <div class="form-group">
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <textarea class="form-control" id="textarea" rows="3"></textarea>
                                                     </div>
                                                 </form>
-                                                <button type="button" class="btn btn-dark mt-3" style="width: 120px;font-size: medium;
+                                                <button onclick="create_review()" type="button" class="btn btn-dark mt-3" style="width: 120px;font-size: medium;
                                                 padding: 9px;
                                                 border-radius: 25px;">DONE</button>
                                             </div>
@@ -236,6 +236,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="review_id">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -260,7 +261,21 @@
                 let data = msg.result.sd;
                 images = [...msg.result.images]
 
-                data.filter((item) => item.status === '2').map((item, i) => {
+                data.filter((item) => {
+
+
+
+                    var dateFirst = new Date(item.service_date);
+                    var dateSecond = new Date();
+
+                    // time difference
+                    var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+
+                    // days difference
+                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                    return item.status === '2' && diffDays >= 0
+                }).map((item, i) => {
                     $('.status2').append(card(item, i));
                 });
 
@@ -371,8 +386,8 @@
                                     </div>
                                     <div class="col text-right">
                                         <div class="float-right">
-                                            <a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" >REVIEW</a>
-                                            ${(item.status === '3' || (item.status !== '2' && diffDays < 0))? '<h6 class="text-success text-right" >Successfully</h6>' : '<h6 class="text-danger text-right" >Cancel</h6>' }
+                                            ${(item.status != 2 && diffDays < 0) ? `<a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a>` : ''}
+                                            ${(item.status == 3)? '<h6 class="text-success text-right" >Successfully</h6>' : '<h6 class="text-danger text-right" >Cancel</h6>' }
                                           </div><br><br>
                                         <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>
                                     </div>
@@ -398,6 +413,29 @@
                     </div>
                 </div>
                 `
+        }
+
+        const create_review = () => {
+            $.ajax({
+                method: "POST",
+                url: "service/core.php",
+                data: {
+                    action: 'create_review',
+                    id: $('#review_id').val(),
+                    rate : $(`input[name=rate]`).val(),
+                    detail : $('textarea#textarea').val(),
+                    status : 3
+                }
+            }).done(function(msg) {
+                msg = JSON.parse(msg)
+                if (msg.code === 200) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        const setid = (id) => {
+            $('#review_id').val(id)
         }
     </script>
 </body>

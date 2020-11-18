@@ -219,7 +219,11 @@
             $barber = getpdo($conn,$sql);
 
 
-            $res = array("code" => 200, "result" => json_encode(array('closed' => $closed,'hairstyle' => $hairstyle, 'partner'=>$rs[0] , 'barber' => $barber,'sql'=>"SELECT *  FROM `hairstyle` left join `promotion` on  `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `id_partner` = '".$rs[0]['id']."'")));
+            $sql = "SELECT * FROM `review` JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` WHERE `hairstyle`.`id_partner` = '".$rs[0]['id']."'";
+            $review = getpdo($conn,$sql);
+
+
+            $res = array("code" => 200, "result" => json_encode(array('closed' => $closed,'hairstyle' => $hairstyle, 'partner'=>$rs[0] , 'barber' => $barber, 'review' => $review,'sql'=>$sql)));
             echo json_encode($res);
             return ;
         }
@@ -496,6 +500,17 @@
         $rs = getpdo($conn,$sql);
 
         if(isset($rs)){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'create_review'){
+        $sql = "INSERT INTO `review`( `rating`, `detail`, `fk_sd_id`) VALUES ('".$_POST['rate']."','".$_POST['detail']."','".$_POST['id']."')";
+        $rs = getpdo($conn,$sql);
+
+        if(isset($rs)){
+
+            $sql = "UPDATE `service_detail` SET `status` = ".$_POST['status']." WHERE `id_service_detail` = '".$_POST['id']."'";
             $res = array("code" => 200, "result" => $rs);
             echo json_encode($res);
             return ;

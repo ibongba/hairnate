@@ -50,6 +50,39 @@
                             </div>
                             <h3>PAST ORDERS</h3>
                             <div class="accordion status-other">
+
+                                <!-- Modal review -->
+                                <div class="modal fade" id="review_barber" tabindex="-1" aria-labelledby="review_barberLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span> </button>
+                                                <h5 class="text-center pt-3">REVIEW</h5>
+                                                <form class="m-0 p-0">
+                                                    <div class="rate" style="flex-direction: row; justify-content: center;">
+                                                        <input type="radio" id="star5" name="rate" value="5" />
+                                                        <label for="star5" title="text">5 stars</label>
+                                                        <input type="radio" id="star4" name="rate" value="4" />
+                                                        <label for="star4" title="text">4 stars</label>
+                                                        <input type="radio" id="star3" name="rate" value="3" />
+                                                        <label for="star3" title="text">3 stars</label>
+                                                        <input type="radio" id="star2" name="rate" value="2" />
+                                                        <label for="star2" title="text">2 stars</label>
+                                                        <input type="radio" id="star1" name="rate" value="1" />
+                                                        <label for="star1" title="text">1 star</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                                <button type="button" class="btn btn-dark mt-3" style="width: 120px;font-size: medium;
+                                                padding: 9px;
+                                                border-radius: 25px;">DONE</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -270,19 +303,19 @@
 						<div class="card">
 			             <div class="card-header" id="heading${item.id_service_detail}">
 			                 <h2 class="mb-0">
-			                     <button class="btn btn-link btn-block text-left collapsed ${i===0 ? 'show' : ''} " type="button" data-toggle="collapse" data-target="#collapse${
+			                     <button class="btn btn-link btn-block text-left text-decoration-none collapsed ${i===0 ? 'show' : ''} " type="button" data-toggle="collapse" data-target="#collapse${
 										item.id_service_detail
 									}" aria-expanded="false" aria-controls="collapse${item.id_service_detail}">
 			                         <div class="row">
-			                             <div class="col float-left pl-0">
+			                             <div class="col-md-6 pl-0">
 			                                 <h6 class="m-0"><b>${item.biz_name}</b></h6>
 			                                 <p class="m-0" style="font-size: xx-small;"><b>${item.name}</b></p>
 			                                 <p class="text-black-50" style="font-size: xx-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
 			                             </div>
-			                             <div class="col float-right">
-			                                 <h6 class="text-black-50 text-right" >Waiting for Service</h6>
-			                                 <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>
-			                             </div>
+			                             <div class="col-md-6 text-right">
+                                            <h6 class="text-black-50"> Waiting for Service</h6>
+                                            <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>
+                                        </div>
 			                         </div>
 			                     </button>
 			                 </h2>
@@ -336,9 +369,11 @@
                                         <p class="m-0" style="font-size: xx-small;"><b>${item.name}</b></p>
                                         <p class="text-black-50" style="font-size: xx-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
                                     </div>
-                                    <div class="col float-right">
-                                        
-                                        ${(item.status === '3' || (item.status !== '2' && diffDays < 0))? '<h6 class="text-success text-right" >Successfully</h6>' : '<h6 class="text-danger text-right" >Cancel</h6>' }
+                                    <div class="col text-right">
+                                        <div class="float-right">
+                                            <a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" >REVIEW</a>
+                                            ${(item.status === '3' || (item.status !== '2' && diffDays < 0))? '<h6 class="text-success text-right" >Successfully</h6>' : '<h6 class="text-danger text-right" >Cancel</h6>' }
+                                          </div><br><br>
                                         <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>
                                     </div>
                                 </div>

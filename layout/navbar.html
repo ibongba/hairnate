@@ -109,8 +109,9 @@
                     <p>Barber : <span id="staticBarber"></span></p>
                 </div>
                 <div class="text-center">
-                    <button type="button" class="btn btn-dark2" data-dismiss="modal">Decline</button>
-                    <button type="button" class="btn btn-danger2">Accept</button>
+                    <input type="hidden" id="id_service_detail">
+                    <button type="button" class="btn btn-dark2" onclick="UpdateStatus()">Decline</button>
+                    <button type="button" class="btn btn-danger2" data-dismiss="modal" aria-label="Close">Close</button>
                 </div>
             </div>
         </div>
@@ -122,16 +123,36 @@
 <script>
     var noti = [];
 
+    let user = JSON.parse(localStorage.getItem('user'));
+
     $(function() {
         $('.is-login').addClass('d-none');
         $('.not-login').addClass('d-none');
 
-        let user = JSON.parse(localStorage.getItem('user'));
-
         if (user) {
             $('.is-login').removeClass('d-none');
 
-            if (user.type == 1) $('.is-partner').addClass('d-none');
+            if (user.type == 1) {
+                $('.is-partner').addClass('d-none');
+
+                $.ajax({
+                    method: "POST",
+                    url: "service/core.php",
+                    data: {
+                        action: 'get_notification_with_customer',
+                        user_id: user.id
+                    }
+                }).done(function(msg) {
+                    msg = JSON.parse(msg)
+                    if (msg.code === 200) {
+                        $('#noti-list').empty()
+                        noti = msg.result;
+                        noti.map((item,index)=>{
+                            $('#noti-list').append(notification(item,index))
+                        })
+                    }
+                });
+            }
             else {
                 $('.is-users').addClass('d-none');
 
@@ -176,7 +197,7 @@
             <a class="dropdown-item border-bottom" href="#">
                 <div class="row">
                     <div class="col-2"><i class="${classes}"></i></div>
-                    <div class="col" ${item.status == 2 ? 'onclick="getData('+index+')"  data-toggle="modal" data-target="#staticBackdrop"':''}>${item.username + ' ' + (item.surname ? item.surname : '')} <br>${case_status} <br><small>${item.update_at}</small></div>
+                    <div class="col" ${item.status == 2 && user.type != 1 ? 'onclick="getData('+index+')"  data-toggle="modal" data-target="#staticBackdrop"':''}>${item.username + ' ' + (item.surname ? item.surname : '')} <br>${case_status} <br><small>${item.update_at}</small></div>
                 </div>
             </a>`;
     }
@@ -188,6 +209,25 @@
         $('#staticService').text(noti[index].hairstyle_name);
         $('#staticDate').text(noti[index].service_date + ' ' + noti[index].service_time);
         $('#staticBarber').text(noti[index].barber_name);
+        $('#id_service_detail').val(noti[index].id_service_detail)
+    }
+
+    const UpdateStatus = () => {
+        
+
+        $.ajax({
+            method: "POST",
+            url: "service/core.php",
+            data: {
+                action: 'update_status',
+                id: $('#id_service_detail').val()
+            }
+        }).done(function(msg) {
+            msg = JSON.parse(msg)
+            if (msg.code === 200) {
+                window.location.reload();
+            }
+        });
     }
 
     const logout = () => {

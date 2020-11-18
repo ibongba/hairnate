@@ -472,14 +472,32 @@
             echo json_encode($res);
             return ;
         }
-    }
-    else if (isset($_POST['action']) && $_POST['action'] == 'get_address_user'){
+    }else if(isset($_POST['action']) && $_POST['action'] == 'get_notification_with_customer'){
+
+        $sql = "SELECT *,`hairstyle`.`name` as `hairstyle_name`,`barber`.`name` as `barber_name` FROM `service_detail` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` ON `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` JOIN `partner` ON `partner`.`id` = `hairstyle`.`id_partner`JOIN `barber` ON `barber`.`id_barber`= `service_detail`.`id_barber` WHERE `service_detail`.`id_users` = '". $_POST['user_id']."' and status != 1 order by `service_detail`.`update_at` limit 5";
+
+        $rs = getpdo($conn,$sql);
+            
+        $res = array("code" => 200, "result" => $rs,'sql' => $sql);
+        echo json_encode($res);
+        return ;
+        
+    }else if (isset($_POST['action']) && $_POST['action'] == 'get_address_user'){
         $sql = "SELECT * FROM `users` WHERE `id`= '".$_POST['id']."'";
         // echo $sql;
         $rs = getpdo($conn,$sql);
         if(isset($rs)){
         	$res = array("code" => 200, "result" => $rs);
         	echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'update_status'){
+        $sql = "UPDATE `service_detail` SET `status` = 0 WHERE `id_service_detail` = '".$_POST['id']."'";
+        $rs = getpdo($conn,$sql);
+
+        if(isset($rs)){
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
             return ;
         }
     }

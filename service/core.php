@@ -511,7 +511,9 @@
         if(isset($rs)){
 
             $sql = "UPDATE `service_detail` SET `status` = ".$_POST['status']." WHERE `id_service_detail` = '".$_POST['id']."'";
-            $res = array("code" => 200, "result" => $rs);
+            $rs = getpdo($conn,$sql);
+            
+            $res = array("code" => 200, "result" => $rs,"sql"=>$sql);
             echo json_encode($res);
             return ;
         }

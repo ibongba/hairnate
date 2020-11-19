@@ -262,9 +262,6 @@
                 images = [...msg.result.images]
 
                 data.filter((item) => {
-
-
-
                     var dateFirst = new Date(item.service_date);
                     var dateSecond = new Date();
 
@@ -314,6 +311,14 @@
         };
 
         const card = (item, i) => {
+            var dateFirst = new Date(item.service_date);
+            var dateSecond = new Date();
+
+            // time difference
+            var timeDiff =dateSecond.getTime() - dateFirst.getTime();
+
+            // days difference
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
             return `
 						<div class="card">
 			             <div class="card-header" id="heading${item.id_service_detail}">
@@ -328,7 +333,8 @@
 			                                 <p class="text-black-50" style="font-size: xx-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
 			                             </div>
 			                             <div class="col-md-6 text-right">
-                                            <h6 class="text-black-50"> Waiting for Service</h6>
+
+                                            ${(diffDays > 0) ? `<a class="btn btn-light float-right mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a><br><br>` : '<h6 class="text-black-50"> Waiting for Service</h6>'}
                                             <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>
                                         </div>
 			                         </div>
@@ -344,11 +350,12 @@
 			                             <p class="m-0">Address : ${item.service_location}</p>
 			                             <p class="m-0">Finished : ${(parseFloat(item.service_time) + 1).toFixed(2)}</p>
 			                         </div>
-			                         <div class="col h-100" style="flex-direction: column;">
+                                     ${(diffDays <= 0) ?
+			                         `<div class="col h-100" style="flex-direction: column;">
 			                             <a href="usercancle.html?id=${
 												item.id_service_detail
 											}" class="btn btn-danger d-flex float-right h-100" style="justify-content: flex-end; align-items: flex-end; background-color: #A33E3E;">ยกเลิกบริการ</a>
-			                         </div>
+			                         </div>`:''}
 			                     </div>
 			                 </div>
 			                 </div>
@@ -386,7 +393,6 @@
                                     </div>
                                     <div class="col text-right">
                                         <div class="float-right">
-                                            ${(item.status != 2 && diffDays < 0) ? `<a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a>` : ''}
                                             ${(item.status == 3)? '<h6 class="text-success text-right" >Successfully</h6>' : '<h6 class="text-danger text-right" >Cancel</h6>' }
                                           </div><br><br>
                                         <h6 class="text-right"><b>฿ ${item.promotion_price || item.price}</b></h6>

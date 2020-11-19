@@ -123,24 +123,24 @@
 <script>
     var noti = [];
 
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user_navbar = JSON.parse(localStorage.getItem('user'));
 
     $(function() {
         $('.is-login').addClass('d-none');
         $('.not-login').addClass('d-none');
 
-        if (user) {
+        if (user_navbar) {
             $('.is-login').removeClass('d-none');
 
-            if (user.type == 1) {
+            if (user_navbar.type == 1) {
                 $('.is-partner').addClass('d-none');
 
                 $.ajax({
                     method: "POST",
-                    url: "service/core.php",
+                    url: "/hairnate/service/core.php",
                     data: {
                         action: 'get_notification_with_customer',
-                        user_id: user.id
+                        user_id: user_navbar.id
                     }
                 }).done(function(msg) {
                     msg = JSON.parse(msg)
@@ -158,10 +158,10 @@
 
                 $.ajax({
                     method: "POST",
-                    url: "service/core.php",
+                    url: "/hairnate/service/core.php",
                     data: {
                         action: 'get_notification_with_partner',
-                        user_id: user.id
+                        user_id: user_navbar.id
                     }
                 }).done(function(msg) {
                     msg = JSON.parse(msg)
@@ -197,7 +197,7 @@
             <a class="dropdown-item border-bottom" href="#">
                 <div class="row">
                     <div class="col-2"><i class="${classes}"></i></div>
-                    <div class="col" ${item.status == 2 && user.type != 1 ? 'onclick="getData('+index+')"  data-toggle="modal" data-target="#staticBackdrop"':''}>${item.username + ' ' + (item.surname ? item.surname : '')} <br>${case_status} <br><small>${item.update_at}</small></div>
+                    <div class="col" ${item.status == 2 && user_navbar.type != 1 ? 'onclick="getData('+index+')"  data-toggle="modal" data-target="#staticBackdrop"':''}>${item.username + ' ' + (item.surname ? item.surname : '')} <br>${case_status} <br><small>${item.update_at}</small></div>
                 </div>
             </a>`;
     }
@@ -217,7 +217,7 @@
 
         $.ajax({
             method: "POST",
-            url: "service/core.php",
+            url: "/hairnate/service/core.php",
             data: {
                 action: 'update_status',
                 id: $('#id_service_detail').val()

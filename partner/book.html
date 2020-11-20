@@ -40,7 +40,7 @@
                                         <!-- <div class="cont"> -->
                                         <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                         <!-- </div> -->
-                                        <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
+                                        <output id="list_image"></output><input id="files_image" name="files3" type="file" />
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                                 <!-- <div class="cont"> -->
                                 <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
-                                <output id="listbarber"></output><input id="files_add_barber" name="files" type="file" />
+                                <output id="listbarber"></output><input id="files_add_barber" name="files4" type="file" />
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                                 <!-- <div class="cont"> -->
                                 <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
-                                <output id="listbarber"></output><input id="files_edit_barber" name="files" type="file" />
+                                <output id="listbarber"></output><input id="files_edit_barber" name="files1" type="file" />
                             </div>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                                 <!-- <div class="cont"> -->
                                 <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
-                                <output id="list"></output><input id="files_add_service" name="files" type="file" />
+                                <output id="list"></output><input id="files_add_service" name="files2" type="file" />
                             </div>
                         </div>
                     </div>
@@ -598,13 +598,13 @@
 
 
         promotion = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            var img = item.image ? '../'+item.image : 'https://via.placeholder.com/150';
             return `
                     <div class="col-6">
                         <div class="row py-3">
                             <div class="col-12 col-md p-2">
                                 <div class="proimage" style="width: 100%;">
-                                    <img src="../${img}" style="width: 100%;border-radius: 15px;">
+                                    <img src="${img}" style="width: 100%;border-radius: 15px;">
                                 </div>
                             </div>
                             <div class="col-12 col-md pt-2">
@@ -623,13 +623,13 @@
         }
 
         serviceCard = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            var img = item.image ? '../'+item.image : 'https://via.placeholder.com/150';
             return `
                 <div class="col-6">
                     <div class="row py-3">
                         <div class="col-12 col-md p-2">
                             <div class="proimage" style="width: 100%;">
-                                <img src="../${img}" style="width: 100%;border-radius: 15px;">
+                                <img src="${img}" style="width: 100%;border-radius: 15px;">
                             </div>
                         </div>
                         <div class="col-12 col-md pt-2">
@@ -755,6 +755,8 @@
         $('#files_edit_promotion').change((e) => handleFileSelect(e, 'list4'));
 
         $('#files_add_barber').change((e) => handleFileSelect(e, 'listbarber'));
+
+        $('#files_image').change((e) => handleFileSelect(e, 'list_image'));
 
         const editService = (id) => {
 
@@ -890,6 +892,7 @@
             for (var index = 0; index < totalfiles; index++) {
                 form_data.append("files[]", document.getElementById('files_add_barber').files[index]);
             }
+            console.log(totalfiles)
             form_data.append('action', 'create_barber');
             form_data.append('user_id', user.id);
             form_data.append('name', $('#name_add_barber').val());
@@ -906,7 +909,7 @@
                 console.log(msg)
                 if (msg.code === 200) {
                     alert('เพิ่มสำเร็จ')
-                    window.location.href = "book.html";
+                    // window.location.href = "book.html";
                 }
             });
         }
@@ -933,13 +936,13 @@
         }
 
         const cardBarber = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
+            var img = item.image ? '../'+item.image : 'https://via.placeholder.com/150';
             return `
 
                     <div class="col-lg col-sm-3">
                         <div class="icon">
                             <div class="position-relative">
-                                <a href="barber.html?id=${item.id_barber}"> <img class="circle" src="../${img}" /></a>
+                                <a href="barber.html?id=${item.id_barber}"> <img class="circle" src="${img}" /></a>
                                 <p style="text-align: center;" class="pt-2">${item.name}</p>
                                 <div class="text-center">
                                     <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>

@@ -156,6 +156,9 @@
             else {
                 $('.is-users').addClass('d-none');
 
+                $('nav').addClass('style-partner');
+                $('.hidden-partner').addClass('d-none')
+
                 $.ajax({
                     method: "POST",
                     url: "/hairnate/service/core.php",

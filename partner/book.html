@@ -482,7 +482,7 @@
             console.log('msg', msg)
             if (msg.code === 200) {
                 $('#imgshop').append(imgshop(msg.result.partner));
-                $('#location').append('<i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i>' + msg.result.partner.location)
+                $('#location').append('<i class="fas fa-map-marker-alt pr-3" style="font-size: 1.5rem; float: left;"></i>' + msg.result.partner.biz_house_no + (msg.result.partner.biz_village_no ? ' หมู่ ' +msg.result.partner.biz_village_no:'')+ ' ' +msg.result.partner.biz_sub_area+ ' ' +msg.result.partner.biz_area+ ' ' +msg.result.partner.biz_province+ ' ' +msg.result.partner.biz_postal_code)
                 $('#name').text(msg.result.partner.biz_name)
                     // $('#detail').val(msg.result.partner.)
             }

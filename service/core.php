@@ -357,7 +357,7 @@
             $sql .= " order by `service_date` desc,`service_time` desc";
             $rs = getpdo($conn,$sql);
             
-            $res = array("code" => 200, "result" =>  $rs);
+            $res = array("code" => 200, "result" =>  $rs ,"sql"=>$sql);
             echo json_encode($res);
             return ;
         }

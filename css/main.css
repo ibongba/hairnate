@@ -1754,3 +1754,7 @@ A VERTICAL event
     color: inherit;
     /* natural color for navlinks */
 }
+
+.style-partner{
+    background: #dcd9d6 !important;
+}

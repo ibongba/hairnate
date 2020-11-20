@@ -1195,5 +1195,8 @@ input:checked+.slider:before {
     color: #A33E3E;
 }
 
+.style-partner{
+    background: #dcd9d6 !important;
+}
 
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */

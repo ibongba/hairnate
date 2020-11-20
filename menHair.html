@@ -122,8 +122,8 @@
                                 <div class="col-md-8">
                                     <div class="card-body" style="color: #fff;">
                                         <h5 class="card-title text-white">${item.biz_name}</h5>
-                                        <i class="fas fa-map-marker-alt"></i> ${item.address}<br>
-                                        <i class="fas fa-star" style="color:#E9E97D ;"></i>ยอดนิยม <i class="fas fa-motorcycle" style="color: #A33E3E ;"></i>${item.location} <br>
+                                        <i class="fas fa-map-marker-alt"></i> ${item.house_no + (item.village_no ? ' หมู่ ' +item.village_no:'')+ ' ' +item.sub_area+ ' ' +item.area+ ' ' +item.province+ ' ' +item.postal_code}<br>
+                                        <i class="fas fa-star" style="color:#E9E97D ;"></i>ยอดนิยม <i class="fas fa-motorcycle" style="color: #A33E3E ;"></i>${item.biz_house_no + (item.biz_village_no ? ' หมู่ ' +item.biz_village_no:'')+ ' ' +item.biz_sub_area+ ' ' +item.biz_area+ ' ' +item.biz_province+ ' ' +item.biz_postal_code} <br>
                                         <i class="fas fa-tag" style="color: #E0CF34;"></i>ไม่มีโปรโมชั่น
                                     </div>
                                 </div>

@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link href="../css/main.css" rel="stylesheet" />
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" />
     <title>Appoinment</title>
 </head>
 <style>
@@ -241,7 +241,7 @@
                             <td>${item.address}</td>
                             <td>${item.phone}</td>
                             <td class="text-success">${item.status}</td>
-                            <td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
+                            <td><button type="button" onclick="sendMail('${item.email}')" class="btn btn-danger" style="min-width: auto;">Alert</button></td>
                         </tr>
 			             `;
         };
@@ -274,6 +274,18 @@
                     $('#success').text(msg.result.filter(item => item.status === 3).length)
                     $('#all').text(msg.result.length)
                 }
+            });
+        }
+
+        const sendMail = (mail) => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/mail.php',
+                data: {
+                    mail:mail,
+                }
+            }).done(function(msg) {
+                alert(msg)
             });
         }
 

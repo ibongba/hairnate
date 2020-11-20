@@ -205,7 +205,7 @@
 
                 console.log(data)
                 $('#name').text(data.partner.biz_name)
-                $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.location)
+                $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.biz_house_no + (data.partner.biz_village_no ? ' หมู่ ' +data.partner.biz_village_no:'')+ ' ' +data.partner.biz_sub_area+ ' ' +data.partner.biz_area+ ' ' +data.partner.biz_province+ ' ' +data.partner.biz_postal_code)
                 $('#image').attr('src',data.partner.biz_image || 'https://via.placeholder.com/1920x600.png?text=ไม่มีรูป')
             });
         });

@@ -955,9 +955,9 @@
         }
         const createbizshop = () => {
             var form_data = new FormData();
-            var totalfiles = document.getElementById('files_add_barber').files.length;
+            var totalfiles = document.getElementById('files_image').files.length;
             for (var index = 0; index < totalfiles; index++) {
-                form_data.append("files[]", document.getElementById('files_add_barber').files[index]);
+                form_data.append("files[]", document.getElementById('files_image').files[index]);
             }
             form_data.append('action', 'create_biz_shop');
             form_data.append('user_id', user.id);

@@ -326,10 +326,10 @@
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $sql = "SELECT * FROM `service_images` WHERE `fk_sd_id` in (SELECT `id_service_detail` FROM `service_detail` WHERE `id_users` = '".$_POST['id']."' and `status` != 1)"; 
-            $rs2 = getpdo($conn,$sql);
+            $sql2 = "SELECT * FROM `service_images` WHERE `fk_sd_id` in (SELECT `id_service_detail` FROM `service_detail` WHERE `id_users` = '".$_POST['id']."' and `status` != 1)"; 
+            $rs2 = getpdo($conn,$sql2);
 
-            $res = array("code" => 200, "result" => array("sd" => $rs[0], "images" => $rs2));
+            $res = array("code" => 200, "result" => array("sd" => $rs[0], "images" => $rs2,"sql"=>$sql));
             echo json_encode($res);
             return ;
         }
@@ -349,7 +349,7 @@
         $rs = getpdo($conn,$sql);
 
         if($rs){
-            $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`, CONCAT(`users`.`house_no`,' ', `users`.`village_no`,' ',`users`.`sub_area`,' ',`users`.`area`,' ',`users`.`province`,' ',`users`.`postal_code`) as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_date` = '".$_POST['service_date']."' and `partner`.`id` = '".$rs[0]['id']."' and `status` != '1' ";
+            $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*, `users`.`username` as `customer_name`, CONCAT(`users`.`house_no`,' ', `users`.`village_no`,' ',`users`.`sub_area`,' ',`users`.`area`,' ',`users`.`province`,' ',`users`.`postal_code`) as `address`,`users`.`phone` as `phone`, `hairstyle`.`name` as `service_type` FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` JOIN `users` ON `service_detail`.`id_users` = `users`.`id`  LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` left join `tracking` on `service_detail`.`id_service_detail` = `tracking`.`fk_sd_id` WHERE `service_date` = '".$_POST['service_date']."' and `partner`.`id` = '".$rs[0]['id']."' and `status` != '1' ";
        
             if (!empty($_POST['id_barber'])) {
                 $sql .= " AND `barber`.`id_barber` = '".$_POST['id_barber']."'";
@@ -357,7 +357,7 @@
             $sql .= " order by `service_date` desc,`service_time` desc";
             $rs = getpdo($conn,$sql);
             
-            $res = array("code" => 200, "result" =>  $rs ,"sql"=>$sql);
+            $res = array("code" => 200, "result" =>  $rs,"sql"=> $sql);
             echo json_encode($res);
             return ;
         }
@@ -513,6 +513,16 @@
             $sql = "UPDATE `service_detail` SET `status` = ".$_POST['status']." WHERE `id_service_detail` = '".$_POST['id']."'";
             $rs = getpdo($conn,$sql);
             
+            $res = array("code" => 200, "result" => $rs,"sql"=>$sql);
+            echo json_encode($res);
+            return ;
+        }
+    }else if(isset($_POST['action']) && $_POST['action'] == 'create_traking'){
+
+        $sql = "INSERT INTO `tracking`(`tracking_on`, `tracking_type`, `fk_sd_id`) VALUES ('".$_POST['tracking_on']."','".$_POST['tracking_type']."','".$_POST['fk_sd_id']."')";
+        $rs = getpdo($conn,$sql);
+
+        if(isset($rs)){
             $res = array("code" => 200, "result" => $rs,"sql"=>$sql);
             echo json_encode($res);
             return ;

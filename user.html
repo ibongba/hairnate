@@ -407,6 +407,11 @@
                                     <p class="m-0">Barber : ช่าง ${item.barber_name}</p>
                                     <p class="m-0">Address : ${item.service_location}</p>
                                     <p class="m-0">Finished : ${(parseFloat(item.service_time) + 1).toFixed(2)}</p>
+                                    ${item.tracking_on ? `
+                                        <p class="m-0">จัดส่งโดย : ${item.tracking_type}</p>
+                                        <p class="m-0">หมายเลขจัดส่ง : ${item.tracking_on}</p>
+
+                                        ` : ''}
                                 </div>
                                 <div class="col">
                                     ${currentImg.toString().replace(',','')}

@@ -97,25 +97,12 @@
     </div>
     <div class="modal fade" id="service2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form class="modal-content">
+            <form class="modal-content" onsubmit="createTracking()">
                 <div class="modal-header" style="text-align: center;">
                     <h2>ADD TRACKING</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="box2" style="height: 150px;">
-                        <div class="wrapper">
-                            <div class="drop">
-                                <!-- <div class="cont"> -->
-                                <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
-                                <!-- </div> -->
-                                <output id="list"></output><input id="files_add_service" name="files" type="file" />
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="text-left">
                     <fieldset class="material mb-3">
@@ -123,16 +110,15 @@
                         <hr>
                         <label>Tracking Number</label>
                     </fieldset>
-                      <div class="form-group">
-                        <label for="how">วิธีการจัดส่ง</label>
-                        <select multiple class="form-control" id="how">
-                          <option va;ue="Kerry">Kerry</option>
-                          <option va;ue="DHL">DHL</option>
-                          <option va;ue="ไปรษณีไทย">ไปรษณีไทย</option>
+                        <label  id="how">วิธีการจัดส่ง</label>
+                        <select class="form-control" id="how" required="">
+                          <option value="Kerry" selected="">Kerry</option>
+                          <option value="DHL">DHL</option>
+                          <option value="ไปรษณีไทย">ไปรษณีไทย</option>
                         </select>
-                      </div>
+                        <hr>
                     <div class="btn-update" style="text-align: center;">
-                        <button type="button" class="btn btn-danger" onclick="createTracking()" style="background-color: #A33E3E;">Create</button>
+                        <button type="submit" class="btn btn-danger" style="background-color: #A33E3E;">Create</button>
                     </div>
                 </div>
             </form>
@@ -285,10 +271,10 @@
                             <td>${item.phone}</td>
                             <td class="text-success">${item.status}</td>
                             ${
-                                item.status == '2' ? `<td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>` : ''
+                                item.status == "Paid" ? `<td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>` : ''
                             }
                             ${
-                                item.status == '3' && user.biz_type == 2 ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : ''
+                                !item.tracking_on && item.status == "Finish" && user.biz_type == "2" ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : `<td></td>`
                             }
                         </tr>
                         ${

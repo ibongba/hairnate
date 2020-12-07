@@ -124,7 +124,7 @@
                                 <!-- <div class="cont"> -->
                                 <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
-                                <output id="listbarber"></output><input id="files_add_barber" name="files4" type="file" />
+                                <output id="listbarber"></output><input id="files_add_barber" name="files[]" type="file" />
                             </div>
                         </div>
                     </div>
@@ -141,14 +141,14 @@
                         <label>Tel No</label>
                     </fieldset>
                     <fieldset class="material mb-3">
-                        <input type="text" placeholder="" id="email_add_barber" autocomplete="off" required>
-                        <hr>
-                        <label>Email</label>
-                    </fieldset>
-                    <fieldset class="material mb-3">
                         <input type="text" placeholder="" id="detail_add_barber" autocomplete="off" required>
                         <hr>
                         <label>Detail</label>
+                    </fieldset>
+                    <fieldset class="material mb-3">
+                        <input type="text" placeholder="" id="password_add_barber" autocomplete="off" required>
+                        <hr>
+                        <label>Password</label>
                     </fieldset>
                     <div class="btn-update" style="text-align: center;">
                         <button type="button" class="btn btn-danger" onclick="createBarber()" style="background-color: #A33E3E;">ADD</button>
@@ -174,7 +174,7 @@
                                 <!-- <div class="cont"> -->
                                 <i class="fas fa-file-image py-5 is-remove" style="font-size: xxx-large; color: #C1B09D;"></i>
                                 <!-- </div> -->
-                                <output id="listbarber"></output><input id="files_edit_barber" name="files1" type="file" />
+                                <output id="listbarberedit"></output><input id="files_edit_barber" name="files1" type="file" />
                             </div>
                         </div>
                     </div>
@@ -189,11 +189,6 @@
                         <input type="text" placeholder="" id="tel_edit_barber" autocomplete="off" required>
                         <hr>
                         <label>Tel No</label>
-                    </fieldset>
-                    <fieldset class="material mb-3">
-                        <input type="text" placeholder="" id="email_edit_barber" autocomplete="off" required>
-                        <hr>
-                        <label>Email</label>
                     </fieldset>
                     <fieldset class="material mb-3">
                         <input type="text" placeholder="" id="detail_edit_barber" autocomplete="off" required>
@@ -756,6 +751,8 @@
 
         $('#files_add_barber').change((e) => handleFileSelect(e, 'listbarber'));
 
+        $('#files_edit_barber').change((e) => handleFileSelect(e, 'listbarberedit'));
+
         $('#files_image').change((e) => handleFileSelect(e, 'list_image'));
 
         const editService = (id) => {
@@ -896,7 +893,9 @@
             form_data.append('action', 'create_barber');
             form_data.append('user_id', user.id);
             form_data.append('name', $('#name_add_barber').val());
+            form_data.append('phone', $('#tel_add_barber').val());
             form_data.append('description', $('#detail_add_barber').val());
+            form_data.append('password', $('#password_add_barber').val());
 
             $.ajax({
                 method: "POST",
@@ -909,7 +908,7 @@
                 console.log(msg)
                 if (msg.code === 200) {
                     alert('เพิ่มสำเร็จ')
-                    // window.location.href = "book.html";
+                    window.location.href = "book.html";
                 }
             });
         }
@@ -937,6 +936,8 @@
 
         const cardBarber = (item) => {
             var img = item.image ? '../'+item.image : 'https://via.placeholder.com/150';
+            // <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
+
             return `
 
                     <div class="col-lg col-sm-3">
@@ -945,7 +946,6 @@
                                 <a href="barber.html?id=${item.id_barber}"> <img class="circle" src="${img}" /></a>
                                 <p style="text-align: center;" class="pt-2">${item.name}</p>
                                 <div class="text-center">
-                                    <i class="fas fa-pen icon-edit" style="font-size: small;" data-toggle="modal" data-target="#editTeam" data-whatever="@getbootstrap"></i>
                                     <button type="button" onclick="removeBarber(${item.id_barber})" class="btn btn-danger mx-2 text-center" style="min-width: auto; border-radius: 25px; font-size: small; background-color: #A33E3E;">REMOVE</button>
                                 </div>
                             </div>

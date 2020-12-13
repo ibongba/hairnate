@@ -45,16 +45,22 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-7 text-left my-5 float-left">
-                <h2>MAN'S FASHION</h2>
-                <h2>HAIR CUT</h2>
+            <div class="col-md-7 text-left mt-3 float-left">
+                <h4>MAN'S FASHION</h4>
+                <h4>HAIR CUT</h4>
             </div>
-            <div class="col-5 my-5 float-right">
-                <button type="button" class="btn btn-light" style="background-color:#fff; color: #C1B09D;">ยอดนิยม</button>
-                <div class="input-group col-md-8 mb-3 float-right">
-                    <input type="text" class="form-control" onchange="onChange(this)" style="background-color: #fff;" placeholder="ค้นหาร้านตัดผมแฟชั่นชาย" aria-label="Recipient's username" aria-describedby="button-addon2">
-
+            <div class="col-md-5 my-3 float-right">
+                <div class="row">
+                    <div class="col-4 col-md-5">
+                        <button type="button" class="btn btn-light" style="background-color:#fff; color: #C1B09D;">ยอดนิยม</button>
+                    </div>
+                    <div class="col-8 col-md-7">
+                        <div class="input-group col-md-8 mb-3 float-right p-0">
+                            <input type="text" class="form-control" onchange="onChange(this)" style="background-color: #fff;" placeholder="ค้นหาร้านตัดผมแฟชั่นชาย" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -101,11 +107,11 @@
             }).done(function(msg) {
                 if (msg.code === 200) {
                     partner = msg.result
-                    partner.map((item)=>{
+                    partner.map((item) => {
                         $('#partner').append(cardPartner(item));
                         return;
                     })
-                    
+
                 }
             });
         });
@@ -136,12 +142,11 @@
 
         const onChange = (e) => {
             $('.partner').addClass('d-none');
-            partner.filter((item)=> item.biz_name.indexOf(e.value) >= 0 ||  e.value == '').map((item)=>{
-                $('.partner#'+item.id).removeClass('d-none');
+            partner.filter((item) => item.biz_name.indexOf(e.value) >= 0 || e.value == '').map((item) => {
+                $('.partner#' + item.id).removeClass('d-none');
                 return;
             })
         }
-
     </script>
 </body>
 

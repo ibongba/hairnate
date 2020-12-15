@@ -128,7 +128,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
-        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`,`password`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "','" . md5($_POST['password']) . "')";
+        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "')";
         $rs = getpdo($conn, $sql);
         if ($rs) {
             $res = array("code" => 200, "result" => $rs);

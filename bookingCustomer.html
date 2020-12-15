@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/review.css">
     <link href='css/main.css' rel='stylesheet' />
     <!-- Stepper CSS -->
     <!-- <link href="css/addons-pro/steppers.css" rel="stylesheet"> -->
@@ -29,7 +30,7 @@
         <h2 class="text-center pt-4 pb-5" style="color: #A33E3E;">PHEEN BARBER SHOP</h2>
         <!-- <div class="card-body col-sm-12 mb-4"> -->
         <!-- Stepper -->
-        <div class="steps-form">
+        <div class="steps-form d-none d-md-block d-md-table">
             <div class="steps-row setup-panel">
                 <div class="steps-step">
                     <a href="#step-9" type="button" class="btn btn-indigo btn-circle"><i class="far fa-credit-card" style="font-size: xx-large;"></i></a>
@@ -49,7 +50,7 @@
             </div>
         </div>
 
-        <form role="form" action="" method="post" style="background-color:#FAF9F7;">
+        <form class="p-0 m-0" role="form" action="" method="post" style="background-color:#FAF9F7;">
 
             <!-- First Step -->
             <div class="row setup-content" id="step-9">
@@ -100,14 +101,21 @@
                         </div>
                     </div>
                 </div>
-                <a id="ref" style="margin: auto;"><button type="button" class="btn btn-dark btn-rounded my-3  float-left">BACK</button></a>
-                <button type="button" class="btn btn-dark btn-rounded nextBtn my-3  text-center">NEXT</button>
-
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a id="ref" style="margin: auto;"><button type="button" class="btn btn-dark btn-rounded my-3  text-center ">BACK</button></a>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-rounded nextBtn my-3  text-center ">NEXT</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Second Step -->
             <div class="row setup-content" id="step-10">
-                <div class="col">
+                <div class="col-md-6">
                     <div id='calendar' style="color: #C1B09D;"></div>
                 </div>
 
@@ -148,18 +156,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 pt-5">
-
-                    <button type="button" class="btn btn-dark btn-rounded prevBtn my-3 col-md-4 float-left">BACK</button>
-                    <button type="button" class="btn btn-dark btn-rounded nextBtn my-3 col-md-4 float-right" id="btn-10" disabled="disabled">NEXT</button>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-dark btn-rounded prevBtn my-3 text-center ">BACK</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark btn-rounded nextBtn my-3 text-center " id="btn-10" disabled="disabled">NEXT</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+
             <!-- Third Step -->
             <div class="row setup-content" id="step-11">
-                <h5 class="col-12 my-4 text-center">ADDRESS</h5>
-                <div id="get_address"></div>
-                <!-- <div class="row">
+                <div class="col-md-12">
+                    <h5 class="mt-4 text-center">ADDRESS</h5>
+                    <div id="get_address"></div>
+
+                    <!-- <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group row w-100 md-form">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">ที่อยู่เลขที่ : </label>
@@ -240,12 +256,22 @@
                         </div>
                     </div>
                 </div> -->
-                <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 col-md-4 float-left">BACK</button>
-                <button onclick="addCalenda()" type="button" class="btn btn-dark btn-rounded nextBtn my-4 col-md-4 text-center">NEXT</button>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 text-center ">BACK</button>
+                        </div>
+                        <div class="col">
+                            <button onclick="addCalenda()" type="button" class="btn btn-dark btn-rounded nextBtn my-4 text-center text-center">NEXT</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+    </div>
 
 
-            <!--   <div class="row setup-content" id="step-12">
+    <!--   <div class="row setup-content" id="step-12">
                 <div class="col-md-12">
                     <h5 class=" my-4 text-center">WAITING FOR APPROVAL !!</h5>
                     <div class="text-center p-3" style="background-color:#EEEBE6; border-radius: 25px;">
@@ -259,90 +285,91 @@
                 </div>
             </div> -->
 
-            <div class="row setup-content justify-content-center" id="step-13">
-                <div class="col-12">
-                    <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#exampleModal">
+    <div class="row setup-content justify-content-center" id="step-13">
+
+        <div class="col-md-12">
+            <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#exampleModal">
                     คำเตือน
                 </button>
-                </div>
+        </div>
 
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <p><b>เงื่อนไขแจ้งให้ทราบก่อนทำการชำระเงิน</b></p>
-                                <p>เมื่อยืนยันและชำระเงินเป็นที่เรียบร้อยแล้ว</p>
-                                <p>หากต้องการยกเลิกการจองการบริการ ทาง Hairnate มีเงื่อนไขดังนี้</p>
-                                <p>1. หาก
-                                    <font class="text-success">ยกเลิกบริการล่วงหน้า 3 วัน </font>ท่านจะได้รับ
-                                    <font class="text-success">เงินคืน 100% </font>
-                                </p>
-                                <p>2. หาก
-                                    <font class="text-warning">ยกเลิกบริการล่วงหน้า 2 วัน </font>ท่านจะได้รับ
-                                    <font class="text-warning">เงินคืน 90%</font>
-                                </p>
-                                <p>3. หาก
-                                    <font class="text-danger">ยกเลิกบริการล่วงหน้าเพียง 1 วัน </font>ท่านจะได้รับ
-                                    <font class="text-danger">เงินคืน 80% </font>
-                                </p>
-                                <br>
-                                <p>
-                                    <font class="text-danger">*</font> เพื่อความเท่าเทียมและความสบายใจของทั้ง 2 ฝ่าย <br>จึงเรียนมาเพื่อทราบ
-                                    <font class="text-warning">;)</font>
-                                </p>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p><b>เงื่อนไขแจ้งให้ทราบก่อนทำการชำระเงิน</b></p>
+                        <p>เมื่อยืนยันและชำระเงินเป็นที่เรียบร้อยแล้ว</p>
+                        <p>หากต้องการยกเลิกการจองการบริการ ทาง Hairnate มีเงื่อนไขดังนี้</p>
+                        <p>1. หาก
+                            <font class="text-success">ยกเลิกบริการล่วงหน้า 3 วัน </font>ท่านจะได้รับ
+                            <font class="text-success">เงินคืน 100% </font>
+                        </p>
+                        <p>2. หาก
+                            <font class="text-warning">ยกเลิกบริการล่วงหน้า 2 วัน </font>ท่านจะได้รับ
+                            <font class="text-warning">เงินคืน 90%</font>
+                        </p>
+                        <p>3. หาก
+                            <font class="text-danger">ยกเลิกบริการล่วงหน้าเพียง 1 วัน </font>ท่านจะได้รับ
+                            <font class="text-danger">เงินคืน 80% </font>
+                        </p>
+                        <br>
+                        <p>
+                            <font class="text-danger">*</font> เพื่อความเท่าเทียมและความสบายใจของทั้ง 2 ฝ่าย <br>จึงเรียนมาเพื่อทราบ
+                            <font class="text-warning">;)</font>
+                        </p>
 
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h5 class="my-4 text-center">PAYMENT</h5>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card" style="border-radius: 25px;">
+                        <div class="card-body add-detail">
+                            <h5 class="card-title"><b>Service</b></h5>
+                            <p class="card-text">COACH CRAFTSMAN
+                                <p>Package A : Under Cut + ไถข้าง</p>
+                                <p>ที่อยู่ : 365 Bond, Chang Wat Nonthaburi 11120</p>
+                            </p>
+                            <br>
+                            <h5 class="card-title"><b>วันที่ใช้บริการ</b></h5>
+                            <h4 class="card-text"><b>วันจันทร์ 1 มีนาคม 07.00</b></h4>
+                            <br>
+                            <p class="card-text">ราคาเต็ม : 650 Bath
+                                <p>ส่วนลดจาก promotion : -10 Bath</p>
+                            </p>
+                            <br>
+                            <h4 class="card-title"><b>รวมทั้งสิ้น : </b><b style="color: #48B7A4;">640 Bath</b></h4>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-10">
-                    <h5 class="my-4 text-center">PAYMENT</h5>
-                    <div class="row justify-content-center">
-                        <div class="col-6">
-                            <div class="card" style="border-radius: 25px;">
-                                <div class="card-body add-detail">
-                                    <h5 class="card-title"><b>Service</b></h5>
-                                    <p class="card-text">COACH CRAFTSMAN
-                                        <p>Package A : Under Cut + ไถข้าง</p>
-                                        <p>ที่อยู่ : 365 Bond, Chang Wat Nonthaburi 11120</p>
-                                    </p>
-                                    <br>
-                                    <h5 class="card-title"><b>วันที่ใช้บริการ</b></h5>
-                                    <h4 class="card-text"><b>วันจันทร์ 1 มีนาคม 07.00</b></h4>
-                                    <br>
-                                    <p class="card-text">ราคาเต็ม : 650 Bath
-                                        <p>ส่วนลดจาก promotion : -10 Bath</p>
-                                    </p>
-                                    <br>
-                                    <h4 class="card-title"><b>รวมทั้งสิ้น : </b><b style="color: #48B7A4;">640 Bath</b></h4>
+                <div class="col">
+                    <div class="card" style="border-radius: 25px;">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"><b>รายละเอียดการ์ด</b></p>
+                            <label class="pt-2" for="card_no">เลขการ์ด</label>
+                            <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. "
+                                onchange="onChangeCardNumber()" placeholder="#### #### #### ####" style="background-color: #fff;">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card" style="border-radius: 25px;">
-                                <div class="card-body">
-                                    <h5 class="card-title"></h5>
-                                    <p class="card-text"><b>รายละเอียดการ์ด</b></p>
-                                    <label class="pt-2" for="card_no">เลขการ์ด</label>
-                                    <input type="tel" class="form-control identified" maxlength="16" id="card_no" name="card_no" required="" data-toggle="tooltip" data-placement="top" title="" data-original-title="This one is serious as I do want my money.. The credit card number is a 16 digit number, usually written 4 at a time on top of your credit card. "
-                                        onchange="onChangeCardNumber()" placeholder="#### #### #### ####" style="background-color: #fff;">
+                            <label for="card_name" class="mt-3">ประเภทการ์ด</label>
+                            <input type="text" class="form-control " disabled="" id="card_type" name="card_type" aria-describedby="emailHelp">
 
-                                    <label for="card_name" class="mt-3">ประเภทการ์ด</label>
-                                    <input type="text" class="form-control " disabled="" id="card_type" name="card_type" aria-describedby="emailHelp">
-
-                                    <label for="card_name" class="mt-3">ชื่อของผู้ถือการ์ด</label>
-                                    <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
-                                    <div class="row mb-5 mt-3">
-                                        <div class="col-6" style="padding-top: 5px;">
-                                            <label for="card_date">วันที่หมดอายุ</label> <br>
-                                            <select class="btn" id="month">
+                            <label for="card_name" class="mt-3">ชื่อของผู้ถือการ์ด</label>
+                            <input type="text" class="form-control" id="card_name" name="card_name" aria-describedby="emailHelp" style="background-color: #fff;">
+                            <div class="row mb-5 mt-3">
+                                <div class="col-6" style="padding-top: 5px;">
+                                    <label for="card_date">วันที่หมดอายุ</label> <br>
+                                    <select class="btn" id="month">
                                                 <option>MM</option>
                                                 <option value="1">01</option>
                                                 <option value="2">02</option>
@@ -356,8 +383,8 @@
                                                 <option value="11">11</option>
                                                 <option value="12">12</option>
                                             </select>
-                                            <span>/</span>
-                                            <select class="btn" id="year">
+                                    <span>/</span>
+                                    <select class="btn" id="year">
                                                 <option>YYYY</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
@@ -371,36 +398,45 @@
                                                 <option value="2029">2029</option>
                                                 <option value="2030">2030</option>
                                             </select>
-                                        </div>
-                                        <div class="col">
-                                            <label for="cvc">เลข CVC</label>
-                                            <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="notification" name="notification">
-                                        <label class="form-check-label" for="notification">
+                                </div>
+                                <div class="col">
+                                    <label for="cvc">เลข CVC</label>
+                                    <input type="text" class="form-control" id="cvc" name="cvc" style="background-color: #fff;">
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="notification" name="notification">
+                                <label class="form-check-label" for="notification">
                                           รับข่าวสารและการอัพเดตผ่านเบอร์โทรศัพท์
                                         </label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 col-md-4 float-left">BACK</button>
-                <button type="button" class="btn btn-dark btn-rounded nextBtn my-4 col-md-4 text-center" onclick="createPayment()">NEXT</button>
-
             </div>
-
-            <div class="row setup-content" id="step-14" style="margin: auto;">
-                <h2 class="col-12 my-4 text-center"><i class="fas fa-check-circle" style="color: #7DE875;"></i> จองสำเร็จ</h2>
-                <div class="card col-sm-12 m-0" style="border-radius: 25px;">
-                    <div class="card-body add-detail">
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-dark btn-rounded prevBtn my-4 text-center ">BACK</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-dark btn-rounded nextBtn my-4 text-center" onclick="createPayment()">NEXT</button>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
+
+    <div class="row setup-content" id="step-14" style="margin: auto;">
+        <h2 class="col-12 my-4 text-center"><i class="fas fa-check-circle" style="color: #7DE875;"></i> จองสำเร็จ</h2>
+        <div class="card col-sm-12 mb-5 mx-0" style="border-radius: 25px;">
+            <div class="card-body add-detail">
+            </div>
+        </div>
+    </div>
+    </form>
     </div>
 
     <footer>
@@ -718,10 +754,10 @@
 
         const serviceCard = (item, i) => {
                 return `
-                    <div class="col-lg-6 col-sm-12  p-3">
+                    <div class="col-md-6 col-sm-12  p-3">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="hairstyle" id="service${item.id_hairstyle}"  ${i === 0 ? 'checked=""' : ''} value="${item.id_hairstyle}">
-                            <label class="form-check-label px-5" for="service${item.id_hairstyle}">
+                            <label class="form-check-label" for="service${item.id_hairstyle}">
                                 <div class="col">
                                     <div class="row py-3">
                                         <div class="col-12 col-md p-2">
@@ -733,7 +769,7 @@
                                         <div class="col-12 col-md p-2">
 
                                             <h5>${item.name}</h5>
-                                            <p style="font-size: xx-small;">${item.description}</p>
+                                            <p style="font-size: small;">${item.description}</p>
                                             <p><span ${item.promotion_price > 0 ? ' style="text-decoration: line-through;font-size:14px""': ''}>${item.price}</span> ${item.promotion_price > 0 ? `<span style="color: #A33E3E; font-size:16px">${item.promotion_price} Baht</span>` : ""}</p>
                                         </div>
                                     </div>
@@ -755,9 +791,9 @@
 
         const barberCard = (item,i) => {
             return `
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <input class="form-check-input" type="radio" onchange="selectBarber()" name="barber" id="barber${item.id_barber}" ${i === 0 ? 'checked=""' : ''} value="${item.id_barber}">
-                        <label class="form-check-label px-5" for="barber${item.id_barber}">
+                        <label class="form-check-label pr-4" for="barber${item.id_barber}">
                                 <div class="icon">
                                     <div class="position-relative">
                                         <img class="circle" src="${item.image}" />
@@ -975,7 +1011,7 @@ console.log(listHairStyle);
         get_address = (item) => {
             console.log(item);
             return `
-             <div class="row">
+             <div class="row px-4">
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group row w-100 md-form">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">ที่อยู่เลขที่ : </label>
@@ -1024,7 +1060,7 @@ console.log(listHairStyle);
                             </div>
                         </div>
                     </div>
-                    <h3 class="p-5 col-md-6 col-sm-12">ข้อมูลติดต่อ</h3>
+                    <h3 class="pt-4 col-md-6 col-sm-12">ข้อมูลติดต่อ</h3>
                     <div class="col-sm-12 col-md-6 pb-5">
                         <div class="form-group row w-100 md-form">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">เบอร์โทรศัพท์ : </label>

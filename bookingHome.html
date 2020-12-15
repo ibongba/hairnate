@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/review.css">
     <title>BOOKING HOME</title>
 </head>
 
 <body>
     <div id="nav"></div>
-    <div style="max-height: 100vh; overflow: hidden;">        
+    <div style="max-height: 100vh; overflow: hidden;">
         <img id="image" src="https://via.placeholder.com/1920x600.png?text=ไม่มีรูป" alt="" class="w-100">
     </div>
     <div class="container">
         <div class="row my-5">
             <div class="col">
-                <div>
-                    <h5 class="float-left" id="name"></h5>&nbsp;
+                <div class="mb-3">
+                    <h5 class="float-left mt-2 mb-0" id="name"></h5>&nbsp;
                     <a id="ref" href="bookingCustomer.html" class="btn btn-danger" style="background-color: #A33E3E; border-radius: 25px;">จองคิว</a>
                 </div>
                 <p id="detail"></p>
@@ -33,12 +34,11 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-sm-12 align-items-center d-flex">
-                <h2 class="btn btn-dark" style="border-radius: 25px;">
-                    PROMOTION<br/>
-                    OF <span style="color:#A33E3E ;">THIS MONTH</span>
+                <h2 class="btn btn-dark" style="border-radius: 25px; width: inherit;">
+                    PROMOTION<br/> OF <span style="color:#A33E3E ;">THIS MONTH</span>
                 </h2>
             </div>
-           
+
             <div class="col-md-8 col-sm-12">
                 <div class="row">
                     <div class="col-12 text-center mr-auto">
@@ -50,7 +50,7 @@
         </div>
         <div class="row mb-5 text-center">
             <div class="col-md-4 col-sm-12 pt-5">
-                <h2 class="btn btn-dark" style="border-radius: 25px;">OUR TEAM</h2>
+                <h2 class="btn btn-dark" style="border-radius: 25px; width: inherit;">OUR TEAM</h2>
             </div>
             <div class="col-md-8 col-sm-12">
                 <div class="row">
@@ -99,7 +99,7 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-sm-12 pt-5">
-                <h2 class="btn btn-dark" style="border-radius: 25px;">SERVICES TYPE</h2>
+                <h2 class="btn btn-dark" style="border-radius: 25px; width: inherit;">SERVICES TYPE</h2>
             </div>
             <div class="col-md-8 col-sm-12">
                 <div class="row">
@@ -113,16 +113,16 @@
         </div>
         <h2 class="text-center">REVIEW OF <br>PHEEN BARBER SHOP</h2>
         <div class="row p-3">
-            <div class="col-md col-sm-12 p-0">
-                <img src="images/C1.PNG" alt="" class="w-100 p-1">
-                <img src="images/C2.PNG" alt="" class="w-100 col-md-6 col-sm-12 p-1 float-left" style="height: 350px;">
-                <img src="images/C3.png" alt="" class="w-100 col-md-6 col-sm-12 p-1  " style="height: 350px;">
+            <div class="col-md-6 col-sm-12 p-0">
+                <img src="images/C1.PNG" alt="" class="w-100 p-1 ">
+                <img src="images/C2.PNG" alt="" class="w-100 col-md-6 col-sm-12 p-1 float-left rewiew-img">
+                <img src="images/C3.png" alt="" class="w-100 col-md-6 col-sm-12 p-1 rewiew-img ">
             </div>
-            <div class="col-md col-sm-12 p-0">
-                <img src="images/C4.jpg" alt="" class="w-100 p-1">
-                <img src="images/C5.png" alt="" class="w-100 col-md-6 col-sm-12 p-1 float-left">
-                <img src="images/C6.png" alt="" class="w-100 col-md-6 col-sm-12 p-1" style="height: 270px;">
-                <img src="images/C7.png" alt="" class="w-100 p-1" style="height: 275px;">
+            <div class="col-md-6 col-sm-12 p-0">
+                <img src="images/C4.jpg" alt="" class="w-100 p-1 rewiew-img2">
+                <img src="images/C5.png" alt="" class="w-100 col-md-6 col-sm-12 p-1 float-left rewiew-img2">
+                <img src="images/C6.png" alt="" class="w-100 col-md-6 col-sm-12 p-1 rewiew-img2">
+                <img src="images/C7.png" alt="" class="w-100 p-1 rewiew-img3">
             </div>
             <a href="" class="col-12">
                 <p class="text-black-50 text-right">
@@ -132,7 +132,7 @@
         </div>
 
         <div id="review">
-            
+
         </div>
         <a href="" class="col-12 mb-4">
             <p class="text-black-50 text-right">
@@ -171,8 +171,8 @@
         $(function() {
             $('#nav').load("layout/navbar.html");
 
-            $('#ref').attr('href','bookingCustomer.html?id='+getUrlVars()['id'])
-            if(!localStorage.getItem('user')) $('#ref').addClass('d-none')
+            $('#ref').attr('href', 'bookingCustomer.html?id=' + getUrlVars()['id'])
+            if (!localStorage.getItem('user')) $('#ref').addClass('d-none')
 
             $.ajax({
                 method: "POST",
@@ -186,27 +186,27 @@
                 // processData: false,
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
-                data.barber.map((item)=>{
+                data.barber.map((item) => {
                     $('#barber').append(barberCard(item))
                 })
 
-                data.hairstyle.filter((item)=>item.type === "2").map((item)=>{
+                data.hairstyle.filter((item) => item.type === "2").map((item) => {
                     $('#promotion').append(serviceCard(item))
                 })
 
 
-                data.hairstyle.filter((item)=>item.type === "1").map((item)=>{
+                data.hairstyle.filter((item) => item.type === "1").map((item) => {
                     $('#service').append(serviceCard(item))
                 })
 
-                data.review.map((item)=>{
+                data.review.map((item) => {
                     $('#review').append(review(item))
                 })
 
                 console.log(data)
                 $('#name').text(data.partner.biz_name)
-                $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> '+data.partner.biz_house_no + (data.partner.biz_village_no ? ' หมู่ ' +data.partner.biz_village_no:'')+ ' ' +data.partner.biz_sub_area+ ' ' +data.partner.biz_area+ ' ' +data.partner.biz_province+ ' ' +data.partner.biz_postal_code)
-                $('#image').attr('src',data.partner.biz_image || 'https://via.placeholder.com/1920x600.png?text=ไม่มีรูป')
+                $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> ' + data.partner.biz_house_no + (data.partner.biz_village_no ? ' หมู่ ' + data.partner.biz_village_no : '') + ' ' + data.partner.biz_sub_area + ' ' + data.partner.biz_area + ' ' + data.partner.biz_province + ' ' + data.partner.biz_postal_code)
+                $('#image').attr('src', data.partner.biz_image || 'https://via.placeholder.com/1920x600.png?text=ไม่มีรูป')
             });
         });
 
@@ -230,12 +230,11 @@
             </div>`;
         }
 
-        function getUrlVars()
-        {
-            var vars = [], hash;
+        function getUrlVars() {
+            var vars = [],
+                hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for(var i = 0; i < hashes.length; i++)
-            {
+            for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
                 vars.push(hash[0]);
                 vars[hash[0]] = hash[1];
@@ -244,11 +243,11 @@
         }
 
         const serviceCard = (item) => {
-            return `
-                <div class="col-lg-4">
+                return `
+                <div class="col-md-6">
                     <div class="icon">
                         <div class="position-relative">
-                            <img class="img-fluid img-thumbnail" src="${item.image}" />
+                            <img class="img-fluid img-thumbnail" src="images/${item.image}" />
                             <p style="text-align: center;" class="pt-2"><b>${item.name}</b><br>${item.promotion_price ? `<span style="text-decoration: line-through;">${item.price}</span> <span style="color: #A33E3E; font-size:20px">${item.promotion_price} Baht</span>` : item.price + ' Bath'} </p>
                         </div>
                     </div>
@@ -258,12 +257,12 @@
 
         const barberCard = (item) => {
             return `
-                            <div class="col-4">
+                            <div class="col-6 col-md-4 col-lg-3 mb-3">
                                 <a href="" data-toggle="modal" data-target="#team">
                                     <div class="icon">
                                         <div class="position-relative">
-                                            <img class="circle" src="${item.image}" />
-                                            <p style="text-align: center;" class="pt-2 text-dark">ช่าง${item.name}</p>
+                                            <img class="circle" src="images/${item.image}" />
+                                            <p style="text-align: center;" class="pt-2 text-dark">ช่าง ${item.name}</p>
                                         </div>
                                     </div>
                                 </a>

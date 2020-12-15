@@ -1,0 +1,45 @@
+.rewiew-img {
+    height: 270px;
+    /* height: 350px; */
+}
+
+.rewiew-img2 {
+    height: 290px;
+    ;
+    /* height: 270px; */
+}
+
+.rewiew-img3 {
+    height: 250px;
+    ;
+    /* height: 275px; */
+}
+
+.btn-move {
+    width: inherit;
+}
+
+@media screen and (min-width: 768px) {
+    .rewiew-img {
+        height: 200px;
+    }
+    .rewiew-img2 {
+        height: 177px;
+    }
+    .rewiew-img3 {
+        height: 190px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .rewiew-img {
+        /* height: 270px; */
+        height: 350px;
+    }
+    .rewiew-img2 {
+        height: 315px;
+    }
+    .rewiew-img3 {
+        height: 275px;
+    }
+}

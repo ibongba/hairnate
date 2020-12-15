@@ -357,16 +357,16 @@
 
 
         const cardOther = (item) => {
-            let currentImg = images.filter((i) => i.fk_sd_id === item.id_service_detail).map((i) => `<div class="w-50 px-2 float-right"><img src="${i.path}" alt="" class="img-thumbnail" /></div>`)
-            var dateFirst = new Date(item.service_date);
-            var dateSecond = new Date();
+                let currentImg = images.filter((i) => i.fk_sd_id === item.id_service_detail).map((i) => `<div class="w-50 px-2 float-right"><img src="${i.path}" alt="" class="img-thumbnail" /></div>`)
+                var dateFirst = new Date(item.service_date);
+                var dateSecond = new Date();
 
-            // time difference
-            var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+                // time difference
+                var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
 
-            // days difference
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            return `
+                // days difference
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                return `
                 <div class="card">
                     <div class="card-header" id="heading${item.id_service_detail}">
                         <h2 class="mb-0">
@@ -382,12 +382,12 @@
                                     <div class="col float-left pl-0">
                                         <h6 class="m-0"><b>${item.biz_name}</b></h6>
                                         <p class="m-0" style="font-size: xx-small;"><b>${item.name}</b></p>
-                                        <p class="text-black-50" style="font-size: xx-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
+                                        <p class="text-black-50" style="font-size: x-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
                                     </div>
                                     <div class="col text-right">
                                         <div class="float-right">
                                             ${(item.status == 0)? '<h6 class="text-danger text-right" >Cancel</h6>' : '' }
-                                            ${(item.status == 2) ? `<a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: xx-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a>` : ''}
+                                            ${(item.status == 2) ? `<a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: x-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a>` : ''}
                                             ${(item.status == 3)? '<h6 class="text-success text-right" >Successfully</h6>' : '' }
 
 

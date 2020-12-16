@@ -514,7 +514,7 @@
             },
             onchanged: function (currentLocation, radius, isMarkerDropped) {
                 var addressComponents = $(this).locationpicker('map').location.addressComponents;
-                console.log(currentLocation);  //latlon
+                console.log('currentLocation', currentLocation);  //latlon
                 updateControls(addressComponents); //Data
             }
         });

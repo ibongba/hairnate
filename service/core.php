@@ -221,7 +221,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         JOIN `users` ON `users`.`id` = `service_detail`.`id_users` 
         JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
         WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'
-        AND (`service_images`.`type` = 2 OR `service_images`.`type` = NULL)";
+        AND (`service_images`.`type` = 2 OR `service_images`.`type` IS NULL)";
         $review = getpdo($conn, $sql);
 
         $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'sql' => $sql)));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 06:51 AM
+-- Generation Time: Dec 16, 2020 at 03:38 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -45,7 +45,8 @@ INSERT INTO `barber` (`id_barber`, `name`, `id_partner`, `phone`, `image`, `desc
 (1, 'นาย ก', 1, NULL, 'upload/1603127669ar 4.png', 'test'),
 (2, 'นาย ข', 1, NULL, 'upload/1603390937Image [default idle.png', '1'),
 (3, 'Mr. A', 2, NULL, 'upload/16034666202.png', 'at condo A'),
-(8, 'ทดสอบ', 2, NULL, '', '12345');
+(10, 'Mr.B', 2, '2121', 'upload/16080179898.png', 'dvsvdsv'),
+(11, 'Mr. C', 2, '5645', 'upload/1608018007a1.png', 'dsdsds');
 
 -- --------------------------------------------------------
 
@@ -81,8 +82,6 @@ INSERT INTO `hairstyle` (`id_hairstyle`, `id_partner`, `name`, `description`, `p
 (11, 1, 'ทรงผมสกีนเฮด', 'ทรงผมพื้นฐานสำหรับคุณ', 400, 'upload/1598974360สกีนเฮด.png', 1),
 (12, 1, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1),
 (14, 1, '1', '1', 1, 'upload/1603387224messageImage_1602880736761.jpg', 2),
-(23, 2, 'test', 'ter', 2500, 'upload/1603474265Group 244.png', 2),
-(24, 2, 'teds', 'rere', 200, 'upload/1603474301a2.png', 1),
 (25, 20, 'ทรงผมรองทรงสูง', 'ทรงผมพื้นฐานสำหรับคุณ', 300, 'upload/1598974155รองทรงสูง.png', 1),
 (26, 20, 'ทรงผมรองทรงกลาง', 'ทรงผมพื้นฐานสำหรับคุณ', 350, 'upload/1598974130รองทรงกลาง.png', 1),
 (27, 20, 'ทรงผมรองทรงต่ำ', 'ทรงผมพื้นฐานสำหรับคุณ', 250, 'upload/1598974185รองทรงต่ำ.png', 1),
@@ -96,7 +95,8 @@ INSERT INTO `hairstyle` (`id_hairstyle`, `id_partner`, `name`, `description`, `p
 (36, 21, 'ทรงผมสกีนเฮด', 'ทรงผมพื้นฐานสำหรับคุณ', 400, 'upload/1598974360สกีนเฮด.png', 1),
 (37, 21, 'undercut', 'ทรงผมพื้นฐานสำหรับคุณ', 450, 'upload/1598974383undercut.png', 1),
 (38, 2, 'ทดสอบ', '1', 2500, 'upload/16050150018.png', 2),
-(39, 2, 'อัลเบิรต์', '2', 2500, 'upload/16050150301596322863963.jpg', 1);
+(39, 2, 'อัลเบิรต์', '2', 2500, 'upload/16050150301596322863963.jpg', 1),
+(40, 2, 'tesrrt', 'scacsac', 1234, 'upload/1608017437asset-8.png', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `partner` (
 
 INSERT INTO `partner` (`id`, `biz_name`, `biz_email`, `biz_house_no`, `biz_village_no`, `biz_sub_area`, `biz_area`, `biz_province`, `biz_postal_code`, `biz_type`, `biz_image`, `fk_user_id`) VALUES
 (1, 'test', '1234@gmail.com', '1', '', '', '', '', '', 1, NULL, 1),
-(2, 'testtest', 'testtest@mail.com', '123', '', '', '', '', '', 1, 'upload/16034739853.png', 4),
+(2, 'testtest', 'testtest@mail.com', '123', 'cgcxfhcghc', 'test', 'test', 'test', '121515', 1, 'upload/16034739853.png', 4),
 (20, 't4t', 't44t', 'fefe', '', '', '', '', '', 2, NULL, 42),
 (21, 'fwf', 'wfw', 'fwfw', 'fwfw', 'fwfwf', 'wfwf', 'wfw', '15165', 2, NULL, 43);
 
@@ -182,7 +182,17 @@ INSERT INTO `payment` (`paymeny_id`, `fk_sd_id`, `card_name`, `card_no`, `month`
 (10, '', 'kjhjkhbk', '12356564646', 9, 2030, 1234, 0),
 (11, 'FS201110000013', '้ีร้้สาาส', '134565', 11, 2030, 1234, 0),
 (12, 'FS201110000014', 'njnuibiubibu', '1234664', 9, 2030, 235, 0),
-(13, 'FS201110000015', 'fdfssddfdsf', '15615156', 12, 2029, 5525, 0);
+(13, 'FS201110000015', 'fdfssddfdsf', '15615156', 12, 2029, 5525, 0),
+(14, 'FS201215000019', '', '', 0, 0, 0, 0),
+(15, 'FS201215000020', '', '', 0, 0, 0, 0),
+(16, 'FS201215000021', '', '', 0, 0, 0, 0),
+(17, 'FS201215000023', '', '', 0, 0, 0, 0),
+(18, 'FS201215000024', '', '', 0, 0, 0, 0),
+(19, 'FS201215000025', '', '', 0, 0, 0, 0),
+(20, 'FS201215000027', '', '', 0, 0, 0, 0),
+(21, 'FS201215000044', '', '', 0, 0, 0, 0),
+(22, 'FS201216000047', '', '', 0, 0, 0, 0),
+(23, 'FS201216000049', '', '', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +214,6 @@ CREATE TABLE `promotion` (
 
 INSERT INTO `promotion` (`id_promotion`, `start_date`, `end_date`, `promotion_price`, `fk_hairstyle_id`) VALUES
 (1, '2020-10-21', '2020-10-27', 1, 14),
-(2, '2020-10-23', '2020-10-31', 1500, 23),
 (3, '2020-11-11', '2020-12-05', 1200, 38);
 
 -- --------------------------------------------------------
@@ -250,7 +259,41 @@ INSERT INTO `service_detail` (`service_date`, `service_time`, `service_location`
 ('2020-10-24', '14.00', '      ', '', 1, NULL, 1, 1, 14, 'FS201023000012', ''),
 ('2020-11-18', '10.00', '12  undefined    ', '1234', 2, 1200, 3, 5, 38, 'FS201110000013', 't@m.com'),
 ('2020-11-30', '14.00', '12 1251 undefined bjhbkjbk bjbijbi nininji 123456', '0623112231', 2, 200, 3, 5, 24, 'FS201110000014', 't@m.com'),
-('2020-11-23', '13.00', '12 efdf undefined fdfd fdfd fdfd fdfd', '1234', 2, 1500, 3, 5, 23, 'FS201110000015', 't@m.com');
+('2020-11-23', '13.00', '12 efdf undefined fdfd fdfd fdfd fdfd', '1234', 2, 1500, 3, 5, 23, 'FS201110000015', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 250, 2, 5, 9, 'FS201215000016', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1, 1, 5, 14, 'FS201215000017', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1, 1, 5, 14, 'FS201215000018', 't@m.com'),
+('2020-12-18', '10.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000019', 't@m.com'),
+('2020-12-18', '14.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000020', 't@m.com'),
+('2020-12-31', '10.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000021', 't@m.com'),
+('2021-01-20', '13.00', '12  undefined    ', '1234', 1, 1, 1, 5, 14, 'FS201215000022', 't@m.com'),
+('2021-01-21', '14.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000023', 't@m.com'),
+('2020-12-30', '14.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000024', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201215000025', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1, 1, 5, 14, 'FS201215000026', 't@m.com'),
+('2020-12-24', '10.00', '12  undefined    ', '1234', 2, 1200, 3, 5, 38, 'FS201215000027', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000028', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000029', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000030', 't@m.com'),
+('2020-12-17', '15.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000031', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000032', 't@m.com'),
+('2020-12-17', '09.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000033', 't@m.com'),
+('2021-01-13', '09.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000034', 't@m.com'),
+('2021-01-13', '09.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000035', 't@m.com'),
+('2021-01-14', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000036', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000037', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000038', 't@m.com'),
+('2020-12-17', '10.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000039', 't@m.com'),
+('2020-12-17', '11.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000040', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000041', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000042', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000043', 't@m.com'),
+('2020-12-17', '11.00', '12  undefined    ', '1234', 2, 1200, 3, 5, 38, 'FS201215000044', 't@m.com'),
+('2020-12-17', '14.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000045', 't@m.com'),
+('2020-12-18', '09.00', '12  undefined    ', '1234', 1, 1200, 3, 5, 38, 'FS201215000046', 't@m.com'),
+('2020-12-19', '10.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201216000047', 't@m.com'),
+('2020-12-24', '14.00', '12  undefined    ', '1234', 1, 1, 1, 5, 14, 'FS201216000048', 't@m.com'),
+('2020-12-29', '10.00', '12  undefined    ', '1234', 2, 1, 1, 5, 14, 'FS201216000049', 't@m.com');
 
 -- --------------------------------------------------------
 
@@ -407,13 +450,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barber`
 --
 ALTER TABLE `barber`
-  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_barber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `hairstyle`
 --
 ALTER TABLE `hairstyle`
-  MODIFY `id_hairstyle` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_hairstyle` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `partner`
@@ -425,7 +468,7 @@ ALTER TABLE `partner`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `paymeny_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `paymeny_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `promotion`

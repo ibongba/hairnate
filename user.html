@@ -234,7 +234,7 @@
             }).done(function(msg) {
                 let data = msg.result.sd;
                 images = msg.result.images
-
+                console.log(msg.result);
                 data.filter((item) => {
 
 
@@ -250,7 +250,8 @@
 
                     return item.status === '2' && diffDays <= 0
                 }).map((item, i) => {
-                    $('.status2').append(card(item, i));
+                    var img = images.filter((item) => item.type === '2')
+                    $('.status2').append(card(item, i, img));
                 });
 
                 if (data.filter((item) => item.status === '2').lenght === 0) {
@@ -273,7 +274,8 @@
                     return item.status !== '2' || diffDays > 0
 
                 }).map((item) => {
-                    $('.status-other').append(cardOther(item));
+                    var img = images.filter((item) => item.type === '2')
+                    $('.status-other').append(cardOther(item, img));
                 });
 
 
@@ -287,7 +289,8 @@
             return date.getDate() + ' ' + listMonth[date.getMonth()].toLocaleUpperCase() + ' ' + (date.getFullYear() + 543);
         };
 
-        const card = (item, i) => {
+        const card = (item, i, img) => {
+            console.log('images', img);
             return `
 						<div class="card">
 			             <div class="card-header" id="heading${item.id_service_detail}">
@@ -324,13 +327,18 @@
 											}" class="btn btn-danger d-flex float-right h-100" style="justify-content: flex-end; align-items: flex-end; background-color: #A33E3E;">ยกเลิกบริการ</a>
 			                         </div>
 			                     </div>
+                                <div class="row">
+                                    <div class="col-4"> 
+                                        <img src="${img[0].path}" class="img-fuild" />
+                                    </div>
+                                </div>
 			                 </div>
 			                 </div>
 			             </div>`;
         };
 
 
-        const cardOther = (item) => {
+        const cardOther = (item, img) => {
                 let currentImg = images.filter((i) => i.fk_sd_id === item.id_service_detail).map((i) => `<div class="w-50 px-2 float-right"><img src="${i.path}" alt="" class="img-thumbnail" /></div>`)
                 var dateFirst = new Date(item.service_date);
                 var dateSecond = new Date();
@@ -389,6 +397,11 @@
                                 </div>
                                 <div class="col">
                                     ${currentImg.toString().replace(',','')}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"> 
+                                    <img src="${img[0].path}" class="img-fuild" />
                                 </div>
                             </div>
                         </div>

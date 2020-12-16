@@ -266,6 +266,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 
     $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `price`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`, `lat`, `lon`) VALUES ('" . $nextid . "','" . $_POST['service_date'] . "','" . $_POST['service_time'] . "','" . $_POST['service_location'] . "','" . $_POST['price'] . "','" . $_POST['service_phone'] . "','" . $_POST['email'] . "','" . $_POST['id_barber'] . "','" . $_POST['id_users'] . "','" . $_POST['id_hairstyle'] . "','" . $_POST['lat'] . "','" . $_POST['lon'] . "')";
 
+
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
@@ -279,7 +280,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
                     $newFilePath = "../upload/" . time() . $_FILES['files']['name'][$i];
                     if (move_uploaded_file($tmpFilePath, $newFilePath)) {
                         $img = "upload/" . time() . $_FILES['files']['name'][$i];
-                        $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`) VALUES ('" . $img . "'," . $nextid . ")";
+                        $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`) VALUES ('" . $img . "','" . $nextid . "')";
+                        // echo $sql;
                         getpdo($conn, $sql);
                     }
                 }
@@ -375,7 +377,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     }
 
 } else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_barber') {
-    $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_detail`.`id_barber` = '" . $_POST['id_barber'] . "' and `status` != 1";
+    $sql = "SELECT `service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` WHERE `service_detail`.`id_barber` = '" . $_POST['id_barber'] . "' and `status` = 2";
     if (isset($_POST['service_date'])) {
         $sql .= " and `service_date` = '" . $_POST['service_date'] . "'";
     }

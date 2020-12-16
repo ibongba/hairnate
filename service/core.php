@@ -128,7 +128,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
-        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "')";
+        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`,`password`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "','" .md5($_POST['password']) . "')";
         $rs = getpdo($conn, $sql);
         if ($rs) {
             $res = array("code" => 200, "result" => $rs);
@@ -271,7 +271,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $nextid .= substr("000000" . $lastid, -6, 6);
 
     $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `price`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`, `lat`, `lon`) VALUES ('" . $nextid . "','" . $_POST['service_date'] . "','" . $_POST['service_time'] . "','" . $_POST['service_location'] . "','" . $_POST['price'] . "','" . $_POST['service_phone'] . "','" . $_POST['email'] . "','" . $_POST['id_barber'] . "','" . $_POST['id_users'] . "','" . $_POST['id_hairstyle'] . "','" . $_POST['lat'] . "','" . $_POST['lon'] . "')";
-
+// echo $sql;
 
     $rs = getpdo($conn, $sql);
 

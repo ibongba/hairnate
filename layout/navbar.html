@@ -51,7 +51,7 @@
                             }
                         </style>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="noti" id="noti-list">
-                           <!--  <a class="dropdown-item border-bottom" href="#">
+                            <!--  <a class="dropdown-item border-bottom" href="#">
                                 <div class="row">
                                     <div class="col-2"><i class="fas fa-check-circle text-success"></i></div>
                                     <div class="col">Peter Parker <br>ได้ทำการจองบริการเรียบร้อยแล้ว <br><small>10 minutes ago</small></div>
@@ -81,7 +81,7 @@
                 <!-- <li class="nav-item is-login">
                     <a data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-cut"></i></a>
                 </li> -->
-                <li class="nav-item is-login">
+                <li class="nav-item is-login text-light">
                     <a onclick="logout()"><i class="fas fa-sign-out-alt "></i></a>
                 </li>
             </ul>
@@ -148,13 +148,12 @@
                     if (msg.code === 200) {
                         $('#noti-list').empty()
                         noti = msg.result;
-                        noti.map((item,index)=>{
-                            $('#noti-list').append(notification(item,index))
+                        noti.map((item, index) => {
+                            $('#noti-list').append(notification(item, index))
                         })
                     }
                 });
-            }
-            else {
+            } else {
                 $('.is-users').addClass('d-none');
 
                 $('nav').addClass('style-partner');
@@ -172,8 +171,8 @@
                     if (msg.code === 200) {
                         $('#noti-list').empty()
                         noti = msg.result;
-                        noti.map((item,index)=>{
-                            $('#noti-list').append(notification(item,index))
+                        noti.map((item, index) => {
+                            $('#noti-list').append(notification(item, index))
                         })
                     }
                 });
@@ -184,15 +183,16 @@
         }
     })
 
-    const notification = (item,index) => {
-        var case_status = '',classes = '';
-        if(item.status == 3 || (item.status ==2 && new Date (item.service_date) < new Date())){
+    const notification = (item, index) => {
+        var case_status = '',
+            classes = '';
+        if (item.status == 3 || (item.status == 2 && new Date(item.service_date) < new Date())) {
             case_status = 'เสร็จสิ้นการตัดผม'
             classes = 'fas fa-check-circle text-success'
-        }else if(item.status == 2){
+        } else if (item.status == 2) {
             case_status = 'ทำการจอง'
             classes = 'fas fa-clock text-secondary'
-        }else {
+        } else {
             case_status = 'ยกเลิก'
             classes = 'fas fa-times-circle text-danger'
         }
@@ -217,7 +217,7 @@
     }
 
     const UpdateStatus = () => {
-        
+
 
         $.ajax({
             method: "POST",

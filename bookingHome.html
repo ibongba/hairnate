@@ -188,6 +188,7 @@
                 // processData: false,
             }).done(function(msg) {
                 let data = JSON.parse(msg.result)
+                console.log('data', data);
                 data.barber.map((item) => {
                     $('#barber').append(barberCard(item))
                 })

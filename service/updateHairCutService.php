@@ -14,7 +14,7 @@ if (isset($_POST['serviceNo']) &&  isset($_POST['userAccept'])) {
             $newFilePath = "../upload/" . time() . $_FILES['file']['name'];
             if (move_uploaded_file($tmpFilePath, $newFilePath)) {
                 $img = "upload/" . time() . $_FILES['file']['name'];
-                $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`) VALUES ('" . $img . "','" .$serviceid. "')";
+                $sql = "INSERT INTO `service_images`(`path`, `fk_sd_id`, `type`) VALUES ('" . $img . "','" .$serviceid. "','" .$_POST['type']. "')";
                  $resp = getpdo($conn, $sql);
 
                if($resp){

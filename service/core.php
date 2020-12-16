@@ -215,7 +215,13 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         $sql = "SELECT * FROM `barber` WHERE `id_partner` = '" . $rs[0]['id'] . "'";
         $barber = getpdo($conn, $sql);
 
-        $sql = "SELECT * FROM `review` JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'";
+        $sql = "SELECT * FROM `review` 
+        JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` 
+        JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` 
+        JOIN `users` ON `users`.`id` = `service_detail`.`id_users` 
+        JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
+        WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'
+        AND (`service_images`.`type` = 2 OR `service_images`.`type` = NULL)";
         $review = getpdo($conn, $sql);
 
         $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'sql' => $sql)));

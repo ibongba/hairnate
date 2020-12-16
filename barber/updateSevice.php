@@ -88,6 +88,7 @@
                         <label for="exampleInputEmail1">SERVICE NO </label>
                         <input type="text"  class="form-control" value="<?php echo $sericeid ?>" disabled >
                         <input type="hidden" name="serviceNo" class="form-control" value="<?php echo $sericeid ?>" >
+                        <input type="hidden" name="type" class="form-control" value="2" >
                     </div>
                     <!-- Uploaded image area-->
                     <div class="mt-4">

@@ -264,7 +264,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $nextid .= getdate()["mday"];
     $nextid .= substr("000000" . $lastid, -6, 6);
 
-    $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `price`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`) VALUES ('" . $nextid . "','" . $_POST['service_date'] . "','" . $_POST['service_time'] . "','" . $_POST['service_location'] . "','" . $_POST['price'] . "','" . $_POST['service_phone'] . "','" . $_POST['email'] . "','" . $_POST['id_barber'] . "','" . $_POST['id_users'] . "','" . $_POST['id_hairstyle'] . "')";
+    $sql = "INSERT INTO `service_detail`(`id_service_detail`,`service_date`, `service_time`, `service_location`, `price`, `service_phone`,`email`, `id_barber`, `id_users`, `id_hairstyle`, `lat`, `lon`) VALUES ('" . $nextid . "','" . $_POST['service_date'] . "','" . $_POST['service_time'] . "','" . $_POST['service_location'] . "','" . $_POST['price'] . "','" . $_POST['service_phone'] . "','" . $_POST['email'] . "','" . $_POST['id_barber'] . "','" . $_POST['id_users'] . "','" . $_POST['id_hairstyle'] . "','" . $_POST['lat'] . "','" . $_POST['lon'] . "')";
 
     $rs = getpdo($conn, $sql);
 

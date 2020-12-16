@@ -896,6 +896,9 @@
 
             form_data.append('service_location', location);
             form_data.append('service_phone', $('#phone').val());
+            form_data.append('lat', $('#us2-lat').val());
+            form_data.append('lon', $('#us2-lon').val());
+
 
             let currenthairstyle = listHairStyle.find((item)=>{return item.id_hairstyle == $('input[name=hairstyle]:checked').val()})
 

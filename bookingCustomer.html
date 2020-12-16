@@ -257,6 +257,27 @@
                     </div>
                 </div> -->
                 </div>
+
+                <div class="col-12">
+                    <div class="form-group{{ $errors->has('fax') ? ' has-error' : '' }}">
+                        <label for="titleen" class="control-label">สถานที่ *</label>
+                        <input type="text" id="us2-address" class="form-control border-r-0" required/>
+                        <div id="us2" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+                <div class="col-6 mt-3">
+                    <div class="form-group{{ $errors->has('fax') ? ' has-error' : '' }}">
+                        <label for="titleen" class="control-label">ละติจูด *</label>
+                        <input type="text" id="us2-lat" name="lat" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-6 mt-3">
+                    <div class="form-group{{ $errors->has('fax') ? ' has-error' : '' }}">
+                        <label for="titleen" class="control-label">ลองติจูด *</label>
+                        <input type="text" id="us2-lon" name="lon" class="form-control" required/>
+                    </div>
+                </div>
+                
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
@@ -473,8 +494,36 @@
     <!-- Stepper JavaScript - minified -->
     <!-- <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script> -->
     <!-- stepper -->
-
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCPBj3pIdKpOMbIL4cChrzX_OJZSkaxIvM
+    &amp;sensor=false&amp;libraries=places"></script>
+    <script src="https://cdn.rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.min.js"></script>
     <script>
+        $('#us2').locationpicker({
+            location:{
+                latitude: 13.76761,
+                longitude: 100.57118600000001
+            },
+            enableAutocomplete: true,
+            enableReverseGeocode: true,
+            radius: 0,
+            inputBinding: {
+                latitudeInput: $('#us2-lat'),
+                longitudeInput: $('#us2-lon'),
+                radiusInput: $('#us2-radius'),
+                locationNameInput: $('#us2-address')
+            },
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
+                var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                console.log(currentLocation);  //latlon
+                updateControls(addressComponents); //Data
+            }
+        });
+    
+        function updateControls(addressComponents) {
+            console.log(addressComponents);
+        }
+    </script>
+   <script>
         const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
 
         const formatDate = (date) => {
@@ -618,6 +667,8 @@
 
 
         });
+
+
 
 
 

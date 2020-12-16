@@ -233,7 +233,7 @@
                 // processData: false,
             }).done(function(msg) {
                 let data = msg.result.sd;
-                images = [...msg.result.images]
+                images = msg.result.images
 
                 data.filter((item) => {
 

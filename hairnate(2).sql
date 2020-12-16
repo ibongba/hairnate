@@ -451,9 +451,44 @@ INSERT INTO `users` (`id`, `username`, `surname`, `password`, `phone`, `email`, 
 (42, '4t4t', 't4t', '81dc9bdb52d04dc20036dbd8313ed055', '4t4', 't4t', 'fefe', 'fefe', 'fefefe', 'ffefef', 'fefe', '14115', 2),
 (43, 'wfw', 'wfw', '81dc9bdb52d04dc20036dbd8313ed055', 'f', 'fwfw', 'wfwf', 'fwfw', 'fwfw', 'fwfw', 'wfw', '1151', 2);
 
+
+
+CREATE TABLE `tracking` (
+  `tracking_id` int(11) NOT NULL,
+  `tracking_on` varchar(50) NOT NULL,
+  `tracking_type` varchar(50) NOT NULL,
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fk_sd_id` varchar(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tracking`
+--
+
+INSERT INTO `tracking` (`tracking_id`, `tracking_on`, `tracking_type`, `create_at`, `fk_sd_id`) VALUES
+(2, 'test', 'Kerry', '2020-12-02 01:07:04', 'FS201121000011'),
+(3, 'fsfsdf', 'DHL', '2020-12-04 03:22:31', 'FS201121000014');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tracking`
+--
+ALTER TABLE `tracking`
+  ADD PRIMARY KEY (`tracking_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tracking`
+--
+ALTER TABLE `tracking`
+  MODIFY `tracking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 
 --
 -- Indexes for table `barber`

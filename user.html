@@ -291,6 +291,13 @@
 
         const card = (item, i, img) => {
             console.log('images', img);
+            var image_str = '';
+            img.forEach(val => {
+                image_str += `<div class="col-4"> 
+                     <img src="${val.path}" class="img-fuild" />
+                </div>`
+            })
+
             return `
 						<div class="card">
 			             <div class="card-header" id="heading${item.id_service_detail}">
@@ -328,9 +335,7 @@
 			                         </div>
 			                     </div>
                                 <div class="row">
-                                    <div class="col-4"> 
-                                        <img src="${img[0].path}" class="img-fuild" />
-                                    </div>
+                                    ${image_str}
                                 </div>
 			                 </div>
 			                 </div>
@@ -348,6 +353,12 @@
 
                 // days difference
                 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                var image_str = '';
+                img.forEach(val => {
+                    image_str += `<div class="col-4"> 
+                        <img src="${val.path}" class="img-fuild" />
+                    </div>`
+                })  
                 return `
                 <div class="card">
                     <div class="card-header" id="heading${item.id_service_detail}">
@@ -400,9 +411,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4"> 
-                                    <img src="${img[0].path}" class="img-fuild" />
-                                </div>
+                                ${image_str}
                             </div>
                         </div>
                     </div>

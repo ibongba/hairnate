@@ -569,7 +569,46 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
-}
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
+
+    $sql = "SELECT * FROM `barber` WHERE `id_barber` = '" . $_POST['barber_id'] . "'";
+// echo $sql;
+    $rs = getpdo($conn, $sql);
+
+    if ($rs) {
+        $res = array("code" => 200, "result" => $rs[0]);
+        echo json_encode($res);
+        return;
+    }
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_order_7_day') {
+$tomorrow  = mktime(0, 0, 0, date("m")  , date("d")+1, date("Y"));
+$lastmonth = mktime(0, 0, 0, date("m")  , date("d")-6, date("Y"));
+$nextyear  = mktime(0, 0, 0, date("m"),   date("d"),   date("Y")+1);
+    $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` WHERE `service_date` <= CURDATE() AND `service_date` > '".date('Y-m-d',$lastmonth )."' GROUP BY `service_date`  ORDER BY`service_date` DESC"; 
+    // echo $sql;
+
+    $rs = getpdo($conn, $sql);
+
+    if ($rs) {
+        
+        $res = array("code" => 200, "result" => $rs);
+        echo json_encode($res);
+        return;
+    }
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_money') {
+
+        $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` WHERE `service_date` <= CURDATE() AND `service_date` > '".date('Y-m-d',$lastmonth )."' GROUP BY `service_date`  ORDER BY`service_date` DESC"; 
+        // echo $sql;
+    
+        $rs = getpdo($conn, $sql);
+    
+        if ($rs) {
+            
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
+        }
+    }
 
 $result = array("message" => "Error someting");
 $res = array("code" => 401, "result" => $result, "sql" => $sql);

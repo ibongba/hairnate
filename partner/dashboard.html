@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="chart-container">
+                    <canvas id="chart-bar"></canvas>
+                </div>
+            </div>
+            <div class="col">
+                <div class="chart-container">
+                    <canvas id="chart-line"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="chart-bar-total"></canvas>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_order_7_day',
+                    // id: user.id,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                if (msg.code === 200) {
+                    var ctx = $('#chart-bar');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        responsive: true,
+                        data: {
+                            labels: [...msg.result.map((item) => item.service_date)],
+                            datasets: [{
+                                fill: false,
+                                label: 'จำนวนการใช้งานภายใน 7 วัน',
+                                data: [...msg.result.map((item) => item.count)]
+                            }]
+                        },
+                    });
+                }
+            });
+        });
+
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_money',
+                    // id: user.id,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                if (msg.code === 200) {
+                    var ctx = $('#chart-line');
+                    new Chart(ctx, {
+                        type: 'line',
+                        responsive: true,
+                        data: {
+                            labels: [...msg.result.map((item) => item.service_date)],
+                            datasets: [{
+                                fill: false,
+                                label: 'จำนวนการใช้งานภายใน 7 วัน',
+                                data: [...msg.result.map((item) => item.count)]
+                            }],
+                            datasets: [{
+                                fill: false,
+                                label: 'จำนวนการใช้งานภายใน 7 วัน',
+                                data: [...msg.result.map((item) => item.count)]
+                            }]
+                        },
+                    });
+                }
+            });
+        });
+
+        var ctx = $('#chart-bar-total');
+        new Chart(ctx, {
+            type: 'bar',
+            responsive: true,
+            data: {
+                labels: [1, 2, 3, 4, 5, 6, 7],
+                datasets: [{
+                    fill: false,
+                    label: 'จำนวน order ในเดือนนี้ของแต่ละ Barber',
+                    data: [5, 10, 5, 2, 20, 30, 45]
+                }]
+            },
+        });
+    </script>
+</body>
+
+</html>

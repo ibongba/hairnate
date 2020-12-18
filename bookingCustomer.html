@@ -755,8 +755,8 @@
                             list = msg.result.map((item) => {
                                 if (parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
                                 if (parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
-                                if (parseInt == 11) $('#13').addClass('d-none')
-                                if (parseInt == 13) $('#11').addClass('d-none')
+                                if (parseInt(item.service_time) == 11) $('#13').addClass('d-none')
+                                if (parseInt(item.service_time) == 13) $('#11').addClass('d-none')
 
                                 let tmp = {};
                                 tmp.title = "มีการจองไว้ : " + item.service_time;

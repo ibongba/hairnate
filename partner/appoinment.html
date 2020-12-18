@@ -110,13 +110,13 @@
                         <hr>
                         <label>Tracking Number</label>
                     </fieldset>
-                        <label  for="how">วิธีการจัดส่ง</label>
-                        <select class="form-control" id="how" required="">
+                    <label for="how">วิธีการจัดส่ง</label>
+                    <select class="form-control" id="how" required="">
                           <option value="Kerry" selected="">Kerry</option>
                           <option value="DHL">DHL</option>
                           <option value="ไปรษณีไทย">ไปรษณีไทย</option>
                         </select>
-                        <hr>
+                    <hr>
                     <div class="btn-update" style="text-align: center;">
                         <button type="submit" class="btn btn-danger" style="background-color: #A33E3E;">Create</button>
                     </div>
@@ -222,23 +222,23 @@
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
-                data:{
+                data: {
                     action: 'get_closed',
                     date: date,
                     user_id: user.id,
                 }
-            }).done((msg)=>{
+            }).done((msg) => {
                 msg = JSON.parse(msg)
                 console.log(msg);
-                if(msg.code === 200){
-                    msg.result.map((item)=>{
-                        $('#'+ parseInt(item.time)).addClass('disabled');
+                if (msg.code === 200) {
+                    msg.result.map((item) => {
+                        $('#' + parseInt(item.time)).addClass('disabled');
                     })
-                    
-                    if($('#9').hasClass('disabled') && $('#10').hasClass('disabled') && $('#11').hasClass('disabled')){
+
+                    if ($('#9').hasClass('disabled') && $('#10').hasClass('disabled') && $('#11').hasClass('disabled')) {
                         $('#morning').addClass('disabled');
                     }
-                    if($('#13').hasClass('disabled') && $('#14').hasClass('disabled') && $('#15').hasClass('disabled')){
+                    if ($('#13').hasClass('disabled') && $('#14').hasClass('disabled') && $('#15').hasClass('disabled')) {
                         $('#evening').addClass('disabled');
                     }
                 }
@@ -246,21 +246,21 @@
         });
 
         detail = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
-            const date = new Date(item.service_date);
-            const result = date.toLocaleDateString('th-TH', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            });
-            if (item.status == '0') {
-                item.status = "cancel"
-            } else if (item.status == '2') {
-                item.status = "Paid"
-            } else {
-                item.status = "Finish"
-            }
-            return `
+                var img = item.image ? item.image : 'https://via.placeholder.com/150';
+                const date = new Date(item.service_date);
+                const result = date.toLocaleDateString('th-TH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+                if (item.status == '0') {
+                    item.status = "cancel"
+                } else if (item.status == '2') {
+                    item.status = "Paid"
+                } else {
+                    item.status = "Finish"
+                }
+                return `
 			             <tr class="app-text">
                             <th scope="row">${item.id_service_detail}</th>
                             <td>${item.service_time}</td>
@@ -500,8 +500,6 @@
 
             }
         }
-
-
     </script>
 </body>
 

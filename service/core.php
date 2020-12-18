@@ -547,6 +547,17 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
+} else if (isset($_POST['action']) && $_POST['action'] == 'get_picture') {
+
+    $sql = "SELECT `path`, `fk_sd_id`, `type` FROM `service_images` WHERE `fk_sd_id`= '" . $_POST['fk_sd_id'] . "'";
+
+    $rs = getpdo($conn, $sql);
+
+    if ($rs) {
+        $res = array("code" => 200, "result" => $rs);
+        echo json_encode($res);
+        return;
+    }
 }
 
 $result = array("message" => "Error someting");

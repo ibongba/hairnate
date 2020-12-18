@@ -47,7 +47,7 @@
                     <li class="nav-item not-login">
                         <a href="/hairnate/login.html"><i class="fas fa-user"></i></a>
                     </li>
-                    <li class="nav-item is-login">
+                    <li class="nav-item is-login text-light">
                         <a onclick="logout()"><i class="fas fa-sign-out-alt "></i></a>
                     </li>
                 </ul>
@@ -80,6 +80,7 @@
                     <th class="app-text">TEL.</th>
                     <th class="app-text">STATUS</th>
                     <th class="app-text">ALERT</th>
+                    <th class="app-text">PICTURE</th>
                 </tr>
             </thead>
             <tbody id="detail"></tbody>
@@ -100,18 +101,39 @@
                         <hr>
                         <label>Tracking Number</label>
                     </fieldset>
-                        <label  for="how">วิธีการจัดส่ง</label>
-                        <select class="form-control" id="how" required="">
+                    <label for="how">วิธีการจัดส่ง</label>
+                    <select class="form-control" id="how" required="">
                           <option value="Kerry" selected="">Kerry</option>
                           <option value="DHL">DHL</option>
                           <option value="ไปรษณีไทย">ไปรษณีไทย</option>
                         </select>
-                        <hr>
+                    <hr>
                     <div class="btn-update" style="text-align: center;">
                         <button type="submit" class="btn btn-danger" style="background-color: #A33E3E;">Create</button>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="picture" tabindex="-1" aria-labelledby="pictureLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pictureLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div id="show_picture"></div>
+                    <!-- <img src="../images/payment.png" alt="" class="w-100"> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
     <footer>
@@ -136,6 +158,14 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <script src="../js/main.js"></script>
     <script>
+        const logout = () => {
+            localStorage.clear();
+            $('.is-login').addClass('d-none');
+            $('.not-login').removeClass('d-none');
+
+
+            window.location.href = "../barber/login.html";
+        }
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4'
         });
@@ -149,6 +179,7 @@
                 $('.not-login').addClass('d-none');
             }
         });
+
         function formatDate2(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -211,22 +242,24 @@
             $('.time').removeClass('disabled');
         });
 
+
+
         detail = (item) => {
-            var img = item.image ? item.image : 'https://via.placeholder.com/150';
-            const date = new Date(item.service_date);
-            const result = date.toLocaleDateString('th-TH', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            });
-            if (item.status == '0') {
-                item.status = "cancel"
-            } else if (item.status == '2') {
-                item.status = "Paid"
-            } else {
-                item.status = "Finish"
-            }
-            return `
+                var img = item.image ? item.image : 'https://via.placeholder.com/150';
+                const date = new Date(item.service_date);
+                const result = date.toLocaleDateString('th-TH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+                if (item.status == '0') {
+                    item.status = "cancel"
+                } else if (item.status == '2') {
+                    item.status = "Paid"
+                } else {
+                    item.status = "Finish"
+                }
+                return `
 			             <tr class="app-text">
                             <th scope="row">${item.id_service_detail}</th>
                             <td>${item.service_time}</td>
@@ -238,10 +271,12 @@
                             <td class="text-success">${item.status}</td>
                             ${
                                 item.status == "Paid" ? `<td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>` : ''
-                            }
+                            } 
+                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#picture" onclick="id_picture('${item.id_service_detail}')">Picture</button></td>
                             ${
                                 !item.tracking_on && item.status == "Finish" && user.biz_type == "2" ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : `<td></td>`
                             }
+                           
                         </tr>
                         ${
                             item.tracking_on ? `<tr class="app-text">
@@ -258,7 +293,34 @@
         const setId = (id) => {
             _id = id;
         }
-
+        const id_picture = (id) => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_picture',
+                    fk_sd_id: id,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#show_picture').empty();
+                    for (i = 0; i < msg.result.length; i++) {
+                        $('#show_picture').append(picture(msg.result[i]));
+                    };                   
+                }
+            });
+        }
+         picture = (item) => {
+            var img = item.path ? '../' + item.path : 'https://via.placeholder.com/150';
+            return `
+                   
+                        <img class="w-100" src="${img}" />
+              
+                    `;
+        }
         const createTracking =()=> {
             $.ajax({
                 method: 'POST',

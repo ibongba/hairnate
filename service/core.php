@@ -558,6 +558,17 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
+
+    $sql = "SELECT * FROM `barber` WHERE `id_barber` = '" . $_POST['barber_id'] . "'";
+// echo $sql;
+    $rs = getpdo($conn, $sql);
+
+    if ($rs) {
+        $res = array("code" => 200, "result" => $rs[0]);
+        echo json_encode($res);
+        return;
+    }
 }
 
 $result = array("message" => "Error someting");

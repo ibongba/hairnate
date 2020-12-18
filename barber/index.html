@@ -57,34 +57,38 @@
 
     <div class="container">
         <div class="row justify-content-between my-5">
-            <h2 class="col-md-6 ">APPOINMENTS</h2>
+            <div class="col-md-6" id="app_name">
+
+            </div>
             <div class="col-md-4">
                 <div class="form-group row pt-0 bg-succsee">
                     <div class="col-sm-8">
-                        <input id="datepicker" width="276" placeholder="Choose date" /></div>
+                        <input id="datepicker" width="200" placeholder="Choose date" /></div>
 
                 </div>
             </div>
 
         </div>
         <hr class="col-12" style="background-color: #eeebe6" />
-        <table class="table table-striped text-center" id="table">
-            <thead>
-                <tr>
-                    <th class="app-text">NO.</th>
-                    <th class="app-text">SERVICE TIME</th>
-                    <th class="app-text">CUSTOMER NAME</th>
-                    <th class="app-text">SERVICE TYPE</th>
-                    <th class="app-text">BARBER</th>
-                    <th class="app-text">ADDRESS</th>
-                    <th class="app-text">TEL.</th>
-                    <th class="app-text">STATUS</th>
-                    <th class="app-text">ALERT</th>
-                    <th class="app-text">PICTURE</th>
-                </tr>
-            </thead>
-            <tbody id="detail"></tbody>
-        </table>
+        <div style="width: 100%;overflow-x: hidden;">
+            <table class="table table-striped text-center" id="table">
+                <thead>
+                    <tr>
+                        <th class="app-text">NO.</th>
+                        <th class="app-text">SERVICE TIME</th>
+                        <th class="app-text">CUSTOMER NAME</th>
+                        <th class="app-text">SERVICE TYPE</th>
+                        <th class="app-text">BARBER</th>
+                        <th class="app-text">ADDRESS</th>
+                        <th class="app-text">TEL.</th>
+                        <th class="app-text">STATUS</th>
+                        <th class="app-text">ALERT</th>
+                        <th class="app-text">PICTURE</th>
+                    </tr>
+                </thead>
+                <tbody id="detail"></tbody>
+            </table>
+        </div>
     </div>
     <div class="modal fade" id="service2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -121,7 +125,7 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="pictureLabel">Modal title</h5>
+                    <h5 class="modal-title" id="pictureLabel">PICTURE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -179,6 +183,30 @@
                 $('.not-login').addClass('d-none');
             }
         });
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_appointment_name_barber',
+                    barber_id: user.id_barber,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#app_name').append(app_name(msg.result));
+                }
+            });
+        });
+
+        app_name = (item) => {
+            return `
+            <h2>APPOINTMENT</h2>
+            <h3>Barber Name : ${item.name}</h3>
+			             `;
+        }
 
         function formatDate2(date) {
             var d = new Date(date),

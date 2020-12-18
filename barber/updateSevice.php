@@ -74,7 +74,7 @@
         </div>
     </nav>
     <?php 
-    $sericeid = $_GET['serNo'];
+    $sericeid = $_GET['id'];
   ?>
     <div class="container">
         <div class="row justify-content-center">

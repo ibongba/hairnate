@@ -63,6 +63,10 @@
             });
         });
 
+        const accumulate = arr => arr.map((sum => value => sum += value)(0));
+
+        const cumulativeSum = (sum => value => sum += parseInt(value))(0);
+
         $().ready(() => {
             $.ajax({
                 method: 'POST',
@@ -73,41 +77,37 @@
                 },
                 dataType: 'json',
             }).done(function(msg) {
+                // console.log(accumulate([...msg.result.map((item) => item.total_price)]))
+                // console.log([...msg.result.map((item) => item.total_price)]);
+
                 if (msg.code === 200) {
                     var ctx = $('#chart-line');
                     new Chart(ctx, {
                         type: 'line',
                         responsive: true,
+                        label: 'รายโดยรวม',
                         data: {
                             labels: [...msg.result.map((item) => item.service_date)],
                             datasets: [{
                                 fill: false,
-                                label: 'จำนวนการใช้งานภายใน 7 วัน',
-                                data: [...msg.result.map((item) => item.count)]
-                            }],
-                            datasets: [{
+                                label: 'รายได้ต่อวัน',
+                                data: [...msg.result.map((item) => item.total_price)],
+                                borderColor: '#4CAF50', // Add custom color border (Line)
+                                backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+                                borderWidth: 1 // Specify bar border width
+                            }, {
                                 fill: false,
-                                label: 'จำนวนการใช้งานภายใน 7 วัน',
-                                data: [...msg.result.map((item) => item.count)]
-                            }]
+                                label: 'รายได้สะสม',
+                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum)],
+                                borderColor: '#2196f3', // Add custom color border (Line)
+                                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                                borderWidth: 1 // Specify bar border width
+                            }],
+
                         },
                     });
                 }
             });
-        });
-
-        var ctx = $('#chart-bar-total');
-        new Chart(ctx, {
-            type: 'bar',
-            responsive: true,
-            data: {
-                labels: [1, 2, 3, 4, 5, 6, 7],
-                datasets: [{
-                    fill: false,
-                    label: 'จำนวน order ในเดือนนี้ของแต่ละ Barber',
-                    data: [5, 10, 5, 2, 20, 30, 45]
-                }]
-            },
         });
     </script>
 </body>

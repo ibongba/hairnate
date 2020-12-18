@@ -596,8 +596,10 @@ $nextyear  = mktime(0, 0, 0, date("m"),   date("d"),   date("Y")+1);
         return;
     }
 }else if (isset($_POST['action']) && $_POST['action'] == 'get_money') {
-
-        $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` WHERE `service_date` <= CURDATE() AND `service_date` > '".date('Y-m-d',$lastmonth )."' GROUP BY `service_date`  ORDER BY`service_date` DESC"; 
+    $mydate=getdate(date("U"));
+    $early_month = $mydate["year"]."-".$mydate["mon"]."-01";
+  
+        $sql = "SELECT *, SUM(`price`) AS total_price  FROM `service_detail` WHERE  `service_date` between  '".$early_month."' AND last_day('".$early_month."') GROUP BY `service_date`  ORDER BY`service_date` "; 
         // echo $sql;
     
         $rs = getpdo($conn, $sql);
@@ -609,6 +611,7 @@ $nextyear  = mktime(0, 0, 0, date("m"),   date("d"),   date("Y")+1);
             return;
         }
     }
+    
 
 $result = array("message" => "Error someting");
 $res = array("code" => 401, "result" => $result, "sql" => $sql);

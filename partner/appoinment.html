@@ -27,6 +27,7 @@
 
     <div class="container">
         <div class="row my-5">
+            <div class="col-md-6" id="app_name"></div>
             <h2 class="col-md-6 ">APPOINMENTS</h2>
             <div class="col-md-4">
                 <div class="form-group row pt-0 bg-succsee">
@@ -78,22 +79,24 @@
             </div>
         </div>
         <hr class="col-12" style="background-color: #eeebe6" />
-        <table class="table table-striped text-center" id="table">
-            <thead>
-                <tr>
-                    <th class="app-text">NO.</th>
-                    <th class="app-text">SERVICE TIME</th>
-                    <th class="app-text">CUSTOMER NAME</th>
-                    <th class="app-text">SERVICE TYPE</th>
-                    <th class="app-text">BARBER</th>
-                    <th class="app-text">ADDRESS</th>
-                    <th class="app-text">TEL.</th>
-                    <th class="app-text">STATUS</th>
-                    <th class="app-text">ALERT</th>
-                </tr>
-            </thead>
-            <tbody id="detail"></tbody>
-        </table>
+        <div style="width: 100%;overflow-x: hidden;">
+            <table class="table table-striped text-center" id="table">
+                <thead>
+                    <tr>
+                        <th class="app-text">NO.</th>
+                        <th class="app-text">SERVICE TIME</th>
+                        <th class="app-text">CUSTOMER NAME</th>
+                        <th class="app-text">SERVICE TYPE</th>
+                        <th class="app-text">BARBER</th>
+                        <th class="app-text">ADDRESS</th>
+                        <th class="app-text">TEL.</th>
+                        <th class="app-text">STATUS</th>
+                        <th class="app-text">ALERT</th>
+                    </tr>
+                </thead>
+                <tbody id="detail"></tbody>
+            </table>
+        </div>
     </div>
     <div class="modal fade" id="service2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -271,7 +274,7 @@
                             <td>${item.phone}</td>
                             <td class="text-success">${item.status}</td>
                             ${
-                                item.status == "Paid" ? `<td><button type="button" class="btn btn-danger" style="min-width: auto;">Alert</button></td>` : ''
+                                item.status == "Paid" ? `<td><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}')" style="min-width: auto;">Alert</button></td>` : ''
                             }
                             ${
                                 !item.tracking_on && item.status == "Finish" && user.biz_type == "2" ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : `<td></td>`

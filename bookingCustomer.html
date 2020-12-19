@@ -752,6 +752,14 @@
                             $('.is-evening').removeClass('d-none')
                             $('.is-moring').removeClass('d-none')
 
+                            let listClosed = _closed.filter((i) => i.date === formatDate2(arg.start));
+
+                            $('.time').removeClass('d-none')
+                            listClosed.map((i) => {
+                                console.log(parseInt(i.time))
+                                $('#' + parseInt(i.time)).addClass('d-none');
+                            })
+
                             list = msg.result.map((item) => {
                                 if (parseInt(item.service_time) > 12) $('.is-evening').addClass('d-none')
                                 if (parseInt(item.service_time) < 12) $('.is-moring').addClass('d-none')
@@ -764,14 +772,6 @@
                                 return tmp;
                             })
                             console.log(_closed, arg.start)
-
-                            let listClosed = _closed.filter((i) => i.date === formatDate2(arg.start));
-
-                            $('.time').removeClass('d-none')
-                            listClosed.map((i) => {
-                                console.log(parseInt(i.time))
-                                $('#' + parseInt(i.time)).addClass('d-none');
-                            })
                         });
 
                         calendar.addEvent({

@@ -128,7 +128,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
-        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`,`password`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "','" .md5($_POST['password']) . "')";
+        $sql = "INSERT INTO `barber`(`id_partner`, `name`, `description`, `image`,`phone`,`password`) VALUES ('" . $rs[0]['id'] . "','" . $_POST['name'] . "','" . $_POST['description'] . "','" . $img . "','" . $_POST['phone'] . "','" . md5($_POST['password']) . "')";
         $rs = getpdo($conn, $sql);
         if ($rs) {
             $res = array("code" => 200, "result" => $rs);
@@ -215,11 +215,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         $sql = "SELECT * FROM `barber` WHERE `id_partner` = '" . $rs[0]['id'] . "'";
         $barber = getpdo($conn, $sql);
 
-        $sql = "SELECT * FROM `review` 
-        JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` 
-        JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` 
-        JOIN `users` ON `users`.`id` = `service_detail`.`id_users` 
-        JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
+        $sql = "SELECT * FROM `review`
+        JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id`
+        JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id`
+        JOIN `users` ON `users`.`id` = `service_detail`.`id_users`
+        JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle`
         WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'
         AND (`service_images`.`type` = 2 OR `service_images`.`type` IS NULL)";
         $review = getpdo($conn, $sql);
@@ -558,7 +558,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
-}else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
+} else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
 
     $sql = "SELECT * FROM `barber` WHERE `id_barber` = '" . $_POST['barber_id'] . "'";
 // echo $sql;
@@ -569,7 +569,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
-}else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
+} else if (isset($_POST['action']) && $_POST['action'] == 'get_appointment_name_barber') {
 
     $sql = "SELECT * FROM `barber` WHERE `id_barber` = '" . $_POST['barber_id'] . "'";
 // echo $sql;
@@ -580,38 +580,49 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         echo json_encode($res);
         return;
     }
-}else if (isset($_POST['action']) && $_POST['action'] == 'get_order_7_day') {
-$tomorrow  = mktime(0, 0, 0, date("m")  , date("d")+1, date("Y"));
-$lastmonth = mktime(0, 0, 0, date("m")  , date("d")-6, date("Y"));
-$nextyear  = mktime(0, 0, 0, date("m"),   date("d"),   date("Y")+1);
-    $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` WHERE `service_date` <= CURDATE() AND `service_date` > '".date('Y-m-d',$lastmonth )."' GROUP BY `service_date`  ORDER BY`service_date` DESC"; 
-    // echo $sql;
+} else if (isset($_POST['action']) && $_POST['action'] == 'get_order_7_day') {
 
-    $rs = getpdo($conn, $sql);
+    $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '" . $_POST['id'] . "'";
+    $partner = getpdo($conn, $sql);
 
-    if ($rs) {
-        
-        $res = array("code" => 200, "result" => $rs);
-        echo json_encode($res);
-        return;
-    }
-}else if (isset($_POST['action']) && $_POST['action'] == 'get_money') {
-    $mydate=getdate(date("U"));
-    $early_month = $mydate["year"]."-".$mydate["mon"]."-01";
-  
-        $sql = "SELECT *, SUM(`price`) AS total_price  FROM `service_detail` WHERE  `service_date` between  '".$early_month."' AND last_day('".$early_month."') GROUP BY `service_date`  ORDER BY`service_date` "; 
+    if ($partner) {
+        $partner_id = $partner[0]['id'];
+        $lastmonth = mktime(0, 0, 0, date("m"), date("d") - 6, date("Y"));
+        $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` DESC";
         // echo $sql;
-    
+
         $rs = getpdo($conn, $sql);
-    
+
         if ($rs) {
-            
-            $res = array("code" => 200, "result" => $rs);
+
+            $res = array("code" => 200, "result" => array("service" => $rs, "partner" => $partner));
             echo json_encode($res);
             return;
         }
     }
-    
+} else if (isset($_POST['action']) && $_POST['action'] == 'get_money') {
+
+    $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '" . $_POST['id'] . "'";
+    $partner = getpdo($conn, $sql);
+
+    if ($partner) {
+        $partner_id = $partner[0]['id'];
+        $mydate = getdate(date("U"));
+        $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+
+        $sql = "SELECT *, SUM(`price`) AS total_price  FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` ";
+        // echo $sql;
+
+        $rs = getpdo($conn, $sql);
+
+        if ($rs) {
+
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
+
+        }}
+}
 
 $result = array("message" => "Error someting");
 $res = array("code" => 401, "result" => $result, "sql" => $sql);

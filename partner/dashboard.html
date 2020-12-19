@@ -15,6 +15,7 @@
 <body>
     <div id="nav"></div>
     <div class="container">
+        <h1 id="biz_name"></h1>
         <div class="row my-4">
             <div class="col-6">
                 <div class="chart-container">
@@ -41,27 +42,31 @@
         });
     </script>
     <script>
+        let user = JSON.parse(localStorage.getItem('user'));
         $().ready(() => {
+            
+            console.log(user)
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
                     action: 'get_order_7_day',
-                    // id: user.id,
+                    id: user.id,
                 },
                 dataType: 'json',
             }).done(function(msg) {
                 if (msg.code === 200) {
+                    $('#biz_name').text('ร้าน'+msg.result.partner[0].biz_name)
                     var ctx = $('#chart-bar');
                     new Chart(ctx, {
                         type: 'bar',
                         responsive: true,
                         data: {
-                            labels: [...msg.result.map((item) => item.service_date)],
+                            labels: [...msg.result.service.map((item) => item.service_date)],
                             datasets: [{
                                 fill: false,
                                 label: 'จำนวนการใช้งานภายใน 7 วัน',
-                                data: [...msg.result.map((item) => item.count)]
+                                data: [...msg.result.service.map((item) => item.count)]
                             }]
                         },
                     });
@@ -79,7 +84,7 @@
                 url: '../service/core.php',
                 data: {
                     action: 'get_money',
-                    // id: user.id,
+                    id: user.id,
                 },
                 dataType: 'json',
             }).done(function(msg) {

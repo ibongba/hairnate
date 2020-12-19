@@ -77,8 +77,21 @@
         const accumulate = arr => arr.map((sum => value => sum += value)(0));
 
         const cumulativeSum = (sum => value => sum += parseInt(value))(0);
-
+        
+        function currencyFormat(num) {
+            return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
         $().ready(() => {
+            var options = {
+                animation: false,
+                tooltips: {
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+                    }}
+                }
+            };
+
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
@@ -98,24 +111,25 @@
                         responsive: true,
                         label: 'รายโดยรวม',
                         data: {
-                            labels: [...msg.result.map((item) => item.service_date)],
+                            labels: [...msg.result.map((item) => item.service_date),'test'],
                             datasets: [{
                                 fill: false,
-                                label: 'รายได้ต่อวัน',
-                                data: [...msg.result.map((item) => item.total_price)],
+                                label: 'รายได้ต่อวัน (บาท)',
+                                data: [...msg.result.map((item) => item.total_price),1000],
                                 borderColor: '#4CAF50', // Add custom color border (Line)
                                 backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
                                 borderWidth: 1 // Specify bar border width
                             }, {
                                 fill: false,
-                                label: 'รายได้สะสม',
-                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum)],
+                                label: 'รายได้สะสม (บาท)',
+                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum),1000],
                                 borderColor: '#2196f3', // Add custom color border (Line)
                                 backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                                 borderWidth: 1 // Specify bar border width
                             }],
 
                         },
+                        options
                     });
                 }
             });

@@ -222,6 +222,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle`
         WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'
         AND (`service_images`.`type` = 2 OR `service_images`.`type` IS NULL)";
+        // echo $sql;
         $review = getpdo($conn, $sql);
 
         $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'sql' => $sql)));
@@ -527,7 +528,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 } else if (isset($_POST['action']) && $_POST['action'] == 'create_review') {
     $sql = "INSERT INTO `review`( `rating`, `detail`, `fk_sd_id`) VALUES ('" . $_POST['rate'] . "','" . $_POST['detail'] . "','" . $_POST['id'] . "')";
     $rs = getpdo($conn, $sql);
-
+echo $sql;
     if (isset($rs)) {
 
         $sql = "UPDATE `service_detail` SET `status` = " . $_POST['status'] . " WHERE `id_service_detail` = '" . $_POST['id'] . "'";

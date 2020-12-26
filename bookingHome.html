@@ -131,6 +131,14 @@
             <hr class="col-12" style="border-bottom:1px solid #EEEBE6;" />
         </div>
 
+        <div class="text-right">
+            <div class="form-group p-0">
+                <select id="inputState" class="form-control" onchange="onchangefilter()">
+          <option value="">FILTER</option>
+          <!-- <option></option> -->
+        </select>
+            </div>
+        </div>
         <div id="review">
 
         </div>
@@ -170,6 +178,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        var user = JSON.parse(localStorage.getItem('user'));
+
         $(function() {
             $('#nav').load("layout/navbar.html");
 
@@ -271,6 +281,102 @@
                                 </a>
                             </div>`;
         }
+
+        function getUrlVars() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        $.ajax({
+            method: 'POST',
+            url: 'service/core.php',
+            data: {
+                action: 'get_detail_order_by_customer',
+                // service_date: date,
+                id_barber: $('#inputState option:selected').val(),
+                id: getUrlVars()['id'],
+            },
+            dataType: 'json',
+            // contentType: false,
+            // processData: false,
+        }).done(function(msg) {
+            // msg = JSON.parse(msg);
+            console.log(msg)
+            if (msg.code === 200) {
+                $('#detail').empty();
+                msg.result.map((item) => {
+                    $('#detail').append(detail(item));
+                    return;
+                });
+
+                $('#cancel').text(msg.result.filter(item => item.status === 0).length)
+                $('#success').text(msg.result.filter(item => item.status === 3).length)
+                $('#all').text(msg.result.length)
+            }
+        });
+
+        const onchangefilter = () => {
+            $.ajax({
+                method: 'POST',
+                url: 'service/core.php',
+                data: {
+                    action: 'get_detail_order_by_customer',
+                    // service_date: date,
+                    id_barber: $('#inputState option:selected').val(),
+                    id: getUrlVars()['id'],
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg)
+                    // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#detail').empty();
+                    msg.result.map((item) => {
+                        $('#detail').append(detail(item));
+                        return;
+                    });
+
+                    $('#cancel').text(msg.result.filter(item => item.status === 0).length)
+                    $('#success').text(msg.result.filter(item => item.status === 3).length)
+                    $('#all').text(msg.result.length)
+                }
+            });
+        }
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: 'service/core.php',
+                data: {
+                    action: 'get_filter',
+                    id: getUrlVars()['id'],
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                if (msg.code === 200) {
+                    $('#filter').empty();
+                    msg.result.map((item) => {
+                        $('#inputState').append(inputState(item));
+                        return;
+                    });
+                }
+            });
+        });
+
+        inputState = (item) => {
+            return `
+            <option value="${item.id_barber}">${item.name}</option>
+			             `;
+        };
     </script>
 </body>
 

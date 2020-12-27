@@ -131,8 +131,8 @@
             <hr class="col-12" style="border-bottom:1px solid #EEEBE6;" />
         </div>
 
-        <div class="text-right">
-            <div class="form-group p-0">
+        <div class="text-right mb-4">
+            <div class="form-group p-0" style="width: 250px;">
                 <select id="inputState" class="form-control" onchange="onchangefilter()">
           <option value="">FILTER</option>
           <!-- <option></option> -->
@@ -180,6 +180,17 @@
     <script>
         var user = JSON.parse(localStorage.getItem('user'));
 
+        function getUrlVars() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
         $(function() {
             $('#nav').load("layout/navbar.html");
 
@@ -232,27 +243,19 @@
                         <div class="col-md-3 col-sm-3 ">
                             <div class="icon">
                                 <div class="position-relative">
-                                    <img class="circle" src="images/asset-1.png" />
+                                    <img class="circle" src="${item.path}" />
                                 </div>
                             </div>
                         </div>
-                        <p class="col-md-6 pt-4"><b>${item.username + ' ' + (item.surname ? item.surname : '')}</b><br>${item.detail}</p>
-                        <p class="col-md-3  pt-4 text-right">${item.create_at}</p>
+                        <div class="col pt-4">
+                            <p>CUSTOMER NAME :<b>${item.username + ' ' + (item.surname ? item.surname : '')}</b></p>
+                            <p>${item.detail}</p>
+                            <p class="text-right"> REVIEW DATE :${item.review_date}</p>
+                        </div>
+                        
                     </div>
                 </div>
             </div>`;
-        }
-
-        function getUrlVars() {
-            var vars = [],
-                hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars;
         }
 
         const serviceCard = (item) => {
@@ -282,52 +285,12 @@
                             </div>`;
         }
 
-        function getUrlVars() {
-            var vars = [],
-                hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars;
-        }
-
-        $.ajax({
-            method: 'POST',
-            url: 'service/core.php',
-            data: {
-                action: 'get_detail_order_by_customer',
-                // service_date: date,
-                id_barber: $('#inputState option:selected').val(),
-                id: getUrlVars()['id'],
-            },
-            dataType: 'json',
-            // contentType: false,
-            // processData: false,
-        }).done(function(msg) {
-            // msg = JSON.parse(msg);
-            console.log(msg)
-            if (msg.code === 200) {
-                $('#detail').empty();
-                msg.result.map((item) => {
-                    $('#detail').append(detail(item));
-                    return;
-                });
-
-                $('#cancel').text(msg.result.filter(item => item.status === 0).length)
-                $('#success').text(msg.result.filter(item => item.status === 3).length)
-                $('#all').text(msg.result.length)
-            }
-        });
-
         const onchangefilter = () => {
             $.ajax({
                 method: 'POST',
                 url: 'service/core.php',
                 data: {
-                    action: 'get_detail_order_by_customer',
+                    action: 'get_review_barber_filter', 
                     // service_date: date,
                     id_barber: $('#inputState option:selected').val(),
                     id: getUrlVars()['id'],
@@ -340,9 +303,9 @@
                     // msg = JSON.parse(msg);
                 console.log(msg)
                 if (msg.code === 200) {
-                    $('#detail').empty();
+                    $('#review').empty();
                     msg.result.map((item) => {
-                        $('#detail').append(detail(item));
+                        $('#review').append(review(item));
                         return;
                     });
 

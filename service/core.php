@@ -631,8 +631,8 @@ echo $sql;
         JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber`
         WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "'";
 
-        if (!empty($_POST['id_barber'])) {
-            $sql .= " AND `barber`.`id_barber` = '" . $_POST['id_barber'] . "'";
+        if (!empty($_POST['id_hairstyle'])) {
+            $sql .= " AND `hairstyle`.`id_hairstyle` = '" . $_POST['id_hairstyle'] . "'";
         }
         $sql .= " ORDER BY `review_date` DESC";
         $rs = getpdo($conn, $sql);
@@ -642,6 +642,12 @@ echo $sql;
         return;
     }
 
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_filter_hairstyle') {
+    $sql = "SELECT * FROM `partner` JOIN `hairstyle` ON `partner`.`id` = `hairstyle`.`id_partner` WHERE `fk_user_id`= '" . $_POST['id'] . "'";
+    $rs = getpdo($conn, $sql);
+    $res = array("code" => 200, "result" => $rs);
+    echo json_encode($res);
+    return;
 }
 
 $result = array("message" => "Error someting");

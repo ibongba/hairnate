@@ -70,20 +70,34 @@
 
         </div>
         <hr class="col-12" style="background-color: #eeebe6" />
+        <div class="d-lg-none">
+            <ul id="columns-dropdown" style=" list-style: none;">
+                <li><input type="checkbox" class="col-checkbox" id="label_no" data-col="app_no"><label for="label_no">&nbsp; NO.</label></li>
+                <li><input type="checkbox" class="col-checkbox" id="label_st" data-col="app_st"><label for="label_st">&nbsp; SERVICE TIME</label></li>
+                <li><input type="checkbox" class="col-checkbox" id="label_cn" data-col="app_cn"><label for="label_cn">&nbsp; CUSTOMER NAME</label></li>
+                <li><input type="checkbox" class="col-checkbox" id="label_sty" data-col="app_sty"><label for="label_sty">&nbsp; SERVICE TYPE</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_barber" data-col="app_barber"><label for="label_barber">&nbsp; BARBER</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_address" data-col="app_address"><label for="label_address">&nbsp; ADDRESS</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_tel" data-col="app_tel"><label for="label_tel">&nbsp; TEL.</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_status" data-col="app_status"><label for="label_status">&nbsp; STATUS</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_alert" data-col="app_alert"><label for="label_alert">&nbsp; ALERT</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_pic" data-col="app_pic"><label for="label_pic">&nbsp; PICTURE</label> </li>
+            </ul>
+        </div>
         <div style="width: 100%;overflow-x: hidden;">
             <table class="table table-striped text-center" id="table">
                 <thead>
                     <tr>
-                        <th class="app-text">NO.</th>
-                        <th class="app-text">SERVICE TIME</th>
-                        <th class="app-text">CUSTOMER NAME</th>
-                        <th class="app-text">SERVICE TYPE</th>
-                        <th class="app-text">BARBER</th>
-                        <th class="app-text">ADDRESS</th>
-                        <th class="app-text">TEL.</th>
-                        <th class="app-text">STATUS</th>
-                        <th class="app-text">ALERT</th>
-                        <th class="app-text">PICTURE</th>
+                        <th class="app-text app_no">NO.</th>
+                        <th class="app-text app_st">SERVICE TIME</th>
+                        <th class="app-text app_cn">CUSTOMER NAME</th>
+                        <th class="app-text app_sty">SERVICE TYPE</th>
+                        <th class="app-text app_barber">BARBER</th>
+                        <th class="app-text app_address">ADDRESS</th>
+                        <th class="app-text app_tel">TEL.</th>
+                        <th class="app-text app_status">STATUS</th>
+                        <th class="app-text app_alert">ALERT</th>
+                        <th class="app-text app_pic">PICTURE</th>
                     </tr>
                 </thead>
                 <tbody id="detail"></tbody>
@@ -176,6 +190,26 @@
     </script>
     <script>
         var user = JSON.parse(localStorage.getItem('user'));
+
+        const colCheckboxes = document.querySelectorAll(".col-checkbox");
+
+        colCheckboxes.forEach((element) => {
+            // Set checked by Default
+            element.checked = true;
+            element.addEventListener("change", (event) => {
+                const checked = event.target.checked;
+                const colName = element.getAttribute("data-col");
+
+                hideShowTableCol(colName, checked);
+            });
+        });
+
+        function hideShowTableCol(colName, checked) {
+            const cells = document.querySelectorAll(`.${colName}`);
+            cells.forEach((cell) => {
+                cell.style.display = checked ? "table-cell" : "none";
+            });
+        }
 
         $(function() {
             if (user) {
@@ -289,19 +323,19 @@
                 }
                 return `
 			             <tr class="app-text">
-                            <th scope="row">${item.id_service_detail}</th>
-                            <td>${item.service_time}</td>
-                            <td>${item.customer_name}</td>
-                            <td>${item.service_type}</td>
-                            <td>${item.barber_name}</td>
-                            <td>${item.address}</td>
-                            <td>${item.phone}</td>
-                            <td class="text-success">${item.status}</td>
+                            <th class="app_no" scope="row">${item.id_service_detail}</th>
+                            <td class="app_st">${item.service_time}</td>
+                            <td class="app_cn">${item.customer_name}</td>
+                            <td class="app_sty">${item.service_type}</td>
+                            <td class="app_barber">${item.barber_name}</td>
+                            <td class="app_address">${item.address}</td>
+                            <td class="app_tel">${item.phone}</td>
+                            <td class="text-success app_status">${item.status}</td>
                             ${
-                                item.status == "Paid" ? `<td><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}')" style="min-width: auto;">Alert</button></td>` : ''
+                                item.status == "Paid" ? `<td class="app_alert"><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}')" style="min-width: auto;">Alert</button></td>` : ''
                             } 
-                            <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#picture" onclick="id_picture('${item.id_service_detail}')">Picture</button></td>
-                            <td><a href="updateSevice.php?id=${item.id_service_detail}" class="btn btn-warning">update</a
+                            <td class="app_alert"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#picture" onclick="id_picture('${item.id_service_detail}')">Picture</button></td>
+                            <td class="app_pic"><a href="updateSevice.php?id=${item.id_service_detail}" class="btn btn-warning">update</a
                                 ></td>
                             ${
                                 !item.tracking_on && item.status == "Finish" && user.biz_type == "2" ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : `<td></td>`

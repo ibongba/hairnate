@@ -134,7 +134,7 @@
         <div class="text-right mb-4">
             <div class="form-group p-0" style="width: 250px;">
                 <select id="inputState" class="form-control" onchange="onchangefilter()">
-          <option value="">FILTER</option>
+          <option value="">CHOOSE HAIRSTYLE</option>
           <!-- <option></option> -->
         </select>
             </div>
@@ -292,7 +292,7 @@
                 data: {
                     action: 'get_review_barber_filter', 
                     // service_date: date,
-                    id_barber: $('#inputState option:selected').val(),
+                    id_hairstyle: $('#inputState option:selected').val(),
                     id: getUrlVars()['id'],
                 },
                 dataType: 'json',
@@ -320,7 +320,7 @@
                 method: 'POST',
                 url: 'service/core.php',
                 data: {
-                    action: 'get_filter',
+                    action: 'get_filter_hairstyle',
                     id: getUrlVars()['id'],
                 },
                 dataType: 'json',
@@ -337,7 +337,7 @@
 
         inputState = (item) => {
             return `
-            <option value="${item.id_barber}">${item.name}</option>
+            <option value="${item.id_hairstyle}">${item.name}</option>
 			             `;
         };
     </script>

@@ -314,6 +314,7 @@
 
         const card = (item, i, img) => {
             console.log('images', img);
+            let currentImg = images.filter((i) => i.fk_sd_id === item.id_service_detail).map((i) => `<div class="w-50 px-2 float-right"><img src="${i.path}" alt="" class="img-thumbnail" /></div>`)
             var image_str = '';
             img.forEach(val => {
                 image_str += `<div class="col-4"> 
@@ -358,7 +359,7 @@
 			                         </div>
 			                     </div>
                                 <div class="row">
-                                    ${image_str}
+                                    ${currentImg.toString().replace(',','')}
                                 </div>
 			                 </div>
 			                 </div>

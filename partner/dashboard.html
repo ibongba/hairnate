@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" />
     <title>dashboard</title>
 </head>
 
@@ -17,34 +21,105 @@
     <div class="container">
         <h1 id="biz_name"></h1>
         <div class="row my-4">
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="chart-container">
                     <canvas id="chart-bar"></canvas>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 <div class="chart-container">
                     <canvas id="chart-line"></canvas>
                 </div>
             </div>
         </div>
-        <div class="chart-container">
+        <!-- <div class="chart-container">
             <canvas id="chart-bar-total"></canvas>
+        </div> -->
+        <div class="row my-5">
+            <div class="col-md-6">
+                <h2>ลูกค้าที่ใช้บริการตามวัน</h2>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="form-group row pt-0 bg-succsee">
+                    <div class="col-sm-8">
+                        <input id="datepicker" width="190" placeholder="Choose date" /></div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;overflow-x: scroll;">
+            <table class="table table-striped text-center" id="table">
+                <thead>
+                    <tr>
+                        <th>NO.</th>
+                        <th>CUSTOMER NAME</th>
+                        <th>BARBER</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody id="detail"></tbody>
+            </table>
+        </div>
+        <div class="mt-3">
+            <h2>ทรงผมยอดฮิต</h2>
+            <div style="width: 100%;overflow-x: scroll;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>HAIRSTYLE</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailhairstyle">
+                </table>
+            </div>
+            <h2>การนัดหมาย</h2>
+            <div class="mb-5" style="width: 100%;overflow-x: scroll;">
+                <table class="table table-striped text-center" id="table">
+                    <thead>
+                        <tr>
+                            <th>SERVICE DATE</th>
+                            <th>SERVICE TIME</th>
+                            <th>BARBER NAME</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>HAIRSTYLE NAME</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detail2"></tbody>
+                </table>
+            </div>
+            <!-- <div class="col-md-3 p-2">
+                <div class="border border-dark p-4 rounded-lg mb-2">
+                    <h5 class="float-left">จำนวน</h5>
+                    <h5 class="text-right" id="all">0</h5>
+                    <h5 class="float-left">สำเร็จ</h5>
+                    <h5 class="text-right" id="success">0</h5>
+                    <h5 class="float-left">ยกเลิก</h5>
+                    <h5 class="text-right" id="cancel">0</h5>
+                </div>
+            </div> -->
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="../js/main.js"></script>
     <script>
         $(function() {
             $('#nav').load('http://localhost/hairnate/layout/navbar.html');
         });
     </script>
     <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+    <script>
         let user = JSON.parse(localStorage.getItem('user'));
         $().ready(() => {
-            
+
             console.log(user)
             $.ajax({
                 method: 'POST',
@@ -56,7 +131,7 @@
                 dataType: 'json',
             }).done(function(msg) {
                 if (msg.code === 200) {
-                    $('#biz_name').text('ร้าน'+msg.result.partner[0].biz_name)
+                    $('#biz_name').text('ร้าน' + msg.result.partner[0].biz_name)
                     var ctx = $('#chart-bar');
                     new Chart(ctx, {
                         type: 'bar',
@@ -77,7 +152,7 @@
         const accumulate = arr => arr.map((sum => value => sum += value)(0));
 
         const cumulativeSum = (sum => value => sum += parseInt(value))(0);
-        
+
         function currencyFormat(num) {
             return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
@@ -85,10 +160,11 @@
             var options = {
                 animation: false,
                 tooltips: {
-                callbacks: {
-                    label: function(tooltipItems, data) {
-                        return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
-                    }}
+                    callbacks: {
+                        label: function(tooltipItems, data) {
+                            return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+                        }
+                    }
                 }
             };
 
@@ -111,18 +187,18 @@
                         responsive: true,
                         label: 'รายโดยรวม',
                         data: {
-                            labels: [...msg.result.map((item) => item.service_date),'test'],
+                            labels: [...msg.result.map((item) => item.service_date), 'test'],
                             datasets: [{
                                 fill: false,
                                 label: 'รายได้ต่อวัน (บาท)',
-                                data: [...msg.result.map((item) => item.total_price),1000],
+                                data: [...msg.result.map((item) => item.total_price), 1000],
                                 borderColor: '#4CAF50', // Add custom color border (Line)
                                 backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
                                 borderWidth: 1 // Specify bar border width
                             }, {
                                 fill: false,
                                 label: 'รายได้สะสม (บาท)',
-                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum),1000],
+                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum), 1000],
                                 borderColor: '#2196f3', // Add custom color border (Line)
                                 backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                                 borderWidth: 1 // Specify bar border width
@@ -134,6 +210,192 @@
                 }
             });
         });
+
+        function formatDate2(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        const listMonth = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+
+        const formatDate = (date) => {
+            console.log(date);
+            return date.getDate() + ' ' + listMonth[date.getMonth()].toLocaleUpperCase() + ' ' + (date.getFullYear() + 543);
+        };
+
+        var date = '';
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4',
+            dateFormat: 'yyyy-mm-dd'
+        }).on("change", function() {
+            console.log(this.value);
+            date = formatDate2(this.value);
+            $('#select').removeClass('d-none')
+            $('#date-now').text(formatDate(new Date(this.value)));
+
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_detail_order_by_customer',
+                    service_date: date,
+                    // id_barber: $('#inputState option:selected').val(),
+                    id: user.id,
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#detail').empty();
+                    msg.result.map((item) => {
+                        $('#detail').append(detail(item));
+                        return;
+                    });
+
+                    $('#cancel').text(msg.result.filter(item => item.status === 0).length)
+                    $('#success').text(msg.result.filter(item => item.status === 3).length)
+                    $('#all').text(msg.result.length)
+                }
+            });
+
+            $('.time').removeClass('disabled');
+
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_closed',
+                    date: date,
+                    user_id: user.id,
+                }
+            }).done((msg) => {
+                msg = JSON.parse(msg)
+                console.log(msg);
+                if (msg.code === 200) {
+                    msg.result.map((item) => {
+                        $('#' + parseInt(item.time)).addClass('disabled');
+                    })
+
+                    if ($('#9').hasClass('disabled') && $('#10').hasClass('disabled') && $('#11').hasClass('disabled')) {
+                        $('#morning').addClass('disabled');
+                    }
+                    if ($('#13').hasClass('disabled') && $('#14').hasClass('disabled') && $('#15').hasClass('disabled')) {
+                        $('#evening').addClass('disabled');
+                    }
+                }
+            })
+        });
+
+        detail = (item) => {
+                var img = item.image ? item.image : 'https://via.placeholder.com/150';
+                const date = new Date(item.service_date);
+                const result = date.toLocaleDateString('th-TH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+                if (item.status == '0') {
+                    item.status = "cancel"
+                } else if (item.status == '2') {
+                    item.status = "Paid"
+                } else {
+                    item.status = "Finish"
+                }
+                return `
+			             <tr class="app-text">
+                            <th class="app_no" scope="row">${item.id_service_detail}</th>
+                            <td class="app_cn">${item.customer_name}</td>
+                            <td class="app_barber">${item.barber_name}</td>
+                            <td class="text-success app_status">${item.status}</td>
+                            ${
+                                item.status == "Paid" ? `<td class="app_alert"><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}')" style="min-width: auto;">Alert</button></td>` : ''
+                            } 
+                            ${
+                                !item.tracking_on && item.status == "Finish" && user.biz_type == "2" ? `<td><button type="button" data-toggle="modal" data-target="#service2" data-whatever="@getbootstrap" onclick="setId('${item.id_service_detail}')" class="btn btn-danger" style="min-width: auto;">Add Tracking</button></td>` : `<td></td>`
+                            }
+
+                        </tr>
+			             `;
+        };
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_hairstyle_detail',
+                    id: user.id,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#detailhairstyle').empty();
+                    msg.result.map((item) => {
+                        $('#detailhairstyle').append(detailhairstyle(item));
+                        return;
+                    });
+                }
+            });
+        });
+
+        detailhairstyle = (item) => {
+               
+                return `
+			             <tr>
+                            <td>${item.hairstyle_name}</td>
+                            <td>${item.total_hair}</td>
+                        </tr>
+			             `;
+        };
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_total_book',
+                    id: user.id,
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#detail2').empty();
+                    msg.result.map((item) => {
+                        $('#detail2').append(detail2(item));
+                        return;
+                    });
+                }
+            });
+        });
+
+        detail2 = (item) => {
+               
+               return `
+                        <tr>
+                           <td>${item.service_date}</td>
+                           <td>${item.service_time}</td>
+                           <td>${item.barber_name}</td>
+                           <td>${item.username}</td>
+                           <td>${item.hair_name}</td>
+                       </tr>
+                        `;
+       };
     </script>
 </body>
 

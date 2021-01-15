@@ -877,149 +877,6 @@ button:focus {
 
 /* ///end ad image// */
 
-@media screen and (min-width: 768px) {
-    .img-home {
-        width: 50%;
-        float: left;
-    }
-    .img-home img {
-        width: 100% !important;
-    }
-    .btnHome {
-        width: 100%;
-        float: left;
-        text-align: center;
-    }
-    .btnHome .btn {
-        width: 250px;
-        height: auto;
-        margin: 40px 0px 0px 40px;
-    }
-    /* .top_content .btn {
-        margin-left: 50%;
-    } */
-    .tor {
-        float: left;
-    }
-    .imgmid {
-        height: 510px;
-        background-position: center;
-        background-size: cover;
-    }
-    /* .imgg {
-        width: 100%;
-        float: left;
-    } */
-    .banner {
-        height: 300px;
-        overflow: hidden;
-        background-position: center;
-        background-size: cover;
-    }
-    .carousel-item img {
-        height: 300px;
-        background-position: center;
-        background-size: cover;
-    }
-    .box img {
-        border-radius: 15px;
-        float: left;
-    }
-    .box-home2 {
-        width: 50%;
-        height: 200px;
-        float: left;
-        margin-top: 20px;
-        margin-right: 20px;
-    }
-    .form {
-        width: 600px;
-    }
-    .Rsee {
-        padding-top: 60%;
-    }
-    .Rsee .btn {
-        transform: rotate(-90deg);
-    }
-    /* .text-box-ar {
-        text-align: left;
-    } */
-    .method {
-        width: 20%;
-        float: left;
-    }
-    /* .our-method {
-        height: 450px;
-    } */
-    footer {
-        margin-top: 3rem;
-    }
-    .foot_logo {
-        padding-top: 2rem;
-        float: left;
-        text-align: left;
-    }
-    .foot-img {
-        width: 10%;
-        float: left;
-    }
-    .footer_text {
-        width: 30%;
-        padding-top: 2rem;
-    }
-    .foot_icon {
-        margin-left: 70%;
-    }
-    .foot_icon i {
-        margin: 10px;
-        /* }
-    .input-group-prepend { */
-        /* width: 70%; */
-    }
-    .nav li {
-        font-size: large;
-        margin: 1rem 0px 1rem 0px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    /* .imgg {
-        height: 400px;
-        width: 45%;
-        float: left;
-        margin: 20px 30px 20px 0px;
-    } */
-    .img-home img {
-        width: 90% !important;
-    }
-    .btnHome .btn {
-        width: 350px;
-        height: auto;
-        font-size: 2.5rem;
-    }
-    .banner {
-        height: 500px;
-        overflow: hidden;
-        background-position: center;
-        background-size: cover;
-    }
-    .carousel-item img {
-        height: 500px;
-        background-position: center;
-        background-size: cover;
-        /* }
-    .text-box-ar { */
-        /* height: 250px; */
-        /* padding-top: 20px; */
-    }
-    .method {
-        width: 20%;
-    }
-    .our-method {
-        height: 250px;
-    }
-}
-
 
 /* stepper */
 
@@ -1152,7 +1009,7 @@ input:checked+.slider:before {
 .rate {
     float: left;
     height: 46px;
-    padding: 0 158px;
+    padding: 0 87px;
 }
 
 .rate:not(:checked)>input {
@@ -1194,9 +1051,156 @@ input:checked+.slider:before {
 .style-partner {
     background: #dcd9d6 !important;
 }
+
 .border-r-0 {
     border-radius: 0 !important;
 }
 
 
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+
+@media screen and (min-width: 768px) {
+    .img-home {
+        width: 50%;
+        float: left;
+    }
+    .img-home img {
+        width: 100% !important;
+    }
+    .btnHome {
+        width: 100%;
+        float: left;
+        text-align: center;
+    }
+    .btnHome .btn {
+        width: 250px;
+        height: auto;
+        margin: 40px 0px 0px 40px;
+    }
+    /* .top_content .btn {
+        margin-left: 50%;
+    } */
+    .tor {
+        float: left;
+    }
+    .imgmid {
+        height: 510px;
+        background-position: center;
+        background-size: cover;
+    }
+    /* .imgg {
+        width: 100%;
+        float: left;
+    } */
+    .banner {
+        height: 300px;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+    }
+    .carousel-item img {
+        height: 300px;
+        background-position: center;
+        background-size: cover;
+    }
+    .box img {
+        border-radius: 15px;
+        float: left;
+    }
+    .box-home2 {
+        width: 50%;
+        height: 200px;
+        float: left;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+    .form {
+        width: 600px;
+    }
+    .Rsee {
+        padding-top: 60%;
+    }
+    .Rsee .btn {
+        transform: rotate(-90deg);
+    }
+    /* .text-box-ar {
+        text-align: left;
+    } */
+    .method {
+        width: 20%;
+        float: left;
+    }
+    /* .our-method {
+        height: 450px;
+    } */
+    footer {
+        margin-top: 3rem;
+    }
+    .foot_logo {
+        padding-top: 2rem;
+        float: left;
+        text-align: left;
+    }
+    .foot-img {
+        width: 10%;
+        float: left;
+    }
+    .footer_text {
+        width: 30%;
+        padding-top: 2rem;
+    }
+    .foot_icon {
+        margin-left: 70%;
+    }
+    .foot_icon i {
+        margin: 10px;
+        /* }
+    .input-group-prepend { */
+        /* width: 70%; */
+    }
+    .nav li {
+        font-size: large;
+        margin: 1rem 0px 1rem 0px;
+    }
+    .rate {
+        padding: 0 158px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    /* .imgg {
+        height: 400px;
+        width: 45%;
+        float: left;
+        margin: 20px 30px 20px 0px;
+    } */
+    .img-home img {
+        width: 90% !important;
+    }
+    .btnHome .btn {
+        width: 350px;
+        height: auto;
+        font-size: 2.5rem;
+    }
+    .banner {
+        height: 500px;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+    }
+    .carousel-item img {
+        height: 500px;
+        background-position: center;
+        background-size: cover;
+        /* }
+    .text-box-ar { */
+        /* height: 250px; */
+        /* padding-top: 20px; */
+    }
+    .method {
+        width: 20%;
+    }
+    .our-method {
+        height: 250px;
+    }
+}

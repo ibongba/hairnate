@@ -131,12 +131,22 @@
             <hr class="col-12" style="border-bottom:1px solid #EEEBE6;" />
         </div>
 
-        <div class="text-right mb-4">
-            <div class="form-group p-0" style="width: 250px;">
-                <select id="inputState" class="form-control" onchange="onchangefilter()">
-          <option value="">CHOOSE HAIRSTYLE</option>
-          <!-- <option></option> -->
-        </select>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="form-group p-0" style="width: 250px;">
+                    <select id="inputState" class="form-control" onchange="onchangefilter()">
+                        <option value="">CHOOSE HAIRSTYLE</option>
+                        <!-- <option></option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group p-0" style="width: 250px;">
+                    <select id="inputStateBarber" class="form-control" onchange="onchangefilterBarber()">
+                        <option value="">CHOOSE BARBER</option>
+                        <!-- <option></option> -->
+                    </select>
+                </div>
             </div>
         </div>
         <div id="review">
@@ -249,7 +259,7 @@
                         </div>
                         <div class="col pt-4">
                             <p>CUSTOMER NAME :<b>${item.username + ' ' + (item.surname ? item.surname : '')}</b></p>
-                            <p>${item.detail}</p>
+                            <p class="float-left">REVIEW: ${item.detail}</p>
                             <p class="text-right"> REVIEW DATE :${item.review_date}</p>
                         </div>
                         
@@ -338,6 +348,62 @@
         inputState = (item) => {
             return `
             <option value="${item.id_hairstyle}">${item.name}</option>
+			             `;
+        };
+
+        const onchangefilterBarber = () => {
+            $.ajax({
+                method: 'POST',
+                url: 'service/core.php',
+                data: {
+                    action: 'get_review_barber_filter', 
+                    // service_date: date,
+                    id_barber: $('#inputStateBarber option:selected').val(),
+                    id: getUrlVars()['id'],
+                },
+                dataType: 'json',
+                // contentType: false,
+                // processData: false,
+            }).done(function(msg) {
+                console.log(msg)
+                    // msg = JSON.parse(msg);
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#review').empty();
+                    msg.result.map((item) => {
+                        $('#review').append(review(item));
+                        return;
+                    });
+
+                    $('#cancel').text(msg.result.filter(item => item.status === 0).length)
+                    $('#success').text(msg.result.filter(item => item.status === 3).length)
+                    $('#all').text(msg.result.length)
+                }
+            });
+        }
+        $().ready(() => {
+            $.ajax({
+                method: 'POST',
+                url: 'service/core.php',
+                data: {
+                    action: 'get_filter',
+                    id: getUrlVars()['id'],
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                if (msg.code === 200) {
+                    $('#filter').empty();
+                    msg.result.map((item) => {
+                        $('#inputStateBarber').append(inputStateBarber(item));
+                        return;
+                    });
+                }
+            });
+        });
+
+        inputStateBarber = (item) => {
+            return `
+            <option value="${item.id_barber}">${item.name}</option>
 			             `;
         };
     </script>

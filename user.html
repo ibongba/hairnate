@@ -363,9 +363,32 @@
                                 </div>
 			                 </div>
 			                 </div>
-			             </div>`;
+			             </div>`
         };
 
+        const create_review = () => {
+            $.ajax({
+                method: "POST",
+                url: "service/core.php",
+                data: {
+                    action: 'create_review',
+                    id: $('#review_id').val(),
+                    rate: $(`input[name=rate]`).val(),
+                    detail: $('#summernote').summernote('code'),
+                    status: 3
+                }
+            }).done(function(msg) {
+                // msg = JSON.parse(msg)
+                console.log(msg)
+                if (msg.code === 200) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        const setid = (id) => {
+            $('#review_id').val(id)
+        }
 
         const cardOther = (item, img) => {
                 let currentImg = images.filter((i) => i.fk_sd_id === item.id_service_detail).map((i) => `<div class="w-50 px-2 float-right"><img src="${i.path}" alt="" class="img-thumbnail" /></div>`)
@@ -393,8 +416,7 @@
                                 data-toggle="collapse"
                                 data-target="#collapse${item.id_service_detail}"
                                 aria-expanded="true"
-                                aria-controls="collapse${item.id_service_detail}"
-                            >
+                                aria-controls="collapse${item.id_service_detail}" >
                                 <div class="row">
                                     <div class="col float-left pl-0">
                                         <h6 class="m-0"><b>${item.biz_name}</b></h6>
@@ -403,9 +425,9 @@
                                     </div>
                                     <div class="col text-right">
                                         <div class="float-right">
-                                            ${(item.status == 0)? '<h6 class="text-danger text-right" >Cancel</h6>' : '' }
+                                            ${(item.status == 0) ? '<h6 class="text-danger text-right" >Cancel</h6>' : '' }
                                             ${(item.status == 2) ? `<a class="btn btn-light float-left mx-2" data-toggle="modal" data-target="#review_barber" style="border-radius: 15px; font-size: x-small;" onclick="setid('${item.id_service_detail}')" >REVIEW</a>` : ''}
-                                            ${(item.status == 3)? '<h6 class="text-success text-right" >Successfully</h6>' : '' }
+                                            ${(item.status == 3) ? '<h6 class="text-success text-right" >Successfully</h6>' : '' }
 
 
                                           </div><br><br>
@@ -438,31 +460,7 @@
                     </div>
                 </div>
                 `
-        }
-
-        const create_review = () => {
-            $.ajax({
-                method: "POST",
-                url: "service/core.php",
-                data: {
-                    action: 'create_review',
-                    id: $('#review_id').val(),
-                    rate : $(`input[name=rate]`).val(),
-                    detail : $('#summernote').summernote('code'),
-                    status : 3
-                }
-            }).done(function(msg) {
-                msg = JSON.parse(msg)
-                console.log(msg)
-                if (msg.code === 200) {
-                    window.location.reload();
-                }
-            });
-        }
-
-        const setid = (id) => {
-            $('#review_id').val(id)
-        }
+        };
     </script>
 </body>
 

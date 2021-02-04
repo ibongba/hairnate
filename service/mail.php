@@ -3,9 +3,18 @@
 	date_default_timezone_set('Asia/Bangkok');
 
 	if($_POST['mail']){
+		$date_num = $_POST['num_date'];
 		$mailto = $_POST['mail'];
-		$mailSub = "ใกล้ได้เวลาตัดผลแล้วนะ";
-		$mailMsg = "โปรดอย่าลืมวันเวลาตามนัด ขอบคุณครับ";
+		if ($_POST['num_date']== 0) {
+			$mailSub = "ใกล้ได้เวลาตัดผลแล้วนะ";
+			$mailMsg = "ช่างกำลังออกเดินทางไปหาคุณ";
+		} else {
+			$mailSub = "ใกล้ได้เวลาตัดผลแล้วนะ";
+			$mailMsg = "โปรดอย่าลืมวันเวลาตามนัด ให้บริการในอีกวัน $date_num ขอบคุณครับ";
+		}
+		
+		// $mailSub = "ใกล้ได้เวลาตัดผลแล้วนะ";
+		// $mailMsg = "โปรดอย่าลืมวันเวลาตามนัด ขอบคุณครับ";
 		 
 		require 'PHPMailer/PHPMailerAutoload.php';
 		$mail = new PHPMailer();

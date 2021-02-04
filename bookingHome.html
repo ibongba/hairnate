@@ -234,10 +234,13 @@
                     $('#service').append(serviceCard(item))
                 })
 
-                data.review.map((item) => {
-                    $('#review').append(review(item))
-                })
-
+                // let image = res.picture.filter((item) => res.result.fk_sd_id == item.fk_sd_id);
+                for (i = 0; i < data.review.length; i++) {
+                    let test = data.picture.filter((item) => data.review[i].id_service_detail == item.fk_sd_id);
+                    $('#review').append(review(data.review[i], test))
+                        // console.log(test)
+                };
+                // data.review.map((item, test) => {})
                 console.log(data)
                 $('#name').text(data.partner.biz_name)
                 $('#detail').append('<i class="fas fa-map-marker-alt" style="color: #A33E3E;"></i> ' + data.partner.biz_house_no + (data.partner.biz_village_no ? ' หมู่ ' + data.partner.biz_village_no : '') + ' ' + data.partner.biz_sub_area + ' ' + data.partner.biz_area + ' ' + data.partner.biz_province + ' ' + data.partner.biz_postal_code)
@@ -245,60 +248,12 @@
             });
         });
 
-        const review = (item) => {
-
-            return `
-            <div class="card" style="background-color: #FAF9F7;">
-                <div class="card-body"> 
-                    <div class="row pt-3" id="img_review">
-                        <div class="col pt-4">
-                            <p>CUSTOMER NAME :<b>${item.username + ' ' + (item.surname ? item.surname : '')}</b></p>
-                            <p class="float-left">REVIEW: ${item.detail}</p>
-                           <p class="text-right"> REVIEW DATE :${item.review_date}</p>
-                        </div> 
-                    </div> 
-                    <div class="d-flex align-items-end flex-column" >
-
-                        <img src="${item.barber_img}" style="width: 50px; height: 50px" class="mt-auto p-2 bd-highlight"  />
-                    </div>                   
-                </div>
-            </div>`;
-        }
-
-        const serviceCard = (item) => {
-                return `
-                <div class="col-md-6">
-                    <div class="icon">
-                        <div class="position-relative">
-                            <img class="img-fluid img-thumbnail" src="${item.image}" />
-                            <p style="text-align: center;" class="pt-2"><b>${item.name}</b><br>${item.promotion_price ? `<span style="text-decoration: line-through;">${item.price}</span> <span style="color: #A33E3E; font-size:20px">${item.promotion_price} Baht</span>` : item.price + ' Bath'} </p>
-                        </div>
-                    </div>
-                </div>
-                            `
-        }
-
-        const barberCard = (item) => {
-            return `
-                            <div class="col-6 col-md-4 col-lg-3 mb-3">
-                                <a href="" data-toggle="modal" data-target="#team" class="text-decoration-none"">
-                                    <div class="icon">
-                                        <div class="position-relative">
-                                            <img class="circle" src="${item.image}" />
-                                            <p style="text-align: center;" class="pt-2 text-dark">ช่าง ${item.name}</p>
-                                            <p style="text-align: center;" class="pt-2 text-dark"> ${item.description}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>`;
-        }
-
         const onchangefilter = () => {
             $.ajax({
                 method: 'POST',
                 url: 'service/core.php',
                 data: {
-                    action: 'get_review_barber_filter', 
+                    action: 'get_review_barber_filter',
                     // service_date: date,
                     id_hairstyle: $('#inputState option:selected').val(),
                     id: getUrlVars()['id'],
@@ -307,22 +262,24 @@
                 // contentType: false,
                 // processData: false,
             }).done(function(msg) {
-                console.log(msg)
-                    // msg = JSON.parse(msg);
-                console.log(msg)
+                let data = msg;
                 if (msg.code === 200) {
                     $('#review').empty();
-                    msg.result.map((item) => {
-                        $('#review').append(review(item));
-                        return;
-                    });
-
+                    // msg.result.map((item) => {
+                    for (i = 0; i < data.result.length; i++) {
+                        let test = data.picture.filter((item) => data.result[i].id_service_detail == item.fk_sd_id);
+                        $('#review').append(review(data.result[i], test))
+                        console.log(test)
+                            // break;
+                    };
+                    // });
                     $('#cancel').text(msg.result.filter(item => item.status === 0).length)
                     $('#success').text(msg.result.filter(item => item.status === 3).length)
                     $('#all').text(msg.result.length)
                 }
             });
         }
+
         $().ready(() => {
             $.ajax({
                 method: 'POST',
@@ -354,7 +311,7 @@
                 method: 'POST',
                 url: 'service/core.php',
                 data: {
-                    action: 'get_review_barber_filter', 
+                    action: 'get_review_barber_filter',
                     // service_date: date,
                     id_barber: $('#inputStateBarber option:selected').val(),
                     id: getUrlVars()['id'],
@@ -363,16 +320,18 @@
                 // contentType: false,
                 // processData: false,
             }).done(function(msg) {
-                console.log(msg)
-                    // msg = JSON.parse(msg);
-                console.log(msg)
+                let data = msg;
+                console.log(data)
                 if (msg.code === 200) {
                     $('#review').empty();
-                    msg.result.map((item) => {
-                        $('#review').append(review(item));
-                        return;
-                    });
-
+                    // msg.result.map((item) => {
+                    for (i = 0; i < data.result.length; i++) {
+                        let test = data.picture.filter((item) => data.result[i].id_service_detail == item.fk_sd_id);
+                        $('#review').append(review(data.result[i], test))
+                            // console.log(test)
+                    };
+                    // return;
+                    // });
                     $('#cancel').text(msg.result.filter(item => item.status === 0).length)
                     $('#success').text(msg.result.filter(item => item.status === 3).length)
                     $('#all').text(msg.result.length)
@@ -404,6 +363,79 @@
             <option value="${item.id_barber}">${item.name}</option>
 			             `;
         };
+
+        // const image_review = () => {
+        //     for (i = 0; i < image.length; i++) {
+        //         var img = image ? 'service/' + image[i].path : 'https://via.placeholder.com/150';
+        //         console.log(img)
+        //         var data = `
+        //                     <div class="col-2">
+        //                         <button  style="background-image: url(${img});  background-size: cover;
+        //                         background-position: center; width:100px;height:100px" onclick="showPic(${img})"></button>
+        //                     </div>
+        //                     `;
+        //         $('#show_img').append(data);
+
+        //     };
+        // }
+
+
+        const review = (item, img_review) => {
+
+            let data = '';
+            for (let i = 0; i < img_review.length; i++) {
+                var img = img_review ? img_review[i].path : 'https://via.placeholder.com/150';
+                data += `
+                        <button  style="background-image: url(${img});  background-size: cover;
+                        background-position: center; width:50px;height:50px"></button>
+                    `;
+                // console.log(data)
+            }
+
+            return `
+            <div class="card" style="background-color: #FAF9F7;">
+                <div class="card-body"> 
+                    <div id="img_review">
+                        ${data}
+                            <p>CUSTOMER NAME :<b>${item.username + ' ' + (item.surname ? item.surname : '')}</b></p>
+                            <p class="float-left">REVIEW: ${item.detail}</p>
+                        <p class="text-right"> REVIEW DATE :${item.review_date}</p>
+                        
+                    <div class="d-flex align-items-end flex-column" >
+
+                        <img src="${item.barber_img}" style="width: 50px; height: 50px" class="mt-auto p-2 bd-highlight"  />
+                    </div>                   
+                </div>
+            </div>`;
+        }
+
+        const serviceCard = (item) => {
+                return `
+            <div class="col-md-6">
+                <div class="icon">
+                    <div class="position-relative">
+                        <img class="img-fluid img-thumbnail" src="${item.image}" />
+                        <p style="text-align: center;" class="pt-2"><b>${item.name}</b><br>${item.promotion_price ? `<span style="text-decoration: line-through;">${item.price}</span> <span style="color: #A33E3E; font-size:20px">${item.promotion_price} Baht</span>` : item.price + ' Bath'} </p>
+                    </div>
+                </div>
+            </div>
+                        `
+        }
+
+            const barberCard = (item) => {
+            return `
+                            <div class="col-6 col-md-4 col-lg-3 mb-3">
+                                <a href="" data-toggle="modal" data-target="#team" class="text-decoration-none"">
+                                    <div class="icon">
+                                        <div class="position-relative">
+                                            <img class="circle" src="${item.image}" />
+                                            <p style="text-align: center;" class="pt-2 text-dark">ช่าง ${item.name}</p>
+                                            <p style="text-align: center;" class="pt-2 text-dark"> ${item.description}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>`;
+            }
     </script>
 </body>
 

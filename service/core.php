@@ -228,9 +228,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         // echo $sql;
         $review = getpdo($conn, $sql);
 
-        $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'sql' => $sql)));
-        echo json_encode($res);
-        return;
+        if(gettype($review) == 'array'){
+
+            $sql = "SELECT * FROM `service_images`";
+            $pic = getpdo($conn,$sql);
+
+            $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'picture' => $pic)));
+            echo json_encode($res);
+            return;
+        }
     }
 } else if (isset($_POST['action']) && $_POST['action'] == 'get_partner_with_user') {
     $sql = "SELECT `partner`.* FROM `partner` WHERE `fk_user_id` = '" . $_POST['user_id'] . "'";
@@ -660,18 +666,12 @@ echo $sql;
         $rs = getpdo($conn, $sql);
 
         if(gettype($rs) == 'array'){
-
-            $sql = "SELECT * FROM `product_image`  WHERE `fk_product_id` in (SELECT `product_id` FROM `product`)";
-            $rs2 = getpdo($conn,$sql);
-
-            $res = array("code" => 200, "result" => array("product" => $rs,"product_images" => $rs2));
+            $sql = "SELECT * FROM `service_images`";
+            $pic = getpdo($conn,$sql);
+            $res = array("code" => 200, "result" => $rs,'picture' => $pic, "sql" => $sql);
             echo json_encode($res);
-            return ;
+            return; 
         }
-
-        $res = array("code" => 200, "result" => $rs, "sql" => $sql);
-        echo json_encode($res);
-        return;
     }
 
 }else if (isset($_POST['action']) && $_POST['action'] == 'get_filter_hairstyle') {

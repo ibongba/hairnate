@@ -80,6 +80,7 @@
                 <li><input type="checkbox" class="col-checkbox" id="label_address" data-col="app_address"><label for="label_address">&nbsp; ADDRESS</label> </li>
                 <li><input type="checkbox" class="col-checkbox" id="label_tel" data-col="app_tel"><label for="label_tel">&nbsp; TEL.</label> </li>
                 <li><input type="checkbox" class="col-checkbox" id="label_status" data-col="app_status"><label for="label_status">&nbsp; STATUS</label> </li>
+                <li><input type="checkbox" class="col-checkbox" id="label_status" data-col="app_map"><label for="label_map">&nbsp; MAP</label> </li>
                 <li><input type="checkbox" class="col-checkbox" id="label_alert" data-col="app_alert"><label for="label_alert">&nbsp; ALERT</label> </li>
                 <li><input type="checkbox" class="col-checkbox" id="label_pic" data-col="app_pic"><label for="label_pic">&nbsp; PICTURE</label> </li>
             </ul>
@@ -96,6 +97,7 @@
                         <th class="app-text app_address">ADDRESS</th>
                         <th class="app-text app_tel">TEL.</th>
                         <th class="app-text app_status">STATUS</th>
+                        <th class="app-text app_map">MAP</th>
                         <th class="app-text app_alert">ALERT</th>
                         <th class="app-text app_pic">PICTURE</th>
                     </tr>
@@ -331,8 +333,9 @@
                             <td class="app_address">${item.address}</td>
                             <td class="app_tel">${item.phone}</td>
                             <td class="text-success app_status">${item.status}</td>
+                            <td class="text-success app_map"><a href="https://www.google.com/maps/place/${item.lat},${item.lon}">map</a></td>
                             ${
-                                item.status == "Paid" ? `<td class="app_alert"><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}')" style="min-width: auto;">Alert</button></td>` : ''
+                                item.status == "Paid" ? `<td class="app_alert"><button type="button" class="btn btn-danger" onclick="sendMail('${item.email}','${item.service_date}')" style="min-width: auto;">Alert</button></td>` : ''
                             } 
                             <td class="app_alert"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#picture" onclick="id_picture('${item.id_service_detail}')">Picture</button></td>
                             <td class="app_pic"><a href="updateSevice.php?id=${item.id_service_detail}" class="btn btn-warning">update</a
@@ -377,7 +380,8 @@
                 }
             });
         }
-         picture = (item) => {
+         
+        picture = (item) => {
             var img = item.path ? '../' + item.path : 'https://via.placeholder.com/150';
             return `
                    
@@ -406,7 +410,6 @@
                 }
             });
         }
-
 
         const onchangefilter = () => {
             $.ajax({
@@ -440,11 +443,16 @@
         }
 
         const sendMail = (mail) => {
+            var date1 = new Date();
+            var date2 = new Date(date);
+            var diffDays = date2.getDate() - date1.getDate(); 
+            // alert(diffDays)
             $.ajax({
                 method: 'POST',
                 url: '../service/mail.php',
                 data: {
                     mail:mail,
+                    num_date: diffDays,
                 }
             }).done(function(msg) {
                 alert(msg)

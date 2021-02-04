@@ -6,36 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>TEST</title>
 </head>
+<style>
+    #columns-dropdown {
+        list-style: none;
+    }
+    
+    table {
+        border: 1px solid grey;
+    }
+    
+    th,
+    td {
+        padding: 1em;
+    }
+</style>
 
 <body>
-    <div class="chart-container" style="position: relative; height:40%; width:80%">
-        <canvas id="chart"></canvas>
-    </div>
+    <ul id="columns-dropdown">
+        <li><input type="checkbox" data-col="col-name" class="col-checkbox" />Name</li>
+        <li><input type="checkbox" data-col="col-last-name" class="col-checkbox" />Last Name</li>
+        <li><input type="checkbox" data-col="col-phone-number" class="col-checkbox" />Phone Number</li>
+        <li><input type="checkbox" data-col="col-city" class="col-checkbox" />City</li>
+    </ul>
 
+    <table>
+        <thead>
+            <th class="col-name">Name</th>
+            <th class="col-last-name">Last Name</th>
+            <th class="col-phone-number">Phone Number</th>
+            <th class="col-city">City</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-name">David</td>
+                <td class="col-last-name">Martin</td>
+                <td class="col-phone-number">44-5353254</td>
+                <td class="col-city">Tandil</td>
+            </tr>
+            <tr>
+                <td class="col-name">Jorge</td>
+                <td class="col-last-name">Pérez</td>
+                <td class="col-phone-number">44-5353254</td>
+                <td class="col-city">Tandil</td>
+            </tr>
+        </tbody>
+    </table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script>
-        var ctx = $('#chart');
-        new Chart(ctx, {
-            type: 'line',
-            responsive: true,
-            data: {
-                labels: [1, 2, 3, 4, 5, 6, 7],
-                datasets: [{
-                    fill: false,
-                    label: 'คุ แมน',
-                    data: [0, 10, 5, 2, 20, 30, 45]
-                }]
-            },
+        const colCheckboxes = document.querySelectorAll(".col-checkbox");
+
+        colCheckboxes.forEach((element) => {
+            // Set checked by Default
+            element.checked = true;
+            element.addEventListener("change", (event) => {
+                const checked = event.target.checked;
+                const colName = element.getAttribute("data-col");
+
+                hideShowTableCol(colName, checked);
+            });
         });
+
+        function hideShowTableCol(colName, checked) {
+            const cells = document.querySelectorAll(`.${colName}`);
+            cells.forEach((cell) => {
+                cell.style.display = checked ? "table-cell" : "none";
+            });
+        }
     </script>
 </body>
 

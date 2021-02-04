@@ -215,7 +215,17 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         $sql = "SELECT * FROM `barber` WHERE `id_partner` = '" . $rs[0]['id'] . "'";
         $barber = getpdo($conn, $sql);
 
-        $sql="SELECT *, `review`.`create_at`AS `review_date` FROM `review` JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` JOIN `users` ON `users`.`id` = `service_detail`.`id_users` JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "' ORDER BY `review_date` DESC LIMIT 5";
+        $sql="SELECT *, `review`.`create_at`AS `review_date` ,`barber`.`image` AS barber_img
+        FROM `review` 
+        JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` 
+        -- JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` 
+        JOIN `users` ON `users`.`id` = `service_detail`.`id_users` 
+        JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber` 
+        JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
+        WHERE `hairstyle`.`id_partner` = '" . $rs[0]['id'] . "' 
+        GROUP BY `service_detail`.`id_service_detail`
+        ORDER BY `review_date` DESC LIMIT 5";
+        // echo $sql;
         $review = getpdo($conn, $sql);
 
         $res = array("code" => 200, "result" => json_encode(array('closed' => $closed, 'hairstyle' => $hairstyle, 'partner' => $rs[0], 'barber' => $barber, 'review' => $review, 'sql' => $sql)));
@@ -309,7 +319,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         }
     }
 } else if (isset($_POST['action']) && $_POST['action'] == 'get_order_by_customer') {
-    $sql = "SELECT `tracking`.*,`service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  FROM `service_detail` JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` left join `tracking` on `service_detail`.`id_service_detail` = `tracking`.`fk_sd_id` WHERE `id_users` = '" . $_POST['id'] . "' and `status` != 1 order by `service_date` desc,`service_time` desc";
+    $sql = "SELECT `tracking`.*,`service_detail`.*,`barber`.`name` as `barber_name`, `hairstyle`.*, `promotion`.*, `partner`.*  
+    FROM `service_detail` 
+    JOIN `barber` ON `service_detail`.`id_barber` = `barber`.`id_barber` 
+    JOIN `partner` ON `barber`.`id_partner` = `partner`.`id` 
+    JOIN `hairstyle` ON `service_detail`.`id_hairstyle` = `hairstyle`.`id_hairstyle` 
+    LEFT JOIN `promotion` ON `hairstyle`.`id_hairstyle` = `promotion`.`fk_hairstyle_id` 
+    left join `tracking` on `service_detail`.`id_service_detail` = `tracking`.`fk_sd_id` 
+    WHERE `id_users` = '" . $_POST['id'] . "' and `status` != 1 
+    order by `service_date` desc,`service_time` desc";
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
@@ -622,10 +640,10 @@ echo $sql;
     $rs = getpdo($conn, $sql);
 
     if ($rs) {
-        $sql = "SELECT *, `review`.`create_at`AS `review_date` 
+        $sql = "SELECT *, `review`.`create_at`AS `review_date` ,`barber`.`image` AS barber_img
         FROM `review` 
         JOIN `service_detail` on `service_detail`.`id_service_detail` = `review`.`fk_sd_id` 
-        JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` 
+        -- JOIN `service_images` on `service_detail`.`id_service_detail` = `service_images`.`fk_sd_id` 
         JOIN `users` ON `users`.`id` = `service_detail`.`id_users` 
         JOIN `hairstyle` on `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
         JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber`
@@ -637,8 +655,19 @@ echo $sql;
         if(!empty($_POST['id_barber'])){
             $sql .= " AND `barber`.`id_barber` = '" . $_POST['id_barber'] . "'";
         }
-        $sql .= " ORDER BY `review_date` DESC LIMIT 5";
+        $sql .= " GROUP BY `service_detail`.`id_service_detail` ORDER BY `review_date` DESC LIMIT 5";
+        // echo $sql;
         $rs = getpdo($conn, $sql);
+
+        if(gettype($rs) == 'array'){
+
+            $sql = "SELECT * FROM `product_image`  WHERE `fk_product_id` in (SELECT `product_id` FROM `product`)";
+            $rs2 = getpdo($conn,$sql);
+
+            $res = array("code" => 200, "result" => array("product" => $rs,"product_images" => $rs2));
+            echo json_encode($res);
+            return ;
+        }
 
         $res = array("code" => 200, "result" => $rs, "sql" => $sql);
         echo json_encode($res);
@@ -652,8 +681,6 @@ echo $sql;
     echo json_encode($res);
     return;
 }else if (isset($_POST['action']) && $_POST['action'] == 'get_hairstyle_detail') {
-
-      
         $sql = "SELECT `hairstyle`.`name` AS hairstyle_name,`service_detail`.`id_hairstyle`, COUNT(`service_detail`.`id_hairstyle`) AS total_hair 
         FROM service_detail 
         JOIN hairstyle ON `hairstyle`.`id_hairstyle` = `service_detail`.`id_hairstyle` 
@@ -670,8 +697,6 @@ echo $sql;
 
 }
 else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
-
-      
     $sql = "SELECT *, `barber`.`name` AS barber_name, `hairstyle`.`name` AS hair_name FROM `service_detail` 
     JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber`
     JOIN `partner` ON `partner`.`id` = `barber`.`id_partner`
@@ -685,9 +710,7 @@ else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
     echo json_encode($res);
     return;
 
-
 }
-
 
 $result = array("message" => "Error someting");
 $res = array("code" => 401, "result" => $result, "sql" => $sql);

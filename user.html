@@ -422,6 +422,7 @@
                                         <h6 class="m-0"><b>${item.biz_name}</b></h6>
                                         <p class="m-0" style="font-size: small;"><b>${item.name}</b></p>
                                         <p class="text-black-50" style="font-size: x-small;">${formatDate(new Date(item.service_date))}, ${item.service_time}</p>
+                                        
                                     </div>
                                     <div class="col text-right">
                                         <div class="float-right">
@@ -449,7 +450,7 @@
                                     ${item.tracking_on ? `
                                         <p class="m-0">จัดส่งโดย : ${item.tracking_type}</p>
                                         <p class="m-0">หมายเลขจัดส่ง : ${item.tracking_on}</p>
-
+                                        <a href="https://ems.thaiware.com/">เช็คสถานะ</a>
                                         ` : ''}
                                 </div>
                                 <div class="col">

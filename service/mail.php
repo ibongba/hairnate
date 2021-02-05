@@ -36,6 +36,7 @@
 		 
 		if(!$mail->Send()){
 		  echo "Mail Not Sent";
+		  echo 'ยังไม่สามารถส่งเมลล์ได้ในขณะนี้ ' . $mail->ErrorInfo;
 		}
 		else{
 		  echo "Mail Sent";

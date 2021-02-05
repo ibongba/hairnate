@@ -545,9 +545,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 } else if (isset($_POST['action']) && $_POST['action'] == 'create_review') {
     $sql = "INSERT INTO `review`( `rating`, `detail`, `fk_sd_id`) VALUES ('" . $_POST['rate'] . "','" . $_POST['detail'] . "','" . $_POST['id'] . "')";
     $rs = getpdo($conn, $sql);
-echo $sql;
+// echo $sql;
     if (isset($rs)) {
-
         $sql = "UPDATE `service_detail` SET `status` = " . $_POST['status'] . " WHERE `id_service_detail` = '" . $_POST['id'] . "'";
         $rs = getpdo($conn, $sql);
 

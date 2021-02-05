@@ -83,7 +83,7 @@
                                                 </form>
                                                 <button onclick="create_review()" type="button" class="btn btn-dark mt-3" style="width: 120px;font-size: medium;
                                                 padding: 9px;
-                                                border-radius: 25px;">DONE</button>
+                                                border-radius: 25px;" data-dismiss="modal">DONE</button>
                                             </div>
 
                                         </div>
@@ -382,6 +382,8 @@
                 console.log(msg)
                 if (msg.code === 200) {
                     window.location.reload();
+                    // $('#review_barber').modal('hide');
+
                 }
             });
         }

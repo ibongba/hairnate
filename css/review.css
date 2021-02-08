@@ -19,6 +19,10 @@
     width: inherit;
 }
 
+.text-review img {
+    width: 150px !important;
+}
+
 @media screen and (min-width: 768px) {
     .rewiew-img {
         height: 200px;

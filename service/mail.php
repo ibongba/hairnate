@@ -26,8 +26,8 @@
 		$mail->IsHTML(true);
 		$mail->CharSet="utf-8";
 		$mail->ContentType="text/html";
-		$mail->Username = "exhairnate@gmail.com"; //username gmail accound
-		$mail->Password = "yokblrbxjwcqhhaz"; //password gmail accound
+		$mail->Username = "ex2hairnate@gmail.com"; //username gmail accound
+		$mail->Password = "koyztpgggvuhcvzc"; //password gmail accound
 		$mail->SetFrom("no-reply@gmail.com", "Company name");
 		// $mail->AddReplyTo("yourmail@gmail.com", "Company name");
 		$mail->Subject = $mailSub;
@@ -36,7 +36,7 @@
 		 
 		if(!$mail->Send()){
 		  echo "Mail Not Sent";
-		  echo 'ยังไม่สามารถส่งเมลล์ได้ในขณะนี้ ' . $mail->ErrorInfo;
+		//   echo 'ยังไม่สามารถส่งเมลล์ได้ในขณะนี้ ' . $mail->ErrorInfo;
 		}
 		else{
 		  echo "Mail Sent";

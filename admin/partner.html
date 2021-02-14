@@ -13,217 +13,182 @@
 </head>
 
 <body>
-    <div id="nav"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a href="../admin/partner.html">
+                    <img class="logo-img center-block" src="/hairnate/images/logo-app-white.png" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="row mt-4">
-            <h3 class="col-md col-sm-12 text-left p-3">HAIRNATE DELIVERY <b>PARTNER</b></h3>
-            <div class="col-md col-sm-12 float-right">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 float-left p-2 ">
-                        <div class="form-group pt-0" style="width: auto;">
-                            <select class="btn btn-outline-dark " id="exampleFormControlSelect1" onchange="window.location.href=this.value;">
-                                <option value="../admin/partner.html" selected>ประเภทร้านตัดผม</option>
-                                <option value="../admin/partnerfashion.html">MEN's FASHION HAIR CUT</option>
-                                <option value="../admin/partnerdonate.html">DONATE HAIR CUT</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 float-right p-2 ">
-                        <div class="input-group mb-3">
-                            <input type="text" class="" placeholder="ค้นหาร้านตัดผม" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="min-width: auto;"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row my-5">
+            <!-- <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="chart-bar"></canvas>
+                </div>
+            </div> -->
+            <div class="col">
+                <div class="chart-container">
+                    <canvas id="chart-line"></canvas>
                 </div>
             </div>
+
         </div>
-        <hr width="50%" align="left">
-        <div class="my-5">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/pp1.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <img src="../images/pp2.png" alt="" class="col-4 w-50">
-                                <h4 class="col-8 my-4 p-3">SOYYOUHGZAY</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/pp3.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <img src="../images/pp4.png" alt="" class="col-4 w-50">
-                                <h4 class="col-8 my-4 p-3">SOYYOUHGZAY</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/pp5.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <img src="../images/pp6.png" alt="" class="col-4 w-50">
-                                <h4 class="col-8 my-4 p-3">SOYYOUHGZAY</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/pp7.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp2.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp1.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp4.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp3.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp6.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp5.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <img src="../images/dp7.png" alt="" class="col-4">
-                                <h4 class="col-8 my-4 p-3">COACH CRAFTSMAN</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- <div class="btn-group">
+            <button class="btn" onclick="OnView('weekly')">
+                weekly
+            </button>
+            <button class="btn" onclick="OnView('monthly')">
+                monthly
+            </button>
+            <button class="btn" onclick="OnView('yearly')">
+                yearly
+            </button>
+        </div> -->
     </div>
 
 
-    <footer>
-        <div class="container">
-            <div class="foot_logo">
-                <img class="logo-img center-block" src="../images/logo-app-white.png" />
-            </div>
-
-            <div class="footer_text">
-                เว็บแอพพลิเคชั่นรวบรวมร้านตัดผมแฟชั่นชาย และตัดผลบริจาคแบบ Delivery ในเขตกรุงเทพมหานครและปริมณฑล
-            </div>
-
-
-            <div class="foot_icon">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
-        $(function() {
-            $('#nav').load("http://localhost/hairnate/layout/navbar.html");
+        var select = 'weekly';
+
+        const OnView = (e) => {
+            select = e
+            countOrderWithDay()
+        }
+
+        let user = JSON.parse(localStorage.getItem('user'));
+        $().ready(() => {
+
+            console.log(user)
+            countOrderWithDay()
+        });
+
+        const countOrderWithDay = () => {
+            let day = 6;
+            if (select == 'monthly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                day = lastDayOfMonth.getDate();
+            } else if (select == 'yearly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
+                day = lastDayOfMonth.getDate();
+            }
+
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_order_7_day',
+                    id: user.id,
+                    day: day
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                if (msg.code === 200) {
+                    $('#biz_name').text('ร้าน' + msg.result.partner[0].biz_name)
+                    var ctx = $('#chart-bar');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        responsive: true,
+                        data: {
+                            labels: [...msg.result.service.map((item) => item.service_date)],
+                            datasets: [{
+                                fill: false,
+                                label: 'จำนวนการใช้งาน',
+                                data: [...msg.result.service.map((item) => item.count)]
+                            }]
+                        },
+                    });
+                }
+            });
+        }
+
+        const accumulate = arr => arr.map((sum => value => sum += value)(0));
+
+        const cumulativeSum = (sum => value => sum += parseInt(value))(0);
+
+
+        function currencyFormat(num) {
+            return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+        $().ready(() => {
+            var options = {
+                animation: false,
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItems, data) {
+                            return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+                        }
+                    }
+                }
+            };
+
+            $.ajax({
+                method: 'POST',
+                url: '../service/core.php',
+                data: {
+                    action: 'get_money',
+                    id: user.id,
+                },
+                dataType: 'json',
+            }).done(function(msg) {
+                // console.log(accumulate([...msg.result.map((item) => item.total_price)]))
+                // console.log([...msg.result.map((item) => item.total_price)]);
+                // var test = ([...msg.result.map((item) => parseInt(item.total_price) + parseInt((item.total_price * 10) / 100))]);
+                // var test2 = ([...msg.result.map((item) => parseInt((item.total_price * 10) / 100))])
+                // var test3 = ((test + test2));
+                // console.log(test3)
+                // console.log(test)
+                // console.log(test2)
+
+                if (msg.code === 200) {
+                    var ctx = $('#chart-line');
+                    new Chart(ctx, {
+                        type: 'line',
+                        responsive: true,
+                        label: 'รายโดยรวม',
+                        data: {
+                            labels: [...msg.result.map((item) => item.service_date), 'test'],
+                            datasets: [{
+                                fill: false,
+                                label: 'รายได้ต่อวัน (บาท)',
+                                data: [...msg.result.map((item) => item.total_price), 1000],
+                                borderColor: '#4CAF50', // Add custom color border (Line)
+                                backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+                                borderWidth: 1 // Specify bar border width
+                            }, {
+                                fill: false,
+                                label: 'รายได้สะสม (บาท)',
+                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum), 1000],
+                                borderColor: '#2196f3', // Add custom color border (Line)
+                                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                                borderWidth: 1 // Specify bar border width
+                            }, {
+                                fill: false,
+                                label: 'รายได้บวก 10% (บาท)',
+                                data: [...msg.result.map((item) => parseInt(item.total_price) + parseInt((item.total_price * 10) / 100)), 1000],
+                                borderColor: '#9B68FF', // Add custom color border (Line)
+                                backgroundColor: '#9B68FF', // Add custom color background (Points and Fill)
+                                borderWidth: 1 // Specify bar border width
+                            }],
+
+                        },
+                        options
+                    });
+                }
+            });
         });
     </script>
 </body>

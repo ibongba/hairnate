@@ -19,19 +19,7 @@
 <body>
     <div id="nav"></div>
     <div class="container">
-        <h1 id="biz_name"></h1>
-        <div class="row my-4">
-            <div class="col-md-6">
-                <div class="chart-container">
-                    <canvas id="chart-bar"></canvas>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="chart-container">
-                    <canvas id="chart-line"></canvas>
-                </div>
-            </div>
-        </div>
+        <h1 id="biz_name" class="mt-3"></h1>
         <div class="btn-group">
             <button class="btn" onclick="OnView('weekly')">
                 weekly
@@ -43,6 +31,25 @@
                 yearly
             </button>
         </div>
+        <div class="row my-4">
+
+            <div class="col-md-6">
+                <div id="chart-container">
+                    <canvas id="chart-bar"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="chart-container2">
+                    <canvas id="chart-pie"></canvas>
+                </div>
+            </div>
+            <div class="col">
+                <div id="chart-container3">
+                    <canvas id="chart-line"></canvas>
+                </div>
+            </div>
+        </div>
+
         <!-- <div class="chart-container">
             <canvas id="chart-bar-total"></canvas>
         </div> -->
@@ -133,6 +140,14 @@
         const OnView = (e) => {
             select = e
             countOrderWithDay()
+            countOrderWithDayOnLine()
+            countOrderWithDayOnDoughnut()
+            $('#chart-bar').remove(); // this is my <canvas> element
+            $('#chart-container').append('<canvas id="chart-bar"><canvas>');
+            $('#chart-pie').remove(); // this is my <canvas> element
+            $('#chart-container2').append('<canvas id="chart-pie"><canvas>');
+            $('#chart-line').remove(); // this is my <canvas> element
+            $('#chart-container3').append('<canvas id="chart-line"><canvas>');
         }
 
         let user = JSON.parse(localStorage.getItem('user'));
@@ -140,18 +155,23 @@
 
             console.log(user)
             countOrderWithDay()
+            countOrderWithDayOnLine()
+            countOrderWithDayOnDoughnut()
         });
 
-        const countOrderWithDay =()=>{
+        function currencyFormat(num) {
+            return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+
+        const countOrderWithDay = () => {
             let day = 6;
-            if(select == 'monthly') {
+            if (select == 'monthly') {
                 var today = new Date();
-                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0);
+                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
                 day = lastDayOfMonth.getDate();
-            }
-            else if(select == 'yearly') {
+            } else if (select == 'yearly') {
                 var today = new Date();
-                var lastDayOfMonth = new Date(today.getFullYear() +1 , 0, 0);
+                var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
                 day = lastDayOfMonth.getDate();
             }
 
@@ -184,67 +204,143 @@
             });
         }
 
-        const accumulate = arr => arr.map((sum => value => sum += value)(0));
+        const countOrderWithDayOnLine = () => {
+            let day = 6;
+            if (select == 'monthly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                day = lastDayOfMonth.getDate();
+            } else if (select == 'yearly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
+                day = lastDayOfMonth.getDate();
+            }
 
-        const cumulativeSum = (sum => value => sum += parseInt(value))(0);
-
-        function currencyFormat(num) {
-            return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-        }
-        $().ready(() => {
-            var options = {
-                animation: false,
-                tooltips: {
-                    callbacks: {
-                        label: function(tooltipItems, data) {
-                            return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+            $().ready(() => {
+                var options = {
+                    animation: false,
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItems, data) {
+                                return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+                            }
                         }
                     }
-                }
-            };
+                };
+                $.ajax({
+                    method: 'POST',
+                    url: '../service/core.php',
+                    data: {
+                        action: 'get_money',
+                        id: user.id,
+                    },
+                    dataType: 'json',
+                }).done(function(msg) {
+                    // console.log(accumulate([...msg.result.map((item) => item.total_price)]))
+                    // console.log([...msg.result.map((item) => item.total_price)]);
+                    // console.log([...msg.result.map((item) => (item.total_price)), 1000])
+                    // console.log([...msg.result.map((item) => item.total_price).map(cumulativeSum), 1000])
+                    // let y = 0;
+                    if (msg.code === 200) {
+                        var ctx = $('#chart-line');
+                        new Chart(ctx, {
+                            type: 'line',
+                            responsive: true,
+                            label: 'รายโดยรวม',
+                            data: {
+                                labels: [...msg.result.map((item) => item.service_date), 'test'],
+                                datasets: [{
+                                    fill: false,
+                                    label: 'รายได้ต่อวัน (บาท)',
+                                    data: [...msg.result.map((item) => item.total_price), 1000],
+                                    borderColor: '#4CAF50', // Add custom color border (Line)
+                                    backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
+                                    borderWidth: 1 // Specify bar border width
+                                }, {
+                                    fill: false,
+                                    label: 'รายได้สะสม (บาท)',
+                                    data: [...msg.result.map((item) => item.total_price).map((sum => value => sum += parseInt(value))(0)), 1000],
+                                    borderColor: '#2196f3', // Add custom color border (Line)
+                                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                                    borderWidth: 1 // Specify bar border width
+                                }, {
+                                    fill: false,
+                                    label: 'รายได้หัก 10% (บาท)',
+                                    data: [...msg.result.map((item) => parseInt(item.total_price) - parseInt((item.total_price * 10) / 100)), 1000],
+                                    borderColor: '#9B68FF', // Add custom color border (Line)
+                                    backgroundColor: '#9B68FF', // Add custom color background (Points and Fill)
+                                    borderWidth: 1 // Specify bar border width
+                                }],
 
-            $.ajax({
-                method: 'POST',
-                url: '../service/core.php',
-                data: {
-                    action: 'get_money',
-                    id: user.id,
-                },
-                dataType: 'json',
-            }).done(function(msg) {
-                // console.log(accumulate([...msg.result.map((item) => item.total_price)]))
-                // console.log([...msg.result.map((item) => item.total_price)]);
-
-                if (msg.code === 200) {
-                    var ctx = $('#chart-line');
-                    new Chart(ctx, {
-                        type: 'line',
-                        responsive: true,
-                        label: 'รายโดยรวม',
-                        data: {
-                            labels: [...msg.result.map((item) => item.service_date), 'test'],
-                            datasets: [{
-                                fill: false,
-                                label: 'รายได้ต่อวัน (บาท)',
-                                data: [...msg.result.map((item) => item.total_price), 1000],
-                                borderColor: '#4CAF50', // Add custom color border (Line)
-                                backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
-                                borderWidth: 1 // Specify bar border width
-                            }, {
-                                fill: false,
-                                label: 'รายได้สะสม (บาท)',
-                                data: [...msg.result.map((item) => item.total_price).map(cumulativeSum), 1000],
-                                borderColor: '#2196f3', // Add custom color border (Line)
-                                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                                borderWidth: 1 // Specify bar border width
-                            }],
-
-                        },
-                        options
-                    });
-                }
+                            },
+                            options
+                        });
+                    }
+                });
             });
-        });
+        }
+        const cumulativetest = (sum => value => sum += parseInt(value))(0);
+        const cumulativetest2 = (sum => value => sum += parseInt(value))(0);
+
+        const countOrderWithDayOnDoughnut = () => {
+            let day = 6;
+            if (select == 'monthly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                day = lastDayOfMonth.getDate();
+            } else if (select == 'yearly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
+                day = lastDayOfMonth.getDate();
+            }
+            $().ready(() => {
+                var options = {
+                    animation: false,
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItems, data) {
+                                return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
+                            }
+                        }
+                    }
+                };
+
+                $.ajax({
+                    method: 'POST',
+                    url: '../service/core.php',
+                    data: {
+                        action: 'get_ten_percent',
+                        id: user.id,
+                    },
+                    dataType: 'json',
+                }).done(function(msg) {
+
+                    console.log([...msg.result.map((item) => parseInt(item.sum_price) + parseInt((item.sum_price * 10) / 100)), ...msg.result.map((item) => parseInt(item.sum_price) - parseInt((item.sum_price * 10) / 100))])
+
+                    if (msg.code === 200) {
+                        var ctx = $('#chart-pie');
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            responsive: true,
+                            label: 'รายโดยรวม',
+                            data: {
+                                labels: ['รายได้ที่ได้ 10%', 'รายได้ที่หัก 10%'],
+                                datasets: [{
+                                    fill: false,
+                                    // label: 'รายได้ที่ได้ 10%',
+                                    data: [...msg.result.map((item) => parseInt(item.sum_price) + parseInt((item.sum_price * 10) / 100)), ...msg.result.map((item) => parseInt(item.sum_price) - parseInt((item.sum_price * 10) / 100))],
+                                    // borderColor: '#000', // Add custom color border (Line)
+                                    backgroundColor: ['#F7F2B2', '#99F3F0', '#F5ABAB', '#C4ABF5'], // Add custom color background (Points and Fill)
+                                    borderWidth: 1 // Specify bar border width
+                                }],
+
+                            },
+                            options
+                        });
+                    }
+                });
+            });
+        }
 
         function formatDate2(date) {
             var d = new Date(date),

@@ -709,6 +709,31 @@ else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
     echo json_encode($res);
     return;
 
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_ten_percent') {
+
+    $sql = "SELECT * FROM `partner` WHERE `fk_user_id` = '" . $_POST['id'] . "'";
+    $partner = getpdo($conn, $sql);
+
+    if ($partner) {
+        $partner_id = $partner[0]['id'];
+        $mydate = getdate(date("U"));
+        $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+
+        $sql = "SELECT SUM(`service_detail`.`price`) AS sum_price FROM `service_detail` 
+        join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
+        WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' 
+        GROUP BY  `barber`.`id_partner` ";
+        // echo $sql;
+
+        $rs = getpdo($conn, $sql);
+
+        if ($rs) {
+
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
+
+        }}
 }
 
 $result = array("message" => "Error someting");

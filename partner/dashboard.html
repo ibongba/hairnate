@@ -32,6 +32,17 @@
                 </div>
             </div>
         </div>
+        <div class="btn-group">
+            <button class="btn" onclick="OnView('weekly')">
+                weekly
+            </button>
+            <button class="btn" onclick="OnView('monthly')">
+                monthly
+            </button>
+            <button class="btn" onclick="OnView('yearly')">
+                yearly
+            </button>
+        </div>
         <!-- <div class="chart-container">
             <canvas id="chart-bar-total"></canvas>
         </div> -->
@@ -117,16 +128,40 @@
         });
     </script>
     <script>
+        var select = 'weekly';
+
+        const OnView = (e) => {
+            select = e
+            countOrderWithDay()
+        }
+
         let user = JSON.parse(localStorage.getItem('user'));
         $().ready(() => {
 
             console.log(user)
+            countOrderWithDay()
+        });
+
+        const countOrderWithDay =()=>{
+            let day = 6;
+            if(select == 'monthly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0);
+                day = lastDayOfMonth.getDate();
+            }
+            else if(select == 'yearly') {
+                var today = new Date();
+                var lastDayOfMonth = new Date(today.getFullYear() +1 , 0, 0);
+                day = lastDayOfMonth.getDate();
+            }
+
             $.ajax({
                 method: 'POST',
                 url: '../service/core.php',
                 data: {
                     action: 'get_order_7_day',
                     id: user.id,
+                    day: day
                 },
                 dataType: 'json',
             }).done(function(msg) {
@@ -140,14 +175,14 @@
                             labels: [...msg.result.service.map((item) => item.service_date)],
                             datasets: [{
                                 fill: false,
-                                label: 'จำนวนการใช้งานภายใน 7 วัน',
+                                label: 'จำนวนการใช้งาน',
                                 data: [...msg.result.service.map((item) => item.count)]
                             }]
                         },
                     });
                 }
             });
-        });
+        }
 
         const accumulate = arr => arr.map((sum => value => sum += value)(0));
 

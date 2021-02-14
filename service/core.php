@@ -604,8 +604,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 
     if ($partner) {
         $partner_id = $partner[0]['id'];
-        $lastmonth = mktime(0, 0, 0, date("m"), date("d") - 6, date("Y"));
-        $sql = "SELECT *, COUNT(`id_service_detail`) AS count FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` DESC";
+        $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
+        $sql = "SELECT `service_date`, COUNT(`id_service_detail`) AS count FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` DESC";
         // echo $sql;
 
         $rs = getpdo($conn, $sql);
@@ -627,7 +627,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         $mydate = getdate(date("U"));
         $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
 
-        $sql = "SELECT *, SUM(`price`) AS total_price  FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` ";
+        $sql = "SELECT `service_date`, SUM(`price`) AS total_price  FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` ";
         // echo $sql;
 
         $rs = getpdo($conn, $sql);

@@ -32,7 +32,6 @@
             </button>
         </div>
         <div class="row my-4">
-
             <div class="col-md-6">
                 <div id="chart-container">
                     <canvas id="chart-bar"></canvas>
@@ -43,11 +42,15 @@
                     <canvas id="chart-pie"></canvas>
                 </div>
             </div>
-            <div class="col">
+        </div>
+        <div class="row">
+            <div class="col-md-2 d-none d-md-block"></div>
+            <div class="col-md-8">
                 <div id="chart-container3">
                     <canvas id="chart-line"></canvas>
                 </div>
             </div>
+            <div class="col-md-2 d-none d-md-block"></div>
         </div>
 
         <!-- <div class="chart-container">
@@ -323,11 +326,13 @@
                             responsive: true,
                             label: 'รายโดยรวม',
                             data: {
-                                labels: ['รายได้ที่ได้ 10%', 'รายได้ที่หัก 10%'],
+                                labels: ['รายได้รวม', 'รายได้ที่หัก 10%'],
                                 datasets: [{
                                     fill: false,
                                     // label: 'รายได้ที่ได้ 10%',
-                                    data: [...msg.result.map((item) => parseInt(item.sum_price) + parseInt((item.sum_price * 10) / 100)), ...msg.result.map((item) => parseInt(item.sum_price) - parseInt((item.sum_price * 10) / 100))],
+                                    data: [...msg.result.map((item) => item.sum_price * 0.9),
+                                        ...msg.result.map((item) => item.sum_price * 0.1)
+                                    ],
                                     // borderColor: '#000', // Add custom color border (Line)
                                     backgroundColor: ['#F7F2B2', '#99F3F0', '#F5ABAB', '#C4ABF5'], // Add custom color background (Points and Fill)
                                     borderWidth: 1 // Specify bar border width

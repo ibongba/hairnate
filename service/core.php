@@ -624,10 +624,16 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
 
     if ($partner) {
         $partner_id = $partner[0]['id'];
-        $mydate = getdate(date("U"));
-        $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
-
-        $sql = "SELECT `service_date`, SUM(`price`) AS total_price  FROM `service_detail` join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' GROUP BY `service_date`  ORDER BY`service_date` ";
+        // $mydate = getdate(date("U"));
+        // $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+        $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
+//   WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' 
+        $sql = "SELECT `service_date`, SUM(`price`) AS total_price  
+        FROM `service_detail` 
+        join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
+        WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' and `id_partner` = '" . $partner_id . "'
+        GROUP BY `service_date`  
+        ORDER BY`service_date` ";
         // echo $sql;
 
         $rs = getpdo($conn, $sql);
@@ -716,12 +722,13 @@ else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
 
     if ($partner) {
         $partner_id = $partner[0]['id'];
-        $mydate = getdate(date("U"));
-        $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
-
+        $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
+        // $mydate = getdate(date("U"));
+        // $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+//  WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' 
         $sql = "SELECT SUM(`service_detail`.`price`) AS sum_price FROM `service_detail` 
         join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
-        WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') and `id_partner` = '" . $partner_id . "' 
+        WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' and `id_partner` = '" . $partner_id . "'
         GROUP BY  `barber`.`id_partner` ";
         // echo $sql;
 
@@ -734,6 +741,51 @@ else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
             return;
 
         }}
+}
+else if (isset($_POST['action']) && $_POST['action'] == 'get_price_admin_fashion') {
+    $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
+    // $mydate = getdate(date("U"));
+    // $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+// WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') 
+    $sql = "SELECT *,SUM(`service_detail`.`price`) AS fa_sum 
+    FROM `service_detail` 
+    join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
+    join `partner` on `partner`.`id` = `barber`.`id_partner` 
+    WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' AND `partner`.`biz_type` = '1'
+    GROUP BY `service_detail`.`service_date`";
+    // echo $sql;
+    $rs = getpdo($conn, $sql);
+
+        if ($rs) {
+
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
+
+        // }
+    }
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_price_admin_donate') {
+    $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
+    // $mydate = getdate(date("U"));
+    // $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
+// WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') 
+    $sql = "SELECT *,SUM(`service_detail`.`price`) AS do_sum 
+    FROM `service_detail` 
+    join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
+    join `partner` on `partner`.`id` = `barber`.`id_partner` 
+    WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' AND `partner`.`biz_type` = '2'
+    GROUP BY `service_detail`.`service_date`";
+    // echo $sql;
+    $rs = getpdo($conn, $sql);
+
+        if ($rs) {
+
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
+
+        // }
+    }
 }
 
 $result = array("message" => "Error someting");

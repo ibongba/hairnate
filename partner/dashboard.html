@@ -233,6 +233,7 @@
                     data: {
                         action: 'get_money',
                         id: user.id,
+                        day: day,
                     },
                     dataType: 'json',
                 }).done(function(msg) {
@@ -279,9 +280,6 @@
                 });
             });
         }
-        const cumulativetest = (sum => value => sum += parseInt(value))(0);
-        const cumulativetest2 = (sum => value => sum += parseInt(value))(0);
-
         const countOrderWithDayOnDoughnut = () => {
             let day = 6;
             if (select == 'monthly') {
@@ -311,6 +309,7 @@
                     data: {
                         action: 'get_ten_percent',
                         id: user.id,
+                        day: day,
                     },
                     dataType: 'json',
                 }).done(function(msg) {

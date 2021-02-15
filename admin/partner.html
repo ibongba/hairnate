@@ -38,20 +38,64 @@
             <button class="btn" onclick="OnView('yearly')">
                 yearly
             </button>
-            <div class="form-group p-0">
-                <select id="inputState" class="form-control" onchange="onchangefilter()">
-                <option value="1">Fashion</option>
-                <option value="2">Donate</option>   
-            </select>
-            </div>
         </div>
         <div id="chart-container">
             <canvas id="chart-line"></canvas>
         </div>
 
+        <div class="mt-5">
+            <h3>รายโดยรวมของแต่ละร้าน</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group p-0">
+                        <select id="inputMonth" class="form-control" onchange="onchangemonth()">
+                  <option value="">กรุณาเลือกเดือน</option>
+                  <option value="01">มกราคม</option>
+                  <option value="02" selected>กุมภาพันธ์</option>
+                  <option value="03">มีนาคม</option>
+                  <option value="04">เมษายน</option>
+                  <option value="05">พฤษภาคม</option>
+                  <option value="06">มิถุนายน</option>
+                  <option value="07">กรกฎาคม</option>
+                  <option value="08">สิงหาคม</option>
+                  <option value="09">กันยายน</option>
+                  <option value="10">ตุลาคม</option>
+                  <option value="11">พฤศจิกายน</option>
+                  <option value="12">ธันวาคม</option>
+                  <!-- <option></option> -->
+                </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group p-0">
+                        <select id="inputYear" class="form-control" onchange="onchangemonth()">
+                  <option value="">กรุณาเลือกปี</option>
+                  <option value="2020">2020</option>
+                  <option value="2021"selected>2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <!-- <option></option> -->
+                </select>
+                    </div>
+                </div>
+            </div>
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>ชื่อร้าน</th>
+                        <th>รายได้รวม (บาท)</th>
+                        <th>รายได้ 10% (บาท)</th>
+                    </tr>
+                </thead>
+                <tbody id="show_partner">
 
+                </tbody>
+            </table>
+        </div>
     </div>
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -60,6 +104,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
         var select = 'weekly';
+        var month = '02';
+        var year = '2021';
 
         const OnView = (e) => {
             select = e
@@ -71,8 +117,22 @@
 
         $().ready(() => {
             onchangefilter()
+            onchangemonth()
         });
 
+        function formatDate2(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
 
         function currencyFormat(num) {
             return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -105,7 +165,6 @@
                     url: '../service/core.php',
                     data: {
                         action: 'get_price_admin_fashion',
-                        biz_type: $('#inputState option:selected').val(),
                         day: day,
                     },
                     dataType: 'json',
@@ -116,26 +175,48 @@
                         // msg = JSON.parse(msg);
                     console.log(msg)
                     if (msg.code === 200) {
+                        var label = [];
+                        var donate = [];
+                        var fashion = [];
+                        var date;
+                        var obj_do;
+                        var obj_fa;
+                        var today = new Date();
+                        // console.log(day)
+                        // console.log(msg.result)
+                        for (i = day; i > 0; i--) {
+                            date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - i);
+                            label.push(formatDate2(date));
+
+                            obj_do = msg.result.find((item) => item.service_date == formatDate2(date) && item.biz_type == 2);
+                            donate.push(obj_do ? obj_do.fa_sum : 0)
+
+                            obj_fa = msg.result.find((item) => item.service_date == formatDate2(date) && item.biz_type == 1);
+                            fashion.push(obj_fa ? obj_fa.fa_sum : 0)
+
+                            // console.log("fashion", obj_fa)
+                            // console.log("donate", obj_do)
+                        }
                         var ctx = $('#chart-line');
                         new Chart(ctx, {
                             type: 'line',
                             responsive: true,
                             label: 'รายโดยรวม',
                             data: {
-                                labels: [...msg.result.map((item) => item.service_date), 'test'],
+                                labels: label,
                                 datasets: [{
                                     fill: false,
-                                    label: 'รายได้ร้าน (บาท)',
-                                    data: [...msg.result.map((item) => item.fa_sum), 1000],
+                                    label: 'รายได้ร้าน Fashion (บาท)',
+                                    data: fashion,
                                     borderColor: '#4CAF50', // Add custom color border (Line)
                                     backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
                                     borderWidth: 1 // Specify bar border width
                                 }, {
                                     fill: false,
-                                    label: 'รายได้บวก 10% (บาท)',
-                                    data: [...msg.result.map((item) => parseInt(item.fa_sum) + parseInt((item.fa_sum * 10) / 100)), 1000],
-                                    borderColor: '#F17B7B', // Add custom color border (Line)
-                                    backgroundColor: '#F17B7B', // Add custom color background (Points and Fill)
+                                    label: 'รายได้ร้าน Donate (บาท)',
+                                    data: donate,
+                                    borderColor: '#FF9191', // Add custom color border (Line)
+                                    backgroundColor: '#FF9191', // Add custom color background (Points and Fill)
                                     borderWidth: 1 // Specify bar border width
                                 }],
                             },
@@ -144,6 +225,40 @@
                     }
                 });
             });
+        }
+
+        const onchangemonth = () => {
+
+            $.ajax({
+                method: "POST",
+                url: "../service/core.php",
+                data: {
+                    action: 'show_partner_admin',
+                    month: $('#inputMonth option:selected').val(),
+                    year: $('#inputYear option:selected').val(),
+                },
+            }).done(function(msg) {
+                msg = JSON.parse(msg)
+                console.log(msg)
+                if (msg.code === 200) {
+                    $('#show_partner').empty();
+                    for (i = 0; i < msg.result.length; i++) {
+                        $("#show_partner").append(show_partner(msg.result[i]));
+                    }
+                    return;
+
+                }
+            });
+        }
+        show_partner = (item) => {
+            console.log(item);
+            return `
+            <tr>
+                <td>${item.biz_name}</td>
+                <td>${item.total_partner}</td>
+                <td>${parseInt(item.total_partner) + parseInt((item.total_partner * 10) / 100)}</td>
+            </tr>
+            `
         }
     </script>
 </body>

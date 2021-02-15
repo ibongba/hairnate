@@ -700,8 +700,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
         return;
     
 
-}
-else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
     $sql = "SELECT *, `barber`.`name` AS barber_name, `hairstyle`.`name` AS hair_name FROM `service_detail` 
     JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber`
     JOIN `partner` ON `partner`.`id` = `barber`.`id_partner`
@@ -741,28 +740,37 @@ else if (isset($_POST['action']) && $_POST['action'] == 'get_total_book') {
             return;
 
         }}
-}
-else if (isset($_POST['action']) && $_POST['action'] == 'get_price_admin_fashion') {
+}else if (isset($_POST['action']) && $_POST['action'] == 'get_price_admin_fashion') {
     $lastmonth = mktime(0, 0, 0, date("m"), date("d") - $_POST['day'], date("Y"));
-    // $mydate = getdate(date("U"));
-    // $early_month = $mydate["year"] . "-" . $mydate["mon"] . "-01";
-// WHERE  `service_date` between  '" . $early_month . "' AND last_day('" . $early_month . "') 
-    $sql = "SELECT *,SUM(`service_detail`.`price`) AS fa_sum 
+    $sql = "SELECT `service_detail`.`service_date`,`partner`.`biz_type`,SUM(`service_detail`.`price`) AS fa_sum 
     FROM `service_detail` 
     join `barber` on `barber`.`id_barber` = `service_detail`.`id_barber` 
     join `partner` on `partner`.`id` = `barber`.`id_partner` 
-    WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' AND `partner`.`biz_type` = '" . $_POST['biz_type'] . "'
-    GROUP BY `service_detail`.`service_date`";
-    // echo $sql;
+    WHERE `service_date` <= CURDATE() AND `service_date` > '" . date('Y-m-d', $lastmonth) . "' 
+    GROUP BY `service_detail`.`service_date`,`partner`.`biz_type`";
+//    echo $sql;
+    // echo  date('Y-m-d', $lastmonth);
     $rs = getpdo($conn, $sql);
-
         if ($rs) {
-
             $res = array("code" => 200, "result" => $rs);
             echo json_encode($res);
             return;
-
-        // }
+    }
+}else if (isset($_POST['action']) && $_POST['action'] == 'show_partner_admin') {
+   
+    $sql = "SELECT  `service_detail`.`service_date`,`partner`.`biz_name`,SUM(`service_detail`.`price`) AS  total_partner
+    FROM `service_detail` 
+    JOIN `barber` ON `barber`.`id_barber` = `service_detail`.`id_barber`
+    JOIN `partner` ON `partner`.`id` = `barber`.`id_partner`
+    WHERE MONTH(`service_detail`.`service_date`) = '". $_POST['month']."' AND YEAR(`service_detail`.`service_date`) = '". $_POST['year']."' 
+    GROUP BY  `partner`.`biz_name`";
+//    echo $sql;
+    // echo  date('Y-m-d', $lastmonth);
+    $rs = getpdo($conn, $sql);
+        if ($rs) {
+            $res = array("code" => 200, "result" => $rs);
+            echo json_encode($res);
+            return;
     }
 }
 

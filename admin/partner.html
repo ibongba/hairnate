@@ -27,19 +27,8 @@
     </nav>
 
     <div class="container">
-        <div class="row my-5">
-            <div class="col-md-6">
-                <div id="chart-container">
-                    <canvas id="chart-line"></canvas>
-                </div>
-            </div>
-            <div class="col">
-                <div id="chart-container2">
-                    <canvas id="chart-line2"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="btn-group">
+
+        <div class="btn-group mt-2">
             <button class="btn" onclick="OnView('weekly')">
                 weekly
             </button>
@@ -49,7 +38,18 @@
             <button class="btn" onclick="OnView('yearly')">
                 yearly
             </button>
+            <div class="form-group p-0">
+                <select id="inputState" class="form-control" onchange="onchangefilter()">
+                <option value="1">Fashion</option>
+                <option value="2">Donate</option>   
+            </select>
+            </div>
         </div>
+        <div id="chart-container">
+            <canvas id="chart-line"></canvas>
+        </div>
+
+
     </div>
 
 
@@ -63,32 +63,22 @@
 
         const OnView = (e) => {
             select = e
-            countOrderWithDayOnFashion()
-            countOrderWithDayOnDonate()
+            onchangefilter()
             $('#chart-line').remove(); // this is my <canvas> element
             $('#chart-container').append('<canvas id="chart-line"><canvas>');
-            $('#chart-line2').remove(); // this is my <canvas> element
-            $('#chart-container2').append('<canvas id="chart-line2"><canvas>');
-            // countOrderWithDay()
         }
 
 
         $().ready(() => {
-            countOrderWithDayOnFashion()
-            countOrderWithDayOnDonate()
-                // console.log(user)
-                // countOrderWithDay()
+            onchangefilter()
         });
-
-        // const accumulate = arr => arr.map((sum => value => sum += value)(0));
-
-        // const cumulativeSum = (sum => value => sum += parseInt(value))(0);
 
 
         function currencyFormat(num) {
             return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
-        const countOrderWithDayOnFashion = () => {
+
+        const onchangefilter = () => {
             let day = 6;
             if (select == 'monthly') {
                 var today = new Date();
@@ -99,7 +89,6 @@
                 var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
                 day = lastDayOfMonth.getDate();
             }
-
             $().ready(() => {
                 var options = {
                     animation: false,
@@ -111,21 +100,21 @@
                         }
                     }
                 };
-
                 $.ajax({
                     method: 'POST',
                     url: '../service/core.php',
                     data: {
                         action: 'get_price_admin_fashion',
+                        biz_type: $('#inputState option:selected').val(),
                         day: day,
-                        // id: user.id,
-                        // biz_type: user.biz_type,
                     },
                     dataType: 'json',
+                    // contentType: false,
+                    // processData: false,
                 }).done(function(msg) {
                     console.log(msg)
-                    console.log([...msg.result.map((item) => item.fa_sum).map((sum => value => sum += parseInt(value))(0)), 1000])
-
+                        // msg = JSON.parse(msg);
+                    console.log(msg)
                     if (msg.code === 200) {
                         var ctx = $('#chart-line');
                         new Chart(ctx, {
@@ -136,88 +125,19 @@
                                 labels: [...msg.result.map((item) => item.service_date), 'test'],
                                 datasets: [{
                                     fill: false,
-                                    label: 'รายได้ร้าน Fashion (บาท)',
+                                    label: 'รายได้ร้าน (บาท)',
                                     data: [...msg.result.map((item) => item.fa_sum), 1000],
                                     borderColor: '#4CAF50', // Add custom color border (Line)
                                     backgroundColor: '#4CAF50', // Add custom color background (Points and Fill)
                                     borderWidth: 1 // Specify bar border width
                                 }, {
                                     fill: false,
-                                    label: 'รายได้บวก 10% ร้าน Fashion (บาท)',
+                                    label: 'รายได้บวก 10% (บาท)',
                                     data: [...msg.result.map((item) => parseInt(item.fa_sum) + parseInt((item.fa_sum * 10) / 100)), 1000],
                                     borderColor: '#F17B7B', // Add custom color border (Line)
                                     backgroundColor: '#F17B7B', // Add custom color background (Points and Fill)
                                     borderWidth: 1 // Specify bar border width
                                 }],
-                            },
-                            options
-                        });
-                    }
-                });
-            });
-        }
-
-        const countOrderWithDayOnDonate = () => {
-            let day = 6;
-            if (select == 'monthly') {
-                var today = new Date();
-                var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-                day = lastDayOfMonth.getDate();
-            } else if (select == 'yearly') {
-                var today = new Date();
-                var lastDayOfMonth = new Date(today.getFullYear() + 1, 0, 0);
-                day = lastDayOfMonth.getDate();
-            }
-
-            $().ready(() => {
-                var options = {
-                    animation: false,
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItems, data) {
-                                return currencyFormat(parseInt(tooltipItems.yLabel.toString()))
-                            }
-                        }
-                    }
-                };
-
-                $.ajax({
-                    method: 'POST',
-                    url: '../service/core.php',
-                    data: {
-                        action: 'get_price_admin_donate',
-                        day: day,
-                        // biz_type: user.biz_type,
-                    },
-                    dataType: 'json',
-                }).done(function(msg) {
-                    console.log(msg)
-                    console.log([...msg.result.map((item) => item.do_sum)])
-
-                    if (msg.code === 200) {
-                        var ctx = $('#chart-line2');
-                        new Chart(ctx, {
-                            type: 'line',
-                            responsive: true,
-                            label: 'รายโดยรวม',
-                            data: {
-                                labels: [...msg.result.map((item) => item.service_date), 'test'],
-                                datasets: [{
-                                    fill: false,
-                                    label: 'รายได้ร้าน donate (บาท)',
-                                    data: [...msg.result.map((item) => item.do_sum), 1000],
-                                    borderColor: '#2196f3', // Add custom color border (Line)
-                                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                                    borderWidth: 1 // Specify bar border width
-                                }, {
-                                    fill: false,
-                                    label: 'รายได้บวก 10% ร้าน donate (บาท)',
-                                    data: [...msg.result.map((item) => parseInt(item.do_sum) + parseInt((item.do_sum * 10) / 100)), 1000],
-                                    borderColor: '#9B68FF', // Add custom color border (Line)
-                                    backgroundColor: '#9B68FF', // Add custom color background (Points and Fill)
-                                    borderWidth: 1 // Specify bar border width
-                                }],
-
                             },
                             options
                         });
